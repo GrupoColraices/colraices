@@ -14,94 +14,129 @@ export default function HeroSection() {
         }}
       />
 
-      {/* OVERLAY (GRADIENTE REAL) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A]/95 via-[#0B1F3A]/85 to-[#0B1F3A]/70" />
-
-      {/* CONTENIDO */}
+      {/* CONTENEDOR PRINCIPAL */}
       <div className="relative w-full max-w-[1416px] mx-auto px-6 lg:px-[156px]">
 
+        {/* LAYOUT */}
         <div className="flex items-center justify-between">
 
-          {/* TEXTO */}
-          <div className="max-w-[620px]">
+          {/* IZQUIERDA */}
+          <div className="w-full max-w-[1001px] flex flex-col gap-16">
 
-          <p className="text-[#FFC107] text-[16px] mb-4 italic">
-            — Para colombianos que construyen futuro desde afuera
-          </p>
+            {/* TEXTO */}
+            <div className="max-w-[620px]">
 
-          <h1 className="text-white text-[38.7px] leading-[35.2px] mb-6">
+              <p className="text-[#FFC107] text-[16px] mb-4 italic">
+                — Para colombianos que construyen futuro desde afuera
+              </p>
 
-            <span className="font-normal">
-              Ese dinero que mandas a casa
-            </span>
+              <h1 className="text-white text-[35.2px] leading-[42px] mb-6">
+                <span className="font-normal">
+                  Ese dinero que mandas a casa
+                </span>
+                <br />
+                <span className="font-light">
+                  puede hacer mucho más que
+                </span>
+                <br />
+                <span className="text-[#FFC107] font-bold italic">
+                  llegar a fin de mes.
+                </span>
+              </h1>
 
-            <br />
+              <p className="text-white/70 text-[16px] font-light mb-8">
+                Te ayudamos a convertir tus remesas en una casa, en un negocio, en algo que dure.
+                Con acompañamiento real, desde donde estás.
+              </p>
 
-            <span className="font-light">
-              puede hacer mucho más que
-            </span>
+              {/* BOTONES */}
+              <div className="flex items-center gap-6">
 
-            <br />
+                <Link
+                  href="/contacto"
+                  className="bg-[#FFC107] text-[#2A3F77] w-[209.54px] h-[47.56px] flex items-center justify-center rounded-full text-[14.4px] font-semibold leading-[21.6px]"
+                >
+                  Quiero saber cómo →
+                </Link>
 
-            <span className="text-[#FFC107] font-bold italic">
-              llegar a fin de mes.
-            </span>
+                <Link
+                  href="/servicios"
+                  className="border border-white text-white px-6 h-[44px] flex items-center rounded-full text-[14px]"
+                >
+                  Conoce el ecosistema
+                </Link>
 
-          </h1>
-
-          <p className="text-white/70 text-[16px] font-light mb-8">
-            Te ayudamos a convertir tus remesas en una casa, en un negocio, en algo que dure.
-            Con acompañamiento real, desde donde estás.
-          </p>
-
-          <div className="flex items-center gap-4">
-
-            <Link
-              href="/contacto"
-              className="bg-[#FFC107] text-[#0F2D5C] px-6 h-[44px] flex items-center rounded-full text-[14px] font-semibold"
-            >
-              Quiero saber cómo →
-            </Link>
-
-            <Link
-              href="/servicios"
-              className="border border-white text-white px-6 h-[44px] flex items-center rounded-full text-[14px]"
-            >
-              Conoce el ecosistema
-            </Link>
+              </div>
+            </div>
 
           </div>
-        </div>
 
           {/* CARD DERECHA */}
-          <div className="bg-white rounded-2xl shadow-2xl p-6 w-[380px]">
+          <div className="relative w-[420px] h-[401.34px] p-6 
+            rounded-tl-[40px] 
+            rounded-tr-none 
+            rounded-bl-none 
+            rounded-br-[40px] 
+            bg-white
+            border border-white/40
+            shadow-[0_25px_80px_rgba(0,0,0,0.25)] overflow-hidden"
+          >
 
-            <span className="text-xs text-gray-400 font-semibold uppercase">
-              ECOSISTEMA COLRAICES
-            </span>
+            {/* LUZ AMARILLA */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(254,243,199,0.9),transparent_55%)] pointer-events-none" />
 
-            <h3 className="text-[32px] font-bold mt-2 text-[#0B1F3A]">
-              23 años
-            </h3>
+            {/* LUZ AZUL */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(20,79,158,0.25),transparent_60%)] pointer-events-none" />
 
-            <p className="text-gray-500 text-sm mb-4">
-              acompañando la diáspora colombiana
-            </p>
+            {/* CONTENIDO */}
+            <div className="relative z-10">
 
-            <div className="space-y-3">
-              {[
-                "Financiación en Colombia",
-                "Tu propiedad en Colombia",
-                "Servicios legales y migratorios",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex justify-between items-center border border-gray-200 rounded-lg px-4 py-3 hover:bg-gray-50 transition"
-                >
-                  <span className="text-sm">{item}</span>
-                  <span>›</span>
-                </div>
-              ))}
+              {/* TAG */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF2F7] border border-gray-200 mb-4">
+                <div className="w-2 h-2 bg-[#FFC107] rounded-full"></div>
+                <span className="text-[12px] font-semibold text-[#2A3F77] tracking-wide">
+                  ECOSISTEMA COLRAICES
+                </span>
+              </div>
+
+              {/* TITULO */}
+              <h3 className="text-[36px] font-bold text-[#0B1F3A] leading-none">
+                23 años
+              </h3>
+
+              {/* DESCRIPCION */}
+              <p className="text-[#2A3F77]/70 text-[14px] mt-2 mb-6">
+                acompañando la diáspora colombiana
+              </p>
+
+              {/* LISTA */}
+              <div className="space-y-3">
+
+                {[
+                  { text: "Financiación en Colombia", icon: "💰" },
+                  { text: "Tu propiedad en Colombia", icon: "🏠" },
+                  { text: "Servicios legales y migratorios", icon: "⚖️" },
+                ].map((item) => (
+                  <div
+                    key={item.text}
+                    className="flex items-center justify-between px-4 py-3 rounded-xl border border-gray-200 bg-[#F8FAFC] hover:bg-white transition"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-white shadow-sm">
+                        {item.icon}
+                      </div>
+
+                      <span className="text-[14px] text-[#2A3F77]">
+                        {item.text}
+                      </span>
+                    </div>
+
+                    <span className="text-[#2A3F77]">›</span>
+                  </div>
+                ))}
+
+              </div>
+
             </div>
 
           </div>
