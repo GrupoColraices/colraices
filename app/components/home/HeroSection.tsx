@@ -8,12 +8,12 @@ export default function HeroSection() {
 
       {/* IMAGEN DE FONDO */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-no-repeat bg-[center_50%] bg-[length:100%]"
         style={{
           backgroundImage: "url('/fondo.png')",
         }}
       />
-
+      
       {/* CONTENEDOR PRINCIPAL */}
       <div className="relative w-full max-w-[1416px] mx-auto px-6 lg:px-[156px]">
 
@@ -79,7 +79,7 @@ export default function HeroSection() {
             rounded-br-[40px] 
             bg-white
             border border-white/40
-            shadow-[0_25px_80px_rgba(0,0,0,0.25)] overflow-hidden"
+            shadow-[0_25px_80px_rgba(0,0,0,0.25)] overflow-visible"
           >
 
             {/* LUZ AMARILLA */}
@@ -138,6 +138,30 @@ export default function HeroSection() {
               </div>
 
             </div>
+
+            {/* BADGE FLOTANTE */}
+           <div className="absolute -left-[32px] -bottom-[20px] z-20 w-[219px] h-[52px] 
+              bg-white 
+              rounded-tl-[16px] 
+              rounded-tr-none
+              rounded-bl-none
+              rounded-br-[16px] 
+              px-4 flex items-center gap-3 
+              shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
+            >
+
+            <div className="w-8 h-8 flex items-center justify-center rounded-md bg-[#FFF6D6]">
+              🏠
+            </div>
+
+            <div className="text-[12px] leading-tight">
+              <p className="text-[#94A3B8]">Negocios concretados</p>
+              <p className="font-semibold text-[#0B1F3A]">
+                +11.000 en Colombia
+              </p>
+            </div>
+
+          </div>
 
           </div>
 
