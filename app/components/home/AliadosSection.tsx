@@ -3,13 +3,13 @@
 import Image from "next/image";
 
 const logos = [
-  { src: "/Davivienda.png", alt: "Davivienda", size: "max-h-[100px]" },
-  { src: "/Union.png", alt: "Banco Union", size: "max-h-[100px]" },
-  { src: "/Bolivar.png", alt: "Constructora Bolívar", size: "max-h-[35px]" },
-  { src: "/Colpatria.png", alt: "Colpatria", size: "max-h-[22px]" },
-  { src: "/Prodesa.png", alt: "Prodesa", size: "max-h-[48px]" },
-  { src: "/Camu.png", alt: "Camu", size: "max-h-[48px]" },
-  { src: "/Gomez.png", alt: "Gómez", size: "max-h-[55px]" },
+  { src: "/davivienda.png", alt: "Davivienda", size: "max-h-[100px]" },
+  { src: "/union.png", alt: "Banco Union", size: "max-h-[100px]" },
+  { src: "/bolivar.png", alt: "Constructora Bolívar", size: "max-h-[35px]" },
+  { src: "/colpatria.png", alt: "Colpatria", size: "max-h-[22px]" },
+  { src: "/prodesa.png", alt: "Prodesa", size: "max-h-[48px]" },
+  { src: "/camu.png", alt: "Camu", size: "max-h-[48px]" },
+  { src: "/gomez.png", alt: "Gómez", size: "max-h-[55px]" },
 ];
 
 export default function AliadosSection() 

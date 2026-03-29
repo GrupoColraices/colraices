@@ -11,7 +11,7 @@ export default function CreditSection() {
 
       {/* SHAPE SUPERIOR */}
       <img
-        src="/Mini_Fondo.png"
+        src="/texture-top.png"
         alt=""
         className="absolute top-0 left-0 w-full h-[88px] object-cover z-10 pointer-events-none"
       />
