@@ -27,7 +27,7 @@ export default function TestimonialsSection() {
     },
   ];
 
-  // 🔥 OBSERVER PRO
+  //  OBSERVER PRO
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 

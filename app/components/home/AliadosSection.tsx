@@ -1,34 +1,83 @@
-export default function AliadosSection() {
-  const aliados = [
-    "Davivienda",
-    "Bolívar",
-    "Colpatria",
-    "Prodesa",
-    "Camú",
-    "Londoño Gómez",
-  ];
+"use client";
 
+import Image from "next/image";
+
+const logos = [
+  { src: "/Davivienda.png", alt: "Davivienda", size: "max-h-[100px]" },
+  { src: "/Union.png", alt: "Banco Union", size: "max-h-[100px]" },
+  { src: "/Bolivar.png", alt: "Constructora Bolívar", size: "max-h-[35px]" },
+  { src: "/Colpatria.png", alt: "Colpatria", size: "max-h-[22px]" },
+  { src: "/Prodesa.png", alt: "Prodesa", size: "max-h-[48px]" },
+  { src: "/Camu.png", alt: "Camu", size: "max-h-[48px]" },
+  { src: "/Gomez.png", alt: "Gómez", size: "max-h-[55px]" },
+];
+
+export default function AliadosSection() 
+{
   return (
-    <section className="bg-white py-16 border-t">
-      <div className="max-w-[1416px] mx-auto px-6 lg:px-[156px] text-center">
+    <section className="w-full bg-white border-t border-[#0F2D5C]/10">
+      
+      <div className="w-full max-w-[1416.15px] mx-auto px-[108.07px] pt-[65.27px] pb-[65.27px]">
+        
+        <div className="w-full max-w-[1200px] mx-auto px-[48px]">
 
-        <h2 className="text-lg font-bold text-brand-gold mb-2">
-          Aliados estratégicos
-        </h2>
+          {/* HEADER */}
+          <div className="text-center mb-[40px]">
+            <p className="text-[#FFC107] text-[20px] font-bold italic leading-[30px]">
+              Aliados estratégicos
+            </p>
 
-        <p className="text-gray-600 mb-10">
-          Respaldo de las mejores constructoras y entidades financieras
-        </p>
+            <p className="text-[#475569] text-[17.6px] italic leading-[26.4px] mt-[8px]">
+              Respaldo de las mejores constructoras y entidades financieras de Colombia
+            </p>
+          </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {aliados.map((a) => (
-            <div
-              key={a}
-              className="border rounded-xl p-4 text-sm text-gray-500"
-            >
-              {a}
-            </div>
-          ))}
+          {/* LOGOS */}
+          <div className="flex items-center justify-center gap-[12px] flex-wrap">
+
+            {logos.map((logo) => (
+              <div
+                key={logo.alt}
+                className="
+                  group
+                  w-[140px] h-[68px]
+                  flex items-center justify-center
+                  px-[24px]
+                  bg-white
+                  border border-[#0F2D5C]/10
+
+                  rounded-tl-[16px] 
+                  rounded-br-[16px] 
+                  rounded-tr-none 
+                  rounded-bl-none
+
+                  transition-all duration-300 ease-out
+                  hover:-translate-y-[4px]
+                  hover:shadow-[0_10px_24px_rgba(15,45,92,0.15)]
+                "
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className={`
+                    w-auto h-auto
+                    object-contain
+                    max-w-[110px]
+                    ${logo.size}
+
+                    grayscale opacity-60
+                    transition-all duration-300 ease-out
+                    group-hover:grayscale-0 group-hover:opacity-100
+                  `}
+                />
+              </div>
+            ))}
+
+          </div>
+
         </div>
 
       </div>

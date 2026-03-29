@@ -1,35 +1,59 @@
+"use client";
+
 import Link from "next/link";
 
 export default function CtaBannerSection() {
   return (
-    <section className="bg-brand-dark py-16 lg:py-20 text-center">
-      <div className="max-w-[900px] mx-auto px-6">
+    <section className="w-full bg-[#0F2D5C]">
 
-        <h2 className="text-white text-3xl font-bold mb-4">
-          ¿Listo para que tu remesa haga más?
-        </h2>
+      {/* CONTENEDOR */}
+      <div className="w-full max-w-[1416.15px] mx-auto px-[156.07px] pt-[79.99px] pb-[79.99px]">
 
-        <p className="text-white/70 mb-8">
-          Empieza con una conversación. Sin compromisos, sin enredos.
-        </p>
+        <div className="w-full max-w-[1104px] mx-auto text-center">
 
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Link
-            href="/contacto"
-            className="px-6 py-3 rounded-full bg-brand-gold text-brand-blue font-semibold"
-          >
-            Habla con un asesor →
-          </Link>
+          {/* TITULO */}
+          <h2 className="text-white text-[40px] font-semibold leading-[54px]">
+            ¿Listo para que tu remesa haga más?
+          </h2>
 
-          <Link
-            href="/servicios"
-            className="px-6 py-3 rounded-full border border-white text-white"
-          >
-            Explora los servicios
-          </Link>
+          {/* SUBTEXTO */}
+          <p className="text-white/70 text-[16px] leading-[24px] mt-[12px]">
+            Empieza con una conversación. Sin compromisos, sin letra pequeña, sin enredos.
+          </p>
+
+          {/* BOTONES */}
+          <div className="flex justify-center items-center gap-[12px] mt-[32px]">
+
+            {/* BOTÓN PRINCIPAL */}
+            <Link
+              href="/contacto"
+              className="h-[50.11px] px-[26px] flex items-center justify-center gap-[8px]
+              rounded-full bg-[#FFC107] text-[#2A3F77] text-[14px] font-semibold
+              shadow-[0_8px_20px_rgba(255,193,7,0.35)]
+              transition-all duration-300
+              hover:scale-[1.04]
+              hover:shadow-[0_12px_30px_rgba(255,193,7,0.45)]"
+            >
+              Habla con un asesor →
+            </Link>
+
+            {/* BOTÓN SECUNDARIO */}
+            <Link
+              href="/servicios"
+              className="h-[50.11px] px-[26px] flex items-center justify-center gap-[8px]
+              rounded-full border border-white/30 text-white text-[14px] font-medium
+              transition-all duration-300
+              hover:bg-white hover:text-[#0F2D5C] hover:border-white"
+            >
+              Explora los servicios
+            </Link>
+
+          </div>
+
         </div>
 
       </div>
+
     </section>
   );
 }
