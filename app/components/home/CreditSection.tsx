@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function CreditSection() {
   return (
-    <section className="relative w-full bg-[#344A7A] overflow-hidden pt-[120px] pb-[110px]">
+    <section className="relative w-full bg-[#2A3F77] overflow-hidden pt-[120px] pb-[110px]">
 
       {/* ✅ FONDO BLANCO PARA EVITAR AZUL DETRÁS */}
       <div className="absolute top-0 left-0 w-full h-[88px] bg-white z-[5]" />

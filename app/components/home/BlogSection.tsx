@@ -5,27 +5,24 @@ import { motion } from "framer-motion";
 
 const articles = [
   {
-    category: "INMUEBLES",
-    title:
-      "Cómo comprar inmueble en Colombia viviendo en España (sin complicaciones)",
+    category: "Inmuebles",
+    title: "Cómo comprar inmueble en Colombia viviendo en España (sin complicaciones)",
     date: "Febrero 2026",
     readTime: "8 min de lectura",
     icon: "🏙️",
     featured: true,
   },
   {
-    category: "FINANZAS",
-    title:
-      "¿Tu remesa tiene historial crediticio? Esto deberías saber",
+    category: "Finanzas",
+    title: "¿Tu remesa tiene historial crediticio? Esto deberías saber",
     date: "Enero 2026",
     readTime: "5 min",
     icon: "💳",
     featured: false,
   },
   {
-    category: "MIGRACIÓN",
-    title:
-      "Migrar a Colombia siendo colombiano: lo que nadie te cuenta",
+    category: "Migración",
+    title: "Migrar a Colombia siendo colombiano: lo que nadie te cuenta",
     date: "Enero 2026",
     readTime: "6 min",
     icon: "✈️",
@@ -37,8 +34,8 @@ const containerVariants = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
+      staggerChildren: 0.14,
+      delayChildren: 0.08,
     },
   },
 };
@@ -46,18 +43,16 @@ const containerVariants = {
 const itemVariants = {
   hidden: {
     opacity: 0,
-    y: 30,
-    scale: 0.96,
-    filter: "blur(6px)",
+    y: 24,
+    scale: 0.98,
   },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: "blur(0px)",
     transition: {
       duration: 0.6,
-      ease: "easeOut", // ✅ FIX TS
+      eease: "cubic-bezier(0.22, 1, 0.36, 1)"
     },
   },
 };
@@ -65,7 +60,7 @@ const itemVariants = {
 export default function BlogSection() {
   return (
     <section className="w-full bg-[#FBF8F3]">
-      <div className="w-full max-w-[1416px] mx-auto px-[156.07px] pt-[96px] pb-[96px]">
+      <div className="w-full max-w-[1416px] mx-auto px-[156px] pt-[96px] pb-[96px]">
 
         {/* HEADER */}
         <motion.div
@@ -73,7 +68,7 @@ export default function BlogSection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={{ once: true, amount: 0.4 }}
         >
           <motion.p
             variants={itemVariants}
@@ -92,7 +87,7 @@ export default function BlogSection() {
           <motion.div variants={itemVariants}>
             <Link
               href="/blog"
-              className="inline-flex items-center mt-[6px] text-[#0F2D5C] font-semibold text-[14px] hover:text-[#1A4F9E] transition-all duration-300 hover:gap-2"
+              className="inline-flex items-center mt-[4px] text-[#0F2D5C] font-semibold text-[14px] hover:text-[#1A4F9E] transition-colors"
             >
               Ver todos los artículos →
             </Link>
@@ -105,32 +100,31 @@ export default function BlogSection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.25 }}
         >
-          {articles.map((article, i) => (
+          {articles.map((article) => (
             <motion.article
               key={article.title}
               variants={itemVariants}
               whileHover={{
-                y: -10,
-                scale: 1.02,
+                y: -8,
+                transition: { duration: 0.25 },
               }}
-              transition={{ duration: 0.25 }}
-              className="group bg-white border border-[#0F2D5C]/10 rounded-[16px] overflow-hidden flex flex-col shadow-[0_4px_12px_rgba(15,45,92,0.08)] hover:shadow-[0_18px_40px_rgba(15,45,92,0.18)]"
+              className="bg-white border border-[#0F2D5C]/10 rounded-[16px] overflow-hidden flex flex-col shadow-[0_4px_12px_rgba(15,45,92,0.08)] hover:shadow-[0_16px_32px_rgba(15,45,92,0.12)]"
               style={{ height: "472.22px" }}
             >
               {/* IMAGE */}
               <div
-                className={`relative flex items-center justify-center bg-[#DADADA] overflow-hidden ${
+                className={`relative flex items-center justify-center bg-[#DADADA] ${
                   article.featured ? "h-[314px]" : "h-[165px]"
                 }`}
               >
-                <div className="text-black/20 text-[40px] transition-transform duration-500 group-hover:scale-110">
+                <div className="text-black/20 text-[40px]">
                   {article.icon}
                 </div>
 
-                {/* OVERLAY SUAVE */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F2D5C]/10 to-transparent opacity-80 group-hover:opacity-100 transition" />
+                {/* overlay sutil */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F2D5C]/10 to-transparent" />
               </div>
 
               {/* CONTENT */}
@@ -139,7 +133,7 @@ export default function BlogSection() {
                   {article.category}
                 </span>
 
-                <h3 className="text-[#0F2D5C] font-semibold text-[16px] leading-6 mb-4 transition-colors group-hover:text-[#1A4F9E]">
+                <h3 className="text-[#0F2D5C] font-semibold text-[16px] leading-6 mb-4">
                   {article.title}
                 </h3>
 
