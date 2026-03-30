@@ -1,6 +1,6 @@
 import "./globals.css";
-import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
+import Navbar from "@/app/components/layout/Navbar";
+import Footer from "@/app/components/layout/Footer";
 
 export default function RootLayout({
   children,
@@ -10,9 +10,16 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
+
         <Navbar />
-        <main className="pt-[69px]">{children}</main>
+
+        {/* 🔥 IMPORTANTE: compensar navbar fixed */}
+        <main className="pt-[68px]">
+          {children}
+        </main>
+
         <Footer />
+
       </body>
     </html>
   );
