@@ -13,7 +13,7 @@ export default function Footer() {
             {/* BRAND */}
             <div className="w-full">
               <Image
-                src="/logo2.png"
+                src="/logo-foote.png"
                 alt="Colraices"
                 width={285}
                 height={40}
