@@ -1,6 +1,6 @@
 import Breadcrumb from "@/app/components/finanzas/Breadcrumb";
 import FinanzasHero from "@/app/components/finanzas/FinanzasHero";
-import ComparativaSection from "@/app/components/finanzas/sections/ComparativaSection";
+
 import DiagnosticoSection from "@/app/components/finanzas/sections/DiagnosticoSection";
 import ProductosSection from "@/app/components/finanzas/sections/ProductosSection";
 import JourneySection from "@/app/components/finanzas/sections/JourneySection";
@@ -13,7 +13,7 @@ export default function FinanzasPage() {
     <>
       <Breadcrumb />
       <FinanzasHero /> 
-      <ComparativaSection />
+
       <DiagnosticoSection />
       <ProductosSection />
       <JourneySection />
