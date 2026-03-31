@@ -75,7 +75,23 @@ export default function Navbar() {
         {/* CTA */}
         <Link
           href="/contacto"
-          className="hidden lg:flex items-center justify-center px-6 h-[40px] rounded-full bg-[#0F2D5C] text-white text-[14px] font-semibold hover:bg-[#123A75] transition"
+          className="
+            hidden lg:flex items-center justify-center 
+            px-6 h-[40px] rounded-full 
+            
+            bg-[#0F2D5C] text-white 
+            text-[14px] font-semibold
+            
+            transition-all duration-300 
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            
+            hover:bg-[#0B254A]
+            hover:-translate-y-[2px]
+            hover:shadow-[0_3px_8px_rgba(0,0,0,0.10)]
+            
+            active:translate-y-0
+            active:shadow-[0_2px_6px_rgba(0,0,0,0.08)]
+          "
         >
           Solicitar Asesoría
         </Link>
