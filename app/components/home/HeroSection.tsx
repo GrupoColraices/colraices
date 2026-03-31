@@ -4,34 +4,60 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-[600px] flex items-center overflow-hidden">
+    <section className="relative h-[520px] md:h-[600px] flex items-center overflow-hidden">
 
       {/* IMAGEN DE FONDO */}
       <div
-        className="absolute inset-0 bg-no-repeat bg-[center_30%] bg-[length:100%]"
+        className="absolute inset-0 bg-no-repeat bg-[center_30%] bg-[length:140%] sm:bg-[length:120%] md:bg-[length:100%]"
         style={{
           backgroundImage: "url('/hero-bg.png')",
         }}
       />
 
       {/* CONTENEDOR */}
-      <div className="relative w-full max-w-[1416px] mx-auto px-6 lg:px-[156px]">
+      <div className="
+        relative 
+        w-full 
+        max-w-[1416px] 
+        mx-auto 
+        
+        px-[20px] 
+        sm:px-[40px] 
+        md:px-[80px] 
+        lg:px-[156px]
+      ">
 
-        <div className="flex items-center justify-between">
+        <div className="
+          flex 
+          flex-col 
+          lg:flex-row 
+          items-center 
+          justify-between 
+          gap-[40px]
+        ">
 
           {/* TEXTO */}
-          <div className="max-w-[620px]">
+          <div className="max-w-[620px] text-center lg:text-left">
 
             {/* EYEBROW */}
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
               <div className="w-6 h-[1px] bg-[#FFC107]" />
-              <p className="text-[#FFC107] text-[16px] italic">
+              <p className="text-[#FFC107] text-[14px] md:text-[16px] italic">
                 Para colombianos que construyen futuro desde afuera
               </p>
             </div>
 
             {/* TITULO */}
-            <h1 className="text-white text-[34px] leading-[42px] mb-6">
+            <h1 className="
+              text-white 
+              text-[26px] 
+              sm:text-[30px] 
+              md:text-[34px] 
+              leading-[34px] 
+              sm:leading-[38px] 
+              md:leading-[42px] 
+              mb-4 md:mb-6
+            ">
 
               <span className="font-normal">
                 Ese dinero que mandas a casa
@@ -52,24 +78,50 @@ export default function HeroSection() {
             </h1>
 
             {/* DESCRIPCIÓN */}
-            <p className="text-white/70 text-[15px] leading-[24px] mb-8">
+            <p className="text-white/70 text-[14px] md:text-[15px] leading-[22px] md:leading-[24px] mb-6 md:mb-8">
               Te ayudamos a convertir tus remesas en una casa, en un negocio, en algo que dure.
               Con acompañamiento real, desde donde estás.
             </p>
 
             {/* BOTONES */}
-            <div className="flex items-center gap-6">
+            <div className="
+              flex 
+              flex-col 
+              sm:flex-row 
+              items-center 
+              justify-center 
+              lg:justify-start 
+              gap-4 sm:gap-6
+            ">
 
               <Link
                 href="/contacto"
-                className="bg-[#FFC107] text-[#2A3F77] w-[209px] h-[48px] flex items-center justify-center rounded-full text-[14px] font-semibold transition hover:opacity-90"
+                className="
+                  bg-[#FFC107] text-[#2A3F77] 
+                  w-full sm:w-[209px] 
+                  h-[44px] md:h-[48px] 
+                  flex items-center justify-center 
+                  rounded-full 
+                  text-[13px] md:text-[14px] 
+                  font-semibold 
+                  transition hover:opacity-90
+                "
               >
                 Quiero saber cómo →
               </Link>
 
               <Link
                 href="/servicios"
-                className="border border-white text-white px-6 h-[44px] flex items-center rounded-full text-[14px] transition hover:bg-white hover:text-[#0B1F3A]"
+                className="
+                  border border-white text-white 
+                  w-full sm:w-auto 
+                  px-6 
+                  h-[42px] md:h-[44px] 
+                  flex items-center justify-center 
+                  rounded-full 
+                  text-[13px] md:text-[14px] 
+                  transition hover:bg-white hover:text-[#0B1F3A]
+                "
               >
                 Conoce el ecosistema
               </Link>
@@ -79,17 +131,26 @@ export default function HeroSection() {
           </div>
 
           {/* CARD DERECHA */}
-          <div className="relative w-[420px] h-[401px] p-7 
+          <div className="
+            relative 
+            w-full 
+            max-w-[420px] 
+            h-auto 
+            lg:h-[401px] 
+            p-5 md:p-7 
+            
             rounded-tl-[40px] 
             rounded-tr-none 
             rounded-bl-none 
             rounded-br-[40px] 
+            
             bg-white
             border border-white/40
-            shadow-[0_25px_80px_rgba(0,0,0,0.25)] overflow-visible"
-          >
+            shadow-[0_25px_80px_rgba(0,0,0,0.25)] 
+            overflow-visible
+          ">
 
-            {/* LUZES */}
+            {/* LUCES */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(254,243,199,0.9),transparent_55%)] pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(20,79,158,0.25),transparent_60%)] pointer-events-none" />
 
@@ -97,20 +158,20 @@ export default function HeroSection() {
             <div className="relative z-10">
 
               {/* TAG */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF2F7] border border-[#CBD5E1] mb-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF2F7] border border-[#CBD5E1] mb-4 md:mb-5">
                 <div className="w-2 h-2 bg-[#FFC107] rounded-full"></div>
-                <span className="text-[12px] font-semibold text-[#2A3F77] tracking-wide">
+                <span className="text-[11px] md:text-[12px] font-semibold text-[#2A3F77] tracking-wide">
                   ECOSISTEMA COLRAICES
                 </span>
               </div>
 
               {/* TITULO */}
-              <h3 className="text-[34px] font-semibold text-[#0B1F3A] leading-none">
+              <h3 className="text-[28px] md:text-[34px] font-semibold text-[#0B1F3A] leading-none">
                 23 años
               </h3>
 
               {/* TEXTO */}
-              <p className="text-[#2A3F77]/70 text-[14px] mt-2 mb-6">
+              <p className="text-[#2A3F77]/70 text-[13px] md:text-[14px] mt-2 mb-5 md:mb-6">
                 acompañando la diáspora colombiana
               </p>
 
@@ -124,15 +185,15 @@ export default function HeroSection() {
                 ].map((item) => (
                   <div
                     key={item.text}
-                    className="flex items-center justify-between px-4 py-[14px] rounded-[12px] border border-[#E2E8F0] bg-[#F8FAFC] hover:bg-white transition"
+                    className="flex items-center justify-between px-4 py-[12px] md:py-[14px] rounded-[12px] border border-[#E2E8F0] bg-[#F8FAFC] hover:bg-white transition"
                   >
                     <div className="flex items-center gap-3">
 
-                      <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-white shadow-sm">
+                      <div className="w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-lg bg-white shadow-sm">
                         {item.icon}
                       </div>
 
-                      <span className="text-[14px] text-[#2A3F77]">
+                      <span className="text-[13px] md:text-[14px] text-[#2A3F77]">
                         {item.text}
                       </span>
 
@@ -147,19 +208,31 @@ export default function HeroSection() {
             </div>
 
             {/* BADGE */}
-            <div className="absolute -left-[32px] -bottom-[20px] z-20 w-[219px] h-[52px] 
+            <div className="
+              absolute 
+              -left-[10px] 
+              md:-left-[32px] 
+              -bottom-[20px] 
+              z-20 
+              
+              w-[180px] md:w-[219px] 
+              h-[48px] md:h-[52px] 
+              
               bg-white 
               rounded-tl-[16px] 
               rounded-br-[16px]
-              px-4 flex items-center gap-3 
-              shadow-[0_8px_25px_rgba(0,0,0,0.12)]"
-            >
+              
+              px-3 md:px-4 
+              flex items-center gap-3 
+              
+              shadow-[0_8px_25px_rgba(0,0,0,0.12)]
+            ">
 
-              <div className="w-8 h-8 flex items-center justify-center rounded-md bg-[#FFF6D6]">
+              <div className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-md bg-[#FFF6D6]">
                 🏠
               </div>
 
-              <div className="text-[12px] leading-tight">
+              <div className="text-[11px] md:text-[12px] leading-tight">
                 <p className="text-[#94A3B8]">Negocios concretados</p>
                 <p className="font-semibold text-[#0B1F3A]">
                   +11.000 en Colombia

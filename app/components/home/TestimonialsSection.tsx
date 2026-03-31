@@ -27,7 +27,6 @@ export default function TestimonialsSection() {
     },
   ];
 
-  //  OBSERVER PRO
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -57,7 +56,24 @@ export default function TestimonialsSection() {
 
   return (
     <section ref={sectionRef} className="w-full bg-[#FFFFFF]">
-      <div className="w-full max-w-[1416px] mx-auto px-[156.07px] pt-[96px] pb-[96px]">
+      <div className="
+        w-full 
+        max-w-[1416px] 
+        mx-auto 
+        
+        px-[20px] 
+        sm:px-[40px] 
+        md:px-[100px] 
+        lg:px-[156.07px] 
+        
+        pt-[60px] 
+        md:pt-[80px] 
+        lg:pt-[96px] 
+        
+        pb-[60px] 
+        md:pb-[80px] 
+        lg:pb-[96px]
+      ">
         <div className="max-w-[1103.09px] mx-auto">
 
           {/* HEADER */}
@@ -68,24 +84,53 @@ export default function TestimonialsSection() {
               ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
             `}
           >
-            <p className="text-[#FFC107] text-[16px] italic font-semibold leading-none">
+            <p className="text-[#FFC107] text-[14px] md:text-[16px] italic font-semibold leading-none">
               Lo que dicen quienes ya confiaron en nosotros
             </p>
 
-            <h2 className="text-[#0F2D5C] text-[28px] font-medium leading-[34px]">
+            <h2 className="
+              text-[#0F2D5C] 
+              text-[22px] 
+              sm:text-[24px] 
+              md:text-[28px] 
+              font-medium 
+              leading-[30px] 
+              md:leading-[34px]
+            ">
               Colombianos como tú que ya están construyendo futuro.
             </h2>
           </div>
 
           {/* CARDS */}
-          <div className="mt-[48px] grid grid-cols-1 md:grid-cols-[354.66px_354.68px_354.66px] gap-[20px]">
+          <div className="
+            mt-[32px] 
+            md:mt-[48px] 
+            
+            grid 
+            grid-cols-1 
+            sm:grid-cols-2 
+            lg:grid-cols-[354.66px_354.68px_354.66px] 
+            
+            gap-[16px] 
+            md:gap-[20px]
+          ">
             {testimonials.map((item, index) => (
               <article
                 key={index}
                 className={`
-                  h-[410.64px] bg-[#FBF8F3] border border-[#0F2D5C]/10 
+                  h-auto 
+                  md:h-[410.64px] 
+                  
+                  bg-[#FBF8F3] 
+                  border border-[#0F2D5C]/10 
+                  
                   rounded-[0px] rounded-tl-[16px] rounded-tr-[0px] rounded-br-[16px] rounded-bl-[0px] 
-                  p-[24px] flex flex-col justify-between 
+                  
+                  p-[18px] 
+                  md:p-[24px] 
+                  
+                  flex flex-col justify-between 
+                  
                   shadow-[0_4px_12px_rgba(15,45,92,0.08)]
                   transition-all duration-700 ease-out
                   ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
@@ -96,31 +141,31 @@ export default function TestimonialsSection() {
                 }}
               >
                 <div>
-                  <div className="flex items-start justify-between mb-[20px]">
-                    <div className="text-[#FFC107] text-[14px] leading-none tracking-[1px]">
+                  <div className="flex items-start justify-between mb-[16px] md:mb-[20px]">
+                    <div className="text-[#FFC107] text-[13px] md:text-[14px] leading-none tracking-[1px]">
                       ★★★★★
                     </div>
 
-                    <span className="inline-flex items-center justify-center h-[30px] px-[14px] rounded-[4px] bg-[#FFC107] text-[#2A3F77] text-[12px] font-semibold tracking-[0.04em] uppercase">
+                    <span className="inline-flex items-center justify-center h-[26px] md:h-[30px] px-[10px] md:px-[14px] rounded-[4px] bg-[#FFC107] text-[#2A3F77] text-[11px] md:text-[12px] font-semibold tracking-[0.04em] uppercase">
                       Crédito
                     </span>
                   </div>
 
-                  <p className="text-[#1E293B] text-[16px] italic leading-[28px] whitespace-pre-line">
+                  <p className="text-[#1E293B] text-[14px] md:text-[16px] italic leading-[24px] md:leading-[28px] whitespace-pre-line">
                     “{item.quote}”
                   </p>
                 </div>
 
-                <div className="pt-[18px] border-t border-[#E2E8F0] flex items-center gap-[12px]">
-                  <div className="w-[40px] h-[40px] rounded-full bg-[#1A4F9E] text-white flex items-center justify-center text-[14px] font-semibold flex-shrink-0">
+                <div className="pt-[14px] md:pt-[18px] border-t border-[#E2E8F0] flex items-center gap-[10px] md:gap-[12px]">
+                  <div className="w-[36px] h-[36px] md:w-[40px] md:h-[40px] rounded-full bg-[#1A4F9E] text-white flex items-center justify-center text-[13px] md:text-[14px] font-semibold flex-shrink-0">
                     {item.initials}
                   </div>
 
                   <div>
-                    <p className="text-[#2A3F77] text-[14px] font-semibold leading-[20px]">
+                    <p className="text-[#2A3F77] text-[13px] md:text-[14px] font-semibold leading-[18px] md:leading-[20px]">
                       {item.name}
                     </p>
-                    <p className="text-[#94A3B8] text-[12px] leading-[18px]">
+                    <p className="text-[#94A3B8] text-[11px] md:text-[12px] leading-[16px] md:leading-[18px]">
                       {item.country}
                     </p>
                   </div>

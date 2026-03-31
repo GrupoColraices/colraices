@@ -83,26 +83,54 @@ export default function DiagnosticoSection() {
   }, []);
 
   return (
-    <section className="w-full bg-[#2A3F77] pt-[100px] pb-[80px] -mt-[95px]">
-      <div className="w-[1200px] mx-auto">
+    <section className="
+      w-full 
+      bg-[#2A3F77] 
+      
+      pt-[60px] md:pt-[80px] lg:pt-[100px] 
+      pb-[60px] md:pb-[80px] 
+      
+      -mt-[60px] md:-mt-[95px]
+    ">
+      <div className="
+        w-full 
+        max-w-[1200px] 
+        mx-auto 
+        
+        px-[20px] 
+        sm:px-[40px] 
+        md:px-[80px]
+      ">
 
         {/* HEADER */}
-        <div className="w-[1104px] mx-auto text-center">
-          <p className="text-white text-[16px] leading-[24px] mb-[8px]">
+        <div className="max-w-[1104px] mx-auto text-center">
+          <p className="text-white text-[14px] md:text-[16px] mb-[8px]">
             ¿Por dónde empiezo?
           </p>
 
-          <h2 className="text-white text-[36.8px] leading-[44.2px] italic">
+          <h2 className="text-white text-[24px] sm:text-[28px] md:text-[36.8px] leading-[1.2] italic">
             Cuéntanos en qué momento estás.
           </h2>
 
-          <h2 className="text-white text-[36.8px] leading-[44.2px] font-bold mt-[4px]">
+          <h2 className="text-white text-[24px] sm:text-[28px] md:text-[36.8px] leading-[1.2] font-bold mt-[4px]">
             Te decimos qué necesitas.
           </h2>
         </div>
 
         {/* GRID */}
-        <div className="w-[1104px] mx-auto mt-[48px] grid grid-cols-3 gap-[14px]">
+        <div className="
+          max-w-[1104px] 
+          mx-auto 
+          
+          mt-[32px] md:mt-[48px] 
+          
+          grid 
+          grid-cols-1 
+          sm:grid-cols-2 
+          md:grid-cols-3 
+          
+          gap-[12px] md:gap-[14px]
+        ">
 
           {cards.map((card, index) => {
             const visible = index <= activeIndex;
@@ -113,7 +141,11 @@ export default function DiagnosticoSection() {
                 href={card.href}
                 className={`
                   group relative overflow-hidden
-                  w-[358.68px] h-[193.59px]
+                  
+                  w-full 
+                  h-auto 
+                  md:h-[193.59px]
+                  
                   bg-white
                   rounded-[16px_0_16px_0]
                   border border-[#0F2D5C]/10
@@ -131,7 +163,7 @@ export default function DiagnosticoSection() {
                 `}
               >
 
-                {/* 🔥 LÍNEA SOLO EN HOVER */}
+                {/* LÍNEA */}
                 <div className="absolute bottom-0 left-0 w-full h-[3px] overflow-hidden">
                   <div
                     className="
@@ -147,10 +179,9 @@ export default function DiagnosticoSection() {
                 {/* CONTENIDO */}
                 <div
                   className={`
-                    p-[23px]
+                    p-[18px] md:p-[23px]
                     transition-all duration-[600ms]
                     delay-[180ms]
-                    ease-[cubic-bezier(0.22,1,0.36,1)]
 
                     ${visible
                       ? "opacity-100 translate-y-0"
@@ -159,21 +190,21 @@ export default function DiagnosticoSection() {
                   `}
                 >
 
-                  <div className="text-[20px]">{card.icon}</div>
+                  <div className="text-[18px] md:text-[20px]">{card.icon}</div>
 
                   <p
-                    className="mt-[20px] text-[9.92px] font-bold tracking-[0.99px] uppercase"
+                    className="mt-[16px] md:mt-[20px] text-[9px] md:text-[9.92px] font-bold tracking-[0.08em] uppercase"
                     style={{ color: card.color }}
                   >
                     {card.label}
                   </p>
 
-                  <p className="mt-[6px] text-[14px] leading-[21px] text-[#1E293B]">
+                  <p className="mt-[6px] text-[13px] md:text-[14px] leading-[20px] md:leading-[21px] text-[#1E293B]">
                     {card.text}
                   </p>
 
                   <span
-                    className="mt-[14px] inline-block text-[11.52px] font-bold px-[12px] py-[6px] rounded-full"
+                    className="mt-[12px] md:mt-[14px] inline-block text-[11px] md:text-[11.52px] font-bold px-[10px] md:px-[12px] py-[5px] md:py-[6px] rounded-full"
                     style={{
                       color: card.color,
                       background:

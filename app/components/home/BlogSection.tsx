@@ -60,7 +60,24 @@ const itemVariants = {
 export default function BlogSection() {
   return (
     <section className="w-full bg-[#FBF8F3]">
-      <div className="w-full max-w-[1416px] mx-auto px-[156px] pt-[96px] pb-[96px]">
+      <div className="
+        w-full 
+        max-w-[1416px] 
+        mx-auto 
+        
+        px-[20px] 
+        sm:px-[60px] 
+        md:px-[100px] 
+        lg:px-[156px] 
+        
+        pt-[60px] 
+        md:pt-[80px] 
+        lg:pt-[96px] 
+        
+        pb-[60px] 
+        md:pb-[80px] 
+        lg:pb-[96px]
+      ">
 
         {/* HEADER */}
         <motion.div
@@ -72,14 +89,22 @@ export default function BlogSection() {
         >
           <motion.p
             variants={itemVariants}
-            className="text-[#0F2D5C] text-[16px] mb-[8px]"
+            className="text-[#0F2D5C] text-[14px] md:text-[16px] mb-[8px]"
           >
             Aprende con nosotros
           </motion.p>
 
           <motion.h2
             variants={itemVariants}
-            className="text-[#0F2D5C] text-[28px] font-medium leading-[34px]"
+            className="
+              text-[#0F2D5C] 
+              text-[22px] 
+              sm:text-[24px] 
+              md:text-[28px] 
+              font-medium 
+              leading-[30px] 
+              md:leading-[34px]
+            "
           >
             Todo lo que nadie te explica cuando vives afuera.
           </motion.h2>
@@ -87,7 +112,7 @@ export default function BlogSection() {
           <motion.div variants={itemVariants}>
             <Link
               href="/blog"
-              className="inline-flex items-center mt-[4px] text-[#0F2D5C] font-semibold text-[14px] hover:text-[#1A4F9E] transition-colors"
+              className="inline-flex items-center mt-[4px] text-[#0F2D5C] font-semibold text-[13px] md:text-[14px] hover:text-[#1A4F9E] transition-colors"
             >
               Ver todos los artículos →
             </Link>
@@ -96,7 +121,20 @@ export default function BlogSection() {
 
         {/* GRID */}
         <motion.div
-          className="mt-[48px] grid grid-cols-1 lg:grid-cols-[472.88px_295.56px_295.56px] gap-[20px] justify-center"
+          className="
+            mt-[32px] 
+            md:mt-[48px] 
+            
+            grid 
+            grid-cols-1 
+            sm:grid-cols-2 
+            lg:grid-cols-[472.88px_295.56px_295.56px] 
+            
+            gap-[16px] 
+            md:gap-[20px] 
+            
+            justify-center
+          "
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -110,34 +148,49 @@ export default function BlogSection() {
                 y: -8,
                 transition: { duration: 0.25 },
               }}
-              className="bg-white border border-[#0F2D5C]/10 rounded-[16px] overflow-hidden flex flex-col shadow-[0_4px_12px_rgba(15,45,92,0.08)] hover:shadow-[0_16px_32px_rgba(15,45,92,0.12)]"
-              style={{ height: "472.22px" }}
+              className="
+                bg-white 
+                border border-[#0F2D5C]/10 
+                rounded-[16px] 
+                overflow-hidden 
+                flex flex-col 
+                shadow-[0_4px_12px_rgba(15,45,92,0.08)] 
+                hover:shadow-[0_16px_32px_rgba(15,45,92,0.12)]
+              "
+              style={{
+                height: "420px",
+              }}
             >
               {/* IMAGE */}
               <div
-                className={`relative flex items-center justify-center bg-[#DADADA] ${
-                  article.featured ? "h-[314px]" : "h-[165px]"
-                }`}
+                className={`
+                  relative flex items-center justify-center bg-[#DADADA] 
+                  
+                  h-[200px] 
+                  sm:h-[240px] 
+                  md:h-[260px] 
+                  
+                  ${article.featured ? "lg:h-[314px]" : "lg:h-[165px]"}
+                `}
               >
-                <div className="text-black/20 text-[40px]">
+                <div className="text-black/20 text-[32px] md:text-[40px]">
                   {article.icon}
                 </div>
 
-                {/* overlay sutil */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F2D5C]/10 to-transparent" />
               </div>
 
               {/* CONTENT */}
-              <div className="p-6 flex flex-col flex-1">
-                <span className="inline-flex w-fit rounded-full bg-[#1A4F9E]/7 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-[#1A4F9E] mb-4">
+              <div className="p-4 md:p-6 flex flex-col flex-1">
+                <span className="inline-flex w-fit rounded-full bg-[#1A4F9E]/7 px-3 py-1 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.08em] text-[#1A4F9E] mb-4">
                   {article.category}
                 </span>
 
-                <h3 className="text-[#0F2D5C] font-semibold text-[16px] leading-6 mb-4">
+                <h3 className="text-[#0F2D5C] font-semibold text-[14px] md:text-[16px] leading-5 md:leading-6 mb-4">
                   {article.title}
                 </h3>
 
-                <div className="mt-auto flex items-center gap-3 text-[#94A3B8] text-xs">
+                <div className="mt-auto flex items-center gap-3 text-[#94A3B8] text-[11px] md:text-xs">
                   <span>{article.date}</span>
                   <span className="w-1 h-1 rounded-full bg-[#94A3B8]" />
                   <span>{article.readTime}</span>

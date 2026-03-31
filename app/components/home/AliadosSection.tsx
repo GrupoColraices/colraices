@@ -17,32 +17,75 @@ export default function AliadosSection()
   return (
     <section className="w-full bg-white border-t border-[#0F2D5C]/10">
       
-      <div className="w-full max-w-[1416.15px] mx-auto px-[108.07px] pt-[65.27px] pb-[65.27px]">
+      <div className="
+        w-full 
+        max-w-[1416.15px] 
+        mx-auto 
         
-        <div className="w-full max-w-[1200px] mx-auto px-[48px]">
+        px-[20px] 
+        sm:px-[40px] 
+        md:px-[80px] 
+        lg:px-[108.07px] 
+        
+        pt-[40px] 
+        md:pt-[65.27px] 
+        
+        pb-[40px] 
+        md:pb-[65.27px]
+      ">
+        
+        <div className="
+          w-full 
+          max-w-[1200px] 
+          mx-auto 
+          
+          px-[16px] 
+          sm:px-[24px] 
+          md:px-[48px]
+        ">
 
           {/* HEADER */}
-          <div className="text-center mb-[40px]">
-            <p className="text-[#FFC107] text-[20px] font-bold italic leading-[30px]">
+          <div className="text-center mb-[24px] md:mb-[40px]">
+            <p className="
+              text-[#FFC107] 
+              text-[16px] 
+              sm:text-[18px] 
+              md:text-[20px] 
+              font-bold italic leading-[30px]
+            ">
               Aliados estratégicos
             </p>
 
-            <p className="text-[#475569] text-[17.6px] italic leading-[26.4px] mt-[8px]">
+            <p className="
+              text-[#475569] 
+              text-[14px] 
+              sm:text-[15.5px] 
+              md:text-[17.6px] 
+              italic leading-[26.4px] mt-[8px]
+            ">
               Respaldo de las mejores constructoras y entidades financieras de Colombia
             </p>
           </div>
 
           {/* LOGOS */}
-          <div className="flex items-center justify-center gap-[12px] flex-wrap">
+          <div className="flex items-center justify-center gap-[8px] sm:gap-[12px] flex-wrap">
 
             {logos.map((logo) => (
               <div
                 key={logo.alt}
                 className="
                   group
-                  w-[140px] h-[68px]
+                  
+                  w-[110px] h-[55px]
+                  sm:w-[130px] sm:h-[62px]
+                  md:w-[140px] md:h-[68px]
+
                   flex items-center justify-center
-                  px-[24px]
+                  
+                  px-[12px]
+                  sm:px-[18px]
+                  md:px-[24px]
+
                   bg-white
                   border border-[#0F2D5C]/10
 
@@ -65,7 +108,11 @@ export default function AliadosSection()
                   className={`
                     w-auto h-auto
                     object-contain
-                    max-w-[110px]
+                    
+                    max-w-[80px]
+                    sm:max-w-[95px]
+                    md:max-w-[110px]
+                    
                     ${logo.size}
 
                     grayscale opacity-60
