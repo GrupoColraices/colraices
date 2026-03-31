@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -12,6 +13,8 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#F4F6F8] border-b border-black/5">
       
@@ -28,15 +31,45 @@ export default function Navbar() {
 
         {/* NAV */}
         <nav className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-[#475569] text-[14px] font-medium hover:text-[#0F2D5C] transition"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`
+                  group relative
+                  text-[14px] leading-[21px]
+                  transition-all duration-200
+
+                  ${isActive
+                    ? "text-[#0F2D5C] font-semibold"
+                    : "text-[#475569] font-medium hover:text-[#0F2D5C]"
+                  }
+                `}
+              >
+                <span className="relative inline-block pb-[4px]">
+                  {link.label}
+
+                  {/* 🔥 LÍNEA */}
+                  <span
+                    className={`
+                      absolute left-0 bottom-0 h-[2px] w-full bg-[#FFC107]
+
+                      ${isActive
+                        ? "scale-x-100 origin-left"
+                        : "scale-x-0 origin-right group-hover:scale-x-100 group-hover:origin-left"
+                      }
+
+                      transition-transform duration-300 
+                      ease-[cubic-bezier(0.22,1,0.36,1)]
+                    `}
+                  />
+                </span>
+              </Link>
+            );
+          })}
         </nav>
 
         {/* CTA */}
@@ -46,6 +79,7 @@ export default function Navbar() {
         >
           Solicitar Asesoría
         </Link>
+
       </div>
     </header>
   );
