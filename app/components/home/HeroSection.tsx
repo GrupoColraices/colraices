@@ -40,9 +40,17 @@ export default function HeroSection() {
           <div className="max-w-[620px] text-center lg:text-left">
 
             {/* EYEBROW */}
-            <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+            <div className="flex items-center justify-center lg:justify-start gap-[8px] mt-[3.5px] mb-4">
               <div className="w-6 h-[1px] bg-[#FFC107]" />
-              <p className="text-[#FFC107] text-[14px] md:text-[16px] italic">
+
+              <p className="
+                text-[#FFC107] 
+                text-[16px] 
+                leading-[24px] 
+                font-medium 
+                italic 
+                max-w-[475px]
+              ">
                 Para colombianos que construyen futuro desde afuera
               </p>
             </div>
@@ -52,33 +60,35 @@ export default function HeroSection() {
               text-white 
               text-[26px] 
               sm:text-[30px] 
-              md:text-[34px] 
+              md:text-[35.2px] 
               leading-[34px] 
               sm:leading-[38px] 
-              md:leading-[42px] 
+              md:leading-[38.7px] 
               mb-4 md:mb-6
             ">
 
-              <span className="font-normal">
+              <span className="block font-normal">
                 Ese dinero que mandas a casa
               </span>
 
-              <br />
-
-              <span className="font-light">
+              <span className="block font-light">
                 puede hacer mucho más que
               </span>
 
-              <br />
-
-              <span className="text-[#FFC107] font-semibold italic">
+              <span className="block text-[#FFC107] font-bold italic">
                 llegar a fin de mes.
               </span>
 
             </h1>
 
             {/* DESCRIPCIÓN */}
-            <p className="text-white/70 text-[14px] md:text-[15px] leading-[22px] md:leading-[24px] mb-6 md:mb-8">
+            <p className="
+              text-white/52 
+              text-[16.8px] 
+              leading-[29.4px] 
+              font-light 
+              mb-6 md:mb-8
+            ">
               Te ayudamos a convertir tus remesas en una casa, en un negocio, en algo que dure.
               Con acompañamiento real, desde donde estás.
             </p>
@@ -102,7 +112,7 @@ export default function HeroSection() {
                   h-[44px] md:h-[48px] 
                   flex items-center justify-center 
                   rounded-full 
-                  text-[13px] md:text-[14px] 
+                  text-[14.4px] 
                   font-semibold 
                   transition hover:opacity-90
                 "
@@ -119,7 +129,8 @@ export default function HeroSection() {
                   h-[42px] md:h-[44px] 
                   flex items-center justify-center 
                   rounded-full 
-                  text-[13px] md:text-[14px] 
+                  text-[14.4px] 
+                  font-semibold 
                   transition hover:bg-white hover:text-[#0B1F3A]
                 "
               >
@@ -160,18 +171,18 @@ export default function HeroSection() {
               {/* TAG */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF2F7] border border-[#CBD5E1] mb-4 md:mb-5">
                 <div className="w-2 h-2 bg-[#FFC107] rounded-full"></div>
-                <span className="text-[11px] md:text-[12px] font-semibold text-[#2A3F77] tracking-wide">
+                <span className="text-[11.52px] font-semibold text-[#0F2D5C] tracking-wide">
                   ECOSISTEMA COLRAICES
                 </span>
               </div>
 
               {/* TITULO */}
-              <h3 className="text-[28px] md:text-[34px] font-semibold text-[#0B1F3A] leading-none">
+              <h3 className="text-[44.8px] font-bold text-[#0F2D5C] leading-none">
                 23 años
               </h3>
 
               {/* TEXTO */}
-              <p className="text-[#2A3F77]/70 text-[13px] md:text-[14px] mt-2 mb-5 md:mb-6">
+              <p className="text-[#1A4F9E] text-[12.8px] font-normal mt-2 mb-5 md:mb-6">
                 acompañando la diáspora colombiana
               </p>
 
@@ -193,7 +204,7 @@ export default function HeroSection() {
                         {item.icon}
                       </div>
 
-                      <span className="text-[13px] md:text-[14px] text-[#2A3F77]">
+                      <span className="text-[13.6px] font-medium text-[#0F2D5C]">
                         {item.text}
                       </span>
 

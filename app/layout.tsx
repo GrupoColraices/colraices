@@ -1,6 +1,12 @@
 import "./globals.css";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700"],
+});
 
 export default function RootLayout({
   children,
@@ -9,11 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body>
+      <body className={montserrat.className}>
 
         <Navbar />
 
-        {/* 🔥 IMPORTANTE: compensar navbar fixed */}
+
         <main className="pt-[68px]">
           {children}
         </main>
