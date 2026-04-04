@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
@@ -65,6 +66,7 @@ export default function HeroSection() {
               sm:leading-[38px] 
               md:leading-[38.7px] 
               mb-4 md:mb-6
+              tracking-[-0.02em]
             ">
 
               <span className="block font-normal">
@@ -83,7 +85,7 @@ export default function HeroSection() {
 
             {/* DESCRIPCIÓN */}
             <p className="
-              text-white/52 
+              text-white/70 
               text-[16.8px] 
               leading-[29.4px] 
               font-light 
@@ -143,21 +145,27 @@ export default function HeroSection() {
 
           {/* CARD DERECHA */}
           <div className="
-            relative 
-            w-full 
-            max-w-[420px] 
-            h-auto 
-            lg:h-[401px] 
-            p-5 md:p-7 
-            
-            rounded-tl-[40px] 
-            rounded-tr-none 
-            rounded-bl-none 
-            rounded-br-[40px] 
-            
-            bg-white
+            relative
+
+            w-full
+            max-w-[420px]
+
+            h-auto
+            lg:h-[401.34px]
+
+            p-[20px]
+            sm:p-[24px]
+            md:p-[30px]
+            lg:p-[35.99px]
+
+            rounded-tl-[16px]
+            rounded-tr-none
+            rounded-bl-none
+            rounded-br-[16px]
+
+            bg-white/95
             border border-white/40
-            shadow-[0_25px_80px_rgba(0,0,0,0.25)] 
+            shadow-[0_25px_80px_rgba(0,0,0,0.25)]
             overflow-visible
           ">
 
@@ -169,7 +177,7 @@ export default function HeroSection() {
             <div className="relative z-10">
 
               {/* TAG */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF2F7] border border-[#CBD5E1] mb-4 md:mb-5">
+              <div className="inline-flex items-center gap-[6px] px-3 py-1 rounded-full bg-[#2A3F77]/10 border border-[#2A3F77]/15 mb-[20px]">
                 <div className="w-2 h-2 bg-[#FFC107] rounded-full"></div>
                 <span className="text-[11.52px] font-semibold text-[#0F2D5C] tracking-wide">
                   ECOSISTEMA COLRAICES
@@ -182,12 +190,12 @@ export default function HeroSection() {
               </h3>
 
               {/* TEXTO */}
-              <p className="text-[#1A4F9E] text-[12.8px] font-normal mt-2 mb-5 md:mb-6">
+              <p className="text-[#1A4F9E] text-[12.8px] font-normal mt-[4px] mb-[27.98px]">
                 acompañando la diáspora colombiana
               </p>
 
               {/* LISTA */}
-              <div className="space-y-3">
+              <div className="flex flex-col gap-[10px]">
 
                 {[
                   { text: "Financiación en Colombia", icon: "💰" },
@@ -196,11 +204,27 @@ export default function HeroSection() {
                 ].map((item) => (
                   <div
                     key={item.text}
-                    className="flex items-center justify-between px-4 py-[12px] md:py-[14px] rounded-[12px] border border-[#E2E8F0] bg-[#F8FAFC] hover:bg-white transition"
-                  >
-                    <div className="flex items-center gap-3">
+                    className="
+                      flex items-center justify-between
+                      h-[54.53px]
+                      px-[13.98px]
 
-                      <div className="w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-lg bg-white shadow-sm">
+                      rounded-[6px]
+                      bg-[#2A3F77]/[0.07]
+                      border border-[#2A3F77]/[0.12]
+
+                      hover:bg-white/50
+                      transition
+                    "
+                  >
+                    <div className="flex items-center gap-[11.99px]">
+
+                      <div className="
+                        w-[31.99px] h-[31.99px]
+                        flex items-center justify-center
+                        rounded-[8px]
+                        bg-[#2A3F77]/8
+                      ">
                         {item.icon}
                       </div>
 
@@ -217,46 +241,57 @@ export default function HeroSection() {
               </div>
 
             </div>
+            
+            {/* BADGE ANIMADO */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.5,
+                delay: 0.6,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="
+                absolute
+                -left-[31.99px]
+                -bottom-[20px]
+                z-20
 
-            {/* BADGE */}
-            <div className="
-              absolute 
-              -left-[10px] 
-              md:-left-[32px] 
-              -bottom-[20px] 
-              z-20 
-              
-              w-[180px] md:w-[219px] 
-              h-[48px] md:h-[52px] 
-              
-              bg-white 
-              rounded-tl-[16px] 
-              rounded-br-[16px]
-              
-              px-3 md:px-4 
-              flex items-center gap-3 
-              
-              shadow-[0_8px_25px_rgba(0,0,0,0.12)]
-            ">
+                w-[219px]
+                h-[52px]
 
-              <div className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-md bg-[#FFF6D6]">
+                bg-white
+                rounded-tl-[16px]
+                rounded-br-[16px]
+
+                pl-[13.98px]
+                flex items-center
+                gap-[10px]
+
+                shadow-[0_6px_18px_rgba(0,0,0,0.1)]
+              "
+            >
+
+              <div className="w-[31.99px] h-[31.99px] flex items-center justify-center rounded-[8px] bg-[#FEF3C7]">
                 🏠
               </div>
 
-              <div className="text-[11px] md:text-[12px] leading-tight">
-                <p className="text-[#94A3B8]">Negocios concretados</p>
-                <p className="font-semibold text-[#0B1F3A]">
+              <div className="flex flex-col justify-center w-[149.02px] leading-none">
+                <p className="text-[10.88px] font-medium text-[#94A3B8] leading-[13.05px]">
+                  Negocios concretados
+                </p>
+                <p className="text-[13.6px] font-semibold text-[#0F2D5C] leading-[17.27px]">
                   +11.000 en Colombia
                 </p>
               </div>
 
-            </div>
+            </motion.div>
 
           </div>
 
-        </div>
+        </div> 
 
-      </div>
+      </div> 
     </section>
   );
 }
