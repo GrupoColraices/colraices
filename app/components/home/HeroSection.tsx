@@ -213,7 +213,7 @@ export default function HeroSection() {
                       bg-[#2A3F77]/[0.07]
                       border border-[#2A3F77]/[0.12]
 
-                      hover:bg-white/50
+                      hover:bg-white/60
                       transition
                     "
                   >
