@@ -156,11 +156,12 @@ export default function FinanzasHero() {
             
             lg:block
           ">
-
+            .
             {items.map((item, index) => (
               <div
                 key={item.title}
                 className="
+                  relative
                   w-full 
                   lg:absolute 
                   
@@ -169,42 +170,71 @@ export default function FinanzasHero() {
                   
                   flex items-start gap-[13.98px] 
                   
-                  pl-[15px] pt-[10px] 
+                  pl-[15.99px] pt-[15.99px] 
                   
                   bg-white/60 backdrop-blur-[10px] 
-                  rounded-[16px] 
                   
-                  shadow-[0_4px_20px_rgba(0,0,0,0.06)] 
+                  rounded-tl-[16px] 
+                  rounded-br-[16px] 
+                  rounded-tr-none 
+                  rounded-bl-none
+
+                  overflow-hidden
+                  
                   transition-all duration-300 ease-out 
-                  hover:-translate-y-[2px] 
+                  
+                  hover:bg-white/90
+                  hover:-translate-y-[2px]
                   hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)]
                 "
                 style={{
                   top: `${index * 94.94}px`,
                 }}
               >
-                <div className={`w-[3px] h-[48px] mt-[4px] ${item.color}`} />
+                {/* LÍNEA */}
+                <div className={`absolute left-0 top-0 w-[3px] h-full ${item.color}`} />
 
+                {/* TEXTO */}
                 <div>
-                  <p className="text-[#2A3F77] text-[10px] md:text-[9.92px] font-bold uppercase">
+                  <p className="
+                    text-[#2A3F77] 
+                    text-[9.92px] 
+                    font-bold 
+                    uppercase 
+                    tracking-[0.99px] 
+                    leading-[14.9px]
+                  ">
                     {item.tag}
                   </p>
-                  <p className="text-[#2A3F77] text-[13px] md:text-[14.08px] font-semibold mt-[2px]">
+
+                  <p className="
+                    text-[#2A3F77] 
+                    text-[14.08px] 
+                    font-semibold 
+                    leading-[20px] 
+                    mt-[2px]
+                  ">
                     {item.title}
                   </p>
-                  <p className="text-[#2A3F77] text-[12px] leading-[18px] mt-[2px]">
+
+                  <p className="
+                    text-[#2A3F77]/80 
+                    text-[12px] 
+                    leading-[18px] 
+                    mt-[2px]
+                  ">
                     {item.desc}
                   </p>
                 </div>
 
               </div>
             ))}
-
+            .
           </div>
 
         </div>
 
-      </div>
+      </div> 
 
       {/* WAVE */}
       <div className="absolute bottom-0 left-0 w-full z-[2]">
