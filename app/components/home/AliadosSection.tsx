@@ -68,7 +68,7 @@ export default function AliadosSection()
           </div>
 
           {/* LOGOS */}
-          <div className="flex items-center justify-center gap-[8px] sm:gap-[12px] flex-wrap">
+          <div className="flex items-center justify-center gap-[8px] sm:gap-[12px] flex-nowrap overflow-x-auto">
 
             {logos.map((logo) => (
               <div

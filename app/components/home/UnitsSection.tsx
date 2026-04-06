@@ -70,7 +70,7 @@ export default function UnitsSection() {
             Todo lo que necesitas, en un solo ecosistema.
           </h2>
 
-          <p className="text-[#475569] text-[14px] md:text-[15px] leading-[22px] md:leading-[24px] max-w-[720px] mx-auto">
+          <p className="text-[#475569] text-[14px] md:text-[15px] leading-[22px] md:leading-[24px] max-w-[980px] mx-auto">
             No tienes que buscar en cinco lugares distintos ni explicarle tu historia a desconocidos cada vez. Aquí está todo.
           </p>
         </div>
