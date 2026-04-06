@@ -50,7 +50,8 @@ export default function TrustStripSection() {
           flex-col 
           md:flex-row 
           md:items-center 
-          md:justify-between 
+          md:justify-center   /* 🔥 CAMBIO */
+          md:gap-[80px]       /* 🔥 CAMBIO */
           gap-6 md:gap-8
         ">
 
@@ -88,43 +89,58 @@ export default function TrustStripSection() {
           ">
 
             {/* SELECT PRO */}
-            <div ref={ref} className="relative w-full sm:w-[280px] md:w-[320px]">
+            <div ref={ref} className="relative w-full sm:w-[300px] md:w-[340px]">
 
               {/* INPUT */}
               <div
                 onClick={() => setOpen(!open)}
                 className="
-                  h-[44px] md:h-[48px] 
+                  h-[48px]   /* 🔥 CAMBIO */
                   rounded-full 
                   border border-[#CBD5E1] 
                   bg-white 
-                  flex items-center 
-                  px-4 md:px-5 
+                  flex items-center justify-between
+                  px-5
                   shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] 
-                  cursor-pointer 
-                  justify-between
+                  cursor-pointer
+                  transition-all duration-200
+                  hover:border-[#94A3B8]
                 "
               >
-                <div className="flex items-center">
-                  <div className="w-4 h-4 rounded-full border border-[#94A3B8] flex items-center justify-center mr-3">
-                    <div className="w-2 h-2 bg-[#94A3B8] rounded-full"></div>
-                  </div>
-
-                  <span className={`text-[12px] md:text-[13px] ${selected ? "text-[#0B1F3A]" : "text-[#94A3B8]"}`}>
-                    {selected || "¿Qué quieres lograr?"}
-                  </span>
-                </div>
-
-                <span className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
-                  ▾
+                <span className={`text-[12px] md:text-[13px] ${selected ? "text-[#0B1F3A]" : "text-[#94A3B8]"}`}>
+                  {selected || "¿Qué quieres lograr?"}
                 </span>
+
+                <span
+                className={`
+                  flex items-center justify-center
+                  transition-transform duration-300
+                  ${open ? "rotate-180" : ""}
+                `}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 8L10 12L14 8"
+                    stroke="#0F2D5C"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
               </div>
 
               {/* DROPDOWN */}
               {open && (
-                <ul className="absolute top-[48px] md:top-[52px] left-0 w-full bg-white border border-[#CBD5E1] rounded-md overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.1)] z-50">
+                <ul className="absolute top-[56px] left-0 w-full bg-white border border-[#CBD5E1] rounded-[12px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.12)] z-50">
 
-                  <li className="px-4 py-3 bg-[#1A4F9E] text-white text-[13px] md:text-[14px] font-medium">
+                  <li className="px-4 py-3 text-[#0F2D5C] text-[13px] md:text-[14px] font-medium border-b border-[#E2E8F0]">
                     ¿Qué quieres lograr?
                   </li>
 
@@ -143,7 +159,7 @@ export default function TrustStripSection() {
                         ${
                           selected === item
                             ? "bg-[#1A4F9E] text-white"
-                            : "text-[#2A3F77] hover:bg-[#1A4F9E] hover:text-white"
+                            : "text-[#2A3F77] hover:bg-[#F1F5F9]"
                         }
                       `}
                     >
