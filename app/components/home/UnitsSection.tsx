@@ -143,14 +143,14 @@ export default function UnitsSection() {
                     ? "Finanzas inteligentes"
                     : index === 1
                     ? "Tu propiedad en Colombia"
-                    : "Trámites"}
+                    : "Servicios legales y migratorios"}
                 </h3>
 
                 <p className="text-[#475569] text-[13px] md:text-[14px] leading-[20px] md:leading-[22px] mb-4 md:mb-5">
                   {index === 0
-                    ? "Ponemos orden en tu historial, tu crédito y tu capacidad de inversión. Para que el dinero que trabajaste tanto no se quede quieto."
+                    ? "Accede a crédito para tu vivienda en Colombia o libre inversión. Si tienes reportes o dudas, te ayudamos a solucionarlo y a prepararte paso a paso."
                     : index === 1
-                    ? "Encontramos el inmueble ideal para lo que tienes y lo que sueñas. Sin que tengas que viajar a resolver nada."
+                    ? "Te ayudamos a encontrar tu propiedad en Colombia o analizamos la que quieres comprar. Para que tomes la decisión con respaldo."
                     : "Desde migrar ordenadamente hasta emprender en Colombia. Asesoría legal con gente que habla tu idioma."}
                 </p>
 

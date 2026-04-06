@@ -119,7 +119,7 @@ export default function HeroSection() {
                   transition hover:opacity-90
                 "
               >
-                Quiero saber cómo →
+                Quiero saber más →
               </Link>
 
               <Link
@@ -200,7 +200,7 @@ export default function HeroSection() {
                 {[
                   { text: "Financiación en Colombia", icon: "💰" },
                   { text: "Tu propiedad en Colombia", icon: "🏠" },
-                  { text: "Trámites sin enredos", icon: "⚖️" },
+                  { text: "Servicios legales y migratorios", icon: "⚖️" },
                 ].map((item) => (
                   <div
                     key={item.text}

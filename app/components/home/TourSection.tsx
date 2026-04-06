@@ -61,7 +61,7 @@ export default function TourSection() {
 
           {/* DESC */}
           <p className="text-[#475569] text-[14px] md:text-[15px] leading-[24px] md:leading-[28px] mb-6 md:mb-8 max-w-[460px] mx-auto md:mx-0">
-            El evento donde colombianos en el exterior conocen los proyectos inmobiliarios más importantes de Colombia. Sin intermediarios. Con expertos que responden.
+            Conoce proyectos, entiende cómo comprar y conecta con quienes te acompañan en todo el proceso.
           </p>
 
           {/* BOTON */}
