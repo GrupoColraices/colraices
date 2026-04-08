@@ -31,12 +31,10 @@ export default function TourSection() {
         {/* IZQUIERDA */}
         <div className="max-w-[520px] mx-auto md:mx-0 text-center md:text-left">
 
-          {/* EYEBROW */}
           <p className="text-[#FFC107] text-[16px] md:text-[18px] italic font-bold mb-3 md:mb-4">
             Evento estrella del ecosistema
           </p>
 
-          {/* TITULO */}
           <h2 className="
             text-[#2A3F77] 
             text-[28px] 
@@ -47,24 +45,22 @@ export default function TourSection() {
             mb-4 md:mb-6
           ">
 
-            <span className="font-bold italic">
+            <span className="font-bold italic text-[#0F2D5C]">
               El tour de la Vivienda
             </span>
 
             <br />
 
-            <span className="font-normal not-italic">
+            <span className="font-normal not-italic text-[#0F2D5C] text-[35.86px] leading-[46px]">
               llega a tu país
             </span>
 
           </h2>
 
-          {/* DESC */}
-          <p className="text-[#475569] text-[14px] md:text-[15px] leading-[24px] md:leading-[28px] mb-6 md:mb-8 max-w-[460px] mx-auto md:mx-0">
+          <p className="text-[#475569] text-[15.2px] leading-[26.6px] mb-6 md:mb-8 max-w-[460px] mx-auto md:mx-0">
             Conoce proyectos, entiende cómo comprar y conecta con quienes te acompañan en todo el proceso.
           </p>
 
-          {/* BOTON */}
           <Link
             href="/tour"
             className="
@@ -77,7 +73,7 @@ export default function TourSection() {
               text-[#2A3F77] 
               
               font-semibold 
-              text-[13px] md:text-[14px] 
+              text-[13px] md:text-[14.4px] 
               
               hover:bg-[#2A3F77]/5 transition
             "
@@ -85,12 +81,11 @@ export default function TourSection() {
             Conocer más
           </Link>
 
-          {/* CIUDADES */}
           <div className="
             flex flex-wrap items-center justify-center md:justify-start 
             gap-x-4 gap-y-2 
             mt-6 md:mt-8 
-            text-[13px] md:text-[14px]
+            text-[12.48px] leading-[18.7px] font-medium
           ">
 
             {cities.map((city, i) => (
@@ -109,46 +104,18 @@ export default function TourSection() {
 
         </div>
 
-        {/* DERECHA (CARD) */}
-        <div className="w-full max-w-[520px] mx-auto md:ml-auto">
+        {/* DERECHA (MAPA) */}
+        <div className="w-full max-w-[520px] mx-auto md:ml-auto flex justify-center md:justify-end">
 
-          <div className="
-            bg-[#16325C]
-            rounded-[24px] md:rounded-[32px]
-            shadow-[0_24px_64px_rgba(42,63,119,0.25)]
-            overflow-hidden
-            flex flex-col
-            min-h-[360px] md:min-h-[420px]
-          ">
-
-            {/* HEADER */}
-            <div className="flex justify-end p-4 md:p-6">
-              <span className="px-3 md:px-4 py-[5px] md:py-[6px] rounded-full bg-[#FFC107] text-[#2A3F77] text-[10px] md:text-[11px] font-bold uppercase tracking-wide">
-                Próximas fechas
-              </span>
-            </div>
-
-            {/* CONTENIDO */}
-            <div className="flex-1 flex flex-col items-center justify-center text-center px-6 md:px-8">
-
-              <div className="text-[32px] md:text-[42px] mb-3 md:mb-4">🎪</div>
-
-              <p className="text-white/40 text-[13px] md:text-[14px] italic">
-                Galería / video del evento
-              </p>
-
-            </div>
-
-            {/* STATS */}
-            <div className="bg-[#0F254A] px-4 md:px-8 py-4 md:py-5 grid grid-cols-3 text-center">
-
-              <Stat value="+50" label="proyectos" />
-              <Stat value="+3.000" label="asistentes / edición" />
-              <Stat value="8" label="ciudades" />
-
-            </div>
-
-          </div>
+          <img
+            src="/mapa.png"
+            alt="Mapa Tour de la Vivienda"
+            className="
+              w-[502px]
+              h-[376px]
+              object-cover
+            "
+          />
 
         </div>
 
