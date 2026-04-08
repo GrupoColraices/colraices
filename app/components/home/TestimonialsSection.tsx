@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function TestimonialsSection() {
+  
   const testimonials = [
     {
       quote:
@@ -20,158 +21,171 @@ export default function TestimonialsSection() {
     },
     {
       quote:
-        "Si quieres cumplir un sueño y es de Vivienda date esta oportunidad con este grupo de profesionales yo lo hice y es la mejor decisión que tome. Gracias COLRAICES .. Por estar conmigo en cada paso de mi gestión para culminar esta gran Meta MI VIVIENDA, EN MI LINDO PAIS COLOMBIA .UNA VEZ MÁS GRACIAS.",
+        "Si quieres cumplir un sueño y es de Vivienda date esta oportunidad con este grupo de profesionales yo lo hice y es la mejor decisión que tome. Gracias COLRAICES por estar conmigo en cada paso de mi gestión para culminar esta gran meta.",
       name: "Sabydonaty Bustos Tafur",
       country: "España",
       initials: "SB",
     },
-  ];
 
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+    {
+      quote:
+        "Recomendar de manera muy especial a Colraices y a Camila Suarez quien fue mi asesora, quien me asesoró y me acompañó durante todo el proceso el cual fue aprobado",
+      name: "Diana Prieto",
+      country: "Estados Unidos",
+      initials: "DP",
+    },
+    {
+      quote:
+        "Yo siempre quería comprar apartamento en Colombia pero no sabía cómo hacer, por dónde empezar, lógicamente estando en el exterior es más difícil...",
+      name: "Tito Venegas",
+      country: "Estados Unidos",
+      initials: "TV",
+    },
+  ];
+  
+  const loop = [...testimonials, ...testimonials];
+
+  const [index, setIndex] = useState(0);
+  const [transition, setTransition] = useState(true);
+
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const cardWidth = 354.66;
+  const gap = 20;
+
+  // 🔥 autoplay inteligente
+  const startAutoPlay = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    timeoutRef.current = setTimeout(() => {
+      setIndex((prev) => prev + 1);
+    }, 3000); // espera 3s sin interacción
+  };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-        }
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px",
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    startAutoPlay();
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, []);
+  }, [index]);
+
+  // 🔥 loop infinito limpio
+  useEffect(() => {
+    if (index >= testimonials.length) {
+      setTimeout(() => {
+        setTransition(false);
+        setIndex(0);
+      }, 500);
+
+      setTimeout(() => {
+        setTransition(true);
+      }, 520);
+    }
+  }, [index]);
+
+  // 🔥 botones con pausa inteligente
+  const handleNext = () => {
+    setIndex((prev) => prev + 1);
+    startAutoPlay();
+  };
+
+  const handlePrev = () => {
+    setIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    startAutoPlay();
+  };
 
   return (
-    <section ref={sectionRef} className="w-full bg-[#FFFFFF]">
-      <div className="
-        w-full 
-        max-w-[1416px] 
-        mx-auto 
-        
-        px-[20px] 
-        sm:px-[40px] 
-        md:px-[100px] 
-        lg:px-[156.07px] 
-        
-        pt-[60px] 
-        md:pt-[80px] 
-        lg:pt-[96px] 
-        
-        pb-[60px] 
-        md:pb-[80px] 
-        lg:pb-[96px]
-      ">
+    <section className="w-full bg-[#FFFFFF]">
+      <div className="w-full max-w-[1416px] mx-auto px-[156px] py-[96px]">
         <div className="max-w-[1103.09px] mx-auto">
 
           {/* HEADER */}
-          <div
-            className={`
-              flex flex-col items-center text-center gap-[8px]
-              transition-all duration-700 ease-out
-              ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
-            `}
-          >
-            <p className="text-[#FFC107] text-[14px] md:text-[16px] italic font-semibold leading-none">
+          <div className="flex flex-col items-center text-center gap-[8px]">
+            <p className="text-[#FFC107] text-[16px] italic font-semibold">
               Lo que dicen quienes ya confiaron en nosotros
             </p>
 
-            <h2 className="
-              text-[#0F2D5C] 
-              text-[22px] 
-              sm:text-[24px] 
-              md:text-[28px] 
-              font-medium 
-              leading-[30px] 
-              md:leading-[34px]
-            ">
+            <h2 className="text-[#0F2D5C] text-[28px] font-medium">
               Colombianos como tú que ya están construyendo futuro.
             </h2>
           </div>
 
-          {/* CARDS */}
-          <div className="
-            mt-[32px] 
-            md:mt-[48px] 
-            
-            grid 
-            grid-cols-1 
-            sm:grid-cols-2 
-            lg:grid-cols-[354.66px_354.68px_354.66px] 
-            
-            gap-[16px] 
-            md:gap-[20px]
-          ">
-            {testimonials.map((item, index) => (
-              <article
-                key={index}
-                className={`
-                  h-auto 
-                  md:h-[410.64px] 
-                  
-                  bg-[#FBF8F3] 
-                  border border-[#0F2D5C]/10 
-                  
-                  rounded-[0px] rounded-tl-[16px] rounded-tr-[0px] rounded-br-[16px] rounded-bl-[0px] 
-                  
-                  p-[18px] 
-                  md:p-[24px] 
-                  
-                  flex flex-col justify-between 
-                  
-                  shadow-[0_4px_12px_rgba(15,45,92,0.08)]
-                  transition-all duration-700 ease-out
-                  ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
-                  hover:-translate-y-2 hover:shadow-[0_12px_30px_rgba(15,45,92,0.12)]
-                `}
-                style={{
-                  transitionDelay: `${index * 120}ms`,
-                }}
-              >
-                <div>
-                  <div className="flex items-start justify-between mb-[16px] md:mb-[20px]">
-                    <div className="text-[#FFC107] text-[13px] md:text-[14px] leading-none tracking-[1px]">
-                      ★★★★★
+          {/* SLIDER */}
+          <div className="mt-[48px] overflow-hidden">
+
+            <div
+              className={`flex gap-[20px] ${transition ? "transition-transform duration-500 ease-out" : ""}`}
+              style={{
+                transform: `translateX(-${index * (cardWidth + gap)}px)`
+              }}
+            >
+              {loop.map((item, index) => (
+                <article
+                  key={index}
+                  className="
+                    min-w-[354.66px]
+                    h-[410.64px]
+                    bg-[#FBF8F3]
+                    border border-[#0F2D5C]/10
+                    rounded-tl-[16px] rounded-br-[16px]
+                    p-[24px]
+                    flex flex-col justify-between
+                  "
+                >
+                  <div>
+                    <div className="flex items-start justify-between mb-[20px]">
+                      <div className="text-[#FFC107] tracking-[1px]">
+                        ★★★★★
+                      </div>
+
+                      <span className="h-[30px] px-[14px] bg-[#FFC107] text-[#2A3F77] text-[12px] font-semibold uppercase flex items-center">
+                        Crédito
+                      </span>
                     </div>
 
-                    <span className="inline-flex items-center justify-center h-[26px] md:h-[30px] px-[10px] md:px-[14px] rounded-[4px] bg-[#FFC107] text-[#2A3F77] text-[11px] md:text-[12px] font-semibold tracking-[0.04em] uppercase">
-                      Crédito
-                    </span>
-                  </div>
-
-                  <p className="text-[#1E293B] text-[14px] md:text-[16px] italic leading-[24px] md:leading-[28px] whitespace-pre-line">
-                    “{item.quote}”
-                  </p>
-                </div>
-
-                <div className="pt-[14px] md:pt-[18px] border-t border-[#E2E8F0] flex items-center gap-[10px] md:gap-[12px]">
-                  <div className="w-[36px] h-[36px] md:w-[40px] md:h-[40px] rounded-full bg-[#1A4F9E] text-white flex items-center justify-center text-[13px] md:text-[14px] font-semibold flex-shrink-0">
-                    {item.initials}
-                  </div>
-
-                  <div>
-                    <p className="text-[#2A3F77] text-[13px] md:text-[14px] font-semibold leading-[18px] md:leading-[20px]">
-                      {item.name}
-                    </p>
-                    <p className="text-[#94A3B8] text-[11px] md:text-[12px] leading-[16px] md:leading-[18px]">
-                      {item.country}
+                    <p className="text-[#1E293B] text-[16px] italic leading-[28px] whitespace-pre-line">
+                      “{item.quote}”
                     </p>
                   </div>
-                </div>
-              </article>
-            ))}
+
+                  <div className="pt-[18px] border-t border-[#E2E8F0] flex items-center gap-[12px]">
+                    <div className="w-[40px] h-[40px] rounded-full bg-[#1A4F9E] text-white flex items-center justify-center font-semibold">
+                      {item.initials}
+                    </div>
+
+                    <div>
+                      <p className="text-[#2A3F77] font-semibold">
+                        {item.name}
+                      </p>
+                      <p className="text-[#94A3B8] text-[12px]">
+                        {item.country}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+          </div>
+
+          {/* BOTONES */}
+          <div className="flex justify-center gap-[20px] mt-[32px]">
+
+            <button
+              onClick={handlePrev}
+              className="w-[48px] h-[48px] rounded-full bg-[#2A3F77] text-white flex items-center justify-center"
+            >
+              ‹
+            </button>
+
+            <button
+              onClick={handleNext}
+              className="w-[48px] h-[48px] rounded-full bg-[#2A3F77] text-white flex items-center justify-center"
+            >
+              ›
+            </button>
+
           </div>
 
         </div>
