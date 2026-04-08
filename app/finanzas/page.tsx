@@ -3,7 +3,6 @@ import FinanzasHero from "@/app/components/finanzas/FinanzasHero";
 
 import DiagnosticoSection from "@/app/components/finanzas/sections/DiagnosticoSection";
 import ProductosSection from "@/app/components/finanzas/sections/ProductosSection";
-import JourneySection from "@/app/components/finanzas/sections/JourneySection";
 import TestimoniosFinanzasSection from "@/app/components/finanzas/sections/TestimoniosFinanzasSection";
 import FaqSection from "@/app/components/finanzas/sections/FaqSection";
 import CtaFinalFinanzas from "@/app/components/finanzas/sections/CtaFinalFinanzas";
@@ -16,7 +15,7 @@ export default function FinanzasPage() {
       <DiagnosticoSection />
       <ProductosSection />
       <TestimoniosFinanzasSection />
-      <JourneySection />
+      
       <FaqSection />
       <CtaFinalFinanzas />
     </>
