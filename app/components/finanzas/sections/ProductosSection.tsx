@@ -35,10 +35,10 @@ const preparacion = [
 
 const ejecucion = [
   {
-    tag: "BANCO DAVIVIENDA",
+    tag: "Banco Davivienda · Bróker autorizado",
     title: "Crédito hipotecario",
     subtitle: "Para comprar vivienda en Colombia",
-    desc: "Hasta el 80% de financiación con bancos aliados en Colombia.",
+    desc: "Hasta el 80% de financiación. Hasta 30 años de plazo. Tramitado directamente con Davivienda — sin intermediarios adicionales.",
     extra1: "Hasta 80%",
     extra2: "30 años",
     color: "bg-[#1A4F9E]",
@@ -47,10 +47,10 @@ const ejecucion = [
     filled: true,
   },
   {
-    tag: "BANCO UNIÓN",
+    tag: "Banco Unión · Garantía hipotecaria",
     title: "Crédito libre inversión",
     subtitle: "Capitaliza tu inmueble en Colombia",
-    desc: "Puedes usar tu propiedad en Colombia como respaldo para obtener liquidez.",
+    desc: "Ya tienes un inmueble en Colombia y quieres capitalizarlo. Inversión, negocio, gastos — sin restricción de destino. Hasta el 70% del valor del inmueble.",
     extra1: "Hasta 70%",
     extra2: "15 años",
     color: "bg-[#1A4F9E]",
@@ -61,7 +61,7 @@ const ejecucion = [
     tag: "TRANSFERENCIA DE DIVISAS",
     title: "Monetización",
     subtitle: '"Trae tu dinero a Colombia"',
-    desc: "Proceso legal para traer dinero desde el exterior con respaldo y cumplimiento.",
+    desc: "Tienes más de USD $10.000 que quieres traer a Colombia. El proceso requiere legalización correcta ante el Banco de la República y negociación en mesa de dinero. Colraices gestiona todo.",
     extra1: "1%",
     extra2: "USD 10.000",
     color: "bg-[#059669]",
@@ -74,22 +74,63 @@ function Card({ item, index }: any) {
   const tagColors = [
     "text-[#0F2D5C]",
     "text-[#FFC107]",
-    "text-[#DC2626]",
+    "text-[#059669]",
   ];
 
   return (
-    <div className="relative w-[348px] h-[507.94px] bg-white border border-[#0F2D5C]/10 rounded-tl-[16px] rounded-br-[16px] px-[28.8px] pt-[28.8px]">
+    <div className={`
+      relative w-[348px] h-[507.94px] border border-[#0F2D5C]/10 
+      rounded-tl-[16px] rounded-br-[16px] px-[28.8px] pt-[28.8px]
+
+      ${
+        item.extra1
+          ? index === 0
+            ? "bg-[#F0F4FF]"
+            : index === 1
+            ? "bg-[#EFF6FF]"
+            : "bg-white"
+          : "bg-white"
+      }
+
+      overflow-hidden
+      
+      transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]
+      hover:-translate-y-[4px]
+      hover:shadow-[0_20px_40px_rgba(15,45,92,0.12)]
+      group
+    `}>
 
       {/* TOP LINE */}
       <div className={`absolute top-0 left-0 w-full h-[2px] ${item.color}`} />
 
       {/* TAG */}
-      <p className={`${tagColors[index]} text-[9.92px] font-bold tracking-[0.99px] leading-[14.9px] uppercase`}>
-        {item.tag}
-      </p>
+      {item.extra1 && index < 2 ? (
+        <div className="mt-[6px]">
+          <span className="
+            inline-flex items-center
+            px-[10px] py-[4px]
+            rounded-full
+            bg-[#FBF8F3]
+            text-[#0F2D5C]
+            text-[11.52px]
+            font-semibold
+            leading-[17.3px]
+            tracking-[0px]
+          ">
+            {item.tag}
+          </span>
+        </div>
+      ) : (
+        <p className={`
+          text-[9.92px] font-bold tracking-[0.99px] leading-[14.9px] uppercase
+          ${tagColors[index]}
+        `}>
+          {item.tag}
+        </p>
+      )}
 
       {/* ICON */}
-      <div className="text-[24px] leading-[42px] mt-[13px] opacity-80">
+      <div className="text-[24px] leading-[42px] mt-[13px] opacity-80 group-hover:opacity-100 transition">
         {item.icon}
       </div>
 
@@ -135,9 +176,22 @@ function Card({ item, index }: any) {
       </div>
 
       {/* BUTTON */}
-      <button className="absolute bottom-[28.8px] left-[28.8px] right-[28.8px] h-[41.29px] rounded-full border border-[#CCCCCC]/20 text-[#0F2D5C] text-[13.12px] font-semibold">
+      <button className={`
+        absolute bottom-[28.8px] left-[28.8px] right-[28.8px]
+        h-[41.29px] rounded-full text-[13.12px] font-semibold
+
+        transition-all duration-200
+        active:scale-[0.98]
+        hover:shadow-[0_2px_6px_rgba(0,0,0,0.06)]
+
+        ${item.filled
+          ? "bg-[#0F2D5C] text-white hover:bg-[#0B254A]"
+          : "border border-[#CCCCCC]/20 text-[#0F2D5C] hover:bg-[#0F2D5C] hover:text-white hover:border-[#0F2D5C]"
+        }
+      `}>
         {item.button || "Ver producto"}
       </button>
+
     </div>
   );
 }
@@ -148,7 +202,6 @@ export default function ProductosSection() {
 
       <div className="w-[1084px] mx-auto">
 
-        {/* HEADER */}
         <div className="text-center mb-[57px]">
           <p className="text-[#FFC107] text-[20px] italic font-bold leading-[30px]">
             Nuestros productos financieros
@@ -163,7 +216,6 @@ export default function ProductosSection() {
           </p>
         </div>
 
-        {/* BLOQUE 1 */}
         <div className="flex items-center gap-[10px] mb-[30px]">
           <p className="text-[#94A3B8] text-[9.92px] font-bold tracking-[1.19px] uppercase">
             PREPARACIÓN — ANTES DE COMPRAR
@@ -177,7 +229,6 @@ export default function ProductosSection() {
           ))}
         </div>
 
-        {/* BLOQUE 2 */}
         <div className="flex items-center gap-[10px] mb-[30px]">
           <p className="text-[#94A3B8] text-[9.92px] font-bold tracking-[1.19px] uppercase">
             EJECUCIÓN — CUANDO ESTÁS LISTO PARA ACTUAR
