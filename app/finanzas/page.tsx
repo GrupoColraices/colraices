@@ -13,11 +13,10 @@ export default function FinanzasPage() {
     <>
       <Breadcrumb />
       <FinanzasHero /> 
-
       <DiagnosticoSection />
       <ProductosSection />
-      <JourneySection />
       <TestimoniosFinanzasSection />
+      <JourneySection />
       <FaqSection />
       <CtaFinalFinanzas />
     </>
