@@ -71,11 +71,13 @@ const ejecucion = [
 ];
 
 function Card({ item, index }: any) {
-  const tagColors = [
-    "text-[#0F2D5C]",
-    "text-[#FFC107]",
-    "text-[#059669]",
-  ];
+
+  const textColorMap: any = {
+    "bg-[#1A4F9E]": "text-[#1A4F9E]",
+    "bg-[#FFC107]": "text-[#FFC107]",
+    "bg-[#DC2626]": "text-[#DC2626]",
+    "bg-[#059669]": "text-[#059669]",
+  };
 
   return (
     <div className={`
@@ -123,7 +125,7 @@ function Card({ item, index }: any) {
       ) : (
         <p className={`
           text-[9.92px] font-bold tracking-[0.99px] leading-[14.9px] uppercase
-          ${tagColors[index]}
+          ${textColorMap[item.color]}
         `}>
           {item.tag}
         </p>
