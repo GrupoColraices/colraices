@@ -7,10 +7,12 @@ export default function HeroInmuebles() {
   return (
     <section className="hero">
 
+      {/* 🔥 NUEVA CAPA ANIMADA */}
+      <div className="hero-overlay" />
+
       <div className="container">
         <div className="content">
 
-          {/* TITULO */}
           <div className="title">
             <h1 className="fade-up delay-1">
               Tu inversión en Colombia,
@@ -23,14 +25,12 @@ export default function HeroInmuebles() {
             <div className="underline fade-up delay-3" />
           </div>
 
-          {/* SUBTEXTO */}
           <p className="subtitle fade-up delay-4">
             Desde que decides invertir en propiedad raíz hasta que la llave está en tu mano,
             <br />
             <span>Colraices está contigo.</span> Sin importar en qué punto del proceso estés.
           </p>
 
-          {/* CARD */}
           <div className="card fade-up delay-5">
 
             <p className="tag">CUÉNTANOS TU SITUACIÓN</p>
@@ -41,11 +41,10 @@ export default function HeroInmuebles() {
 
             <div className="options">
 
-              {/* OPCION 1 */}
               <button
                 onMouseEnter={() => setHovered(1)}
                 onMouseLeave={() => setHovered(null)}
-                className={`option ${hovered === 1 ? "active" : ""}`}
+                className={`option left ${hovered === 1 ? "active" : ""}`}
               >
                 <span className="icon">🔎</span>
 
@@ -59,11 +58,10 @@ export default function HeroInmuebles() {
                 <span className="arrow">→</span>
               </button>
 
-              {/* OPCION 2 */}
               <button
                 onMouseEnter={() => setHovered(2)}
                 onMouseLeave={() => setHovered(null)}
-                className={`option ${hovered === 2 ? "active" : ""}`}
+                className={`option right ${hovered === 2 ? "active" : ""}`}
               >
                 <span className="icon">🏠</span>
 
@@ -97,6 +95,7 @@ export default function HeroInmuebles() {
           content: "";
           position: absolute;
           inset: 0;
+          pointer-events: none; 
           background-image:
             linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
             linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
@@ -108,9 +107,37 @@ export default function HeroInmuebles() {
           content: "";
           position: absolute;
           inset: 0;
+          pointer-events: none; 
           background:
             radial-gradient(circle at 25% 20%, rgba(26,79,158,0.22), transparent 70%),
             radial-gradient(circle at 75% 30%, rgba(201,144,12,0.16), transparent 70%);
+        }
+
+        /* 🔥 OVERLAY ANIMADO (LO QUE FALTABA) */
+        .hero-overlay {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+
+          background:
+            linear-gradient(
+              180deg,
+              rgba(26,79,158,0.12) 0%,
+              rgba(0,0,0,0) 100%
+            ),
+            linear-gradient(
+              0deg,
+              rgba(26,79,158,0.12) 0%,
+              rgba(0,0,0,0) 100%
+            );
+
+          animation: glowMove 6s ease-in-out infinite;
+        }
+
+        @keyframes glowMove {
+          0% { opacity: 0.6; }
+          50% { opacity: 1; }
+          100% { opacity: 0.6; }
         }
 
         .container {
@@ -125,7 +152,6 @@ export default function HeroInmuebles() {
           text-align: center;
         }
 
-        /* TITULO */
         h1 {
           font-size: 59.76px;
           line-height: 65.7px;
@@ -148,10 +174,8 @@ export default function HeroInmuebles() {
           height: 3px;
           background: #F0B429;
           margin: 16px auto 0;
-          border-radius: 10px;
         }
 
-        /* SUBTEXTO */
         .subtitle {
           width: 814px;
           margin: 80px auto 0;
@@ -165,31 +189,19 @@ export default function HeroInmuebles() {
           font-weight: 600;
         }
 
-        /* CARD */
         .card {
           margin-top: 48px;
           width: 720px;
-          margin-left: auto;
-          margin-right: auto;
-
+          margin-inline: auto;
           padding: 36.8px 40.8px;
-
           border-radius: 32px;
           border: 0.8px solid rgba(255,255,255,0.12);
-
-          background:
-            linear-gradient(
-              120deg,
-              rgba(255,255,255,0.12),
-              rgba(255,255,255,0.05)
-            );
-
+          background: linear-gradient(120deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
           backdrop-filter: blur(20px);
         }
 
         .tag {
           font-size: 11.52px;
-          line-height: 17.3px;
           letter-spacing: 1.61px;
           color: rgba(255,255,255,0.4);
         }
@@ -199,64 +211,86 @@ export default function HeroInmuebles() {
           font-size: 23.2px;
           line-height: 30.2px;
           font-weight: 600;
-          color: #FFFFFF;
+          color: white;
         }
 
-        /* OPTIONS */
         .options {
           margin-top: 28px;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
+          display: flex;
           gap: 16px;
         }
 
         .option {
+          width: 311.2px;
           height: 129.4px;
           padding: 27.2px 20px;
           display: flex;
           gap: 14px;
           align-items: flex-start;
-
-          border-radius: 14px;
           border: 1px solid rgba(255,255,255,0.10);
           background: rgba(255,255,255,0.05);
-
-          transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
-          position: relative;
+          transition: all 0.35s ease;
           cursor: pointer;
         }
 
-        .option:hover {
-          transform: translateY(-2px);
+        .option.left {
+          border-radius: 16px 0px 16px 0px;
         }
 
-        .option.active {
+        .option.right {
+          border-radius: 0px 16px 0px 16px;
+        }
+
+        /* IZQUIERDA (DORADO) */
+        .option.left.active {
           border: 1px solid #F0B429;
-
-          background: linear-gradient(
-            120deg,
-            rgba(240,180,41,0.18),
-            rgba(255,255,255,0.05)
-          );
-
+          background: linear-gradient(120deg, rgba(240,180,41,0.18), rgba(255,255,255,0.05));
           box-shadow: 0 10px 30px rgba(240,180,41,0.12);
+          transform: translateY(-4px);
         }
 
+        /* DERECHA (AZUL) */
+        .option.right.active {
+          border: 1px solid #2F6FED;
+          background: linear-gradient(120deg, rgba(47,111,237,0.18), rgba(255,255,255,0.05));
+          box-shadow: 0 10px 30px rgba(47,111,237,0.12);
+          transform: translateY(-4px);
+        }
+        
+
+        /* IZQUIERDA */
+        .option.left:hover {
+          border: 1px solid #F0B429;
+          background: linear-gradient(120deg, rgba(240,180,41,0.18), rgba(255,255,255,0.05));
+          box-shadow: 0 10px 30px rgba(240,180,41,0.12);
+          transform: translateY(-4px);
+        }
+
+        /* DERECHA */
+        .option.right:hover {
+          border: 1px solid #2F6FED;
+          background: linear-gradient(120deg, rgba(47,111,237,0.18), rgba(255,255,255,0.05));
+          box-shadow: 0 10px 30px rgba(47,111,237,0.12);
+          transform: translateY(-4px);
+        }
+
+        /* FLECHA */
+        .option:hover .arrow {
+          opacity: 1;
+          transform: translateX(0);
+        }
+          
         .icon {
           font-size: 25.6px;
           line-height: 38.4px;
-          transition: transform 0.3s;
-        }
-
-        .option.active .icon {
-          transform: scale(1.1);
+          margin-top: 18px;
         }
 
         .text {
           display: flex;
           flex-direction: column;
           gap: 3px;
-          text-align: left;
+          width: 195.4px;
         }
 
         .title-op {
@@ -285,7 +319,6 @@ export default function HeroInmuebles() {
           transform: translateX(0);
         }
 
-        /* ANIMACIONES */
         .fade-up {
           opacity: 0;
           transform: translateY(30px);
