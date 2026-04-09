@@ -1,11 +1,12 @@
 import HeroInmuebles from "@/app/components/inmuebles/HeroInmuebles";
 import QuoteInmuebles from "@/app/components/inmuebles/QuoteInmuebles";
-import BreadcrumbInmuebles from "@/app/components/inmuebles/BreadcrumbInmuebles";
+import Breadcrumb from "@/app/components/layout/Breadcrumb";
 
 export default function InmueblesPage() {
   return (
     <>
-      <BreadcrumbInmuebles />
+    
+      <Breadcrumb />
       <HeroInmuebles />
       <QuoteInmuebles />
     </>

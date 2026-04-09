@@ -1,4 +1,4 @@
-import Breadcrumb from "@/app/components/finanzas/Breadcrumb";
+import Breadcrumb from "@/app/components/layout/Breadcrumb";
 import FinanzasHero from "@/app/components/finanzas/FinanzasHero";
 
 import DiagnosticoSection from "@/app/components/finanzas/sections/DiagnosticoSection";

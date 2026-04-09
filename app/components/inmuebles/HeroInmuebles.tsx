@@ -7,7 +7,7 @@ export default function HeroInmuebles() {
   return (
     <section className="hero">
 
-      {/* 🔥 NUEVA CAPA ANIMADA */}
+      {/* CAPA ANIMADA */}
       <div className="hero-overlay" />
 
       <div className="container">
@@ -113,7 +113,7 @@ export default function HeroInmuebles() {
             radial-gradient(circle at 75% 30%, rgba(201,144,12,0.16), transparent 70%);
         }
 
-        /* 🔥 OVERLAY ANIMADO (LO QUE FALTABA) */
+        /* OVERLAY ANIMADO */
         .hero-overlay {
           position: absolute;
           inset: 0;

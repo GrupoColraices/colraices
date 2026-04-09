@@ -1,6 +1,21 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Breadcrumb() {
+  const pathname = usePathname();
+
+  const routeNameMap: Record<string, string> = {
+    "/finanzas": "Finanzas",
+    "/inmuebles": "Inmuebles",
+    "/legal-migracion": "Legal y Migración",
+    "/tour": "Tour de la Vivienda",
+    "/blog": "Blog",
+  };
+
+  const current = routeNameMap[pathname] || "";
+
   return (
     <section className="
       w-full 
@@ -39,7 +54,7 @@ export default function Breadcrumb() {
           <span className="mx-1 sm:mx-2 text-[#CBD5E1]">›</span>
 
           <span className="text-[#0F2D5C] font-medium truncate max-w-[120px] sm:max-w-none">
-            Finanzas
+            {current}
           </span>
         </nav>
       </div>
