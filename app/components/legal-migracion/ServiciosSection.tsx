@@ -165,10 +165,10 @@ const ServiciosSection: React.FC = () => {
           padding: 32.8px 28.8px;
           border-radius: 16px 0 16px 0;
           border: 0.8px solid rgba(15, 45, 92, 0.1);
-          background: rgba(15, 45, 92, 0.03);
+          background: #FFFFFF;
           display: flex;
           flex-direction: column;
-          transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+          transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease, background 280ms ease;
         }
 
         .servicio-card::after {
@@ -180,19 +180,19 @@ const ServiciosSection: React.FC = () => {
           height: 3px;
           background: linear-gradient(90deg, #0f2d5c 0%, #1a4f9e 55%, #ffc107 100%);
           transform: scaleX(0);
-          transform-origin: right center;
-          transition: transform 320ms ease;
+          transform-origin: left center;
+          transition: transform 280ms ease;
         }
 
         .servicio-card:hover {
           transform: translateY(-8px);
           border-color: rgba(15, 45, 92, 0.18);
+          background: #FFFFFF;
           box-shadow: 0 18px 38px rgba(10, 10, 10, 0.14), 0 0 0 1px rgba(15, 45, 92, 0.04);
         }
 
         .servicio-card:hover::after {
           transform: scaleX(1);
-          transform-origin: left center;
         }
 
         .servicio-icon {
@@ -205,6 +205,11 @@ const ServiciosSection: React.FC = () => {
           color: #ffffff;
           font-size: 24px;
           line-height: 36px;
+          transition: transform 280ms ease;
+        }
+
+        .servicio-card:hover .servicio-icon {
+          transform: scale(1.06);
         }
 
         .servicio-title {
@@ -213,6 +218,11 @@ const ServiciosSection: React.FC = () => {
           font-size: 17.6px;
           line-height: 26.4px;
           font-weight: 600;
+          transition: transform 280ms ease;
+        }
+
+        .servicio-card:hover .servicio-title {
+          transform: translateY(-2px);
         }
 
         .servicio-copy {
@@ -239,7 +249,6 @@ const ServiciosSection: React.FC = () => {
           line-height: 26.4px;
           font-weight: 700;
         }
-
 
         @media (prefers-reduced-motion: reduce) {
           .servicio-card,
