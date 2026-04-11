@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const MOMENTS = [
@@ -51,10 +51,29 @@ export default function HeroTour() {
   const [active, setActive] = useState(1);
   const current = MOMENTS.find((m) => m.id === active)!;
 
-  return (
-    <section className="relative w-full flex justify-center bg-white overflow-hidden">
+  /* 🔥 PARALLAX ULTRA PRO */
+  useEffect(() => {
+    const move = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
 
-      <div className="w-[1180px] px-[36px] pt-[56px]">
+      document.querySelectorAll(".ph-atmos, .ph-grid").forEach((el) => {
+        (el as HTMLElement).style.transform = `translate(${x}px, ${y}px)`;
+      });
+    };
+
+    window.addEventListener("mousemove", move);
+    return () => window.removeEventListener("mousemove", move);
+  }, []);
+
+  return (
+    <section className="tour-vivienda platform-hero relative w-full flex justify-center bg-white overflow-hidden">
+
+      {/* 🔥 SISTEMA REAL DE FONDO */}
+      <div className="ph-atmos" />
+      <div className="ph-grid" />
+
+      <div className="ph-inner relative w-[1180px] px-[36px] pt-[56px]">
 
         {/* HEADER */}
         <div className="w-[1108px] mx-auto text-center">
@@ -78,10 +97,8 @@ export default function HeroTour() {
         {/* MOMENTOS */}
         <div className="mt-[56px] w-[1108px] mx-auto relative">
 
-          {/* línea gris */}
           <div className="absolute top-0 left-0 w-full h-[1px] bg-[#2A3F771A]" />
 
-          {/* línea activa animada */}
           <div
             className="absolute bottom-0 h-[1.5px] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
             style={{
@@ -92,16 +109,14 @@ export default function HeroTour() {
           />
 
           <div className="flex">
-
             {MOMENTS.map((m) => (
               <div
                 key={m.id}
-                onClick={() => setActive(m.id)} // 👈 SOLO CLICK
+                onClick={() => setActive(m.id)}
                 className="relative w-1/3 px-[32px] py-[28px] cursor-pointer transition-all duration-200"
               >
                 <div className="text-[22px]">{m.icon}</div>
 
-                {/* DOT ACTIVO */}
                 {active === m.id && (
                   <div
                     className="absolute top-[12px] right-[12px] w-[6px] h-[6px] rounded-full"
@@ -120,16 +135,13 @@ export default function HeroTour() {
                 <p className="mt-[12px] text-[14px] text-[#2A3F77A6]">
                   {m.desc}
                 </p>
-
               </div>
             ))}
-
           </div>
         </div>
 
         {/* CONTENIDO */}
         <div className="w-[1108px] mx-auto flex bg-transparent divide-x divide-[#0F2D5C14]">
-
           {current.items.map((item, i) => (
             <div
               key={i}
@@ -152,7 +164,6 @@ export default function HeroTour() {
               </p>
             </div>
           ))}
-
         </div>
 
       </div>
