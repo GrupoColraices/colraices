@@ -1,10 +1,7 @@
-"use client";
-
 import "./globals.css";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import { Montserrat } from "next/font/google";
-import { usePathname } from "next/navigation";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -16,10 +13,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-
-  const hideFooter = pathname.startsWith("/inmuebles");
-
   return (
     <html lang="es">
       <body className={montserrat.className}>
@@ -30,8 +23,7 @@ export default function RootLayout({
           {children}
         </main>
 
-        {/* 👇 AQUÍ está la magia */}
-        {!hideFooter && <Footer />}
+        <Footer />
       </body>
     </html>
   );

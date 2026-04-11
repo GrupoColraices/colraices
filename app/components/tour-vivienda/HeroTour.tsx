@@ -51,13 +51,12 @@ export default function HeroTour() {
   const [active, setActive] = useState(1);
   const current = MOMENTS.find((m) => m.id === active)!;
 
-  /* 🔥 PARALLAX ULTRA PRO */
   useEffect(() => {
     const move = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      const x = (e.clientX / window.innerWidth - 0.5) * 10;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
 
-      document.querySelectorAll(".ph-atmos, .ph-grid").forEach((el) => {
+      document.querySelectorAll(".ph-atmos").forEach((el) => {
         (el as HTMLElement).style.transform = `translate(${x}px, ${y}px)`;
       });
     };
@@ -67,15 +66,35 @@ export default function HeroTour() {
   }, []);
 
   return (
-    <section className="tour-vivienda platform-hero relative w-full flex justify-center bg-white overflow-hidden">
+    <section className="tour-vivienda platform-hero relative isolate w-full flex justify-center bg-transparent overflow-hidden">
 
-      {/* 🔥 SISTEMA REAL DE FONDO */}
+      {/* 🔥 BACKGROUND EXACTO FIGMA */}
+      <div className="absolute inset-0 z-[1] pointer-events-none hidden md:block">
+
+        {/* IZQUIERDA — DORADO GRANDE */}
+        <div className="absolute bottom-[-260px] left-[-200px] w-[480px] h-[480px] bg-[#C9900C]/16 rounded-full" />
+
+        {/* IZQUIERDA — GRIS GRANDE */}
+        <div className="absolute top-[30px] left-[140px] w-[340px] h-[340px] bg-[#0F2D5C]/12 rounded-full" />
+
+        {/* IZQUIERDA — GRIS MEDIO (encima del grande) */}
+        <div className="absolute top-[140px] left-[260px] w-[260px] h-[260px] bg-[#0F2D5C]/10 rounded-full" />
+
+        {/* DERECHA — DORADO GRANDE (más afuera) */}
+        <div className="absolute top-[-180px] right-[-300px] w-[560px] h-[560px] bg-[#C9900C]/12 rounded-full" />
+
+        {/* DERECHA — DORADO PEQUEÑO (alineado con texto) */}
+        <div className="absolute top-[40px] right-[260px] w-[170px] h-[170px] bg-[#C9900C]/18 rounded-full" />
+
+        {/* DERECHA — DORADO MEDIO ABAJO */}
+        <div className="absolute bottom-[-140px] right-[120px] w-[280px] h-[280px] bg-[#C9900C]/12 rounded-full" />
+
+      </div>
+
       <div className="ph-atmos" />
-      <div className="ph-grid" />
 
       <div className="ph-inner relative w-[1180px] px-[36px] pt-[56px]">
 
-        {/* HEADER */}
         <div className="w-[1108px] mx-auto text-center">
 
           <div className="flex justify-center items-center gap-6">
@@ -94,13 +113,12 @@ export default function HeroTour() {
           </p>
         </div>
 
-        {/* MOMENTOS */}
         <div className="mt-[56px] w-[1108px] mx-auto relative">
 
           <div className="absolute top-0 left-0 w-full h-[1px] bg-[#2A3F771A]" />
 
           <div
-            className="absolute bottom-0 h-[1.5px] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+            className="absolute bottom-0 h-[1.5px] transition-all duration-500"
             style={{
               width: `${100 / 3}%`,
               left: `${(active - 1) * (100 / 3)}%`,
@@ -113,15 +131,12 @@ export default function HeroTour() {
               <div
                 key={m.id}
                 onClick={() => setActive(m.id)}
-                className="relative w-1/3 px-[32px] py-[28px] cursor-pointer transition-all duration-200"
+                className="relative w-1/3 px-[32px] py-[28px] cursor-pointer"
               >
                 <div className="text-[22px]">{m.icon}</div>
 
                 {active === m.id && (
-                  <div
-                    className="absolute top-[12px] right-[12px] w-[6px] h-[6px] rounded-full"
-                    style={{ background: m.color }}
-                  />
+                  <div className="absolute top-[12px] right-[12px] w-[6px] h-[6px] rounded-full" style={{ background: m.color }} />
                 )}
 
                 <p className="mt-[16px] text-[10px] font-bold uppercase tracking-[2px]" style={{ color: m.color }}>
@@ -140,13 +155,9 @@ export default function HeroTour() {
           </div>
         </div>
 
-        {/* CONTENIDO */}
         <div className="w-[1108px] mx-auto flex bg-transparent divide-x divide-[#0F2D5C14]">
           {current.items.map((item, i) => (
-            <div
-              key={i}
-              className="flex-1 px-[28px] py-[22px] flex flex-col justify-between transition-all duration-200 hover:bg-[#F7F9FC] cursor-pointer"
-            >
+            <div key={i} className="flex-1 px-[28px] py-[22px] flex flex-col justify-between hover:bg-[#F7F9FC] cursor-pointer">
               <div>
                 <div className="text-[20px]">{item.icon}</div>
 
