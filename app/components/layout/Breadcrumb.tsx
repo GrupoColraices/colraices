@@ -10,7 +10,7 @@ export default function Breadcrumb() {
     "/finanzas": "Finanzas",
     "/inmuebles": "Inmuebles",
     "/legal-migracion": "Legal y Migración",
-    "/tour": "Tour de la Vivienda",
+    "/tour-vivienda": "Tour de la Vivienda",
     "/blog": "Blog",
   };
 
