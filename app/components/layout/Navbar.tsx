@@ -8,7 +8,7 @@ const navLinks = [
   { label: "Finanzas", href: "/finanzas" },
   { label: "Inmuebles", href: "/inmuebles" },
   { label: "Legal y Migración", href: "/legal-migracion" },
-  { label: "Tour de la Vivienda", href: "/tour" },
+  { label: "Tour de la Vivienda", href: "/tour-vivienda" },
   { label: "Blog", href: "/blog" },
 ];
 
