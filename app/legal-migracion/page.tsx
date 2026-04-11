@@ -3,6 +3,7 @@ import HeroLegal from "@/app/components/legal-migracion/HeroLegal";
 import ServiciosSection from "@/app/components/legal-migracion/ServiciosSection";
 import ComoTrabajamos from '../components/legal-migracion/Como-Trabajamos';
 import PreguntasFrecuentes from '../components/legal-migracion/PreguntasFrecuentes';
+import CtaBannerSection from '../components/legal-migracion/CtaBannerSection';
 
 export default function LegalMigracionPage() {
   return (
@@ -14,6 +15,7 @@ export default function LegalMigracionPage() {
       <ServiciosSection/>
       <ComoTrabajamos />
       <PreguntasFrecuentes />
+      <CtaBannerSection />
     </main>
   );
 }
