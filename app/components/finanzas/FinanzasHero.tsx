@@ -94,7 +94,7 @@ export default function FinanzasHero() {
             >
               <Link
                 href="/finanzas"
-                className="flex h-[47.56px] w-[229px] items-center justify-center rounded-full bg-[#FFC107] text-[12.48px] leading-[18.7px] font-medium text-[#2A3F77] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:shadow-[0_10px_20px_rgba(0,0,0,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC107] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                className="flex h-[47.56px] w-full max-w-[229px] items-center justify-center rounded-full bg-[#FFC107] text-[12.48px] leading-[18.7px] font-medium text-[#2A3F77] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:shadow-[0_10px_20px_rgba(0,0,0,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC107] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
               >
                 ¿Por dónde empiezo? →
               </Link>

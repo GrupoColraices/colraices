@@ -76,8 +76,7 @@ export default function HeroInmuebles() {
         </div>
       </div>
 
-      <style jsx>
-        {`
+      <style jsx>{`
         .hero {
           min-height: 815.06px;
           background: #091d3e;

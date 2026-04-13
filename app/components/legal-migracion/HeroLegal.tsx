@@ -18,7 +18,7 @@ const LEGAL_SERVICES = [
 export default function HeroLegal() {
   return (
     <section
-      className={`${montserrat.className} relative flex h-[653px] w-full items-start justify-center overflow-hidden`}
+      className={`${montserrat.className} relative flex w-full min-h-[653px] items-start justify-center overflow-hidden`}
       style={{
         backgroundColor: "#0B1F3F",
       }}
@@ -62,20 +62,22 @@ export default function HeroLegal() {
       />
 
       {/* CONTENIDO */}
-      <div className="relative mt-[120px] flex h-[453.36px] w-[1108px] gap-[72px]">
+      <div className="relative mt-[72px] flex w-full max-w-[1108px] flex-col gap-10 px-5 pb-14 sm:px-8 md:mt-[96px] md:px-12 lg:mt-[120px] lg:flex-row lg:gap-[48px] lg:px-0 xl:gap-[72px]">
         {/* LEFT */}
-        <div className="relative h-[356.35px] w-[520px]">
+        <div className="relative w-full max-w-[520px]">
           <div>
-            <h1 className="text-[59.76px] leading-[65.7px] font-bold text-white">Tu puente legal</h1>
+            <h1 className="text-[34px] leading-[1.08] font-bold text-white sm:text-[42px] lg:text-[59.76px] lg:leading-[65.7px]">
+              Tu puente legal
+            </h1>
 
-            <h1 className="text-[59.76px] leading-[65.7px] font-bold italic text-[#FFC107]">
+            <h1 className="text-[34px] leading-[1.08] font-bold italic text-[#FFC107] sm:text-[42px] lg:text-[59.76px] lg:leading-[65.7px]">
               para Colombia
             </h1>
           </div>
 
           <div className="mt-[20px] h-[3px] w-[72px] rounded-[2px] bg-[#FFC107]" />
 
-          <div className="mt-[24px] w-[520px] text-[17.28px] leading-[30.2px]">
+          <div className="mt-[24px] w-full text-[15.5px] leading-[27px] sm:text-[16.5px] lg:text-[17.28px] lg:leading-[30.2px]">
             <p className="font-normal text-white/70">
               Trámites migratorios, constitución de empresas, pensiones y representación legal.
             </p>
@@ -85,10 +87,10 @@ export default function HeroLegal() {
           </div>
 
           {/* 🔥 BOTONES PRO */}
-          <div className="mt-[30px] flex h-[51px] gap-[14px]">
+          <div className="mt-[30px] flex min-h-[51px] flex-col gap-[12px] sm:flex-row sm:gap-[14px]">
             {/* PRINCIPAL */}
             <button
-              className="h-full rounded-full bg-[#FFC107] px-[28px] font-semibold text-[#091D3E] transition-all duration-300 ease-out
+              className="h-[51px] rounded-full bg-[#FFC107] px-[28px] font-semibold text-[#091D3E] transition-all duration-300 ease-out
               hover:-translate-y-[4px]
               hover:shadow-[0_10px_30px_rgba(255,193,7,0.45)]
               active:translate-y-[0px] active:shadow-[0_4px_10px_rgba(255,193,7,0.25)]"
@@ -98,7 +100,7 @@ export default function HeroLegal() {
 
             {/* SECUNDARIO */}
             <button
-              className="h-full rounded-full border border-white/25 px-[28px] text-white transition-all duration-300 ease-out
+              className="h-[51px] rounded-full border border-white/25 px-[28px] text-white transition-all duration-300 ease-out
               hover:-translate-y-[2px]
               hover:bg-white/10
               backdrop-blur-md"
@@ -111,7 +113,7 @@ export default function HeroLegal() {
 
         {/* RIGHT CARD */}
         <div
-          className="h-[453.36px] w-[420px] rounded-tl-[16px] rounded-br-[16px] p-[32.8px]"
+          className="h-auto w-full max-w-[420px] rounded-tl-[16px] rounded-br-[16px] p-6 sm:p-7 lg:h-[453.36px] lg:p-[32.8px]"
           style={{
             background: `
             radial-gradient(circle at 0% 0%, rgba(201,144,12,0.28) 0%, rgba(201,144,12,0.08) 35%, transparent 65%),
@@ -132,7 +134,7 @@ export default function HeroLegal() {
             {LEGAL_SERVICES.map((item) => (
               <div
                 key={item.text}
-                className="group relative flex h-[54.4px] w-full items-center gap-[12px] rounded-[12px] px-[14px] transition-all duration-300 ease-out"
+                className="group relative flex min-h-[54.4px] w-full items-center gap-[12px] rounded-[12px] px-[14px] py-[9px] transition-all duration-300 ease-out"
                 style={{
                   background: "rgba(255,255,255,0.04)",
                   border: "0.8px solid rgba(255,255,255,0.07)",
