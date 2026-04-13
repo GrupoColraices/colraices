@@ -2,65 +2,37 @@
 
 export default function ProximosEventos() {
   const cards = [
-    {
-      city: "Nueva York",
-      flag: "🇺🇸",
-      type: "☕ Café del Tour",
-      date: "Sábado, 8 de febrero 2026 · 2:00 PM EST",
-      title: "Café del Tour · Queens · Jackson Heights",
-      desc: "Encuentra proyectos de Bogotá y Medellín en un espacio íntimo de tu barrio. Expertos de Colraices responden en persona.",
-      tags: ["Vivienda nueva", "Crédito exterior"],
-      warning: "⚠ Solo quedan 6 lugares",
-    },
+    
     {
       city: "Barcelona",
-      flag: "🇪🇸",
-      type: "☕ Café del Tour",
+      country: "ES",
+      type: "☕ CAFÉ DEL TOUR",
       date: "Viernes, 20 de febrero 2026 · 7:00 PM CET",
-      title: "Café del Tour · Gracia",
-      desc: "Espacio para inversionistas con proyectos exclusivos y asesoría personalizada.",
-      tags: ["Inversión", "Colombia"],
-      warning: "⚠ Solo quedan 12 lugares",
+      title: "Café del Tour · Gracia · Espacio colombiano",
+      desc: "Proyectos de Cartagena y Barranquilla en un formato de conversación sin presión. Aperitivos y expertos disponibles.",
+      tags: ["Costa colombiana", "Invertir a distancia", "Gratuito"],
+      warning: "Quedan 14 lugares",
     },
     {
       city: "Miami",
-      flag: "🇺🇸",
-      type: "🏛️ Muestra Inmobiliaria",
+      country: "US",
+      type: "🏛️ MUESTRA INMOBILIARIA",
       date: "Sábado, 1 de marzo 2026 · 11:00 AM EST",
-      title: "Miami Beach Convention",
-      desc: "Evento con expertos en inversión inmobiliaria en Colombia.",
-      tags: ["Turismo", "Inversión"],
-      warning: "⚠ Solo quedan 3 lugares",
-    },
-    {
-      city: "Madrid",
-      flag: "🇪🇸",
-      type: "☕ Café del Tour",
-      date: "Domingo, 10 marzo 2026 · 5:00 PM CET",
-      title: "Café del Tour · Centro",
-      desc: "Conoce oportunidades en vivienda desde el exterior.",
-      tags: ["Vivienda", "Europa"],
-      warning: "⚠ Solo quedan 8 lugares",
+      title: "Muestra Inmobiliaria · Miami Beach Convention",
+      desc: "El evento del Tour en Miami con proyectos de toda Colombia. Charla especial sobre retorno de inversión en arrendamiento turístico.",
+      tags: ["Todo Colombia", "Inversión turística", "Gratuito"],
+      warning: "Quedan 156 lugares disponibles",
     },
     {
       city: "Frankfurt",
-      flag: "🇩🇪",
-      type: "☕ Café del Tour",
-      date: "Domingo, 22 febrero 2026 · 3:00 PM CET",
-      title: "Café del Tour · Sachsenhausen",
-      desc: "Asesoría financiera para colombianos en Alemania.",
-      tags: ["Bogotá", "Europa"],
-      warning: "⚠ Solo quedan 5 lugares",
-    },
-    {
-      city: "Lima",
-      flag: "🇵🇪",
-      type: "💻 Virtual",
-      date: "Viernes, 5 abril 2026 · 6:00 PM",
-      title: "Evento virtual",
-      desc: "Aprende a invertir desde cualquier parte del mundo.",
-      tags: ["Virtual", "Latam"],
-      warning: "⚠ Solo quedan 20 lugares",
+      country: "DE",
+      type: "☕ CAFÉ DEL TOUR",
+      date: "Domingo, 22 de febrero 2026 · 3:00 PM CET",
+      title: "Café del Tour · Sachsenhausen · Centro colombiano",
+      desc: "Proyectos de Bogotá para colombianos en Alemania. Sesión de preguntas reales con asesor de crédito para no residentes en Europa.",
+      tags: ["Bogotá", "No residentes EU", "Gratuito"],
+      warning: "⚠ Solo quedan 3 lugares",
+      danger: true,
     },
   ];
 
@@ -70,26 +42,24 @@ export default function ProximosEventos() {
 
         {/* HEADER */}
         <div className="w-[1108px] mx-auto text-center">
-
-          <p className="text-[16px] leading-[24px] text-[#0A0A0A]">
+          <p className="text-[16px] text-[#0A0A0A] leading-[24px]">
             Próximos eventos
           </p>
 
-          <h2 className="mt-[4px] text-[35.86px] leading-[39.4px] font-bold">
+          <h2 className="mt-[4px] text-[36px] leading-[40px] font-bold">
             <span className="text-[#FF6B35]">El Tour </span>
             <span className="text-[#0F2D5C]">llega a tu ciudad.</span>
           </h2>
 
           <div className="flex justify-end mt-[12px]">
-            <span className="text-[12.48px] font-semibold text-[#0F2D5C] opacity-50 cursor-pointer">
+            <span className="text-[12.5px] font-semibold text-[#0F2D5C] opacity-50 cursor-pointer">
               Ver calendario completo →
             </span>
           </div>
         </div>
 
         {/* FILTROS */}
-        <div className="w-[1108px] mx-auto mt-[40px] flex gap-[6px] flex-wrap">
-
+        <div className="w-[1108px] mx-auto mt-[32px] flex gap-[8px]">
           {[
             { label: "Todos los eventos", active: true },
             { label: "☕ Cafés del Tour" },
@@ -102,10 +72,10 @@ export default function ProximosEventos() {
           ].map((item, i) => (
             <div
               key={i}
-              className={`h-[31.75px] px-[16px] rounded-full flex items-center text-[11.84px] font-semibold ${
+              className={`h-[32px] px-[14px] rounded-full flex items-center text-[12px] font-semibold ${
                 item.active
                   ? "bg-[#0F2D5C] text-white"
-                  : "bg-white border border-[#ECECF0] text-[#2A3F77]/70"
+                  : "bg-white border border-[#ECECF0] text-[#2A3F77]"
               }`}
             >
               {item.label}
@@ -113,9 +83,41 @@ export default function ProximosEventos() {
           ))}
         </div>
 
-        {/* CARDS */}
-        <div className="w-[1108px] mx-auto mt-[40px] overflow-hidden">
-          <div className="flex gap-[20px] w-max">
+        {/* CAROUSEL */}
+        <div className="relative w-[1108px] mx-auto mt-[32px]">
+
+          {/* LEFT BTN */}
+          <button className="absolute left-[-72px] top-1/2 -translate-y-1/2 w-[48px] h-[48px] rounded-full bg-[#0F2D5C] flex items-center justify-center transition-all duration-300 ease hover:scale-110 hover:bg-[#1A4F9E]">
+
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M15 18L9 12L15 6"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+
+          </button>
+
+          {/* RIGHT BTN */}
+          <button className="absolute right-[-72px] top-1/2 -translate-y-1/2 w-[48px] h-[48px] rounded-full bg-[#0F2D5C] flex items-center justify-center transition-all duration-300 ease hover:scale-110 hover:bg-[#1A4F9E]">
+
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M9 6L15 12L9 18"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+
+          </button>
+
+          {/* CARDS */}
+          <div className="flex gap-[24px]">
 
             {cards.map((card, i) => (
               <div
@@ -123,52 +125,54 @@ export default function ProximosEventos() {
                 className="w-[324px] h-[520px] bg-white rounded-[18px] border border-[#0F2D5C]/10 overflow-hidden"
               >
 
-                {/* HEADER CARD */}
-                <div className="h-[142.69px] px-[24px] pt-[37px] bg-gradient-to-r from-[#0B2548] to-[#1D4580] text-white">
+                <div className="h-[140px] px-[24px] pt-[32px] bg-gradient-to-r from-[#0B2548] to-[#1D4580] text-white">
 
-                  <p className="text-[9.6px] tracking-[1.15px] font-bold text-[#FF6B35]">
+                  <p className="text-[10px] tracking-[1.2px] text-[#FF6B35] font-bold">
                     {card.type}
                   </p>
 
-                  <h3 className="mt-[12px] text-[21.6px] font-bold flex items-center gap-[6px]">
-                    <span>{card.flag}</span> {card.city}
+                  <h3 className="mt-[10px] text-[22px] font-bold">
+                    {card.city}
                   </h3>
 
-                  <p className="text-[12.16px] opacity-50 mt-[6px]">
+                  <p className="text-[12px] opacity-50 mt-[4px]">
                     {card.date}
                   </p>
                 </div>
 
-                {/* BODY */}
+
                 <div className="px-[24px] pt-[20px]">
 
-                  <p className="text-[14.4px] font-semibold text-[#0F2D5C] leading-[21.6px]">
+                  <p className="text-[14px] font-semibold text-[#0F2D5C]">
                     {card.title}
                   </p>
 
-                  <p className="mt-[10px] text-[12.84px] text-[#2A3F77]/75 leading-[19.3px]">
+                  <p className="mt-[8px] text-[13px] text-[#2A3F77]/75 leading-[19px]">
                     {card.desc}
                   </p>
 
-                  {/* TAGS */}
-                  <div className="flex gap-[8px] mt-[16px] flex-wrap">
+                  <div className="flex gap-[8px] mt-[14px] flex-wrap">
                     {card.tags.map((tag, j) => (
                       <span
                         key={j}
-                        className="text-[10.4px] px-[12px] h-[25.2px] flex items-center rounded-full border border-[#0F2D5C]/10 bg-[#FBF8F3] text-[#2A3F77]/70"
+                        className="text-[11px] px-[10px] py-[4px] rounded-full border border-[#0F2D5C]/10 bg-[#FBF8F3] text-[#2A3F77]"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  {/* BUTTON */}
-                  <button className="mt-[24px] w-full h-[41.2px] bg-[#0F2D5C] text-white text-[12.8px] font-semibold rounded-[10px]">
+                  <button className="mt-[20px] w-full h-[42px] bg-[#0F2D5C] text-white text-[13px] font-semibold rounded-[10px]">
                     Inscribirme
                   </button>
 
-                  {/* WARNING */}
-                  <p className="mt-[20px] text-center text-[10.72px] text-[#E05470] font-semibold">
+                  <p
+                    className={`mt-[18px] text-center text-[11px] font-semibold ${
+                      card.danger
+                        ? "text-[#E05470]"
+                        : "text-[#2A3F77]/50"
+                    }`}
+                  >
                     {card.warning}
                   </p>
                 </div>
@@ -177,8 +181,20 @@ export default function ProximosEventos() {
             ))}
 
           </div>
-        </div>
 
+          {/* DOTS */}
+          <div className="flex justify-center mt-[24px] gap-[8px]">
+            {[0, 1, 2, 3, 4].map((d, i) => (
+              <div
+                key={i}
+                className={`w-[6px] h-[6px] rounded-full ${
+                  i === 3 ? "bg-[#FFB800]" : "bg-[#D9D9D9]"
+                }`}
+              />
+            ))}
+          </div>
+
+        </div>
       </div>
     </section>
   );
