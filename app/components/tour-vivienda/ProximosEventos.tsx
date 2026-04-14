@@ -72,6 +72,17 @@ const cards = [
     warning: "⚠ Solo quedan 9 lugares",
     danger: true,
   },
+  {
+    id: "charla-credito",
+    city: "Desde donde estés",
+    flag: "💻",
+    type: "💻 CHARLA EN VIVO",
+    date: "Martes, 11 de febrero · 7:00 PM EST / 1:00 AM CET",
+    title: "Cómo acceder a crédito hipotecario siendo no residente",
+    desc: "Sesión en vivo con un experto de Colraices y Banco Davivienda. Preguntas en tiempo real. Grabación disponible después.",
+    tags: ["Virtual", "Crédito", "Q&A en vivo"],
+    warning: "321 inscritos · Aforo ilimitado",
+  }
 ];
 
 // ✏️ CAMBIO 1: se eliminó "active: true" del primer item
@@ -80,10 +91,10 @@ const filters = [
   { label: "☕ Cafés del Tour", width: "w-[137.5px]" },
   { label: "🏛️ Muestras Inmobiliarias", width: "w-[189.6px]" },
   { label: "💻 Virtuales", width: "w-[105.78px]" },
-  { label: "EE.UU.", width: "w-[86.89px]" },
-  { label: "España", width: "w-[89.72px]" },
-  { label: "Alemania", width: "w-[104.75px]" },
-  { label: "Perú", width: "w-[74.54px]" },
+  { label: "🇺🇸 EE.UU.", width: "w-[86.89px]" },
+  { label: "🇪🇸 España", width: "w-[89.72px]" },
+  { label: "🇩🇪 Alemania", width: "w-[104.75px]" },
+  { label: "🇵🇪 Perú", width: "w-[74.54px]" },
 ];
 
 const STEP = 342;
@@ -208,7 +219,7 @@ export default function ProximosEventos() {
               {visibleCards.map((card, i) => (
                 <article
                   key={`${card.id}-${i}`}
-                  className="h-[520px] w-[324px] shrink-0 overflow-hidden rounded-[18px] border border-[#0F2D5C]/10 bg-white"
+                  className="h-[520px] w-[324px] shrink-0 overflow-hidden rounded-[18px] border border-[#0F2D5C]/10 bg-white transition-all duration-300 ease-out hover:-translate-y-[6px] hover:shadow-[0_12px_30px_rgba(11,37,72,0.15)]"
                 >
                   <div className="h-[142.69px] w-full bg-gradient-to-r from-[#0B2548] to-[#1D4580] px-[24px] pt-[37.65px] text-white">
                     <p className="text-[9.6px] font-bold leading-[14.4px] tracking-[1.15px] text-[#FF6B35]">{card.type}</p>
