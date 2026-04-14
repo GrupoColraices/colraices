@@ -1,81 +1,139 @@
 "use client";
 
+import { useMemo, useState } from "react";
+
+const cards = [
+  {
+    id: "nyc-cafe",
+    city: "Nueva York",
+    flag: "🇺🇸",
+    type: "☕ CAFÉ DEL TOUR",
+    date: "Sábado, 8 de febrero 2026 · 2:00 PM EST",
+    title: "Café del Tour · Queens · Jackson Heights",
+    desc: "Encuentra proyectos de Bogotá y Medellín en un espacio íntimo de tu barrio. Expertos de Colraices responden en persona.",
+    tags: ["Vivienda nueva", "Crédito exterior"],
+    warning: "⚠ Solo quedan 6 lugares",
+    danger: true,
+  },
+  {
+    id: "mia-show",
+    city: "Miami",
+    flag: "🇺🇸",
+    type: "🏛️ MUESTRA INMOBILIARIA",
+    date: "Sábado, 1 de marzo 2026 · 11:00 AM EST",
+    title: "Muestra Inmobiliaria · Miami Beach Convention",
+    desc: "El evento del Tour en Miami con proyectos de toda Colombia. Charla especial sobre retorno de inversión en arrendamiento turístico.",
+    tags: ["Todo Colombia", "Inversión turística", "Gratuito"],
+    warning: "Quedan 156 lugares disponibles",
+  },
+  {
+    id: "fra-cafe",
+    city: "Frankfurt",
+    flag: "🇩🇪",
+    type: "☕ CAFÉ DEL TOUR",
+    date: "Domingo, 22 de febrero 2026 · 3:00 PM CET",
+    title: "Café del Tour · Sachsenhausen · Centro colombiano",
+    desc: "Proyectos de Bogotá para colombianos en Alemania. Sesión de preguntas reales con asesor de crédito para no residentes en Europa.",
+    tags: ["Bogotá", "No residentes EU", "Gratuito"],
+    warning: "⚠ Solo quedan 3 lugares",
+    danger: true,
+  },
+  {
+    id: "bar-cafe",
+    city: "Barcelona",
+    flag: "🇪🇸",
+    type: "☕ CAFÉ DEL TOUR",
+    date: "Viernes, 20 de febrero 2026 · 7:00 PM CET",
+    title: "Café del Tour · Gracia · Espacio colombiano",
+    desc: "Proyectos de Cartagena y Barranquilla en un formato de conversación sin presión. Aperitivos y expertos disponibles.",
+    tags: ["Costa colombiana", "Invertir a distancia", "Gratuito"],
+    warning: "Quedan 14 lugares",
+  },
+  {
+    id: "lim-virtual",
+    city: "Lima",
+    flag: "🇵🇪",
+    type: "💻 EVENTO VIRTUAL",
+    date: "Miércoles, 12 de marzo 2026 · 6:00 PM PET",
+    title: "Sesión Virtual · Compra desde el exterior",
+    desc: "Clase práctica sobre inversión remota en Colombia para peruanos que quieren diversificar en vivienda y renta corta.",
+    tags: ["Virtual", "Desde Perú", "Gratuito"],
+    warning: "Quedan 42 lugares",
+  },
+  {
+    id: "mad-show",
+    city: "Madrid",
+    flag: "🇪🇸",
+    type: "🏛️ MUESTRA INMOBILIARIA",
+    date: "Sábado, 28 de marzo 2026 · 10:30 AM CET",
+    title: "Muestra Inmobiliaria · Chamberí",
+    desc: "Proyectos premium en Bogotá, Medellín y Costa Caribe para inversionistas en España con asesoría de financiación.",
+    tags: ["Premium", "Rentabilidad", "Cupos limitados"],
+    warning: "⚠ Solo quedan 9 lugares",
+    danger: true,
+  },
+];
+
+const filters = [
+  { label: "Todos los eventos", active: true, width: "w-[139.61px]" },
+  { label: "☕ Cafés del Tour", width: "w-[137.5px]" },
+  { label: "🏛️ Muestras Inmobiliarias", width: "w-[189.6px]" },
+  { label: "💻 Virtuales", width: "w-[105.78px]" },
+  { label: "EE.UU.", width: "w-[86.89px]" },
+  { label: "España", width: "w-[89.72px]" },
+  { label: "Alemania", width: "w-[104.75px]" },
+  { label: "Perú", width: "w-[74.54px]" },
+];
+
+const CARDS_PER_PAGE = 3;
+
 export default function ProximosEventos() {
-  const cards = [
-    
-    {
-      city: "Barcelona",
-      country: "ES",
-      type: "☕ CAFÉ DEL TOUR",
-      date: "Viernes, 20 de febrero 2026 · 7:00 PM CET",
-      title: "Café del Tour · Gracia · Espacio colombiano",
-      desc: "Proyectos de Cartagena y Barranquilla en un formato de conversación sin presión. Aperitivos y expertos disponibles.",
-      tags: ["Costa colombiana", "Invertir a distancia", "Gratuito"],
-      warning: "Quedan 14 lugares",
-    },
-    {
-      city: "Miami",
-      country: "US",
-      type: "🏛️ MUESTRA INMOBILIARIA",
-      date: "Sábado, 1 de marzo 2026 · 11:00 AM EST",
-      title: "Muestra Inmobiliaria · Miami Beach Convention",
-      desc: "El evento del Tour en Miami con proyectos de toda Colombia. Charla especial sobre retorno de inversión en arrendamiento turístico.",
-      tags: ["Todo Colombia", "Inversión turística", "Gratuito"],
-      warning: "Quedan 156 lugares disponibles",
-    },
-    {
-      city: "Frankfurt",
-      country: "DE",
-      type: "☕ CAFÉ DEL TOUR",
-      date: "Domingo, 22 de febrero 2026 · 3:00 PM CET",
-      title: "Café del Tour · Sachsenhausen · Centro colombiano",
-      desc: "Proyectos de Bogotá para colombianos en Alemania. Sesión de preguntas reales con asesor de crédito para no residentes en Europa.",
-      tags: ["Bogotá", "No residentes EU", "Gratuito"],
-      warning: "⚠ Solo quedan 3 lugares",
-      danger: true,
-    },
-  ];
+  const [page, setPage] = useState(0);
+
+  const totalPages = cards.length;
+
+  const visibleCards = useMemo(() => {
+    const result = [];
+    for (let i = 0; i < CARDS_PER_PAGE; i++) {
+        result.push(cards[(page + i) % cards.length]);
+    }
+    return result;
+  }, [page]);
+
+  const goPrev = () => {
+    setPage((prev) => (prev === 0 ? cards.length - 1 : prev - 1));
+  };
+
+  const goNext = () => {
+    setPage((prev) => (prev === cards.length - 1 ? 0 : prev + 1));
+  };
 
   return (
-    <section className="w-full bg-[#FBF8F3] py-[80px] flex justify-center">
-      <div className="w-[1180px]">
+    <section className="flex w-full justify-center bg-[#FBF8F3] py-[80px]">
+      <div className="w-[1180px] bg-[#FBF8F3] pb-[24px]">
+        <div className="mx-auto h-[98.14px] w-[1108px] pt-0 text-center">
+          <p className="text-[16px] font-normal leading-[24px] text-[#0A0A0A]">Próximos eventos</p>
 
-        {/* HEADER */}
-        <div className="w-[1108px] mx-auto text-center">
-          <p className="text-[16px] text-[#0A0A0A] leading-[24px]">
-            Próximos eventos
-          </p>
-
-          <h2 className="mt-[4px] text-[36px] leading-[40px] font-bold">
+          <h2 className="mt-0 text-[35.86px] font-bold leading-[39.4px] tracking-[0px]">
             <span className="text-[#FF6B35]">El Tour </span>
             <span className="text-[#0F2D5C]">llega a tu ciudad.</span>
           </h2>
 
-          <div className="flex justify-end mt-[12px]">
-            <span className="text-[12.5px] font-semibold text-[#0F2D5C] opacity-50 cursor-pointer">
+          <div className="mt-[16px] flex h-[18.71px] w-[1108px] items-center justify-end gap-[6px] opacity-50">
+            <span className="text-[12.48px] font-semibold leading-[18.7px] text-[#0F2D5C]">
               Ver calendario completo →
             </span>
           </div>
         </div>
 
-        {/* FILTROS */}
-        <div className="w-[1108px] mx-auto mt-[32px] flex gap-[8px]">
-          {[
-            { label: "Todos los eventos", active: true },
-            { label: "☕ Cafés del Tour" },
-            { label: "🏛️ Muestras Inmobiliarias" },
-            { label: "💻 Virtuales" },
-            { label: "EE.UU." },
-            { label: "España" },
-            { label: "Alemania" },
-            { label: "Perú" },
-          ].map((item, i) => (
+        <div className="mx-auto mt-[56px] flex h-[31.75px] w-[1108px] gap-[6px]">
+          {filters.map((item) => (
             <div
-              key={i}
-              className={`h-[32px] px-[14px] rounded-full flex items-center text-[12px] font-semibold ${
+              key={item.label}
+              className={`${item.width} flex h-[31.75px] items-center rounded-[100px] px-[14px] text-left text-[11.84px] font-semibold leading-[17.8px] ${
                 item.active
                   ? "bg-[#0F2D5C] text-white"
-                  : "bg-white border border-[#ECECF0] text-[#2A3F77]"
+                  : "border border-[#ECECF0] bg-white text-[#ECECF0]"
               }`}
             >
               {item.label}
@@ -83,113 +141,84 @@ export default function ProximosEventos() {
           ))}
         </div>
 
-        {/* CAROUSEL */}
-        <div className="relative w-[1108px] mx-auto mt-[32px]">
-
-          {/* LEFT BTN */}
-          <button className="absolute left-[-72px] top-1/2 -translate-y-1/2 w-[48px] h-[48px] rounded-full bg-[#0F2D5C] flex items-center justify-center transition-all duration-300 ease hover:scale-110 hover:bg-[#1A4F9E]">
-
+        <div className="relative mx-auto mt-[28px] w-[1108px]">
+          <button
+            onClick={goPrev}
+            aria-label="Eventos anteriores"
+            className="absolute left-[-44px] top-[236px] z-10 flex h-[48px] w-[48px] items-center justify-center rounded-full bg-[#0F2D5C]"
+          >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M15 18L9 12L15 6"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+              <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
 
           </button>
 
-          {/* RIGHT BTN */}
-          <button className="absolute right-[-72px] top-1/2 -translate-y-1/2 w-[48px] h-[48px] rounded-full bg-[#0F2D5C] flex items-center justify-center transition-all duration-300 ease hover:scale-110 hover:bg-[#1A4F9E]">
-
+          <button
+            onClick={goNext}
+            aria-label="Siguientes eventos"
+            className="absolute right-[-44px] top-[236px] z-10 flex h-[48px] w-[48px] items-center justify-center rounded-full bg-[#0F2D5C]"
+          >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M9 6L15 12L9 18"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+              <path d="M9 6L15 12L9 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-
+            
           </button>
 
-          {/* CARDS */}
-          <div className="flex gap-[24px]">
-
-            {cards.map((card, i) => (
-              <div
-                key={i}
-                className="w-[324px] h-[520px] bg-white rounded-[18px] border border-[#0F2D5C]/10 overflow-hidden"
+          <div className="mx-auto flex h-[520px] w-[1008px] gap-[18px]">
+            {visibleCards.map((card) => (
+              <article
+                key={card.id}
+                className="h-[520px] w-[324px] overflow-hidden rounded-[18px] border border-[#0F2D5C]/10 bg-white"
               >
-
-                <div className="h-[140px] px-[24px] pt-[32px] bg-gradient-to-r from-[#0B2548] to-[#1D4580] text-white">
-
-                  <p className="text-[10px] tracking-[1.2px] text-[#FF6B35] font-bold">
-                    {card.type}
-                  </p>
-
-                  <h3 className="mt-[10px] text-[22px] font-bold">
-                    {card.city}
-                  </h3>
-
-                  <p className="text-[12px] opacity-50 mt-[4px]">
-                    {card.date}
-                  </p>
+                <div className="h-[142.69px] w-[322.4px] bg-gradient-to-r from-[#0B2548] to-[#1D4580] px-[24px] pt-[37.65px] text-white">
+                  <p className="text-[9.6px] font-bold leading-[14.4px] tracking-[1.15px] text-[#FF6B35]">{card.type}</p>
+                  <div className="mt-[14px] flex h-[32.4px] items-start gap-[6px]">
+                    <span className="text-[14.4px] font-bold leading-[21.6px]">{card.flag}</span>
+                    <h3 className="text-[21.6px] font-bold leading-[32.4px]">{card.city}</h3>
+                  </div>
+                  <p className="mt-[4px] text-[12.16px] font-normal leading-[18.2px] text-white/50">{card.date}</p>
                 </div>
 
+                <div className="flex h-[375.71px] flex-col px-[24px] pt-[20px]">
+                  <h4 className="text-[14.4px] font-semibold leading-[21.6px] text-[#0F2D5C]">{card.title}</h4>
 
-                <div className="px-[24px] pt-[20px]">
+                  <p className="mt-[4px] text-[12.84px] font-normal leading-[19.3px] text-[#2A3F77]/75">{card.desc}</p>
 
-                  <p className="text-[14px] font-semibold text-[#0F2D5C]">
-                    {card.title}
-                  </p>
-
-                  <p className="mt-[8px] text-[13px] text-[#2A3F77]/75 leading-[19px]">
-                    {card.desc}
-                  </p>
-
-                  <div className="flex gap-[8px] mt-[14px] flex-wrap">
-                    {card.tags.map((tag, j) => (
+                  <div className="mt-[16px] flex flex-wrap gap-[8px]">
+                    {card.tags.map((tag) => (
                       <span
-                        key={j}
-                        className="text-[11px] px-[10px] py-[4px] rounded-full border border-[#0F2D5C]/10 bg-[#FBF8F3] text-[#2A3F77]"
+                        key={tag}
+                        className="rounded-[100px] border border-[#0F2D5C]/10 bg-[#FBF8F3] px-[10px] py-[4px] text-[10.4px] font-semibold leading-[15.6px] text-[#2A3F77]/70"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <button className="mt-[20px] w-full h-[42px] bg-[#0F2D5C] text-white text-[13px] font-semibold rounded-[10px]">
+                  <button className="mt-[16px] h-[41.2px] w-[274px] self-center rounded-[10px] bg-[#0F2D5C] text-[12.8px] font-semibold leading-[19.2px] text-white">
                     Inscribirme
                   </button>
 
                   <p
-                    className={`mt-[18px] text-center text-[11px] font-semibold ${
-                      card.danger
-                        ? "text-[#E05470]"
-                        : "text-[#2A3F77]/50"
+                    className={`mt-auto pb-[24px] text-center text-[10.72px] font-semibold leading-[16.1px] ${
+                      card.danger ? "text-[#E05470]" : "text-[#2A3F77]/65"
                     }`}
                   >
                     {card.warning}
                   </p>
                 </div>
-
-              </div>
+              </article>
             ))}
 
           </div>
 
-          {/* DOTS */}
-          <div className="flex justify-center mt-[24px] gap-[8px]">
-            {[0, 1, 2, 3, 4].map((d, i) => (
-              <div
-                key={i}
-                className={`w-[6px] h-[6px] rounded-full ${
-                  i === 3 ? "bg-[#FFB800]" : "bg-[#D9D9D9]"
-                }`}
+          <div className="mt-[24px] flex justify-center gap-[12px]">
+            {Array.from({ length: totalPages }).map((_, dot) => (
+              <button
+                key={dot}
+                onClick={() => setPage(dot)}
+                aria-label={`Ir a página ${dot + 1}`}
+                className={`h-[8px] w-[8px] rounded-full ${dot === page ? "bg-[#FFB800]" : "bg-[#C6CEDB]"}`}
               />
             ))}
           </div>
