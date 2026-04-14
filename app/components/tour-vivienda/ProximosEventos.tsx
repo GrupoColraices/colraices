@@ -74,8 +74,9 @@ const cards = [
   },
 ];
 
+// ✏️ CAMBIO 1: se eliminó "active: true" del primer item
 const filters = [
-  { label: "Todos los eventos", active: true, width: "w-[139.61px]" },
+  { label: "Todos los eventos", width: "w-[139.61px]" },
   { label: "☕ Cafés del Tour", width: "w-[137.5px]" },
   { label: "🏛️ Muestras Inmobiliarias", width: "w-[189.6px]" },
   { label: "💻 Virtuales", width: "w-[105.78px]" },
@@ -85,27 +86,56 @@ const filters = [
   { label: "Perú", width: "w-[74.54px]" },
 ];
 
-const CARDS_PER_PAGE = 3;
+const STEP = 342;
 
 export default function ProximosEventos() {
   const [page, setPage] = useState(0);
+  const [translateX, setTranslateX] = useState(-STEP);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [animating, setAnimating] = useState(false);
+  // ✏️ CAMBIO 2: nuevo estado para el filtro activo
+  const [activeFilter, setActiveFilter] = useState("Todos los eventos");
 
-  const totalPages = Math.ceil(cards.length / CARDS_PER_PAGE);
+  const getCard = (index: number) =>
+    cards[((index % cards.length) + cards.length) % cards.length];
 
-  const visibleCards = useMemo(() => {
-    const result = [];
-    for (let i = 0; i < CARDS_PER_PAGE; i++) {
-        result.push(cards[(page + i) % cards.length]);
-    }
-    return result;
-  }, [page]);
-
-  const goPrev = () => {
-    setPage((prev) => (prev === 0 ? cards.length - 1 : prev - 1));
-    };
+  const visibleCards = useMemo(
+    () => [
+      getCard(page - 1),
+      getCard(page),
+      getCard(page + 1),
+      getCard(page + 2),
+      getCard(page + 3),
+    ],
+    [page]
+  );
 
   const goNext = () => {
-    setPage((prev) => (prev === cards.length - 1 ? 0 : prev + 1));
+    if (animating) return;
+    setAnimating(true);
+    setIsTransitioning(true);
+    setTranslateX(-STEP * 2);
+
+    setTimeout(() => {
+      setIsTransitioning(false);
+      setPage((prev) => (prev + 1) % cards.length);
+      setTranslateX(-STEP);
+      setTimeout(() => setAnimating(false), 20);
+    }, 500);
+  };
+
+  const goPrev = () => {
+    if (animating) return;
+    setAnimating(true);
+    setIsTransitioning(true);
+    setTranslateX(0);
+
+    setTimeout(() => {
+      setIsTransitioning(false);
+      setPage((prev) => (prev - 1 + cards.length) % cards.length);
+      setTranslateX(-STEP);
+      setTimeout(() => setAnimating(false), 20);
+    }, 500);
   };
 
   return (
@@ -126,19 +156,24 @@ export default function ProximosEventos() {
           </div>
         </div>
 
+        {/* ✏️ CAMBIO 3: div → button, activeFilter como condición, colores corregidos */}
         <div className="mx-auto mt-[56px] flex h-[31.75px] w-[1108px] gap-[6px]">
-          {filters.map((item) => (
-            <div
-              key={item.label}
-              className={`${item.width} flex h-[31.75px] items-center rounded-[100px] px-[14px] text-left text-[11.84px] font-semibold leading-[17.8px] ${
-                item.active
-                  ? "bg-[#0F2D5C] text-white"
-                  : "border border-[#ECECF0] bg-white text-[#ECECF0]"
-              }`}
-            >
-              {item.label}
-            </div>
-          ))}
+          {filters.map((item) => {
+            const isActive = activeFilter === item.label;
+            return (
+              <button
+                key={item.label}
+                onClick={() => setActiveFilter(item.label)}
+                className={`${item.width} flex h-[31.75px] items-center rounded-[100px] px-[14px] text-left text-[11.84px] font-semibold leading-[17.8px] transition-colors duration-200 ${
+                  isActive
+                    ? "bg-[#0F2D5C] text-white"
+                    : "border border-[#D1D5DB] bg-white text-[#2A3F77]/60 hover:border-[#0F2D5C]/40 hover:text-[#0F2D5C]"
+                }`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
         </div>
 
         <div className="relative mx-auto mt-[28px] w-[1108px]">
@@ -150,7 +185,6 @@ export default function ProximosEventos() {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-
           </button>
 
           <button
@@ -161,68 +195,74 @@ export default function ProximosEventos() {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path d="M9 6L15 12L9 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            
           </button>
 
-          <div className="mx-auto flex h-[520px] w-[1008px] gap-[18px]">
-            {visibleCards.map((card) => (
-              <article
-                key={card.id}
-                className="h-[520px] w-[324px] overflow-hidden rounded-[18px] border border-[#0F2D5C]/10 bg-white"
-              >
-                <div className="h-[142.69px] w-[322.4px] bg-gradient-to-r from-[#0B2548] to-[#1D4580] px-[24px] pt-[37.65px] text-white">
-                  <p className="text-[9.6px] font-bold leading-[14.4px] tracking-[1.15px] text-[#FF6B35]">{card.type}</p>
-                  <div className="mt-[14px] flex h-[32.4px] items-start gap-[6px]">
-                    <span className="text-[14.4px] font-bold leading-[21.6px]">{card.flag}</span>
-                    <h3 className="text-[21.6px] font-bold leading-[32.4px]">{card.city}</h3>
-                  </div>
-                  <p className="mt-[4px] text-[12.16px] font-normal leading-[18.2px] text-white/50">{card.date}</p>
-                </div>
-
-                <div className="flex h-[375.71px] flex-col px-[24px] pt-[20px]">
-                  <h4 className="text-[14.4px] font-semibold leading-[21.6px] text-[#0F2D5C]">{card.title}</h4>
-
-                  <p className="mt-[4px] text-[12.84px] font-normal leading-[19.3px] text-[#2A3F77]/75">{card.desc}</p>
-
-                  <div className="mt-[16px] flex flex-wrap gap-[8px]">
-                    {card.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-[100px] border border-[#0F2D5C]/10 bg-[#FBF8F3] px-[10px] py-[4px] text-[10.4px] font-semibold leading-[15.6px] text-[#2A3F77]/70"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+          <div className="mx-auto h-[520px] w-[1008px] overflow-hidden">
+            <div
+              className="flex h-[520px] gap-[18px]"
+              style={{
+                transform: `translateX(${translateX}px)`,
+                transition: isTransitioning ? "transform 500ms ease-in-out" : "none",
+              }}
+            >
+              {visibleCards.map((card, i) => (
+                <article
+                  key={`${card.id}-${i}`}
+                  className="h-[520px] w-[324px] shrink-0 overflow-hidden rounded-[18px] border border-[#0F2D5C]/10 bg-white"
+                >
+                  <div className="h-[142.69px] w-full bg-gradient-to-r from-[#0B2548] to-[#1D4580] px-[24px] pt-[37.65px] text-white">
+                    <p className="text-[9.6px] font-bold leading-[14.4px] tracking-[1.15px] text-[#FF6B35]">{card.type}</p>
+                    <div className="mt-[14px] flex h-[32.4px] items-start gap-[6px]">
+                      <span className="text-[14.4px] font-bold leading-[21.6px]">{card.flag}</span>
+                      <h3 className="text-[21.6px] font-bold leading-[32.4px]">{card.city}</h3>
+                    </div>
+                    <p className="mt-[4px] text-[12.16px] font-normal leading-[18.2px] text-white/50">{card.date}</p>
                   </div>
 
-                  <button className="mt-[16px] h-[41.2px] w-[274px] self-center rounded-[10px] bg-[#0F2D5C] text-[12.8px] font-semibold leading-[19.2px] text-white">
-                    Inscribirme
-                  </button>
+                  <div className="flex h-[375.71px] flex-col px-[24px] pt-[20px]">
+                    <h4 className="text-[14.4px] font-semibold leading-[21.6px] text-[#0F2D5C]">{card.title}</h4>
+                    <p className="mt-[4px] text-[12.84px] font-normal leading-[19.3px] text-[#2A3F77]/75">{card.desc}</p>
 
-                  <p
-                    className={`mt-auto pb-[24px] text-center text-[10.72px] font-semibold leading-[16.1px] ${
-                      card.danger ? "text-[#E05470]" : "text-[#2A3F77]/65"
-                    }`}
-                  >
-                    {card.warning}
-                  </p>
-                </div>
-              </article>
-            ))}
+                    <div className="mt-[16px] flex flex-wrap gap-[8px]">
+                      {card.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-[100px] border border-[#0F2D5C]/10 bg-[#FBF8F3] px-[10px] py-[4px] text-[10.4px] font-semibold leading-[15.6px] text-[#2A3F77]/70"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
 
+                    <button className="mt-[16px] h-[41.2px] w-[274px] self-center rounded-[10px] bg-[#0F2D5C] text-[12.8px] font-semibold leading-[19.2px] text-white">
+                      Inscribirme
+                    </button>
+
+                    <p
+                      className={`mt-auto pb-[24px] text-center text-[10.72px] font-semibold leading-[16.1px] ${
+                        card.danger ? "text-[#E05470]" : "text-[#2A3F77]/65"
+                      }`}
+                    >
+                      {card.warning}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
 
           <div className="mt-[24px] flex justify-center gap-[12px]">
-            {Array.from({ length: totalPages }).map((_, dot) => (
+            {cards.map((_, dot) => (
               <button
                 key={dot}
-                onClick={() => setPage(dot)}
-                aria-label={`Ir a página ${dot + 1}`}
-                className={`h-[8px] w-[8px] rounded-full ${dot === page ? "bg-[#FFB800]" : "bg-[#C6CEDB]"}`}
+                onClick={() => !animating && setPage(dot)}
+                aria-label={`Ir a evento ${dot + 1}`}
+                className={`h-[8px] w-[8px] rounded-full transition-colors ${
+                  dot === page ? "bg-[#FFB800]" : "bg-[#C6CEDB]"
+                }`}
               />
             ))}
           </div>
-
         </div>
       </div>
     </section>
