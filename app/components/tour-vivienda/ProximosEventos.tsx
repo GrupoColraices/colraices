@@ -90,7 +90,7 @@ const CARDS_PER_PAGE = 3;
 export default function ProximosEventos() {
   const [page, setPage] = useState(0);
 
-  const totalPages = cards.length;
+  const totalPages = Math.ceil(cards.length / CARDS_PER_PAGE);
 
   const visibleCards = useMemo(() => {
     const result = [];
@@ -102,7 +102,7 @@ export default function ProximosEventos() {
 
   const goPrev = () => {
     setPage((prev) => (prev === 0 ? cards.length - 1 : prev - 1));
-  };
+    };
 
   const goNext = () => {
     setPage((prev) => (prev === cards.length - 1 ? 0 : prev + 1));
