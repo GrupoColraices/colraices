@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 const preparacion = [
   {
     tag: "DIAGNÓSTICO FINANCIERO",
@@ -45,6 +47,7 @@ const ejecucion = [
     icon: "🏠",
     button: "Ver página de crédito →",
     filled: true,
+    href: "/finanzas/brujula-financiera",
   },
   {
     tag: "Banco Unión · Garantía hipotecaria",
@@ -71,6 +74,7 @@ const ejecucion = [
 ];
 
 function Card({ item, index }: any) {
+  const router = useRouter();
 
   const textColorMap: any = {
     "bg-[#1A4F9E]": "text-[#1A4F9E]",
@@ -178,19 +182,24 @@ function Card({ item, index }: any) {
       </div>
 
       {/* BUTTON */}
-      <button className={`
-        absolute bottom-[28.8px] left-[28.8px] right-[28.8px]
-        h-[41.29px] rounded-full text-[13.12px] font-semibold
+      <button
+        onClick={() => item.href && router.push(item.href)}
+        className={`
+          absolute bottom-[28.8px] left-[28.8px] right-[28.8px]
+          h-[41.29px] rounded-full text-[13.12px] font-semibold
 
-        transition-all duration-200
-        active:scale-[0.98]
-        hover:shadow-[0_2px_6px_rgba(0,0,0,0.06)]
+          transition-all duration-200
+          active:scale-[0.98]
+          hover:shadow-[0_2px_6px_rgba(0,0,0,0.06)]
 
-        ${item.filled
-          ? "bg-[#0F2D5C] text-white hover:bg-[#0B254A]"
-          : "border border-[#CCCCCC]/20 text-[#0F2D5C] hover:bg-[#0F2D5C] hover:text-white hover:border-[#0F2D5C]"
-        }
-      `}>
+          ${item.href ? "cursor-pointer" : "cursor-default"}
+
+          ${item.filled
+            ? "bg-[#0F2D5C] text-white hover:bg-[#0B254A]"
+            : "border border-[#CCCCCC]/20 text-[#0F2D5C] hover:bg-[#0F2D5C] hover:text-white hover:border-[#0F2D5C]"
+          }
+        `}
+      >
         {item.button || "Ver producto"}
       </button>
 
