@@ -47,7 +47,7 @@ const ejecucion = [
     icon: "🏠",
     button: "Ver página de crédito →",
     filled: true,
-    href: "/finanzas/brujula-financiera",
+    href: "/finanzas/credito-hipotecario",
   },
   {
     tag: "Banco Unión · Garantía hipotecaria",
