@@ -15,8 +15,8 @@ export default function TourSection() {
         
         px-[20px] 
         sm:px-[40px] 
-        md:px-[100px] 
-        lg:px-[156px] 
+        md:px-[80px] 
+        lg:px-[120px] 
         
         grid 
         grid-cols-1 
@@ -29,7 +29,7 @@ export default function TourSection() {
       ">
 
         {/* IZQUIERDA */}
-        <div className="max-w-[520px] mx-auto md:mx-0 text-center md:text-left">
+        <div className="w-full max-w-[520px] mx-auto md:mx-0 text-center md:text-left">
 
           <p className="text-[#FFC107] text-[16px] md:text-[18px] italic font-bold mb-3 md:mb-4">
             Evento estrella del ecosistema
@@ -51,13 +51,21 @@ export default function TourSection() {
 
             <br />
 
-            <span className="font-normal not-italic text-[#0F2D5C] text-[35.86px] leading-[46px]">
+            <span className="
+              font-normal 
+              not-italic 
+              text-[#0F2D5C] 
+              text-[24px] 
+              sm:text-[28px] 
+              md:text-[36px]
+              leading-[1.2]
+            ">
               llega a tu país
             </span>
 
           </h2>
 
-          <p className="text-[#475569] text-[15.2px] leading-[26.6px] mb-6 md:mb-8 max-w-[460px] mx-auto md:mx-0">
+          <p className="text-[#475569] text-[15px] md:text-[15.2px] leading-[26px] md:leading-[26.6px] mb-6 md:mb-8 max-w-[460px] mx-auto md:mx-0">
             Conoce proyectos, entiende cómo comprar y conecta con quienes te acompañan en todo el proceso.
           </p>
 
@@ -111,9 +119,10 @@ export default function TourSection() {
             src="/mapa.png"
             alt="Mapa Tour de la Vivienda"
             className="
-              w-[502px]
-              h-[376px]
-              object-cover
+              w-full 
+              max-w-[502px]
+              h-auto 
+              object-contain
             "
           />
 
