@@ -9,9 +9,20 @@ export default function Hero() {
           <div className="w-[620px] h-[413.15px] relative">
 
             <div className="w-[328.29px] h-[43.6px] rounded-full border border-[rgba(255,255,255,0.14)] bg-[rgba(255,255,255,0.07)] flex items-center pl-[48.8px]">
+              
+              <div className="absolute left-[10.8px] top-[7.8px] w-[28px] h-[28px] flex items-center justify-center">
+              <span className="text-[13px] leading-[19.5px] font-bold text-white">
+                D
+              </span>
+            </div>
+
               <span className="text-[12.48px] leading-[18.7px] tracking-[0.12px] font-semibold text-[rgba(255,255,255,0.8)]">
                 Banco Davivienda · Bróker autorizado
               </span>
+
+              {/* PUNTO VERDE */}
+              <div className="ml-auto mr-[12px] w-[6px] h-[6px] rounded-full bg-[#4ADE80] opacity-[0.8] animate-pulse-green" />
+
             </div>
 
             <div className="absolute left-[328.29px] top-[13.45px] flex items-center gap-[8px]">

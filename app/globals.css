@@ -130,3 +130,24 @@ body {
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
+
+
+
+@keyframes pulseGreen {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+.animate-pulse-green {
+  animation: pulseGreen 1.8s ease-in-out infinite;
+}
