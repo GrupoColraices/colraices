@@ -1,47 +1,55 @@
 export default function StatsSection() {
   return (
-    <section className="
+    <section
+      className="
       w-full 
       bg-[#0F2D5C] 
       flex items-center 
       
       py-8 
       md:py-10 
-      md:h-[166px]
-    ">
-
-      <div className="
+      lg:h-[166px]
+    "
+    >
+      <div
+        className="
         w-full 
         max-w-[1416px] 
         mx-auto 
         
         px-[20px] 
         sm:px-[40px] 
-        md:px-[100px] 
+        md:px-[80px] 
         lg:px-[156px]
-      ">
-
-        <div className="
+      "
+      >
+        <div
+          className="
           flex 
           flex-col 
           md:flex-row 
           md:items-center 
           md:justify-between 
           
-          gap-6 md:gap-8
-        ">
-
+          gap-8 md:gap-10
+        "
+        >
           {/* IZQUIERDA */}
-          <div className="
+          <div
+            className="
             flex 
             items-center 
             gap-4 md:gap-6 
             
             justify-center 
             md:justify-start
-          ">
-
-            <p className="
+            
+            text-center 
+            md:text-left
+          "
+          >
+            <p
+              className="
               text-white/60 
               text-[10px] 
               sm:text-[11px] 
@@ -52,34 +60,34 @@ export default function StatsSection() {
               md:leading-[18px] 
               
               tracking-[2px] 
-              uppercase 
-              
-              text-center 
-              md:text-left
-            ">
+              uppercase
+            "
+            >
               Colombianos <br /> que ya <br /> confían en <br /> nosotros
             </p>
 
             <div className="hidden md:block w-[1px] h-[60px] bg-white/20"></div>
-
           </div>
 
           {/* MÉTRICAS */}
-          <div className="
+          <div
+            className="
             grid 
             grid-cols-2 
-            sm:grid-cols-2 
             md:flex 
             md:items-center 
             
             gap-y-6 
             gap-x-6 
             sm:gap-x-8 
-            md:gap-[80px] 
+            md:gap-10 
+            lg:gap-[80px] 
             
-            text-center
-          ">
-
+            text-center 
+            w-full 
+            md:w-auto
+          "
+          >
             <div>
               <p className="text-[#FFC107] text-[20px] sm:text-[22px] md:text-[32px] font-bold">
                 23 años
@@ -115,11 +123,8 @@ export default function StatsSection() {
                 A los que hemos llegado
               </p>
             </div>
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

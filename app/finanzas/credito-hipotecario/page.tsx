@@ -3,8 +3,9 @@ import Breadcrumb from "@/app/components/layout/Breadcrumb";
 import StatsBar from "@/app/components/credito-hipotecario/StatsBar";
 import CreditAudience from "@/app/components/credito-hipotecario/CreditAudience";
 import CreditTypes from "@/app/components/credito-hipotecario/CreditTypes";
+import ComoFunciona from "@/app/components/credito-hipotecario/ComoFunciona";
 
-
+ 
 export default function BrujulaFinancieraPage() {
   return (
     <main className="flex flex-col overflow-x-hidden">
@@ -13,6 +14,7 @@ export default function BrujulaFinancieraPage() {
       <StatsBar />
       <CreditAudience />
       <CreditTypes />
+      <ComoFunciona />
     </main>
   );
 }

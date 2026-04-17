@@ -15,37 +15,20 @@ const SERVICES: readonly Service[] = [
   { text: "Servicios legales y migratorios", icon: "⚖️", href: "/legal-migracion" },
 ];
 
+// 🔥 AJUSTES PRO (sin cambiar diseño)
 const SECTION_CLASS =
-  "relative flex items-center overflow-hidden min-h-[520px] md:min-h-[600px]";
+  "relative isolate flex items-center overflow-hidden min-h-[90vh] md:min-h-[600px]";
 
 const BACKGROUND_CLASS =
-  "absolute inset-0 bg-no-repeat bg-[center_30%] bg-[length:140%] sm:bg-[length:120%] md:bg-[length:100%]";
+  "absolute inset-0 bg-no-repeat bg-center bg-cover";
 
 export default function HeroSection() {
   return (
     <section className={SECTION_CLASS}>
       <BackgroundImage />
 
-      <div
-        className="
-        relative 
-        w-full 
-        max-w-[1200px] 
-        mx-auto 
-        px-4 sm:px-6 lg:px-8
-      "
-      >
-        <div
-          className="
-          flex 
-          flex-col 
-          lg:flex-row 
-          items-center 
-          justify-between 
-          gap-10
-          py-12 md:py-16
-        "
-        >
+      <div className="relative w-full max-w-[1200px] xl:max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 py-12 md:py-16">
           <HeroText />
           <EcosystemCard services={SERVICES} />
         </div>
@@ -74,20 +57,12 @@ function HeroText() {
         </p>
       </div>
 
-      <h1
-        className="
-        text-white 
-        text-[24px] 
-        sm:text-[28px] 
-        md:text-[34px] 
-        lg:text-[36px] 
-        leading-tight
-        mb-4 md:mb-6
-      "
-      >
+      <h1 className="text-white text-[24px] sm:text-[28px] md:text-[34px] lg:text-[36px] leading-tight mb-4 md:mb-6">
         <span className="block font-normal">Ese dinero que mandas a casa</span>
         <span className="block font-light">puede hacer mucho más que</span>
-        <span className="block text-[#FFC107] font-bold italic">llegar a fin de mes.</span>
+        <span className="block text-[#FFC107] font-bold italic">
+          llegar a fin de mes.
+        </span>
       </h1>
 
       <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-6 md:mb-8 max-w-[520px] mx-auto lg:mx-0">
@@ -98,32 +73,14 @@ function HeroText() {
       <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
         <Link
           href="/#units-section"
-          className="
-            w-full sm:w-auto
-            px-6
-            h-[44px] md:h-[48px]
-            flex items-center justify-center 
-            rounded-full 
-            bg-[#FFC107] text-[#2A3F77]
-            text-sm font-semibold 
-            transition hover:opacity-90
-          "
+          className="w-full sm:w-auto px-6 h-[44px] md:h-[48px] flex items-center justify-center rounded-full bg-[#FFC107] text-[#2A3F77] text-sm font-semibold transition hover:opacity-90"
         >
           Quiero saber más →
         </Link>
 
         <Link
           href="/servicios"
-          className="
-            w-full sm:w-auto
-            px-6 
-            h-[42px] md:h-[44px]
-            flex items-center justify-center 
-            rounded-full 
-            border border-white text-white
-            text-sm font-semibold
-            transition hover:bg-white hover:text-[#0B1F3A]
-          "
+          className="w-full sm:w-auto px-6 h-[42px] md:h-[44px] flex items-center justify-center rounded-full border border-white text-white text-sm font-semibold transition hover:bg-white hover:text-[#0B1F3A]"
         >
           Conoce el ecosistema
         </Link>
@@ -147,6 +104,12 @@ function EcosystemCard({ services }: { services: readonly Service[] }) {
         shadow-[0_25px_80px_rgba(0,0,0,0.25)]
       "
       >
+        {/* 🔥 EFECTO COLORES (CORREGIDO SIN ROMPER BADGE) */}
+        <div className="absolute inset-0 overflow-hidden rounded-tl-[16px] rounded-br-[16px] pointer-events-none">
+          <div className="absolute top-[-40px] right-[-40px] w-[180px] h-[180px] bg-[#FFC107] opacity-20 blur-3xl rounded-full" />
+          <div className="absolute bottom-[-40px] left-[-40px] w-[200px] h-[200px] bg-[#2A3F77] opacity-20 blur-3xl rounded-full" />
+        </div>
+
         <div className="relative z-10">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#2A3F77]/15 bg-[#2A3F77]/10 px-3 py-1">
             <div className="h-2 w-2 rounded-full bg-[#FFC107]" />
@@ -155,7 +118,10 @@ function EcosystemCard({ services }: { services: readonly Service[] }) {
             </span>
           </div>
 
-          <h3 className="text-4xl font-bold text-[#0F2D5C]">23 años</h3>
+          {/* 🔥 ajuste responsive sin cambiar look */}
+          <h3 className="text-3xl sm:text-4xl font-bold text-[#0F2D5C]">
+            23 años
+          </h3>
 
           <p className="mt-1 mb-6 text-xs text-[#1A4F9E]">
             acompañando la diáspora colombiana
@@ -179,21 +145,15 @@ function ServiceRow({ item }: { item: Service }) {
     <li>
       <Link
         href={item.href || "#"}
-        className="
-        flex items-center justify-between
-        px-4 py-3
-        rounded-md
-        bg-[#2A3F77]/10
-        border border-[#2A3F77]/20
-        hover:bg-white/60
-        transition
-      "
+        className="flex items-center justify-between px-4 py-3 rounded-md bg-[#2A3F77]/10 border border-[#2A3F77]/20 hover:bg-white/60 transition"
       >
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center rounded-md bg-[#2A3F77]/10">
             {item.icon}
           </div>
-          <span className="text-sm font-medium text-[#0F2D5C]">{item.text}</span>
+          <span className="text-sm font-medium text-[#0F2D5C]">
+            {item.text}
+          </span>
         </div>
         <span>›</span>
       </Link>
@@ -208,10 +168,10 @@ function AnimatedBadge() {
     <motion.div
       initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={shouldReduceMotion ? { duration: 0 } : { duration: 1.2 }}
+      transition={shouldReduceMotion ? { duration: 0 } : { duration: 1.2, ease: "easeOut" }}
       className="
         absolute
-        -bottom-5
+        -bottom-8 md:-bottom-10
         left-1/2 -translate-x-1/2
         lg:left-[-32px] lg:translate-x-0
         w-[220px] h-[52px]
@@ -228,7 +188,9 @@ function AnimatedBadge() {
 
       <div className="text-xs leading-tight">
         <p className="text-gray-400">Negocios concretados</p>
-        <p className="font-semibold text-[#0F2D5C]">+11.000 en Colombia</p>
+        <p className="font-semibold text-[#0F2D5C]">
+          +11.000 en Colombia
+        </p>
       </div>
     </motion.div>
   );
