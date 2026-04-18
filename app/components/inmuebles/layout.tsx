@@ -6,7 +6,11 @@ export default function InmueblesLayout({
   return (
     <>
       {children}
-      {/* 🚫 SIN FOOTER */}
+      <style jsx global>{`
+        footer {
+          display: none !important;
+        }
+      `}</style>
     </>
   );
 }

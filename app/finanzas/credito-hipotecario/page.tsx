@@ -5,12 +5,11 @@ import CreditAudience from "@/app/components/credito-hipotecario/CreditAudience"
 import CreditTypes from "@/app/components/credito-hipotecario/CreditTypes";
 import ComoFunciona from "@/app/components/credito-hipotecario/ComoFunciona";
 import FormCredito from "@/app/components/credito-hipotecario/FormCredito";
+import SiteLayout from "@/app/components/layout/SiteLayout";
 
-
- 
 export default function BrujulaFinancieraPage() {
   return (
-    <main className="flex flex-col overflow-x-hidden">
+    <SiteLayout>
       <Breadcrumb />
       <Hero />
       <StatsBar />
@@ -18,6 +17,6 @@ export default function BrujulaFinancieraPage() {
       <CreditTypes />
       <ComoFunciona />
       <FormCredito />
-    </main>
+    </SiteLayout>
   );
 }

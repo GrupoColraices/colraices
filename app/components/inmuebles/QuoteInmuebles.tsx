@@ -3,56 +3,33 @@
 export default function QuoteInmuebles() {
   return (
     <section
-      className="w-full flex justify-center items-start"
+      className="w-full flex justify-center items-center px-4 sm:px-6"
       style={{
-        height: "362px",
-        paddingTop: "80px",
-        background:
-          "linear-gradient(180deg, #0F2D5C 0%, #1A4F9E 100%)",
+        minHeight: "362px",
+        background: "linear-gradient(180deg, #0F2D5C 0%, #1A4F9E 100%)",
       }}
     >
-      {/* CONTENEDOR CENTRADO */}
-      <div
-        style={{
-          width: "720px",
-          height: "202px",
-          position: "relative",
-        }}
-      >
-        {/* COMILLAS */}
+      <div className="w-full max-w-[720px] text-center flex flex-col items-center">
         <div
           style={{
-            position: "absolute",
-            top: "0px",
-            left: "48px",
-            width: "624px",
-            height: "51.2px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "flex-start",
             fontFamily: "Montserrat, sans-serif",
             fontWeight: 400,
-            fontSize: "64px",
-            lineHeight: "51.2px",
+            fontSize: "clamp(48px, 6vw, 64px)",
+            lineHeight: "1",
             color: "#F0B429",
+            marginBottom: "8px",
           }}
         >
           "
         </div>
 
-        {/* TEXTO PRINCIPAL */}
         <div
           style={{
-            position: "absolute",
-            top: "59.2px",
-            left: "48px",
-            width: "624px",
-            height: "100.8px",
-            textAlign: "center",
             fontFamily: "Montserrat, sans-serif",
-            fontSize: "24px",
-            lineHeight: "33.6px",
+            fontSize: "clamp(18px, 2.5vw, 24px)",
+            lineHeight: "1.4",
             color: "#FFFFFF",
+            maxWidth: "624px",
           }}
         >
           <span style={{ fontWeight: 700, fontStyle: "italic" }}>
@@ -66,24 +43,16 @@ export default function QuoteInmuebles() {
           </span>
         </div>
 
-        {/* TEXTO INFERIOR */}
         <div
           style={{
-            position: "absolute",
-            top: "184px",
-            left: "48px",
-            width: "624px",
-            height: "18px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "flex-start",
             fontFamily: "Montserrat, sans-serif",
             fontWeight: 400,
-            fontSize: "12px",
+            fontSize: "clamp(10px, 1.5vw, 12px)",
             lineHeight: "18px",
             letterSpacing: "1.68px",
             color: "#F0B429",
             textTransform: "uppercase",
+            marginTop: "20px",
           }}
         >
           PROPÓSITO · UNIDAD INMOBILIARIA · COLRAICES

@@ -2,22 +2,22 @@ export default function CreditAudience() {
   return (
     <div className="w-full flex justify-center bg-[#FBF8F3]">
       <div
-        className="w-[1180px]"
-        style={{
-          padding: "88px 48px",
-        }}
+        className="w-full max-w-[1180px] mx-auto
+          px-5 py-12
+          sm:px-8 sm:py-16
+          lg:px-12 lg:py-[88px]"
       >
         {/* HEADER */}
         <div className="flex flex-col items-center gap-[10px]">
-          <p className="text-[20px] leading-[30px] italic text-[#0A0A0A] text-center">
+          <p className="text-[18px] sm:text-[20px] leading-[30px] italic text-[#0A0A0A] text-center">
             ¿Para quién es este crédito?
           </p>
 
           <div className="text-center">
-            <span className="text-[35.86px] leading-[43px] font-semibold text-[#0F2D5C]">
+            <span className="text-[26px] sm:text-[30px] lg:text-[35.86px] leading-tight sm:leading-[43px] font-semibold text-[#0F2D5C]">
               Si vives en el exterior y quieres{" "}
             </span>
-            <span className="text-[35.86px] leading-[43px] font-extrabold text-[#0F2D5C]">
+            <span className="text-[26px] sm:text-[30px] lg:text-[35.86px] leading-tight sm:leading-[43px] font-extrabold text-[#0F2D5C]">
               comprar en Colombia, esto es para ti.
             </span>
           </div>
@@ -25,17 +25,16 @@ export default function CreditAudience() {
 
         {/* DESCRIPCIÓN */}
         <div className="mt-[26px] text-center">
-          <p className="text-[15.2px] leading-[25.8px] text-[#475569]">
+          <p className="text-[14px] sm:text-[15.2px] leading-[25.8px] text-[#475569]">
             Si tu historial está limpio y puedes demostrar ingresos, puedes
             calificar. Estos son los perfiles más comunes:
           </p>
         </div>
 
         {/* CARDS */}
-        <div className="flex gap-[20px] mt-[32px]">
+        <div className="flex flex-col md:flex-row gap-5 mt-8 lg:mt-[32px]">
           {/* CARD 1 */}
-          <div className="group relative w-[348px] min-h-[380px] bg-white rounded-[16px_0px_16px_0px] border border-[rgba(15,45,92,0.10)] p-[28.8px] flex flex-col overflow-hidden transition-all duration-[280ms] ease-out hover:-translate-y-[6px] hover:shadow-[0px_12px_30px_rgba(15,45,92,0.15)]">
-            
+          <div className="group relative w-full md:flex-1 bg-white rounded-[16px_0px_16px_0px] border border-[rgba(15,45,92,0.10)] p-[28.8px] flex flex-col overflow-hidden transition-all duration-[280ms] ease-out hover:-translate-y-[6px] hover:shadow-[0px_12px_30px_rgba(15,45,92,0.15)]">
             <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#1A4F9E] transition-all duration-500 ease-out group-hover:w-full" />
 
             <div className="w-[48px] h-[48px] bg-[#FBF8F3] rounded-[12px] flex items-center justify-center text-[22px] transition-all duration-300 group-hover:bg-[#FFF4CC] group-hover:shadow-[0px_4px_12px_rgba(255,193,7,0.25)]">
@@ -53,9 +52,7 @@ export default function CreditAudience() {
             </p>
 
             <div className="mt-auto pt-[16px] border-t border-[rgba(15,45,92,0.10)] text-[14px] leading-[22.4px]">
-              <span className="font-bold text-[#1A4F9E]">
-                Documentos:{" "}
-              </span>
+              <span className="font-bold text-[#1A4F9E]">Documentos: </span>
               <span className="text-[#94A3B8]">
                 Contrato laboral traducido y apostillado, extractos bancarios
                 últimos 6 meses.
@@ -64,8 +61,7 @@ export default function CreditAudience() {
           </div>
 
           {/* CARD 2 */}
-          <div className="group relative w-[348px] min-h-[380px] bg-white rounded-[16px_0px_16px_0px] border border-[rgba(15,45,92,0.10)] p-[28.8px] flex flex-col overflow-hidden transition-all duration-[280ms] ease-out hover:-translate-y-[6px] hover:shadow-[0px_12px_30px_rgba(15,45,92,0.15)]">
-            
+          <div className="group relative w-full md:flex-1 bg-white rounded-[16px_0px_16px_0px] border border-[rgba(15,45,92,0.10)] p-[28.8px] flex flex-col overflow-hidden transition-all duration-[280ms] ease-out hover:-translate-y-[6px] hover:shadow-[0px_12px_30px_rgba(15,45,92,0.15)]">
             <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#1A4F9E] transition-all duration-500 ease-out group-hover:w-full" />
 
             <div className="w-[48px] h-[48px] bg-[#FBF8F3] rounded-[12px] flex items-center justify-center text-[22px] transition-all duration-300 group-hover:bg-[#FFF4CC] group-hover:shadow-[0px_4px_12px_rgba(255,193,7,0.25)]">
@@ -83,9 +79,7 @@ export default function CreditAudience() {
             </p>
 
             <div className="mt-auto pt-[16px] border-t border-[rgba(15,45,92,0.10)] text-[14px] leading-[22.4px]">
-              <span className="font-bold text-[#1A4F9E]">
-                Documentos:{" "}
-              </span>
+              <span className="font-bold text-[#1A4F9E]">Documentos: </span>
               <span className="text-[#94A3B8]">
                 Declaraciones de renta, extractos bancarios, certificaciones de
                 ingresos.
@@ -94,8 +88,7 @@ export default function CreditAudience() {
           </div>
 
           {/* CARD 3 */}
-          <div className="group relative w-[348px] min-h-[380px] bg-white rounded-[16px_0px_16px_0px] border border-[rgba(15,45,92,0.10)] p-[28.8px] flex flex-col overflow-hidden transition-all duration-[280ms] ease-out hover:-translate-y-[6px] hover:shadow-[0px_12px_30px_rgba(15,45,92,0.15)]">
-            
+          <div className="group relative w-full md:flex-1 bg-white rounded-[16px_0px_16px_0px] border border-[rgba(15,45,92,0.10)] p-[28.8px] flex flex-col overflow-hidden transition-all duration-[280ms] ease-out hover:-translate-y-[6px] hover:shadow-[0px_12px_30px_rgba(15,45,92,0.15)]">
             <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#1A4F9E] transition-all duration-500 ease-out group-hover:w-full" />
 
             <div className="w-[48px] h-[48px] bg-[#FBF8F3] rounded-[12px] flex items-center justify-center text-[22px] transition-all duration-300 group-hover:bg-[#FFF4CC] group-hover:shadow-[0px_4px_12px_rgba(255,193,7,0.25)]">
@@ -113,9 +106,7 @@ export default function CreditAudience() {
             </p>
 
             <div className="mt-auto pt-[16px] border-t border-[rgba(15,45,92,0.10)] text-[14px] leading-[22.4px]">
-              <span className="font-bold text-[#1A4F9E]">
-                Documentos:{" "}
-              </span>
+              <span className="font-bold text-[#1A4F9E]">Documentos: </span>
               <span className="text-[#94A3B8]">
                 Extractos bancarios, carta explicativa del origen de fondos.
               </span>
@@ -124,13 +115,11 @@ export default function CreditAudience() {
         </div>
 
         {/* BANNER */}
-        <div className="mt-[28px] w-full h-[66px] bg-[#0F2D5C] rounded-[12px] flex items-center px-[24px] gap-[16px]">
-          <span className="text-[20px]">💡</span>
+        <div className="mt-7 w-full min-h-[66px] h-auto bg-[#0F2D5C] rounded-[12px] flex items-center px-6 py-4 gap-4">
+          <span className="text-[20px] shrink-0">💡</span>
 
-          <div className="flex flex-wrap items-center gap-[4px] text-[14px] leading-[21px]">
-            <span className="font-bold text-white">
-              ¿Pareja o familia?
-            </span>
+          <div className="flex flex-wrap items-center gap-1 text-[14px] leading-[21px]">
+            <span className="font-bold text-white">¿Pareja o familia?</span>
             <span className="text-white/75">
               Pueden sumar ingresos para calificar a un monto mayor. No tienen
               que estar casados — unión libre también aplica.
