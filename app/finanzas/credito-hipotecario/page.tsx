@@ -6,6 +6,8 @@ import CreditTypes from "@/app/components/credito-hipotecario/CreditTypes";
 import ComoFunciona from "@/app/components/credito-hipotecario/ComoFunciona";
 import FormCredito from "@/app/components/credito-hipotecario/FormCredito";
 import SiteLayout from "@/app/components/layout/SiteLayout";
+import HistoriasReales from "@/app/components/credito-hipotecario/HistoriasReales";
+
 
 export default function BrujulaFinancieraPage() {
   return (
@@ -17,6 +19,7 @@ export default function BrujulaFinancieraPage() {
       <CreditTypes />
       <ComoFunciona />
       <FormCredito />
+      <HistoriasReales />
     </SiteLayout>
   );
 }
