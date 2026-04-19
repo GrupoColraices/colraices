@@ -39,7 +39,7 @@ export default function HistoriasRealesSection() {
       style={{
         width: "100%",
         backgroundColor: "#FBF8F3",
-        padding: "88px 48px 88px",
+        padding: "88px 48px 50px",
         boxSizing: "border-box",
         fontFamily: "'Montserrat', system-ui, sans-serif",
       }}
