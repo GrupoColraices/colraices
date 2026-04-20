@@ -8,9 +8,10 @@ import FormCredito from "@/app/components/credito-hipotecario/FormCredito";
 import SiteLayout from "@/app/components/layout/SiteLayout";
 import HistoriasReales from "@/app/components/credito-hipotecario/HistoriasReales";
 import FAQCredito from "@/app/components/credito-hipotecario/FAQCredito";
+import CTACompra from "@/app/components/credito-hipotecario/CTACompra";
 
 
-export default function BrujulaFinancieraPage() {
+export default function CreditoHipotecarioPage() {
   return (
     <SiteLayout>
       <Breadcrumb />
@@ -22,6 +23,7 @@ export default function BrujulaFinancieraPage() {
       <FormCredito />
       <HistoriasReales />
       <FAQCredito />
+      <CTACompra />
     </SiteLayout>
   );
 }
