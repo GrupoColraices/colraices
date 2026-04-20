@@ -38,6 +38,8 @@ const faqs = [
 
 export default function FAQCredito() {
   const [open, setOpen] = useState<number | null>(1);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [hoveredBtn, setHoveredBtn] = useState(false);
 
   return (
     <section
@@ -55,7 +57,7 @@ export default function FAQCredito() {
           width: "1180px",
           display: "flex",
           gap: "64px",
-          alignItems: "stretch", // 🔥 clave para que la card tome toda la altura
+          alignItems: "stretch",
         }}
       >
         {/* LEFT */}
@@ -89,6 +91,7 @@ export default function FAQCredito() {
           <div>
             {faqs.map((faq, i) => {
               const active = open === i;
+              const highlighted = active || hovered === i;
 
               return (
                 <div
@@ -100,6 +103,8 @@ export default function FAQCredito() {
                 >
                   <button
                     onClick={() => setOpen(active ? null : i)}
+                    onMouseEnter={() => setHovered(i)}
+                    onMouseLeave={() => setHovered(null)}
                     style={{
                       width: "100%",
                       display: "flex",
@@ -129,11 +134,13 @@ export default function FAQCredito() {
                         alignItems: "center",
                         justifyContent: "center",
                         fontSize: "16px",
-                        background: active ? "#FFC107" : "transparent",
-                        border: active
+                        background: highlighted ? "#FFC107" : "transparent",
+                        border: highlighted
                           ? "1px solid #FFC107"
                           : "1px solid #D9D9D9",
-                        color: active ? "#fff" : "#0F2D5C",
+                        color: highlighted ? "#fff" : "#0F2D5C",
+                        transition:
+                          "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
                       }}
                     >
                       {active ? "−" : "+"}
@@ -167,14 +174,12 @@ export default function FAQCredito() {
             border: "1px solid #E5E7EB",
             padding: "32px 24px",
             background: "#FBF8F3",
-
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center", // 🔥 centra vertical
+            justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
-
-            height: "100%", // 🔥 toma altura del contenedor padre
+            height: "100%",
           }}
         >
           <h3
@@ -202,17 +207,22 @@ export default function FAQCredito() {
           </p>
 
           <button
+            onMouseEnter={() => setHoveredBtn(true)}
+            onMouseLeave={() => setHoveredBtn(false)}
             style={{
               width: "100%",
-              background: "#0F2D5C",
+              background: hoveredBtn ? "#071A3A" : "#0F2D5C",
               color: "#fff",
               padding: "14px",
               borderRadius: "999px",
               fontSize: "14px",
               fontWeight: 500,
-              border: "none",
               cursor: "pointer",
-              boxShadow: "0 6px 14px rgba(15,45,92,0.2)",
+              border: "none",
+              boxShadow: hoveredBtn
+                ? "0 0 16px 5px rgba(255, 193, 7, 0.22)"
+                : "0 0 8px 2px rgba(255, 193, 7, 0.12)",
+              transition: "background 0.25s ease, box-shadow 0.3s ease",
             }}
           >
             Agendar llamada
