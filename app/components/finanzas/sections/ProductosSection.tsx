@@ -32,6 +32,8 @@ const preparacion = [
     duration: "30–90 días",
     color: "bg-[#DC2626]",
     icon: "🔧",
+    button: "Ver produto →",
+    href: "/finanzas/buena-data",
   },
 ];
  
