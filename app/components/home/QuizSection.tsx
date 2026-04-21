@@ -1,18 +1,42 @@
-"use client";
+'use client'
 
-import { useState, useRef, useEffect } from "react";
+import { useRouter } from 'next/navigation'
+import { useState, useRef, useEffect } from 'react'
 
 export default function TrustStripSection() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
   const ref = useRef<HTMLDivElement>(null);
 
+  const routeMap: Record<string, string> = {
+    "Quiero financiar mi vivienda en Colombia": "/finanzas/credito-hipotecario",
+    "Quiero saber si hoy aplico para crédito": "/finanzas/credito-hipotecario",
+    "Quiero entender mi situación financiera": "/finanzas/credito-hipotecario",
+    "Tengo reportes en Colombia": "/finanzas/credito-hipotecario",
+    "Quiero traer mi dinero a Colombia": "/finanzas/credito-hipotecario",
+    "Quiero ver proyectos": "/finanzas/credito-hipotecario",
+    "Quiero que busquen un inmueble por mí": "/finanzas/credito-hipotecario",
+    "Quiero analizar un inmueble que ya encontré": "/finanzas/credito-hipotecario",
+    "Quiero gestionar temas legales o migratorios": "/finanzas/credito-hipotecario",
+  };
+
+  const handleVerMiCamino = () => {
+    if (!selected) return;
+    const route = routeMap[selected];
+    if (route) router.push(route);
+  };
+
   const options = [
-    "Comprar una casa en Colombia",
-    "Ordenar mis finanzas y crédito",
-    "Migrar a Colombia",
-    "Emprender en Colombia",
-    "Resolver un trámite legal",
+    "Quiero financiar mi vivienda en Colombia",
+    "Quiero saber si hoy aplico para crédito",
+    "Quiero entender mi situación financiera",
+    "Tengo reportes en Colombia",
+    "Quiero traer mi dinero a Colombia",
+    "Quiero ver proyectos",
+    "Quiero que busquen un inmueble por mí",
+    "Quiero analizar un inmueble que ya encontré",
+    "Quiero gestionar temas legales o migratorios",
   ];
 
   useEffect(() => {
@@ -35,8 +59,8 @@ export default function TrustStripSection() {
         
         px-[20px] 
         sm:px-[40px] 
-        md:px-[100px] 
-        lg:px-[156px] 
+        md:px-[80px] 
+        lg:px-[120px] 
         
         pt-[30px] 
         md:pt-[42px] 
@@ -50,13 +74,12 @@ export default function TrustStripSection() {
           flex-col 
           md:flex-row 
           md:items-center 
-          md:justify-center   /* 🔥 CAMBIO */
-          md:gap-[80px]       /* 🔥 CAMBIO */
-          gap-6 md:gap-8
+          md:justify-between
+          gap-6 md:gap-10 lg:gap-16
         ">
 
           {/* TEXTO */}
-          <div className="max-w-[460px] text-center md:text-left">
+          <div className="w-full md:max-w-[460px] text-center md:text-left">
             <h2 className="
               text-[#0B1F3A] 
               text-[22px] 
@@ -80,67 +103,49 @@ export default function TrustStripSection() {
             flex 
             flex-col 
             sm:flex-row 
-            
             items-stretch 
             sm:items-center 
-            
-            gap-4 sm:gap-5 md:gap-6
+            gap-3 sm:gap-4 md:gap-5
             w-full md:w-auto
           ">
 
-            {/* SELECT PRO */}
-            <div ref={ref} className="relative w-full sm:w-[300px] md:w-[340px]">
+            {/* SELECT */}
+            <div ref={ref} className="relative w-full sm:w-[320px] md:w-[380px] lg:w-[420px]">
 
-              {/* INPUT */}
               <div
                 onClick={() => setOpen(!open)}
                 className="
-                  h-[48px]   /* 🔥 CAMBIO */
+                  h-[48px]
                   rounded-full 
                   border border-[#CBD5E1] 
                   bg-white 
                   flex items-center justify-between
-                  px-5
+                  px-4 md:px-5
                   shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] 
                   cursor-pointer
                   transition-all duration-200
                   hover:border-[#94A3B8]
                 "
               >
-                <span className={`text-[12px] md:text-[13px] ${selected ? "text-[#0B1F3A]" : "text-[#94A3B8]"}`}>
+                <span className={`text-[12px] md:text-[13px] truncate pr-2 ${selected ? "text-[#0B1F3A]" : "text-[#94A3B8]"}`}>
                   {selected || "¿Qué quieres lograr?"}
                 </span>
 
-                <span
-                className={`
-                  flex items-center justify-center
+                <span className={`
+                  flex items-center justify-center flex-shrink-0
                   transition-transform duration-300
                   ${open ? "rotate-180" : ""}
-                `}
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6 8L10 12L14 8"
-                    stroke="#0F2D5C"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
+                `}>
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                    <path d="M6 8L10 12L14 8" stroke="#0F2D5C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
               </div>
 
-              {/* DROPDOWN */}
               {open && (
-                <ul className="absolute top-[56px] left-0 w-full bg-white border border-[#CBD5E1] rounded-[12px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.12)] z-50">
+                <ul className="absolute top-[52px] left-0 w-full bg-white border border-[#CBD5E1] rounded-[12px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.12)] z-50 max-h-[260px] overflow-y-auto">
 
-                  <li className="px-4 py-3 text-[#0F2D5C] text-[13px] md:text-[14px] font-medium border-b border-[#E2E8F0]">
+                  <li className="px-4 py-[7px] text-[#0F2D5C] text-[13px] md:text-[14px] font-medium border-b border-[#E2E8F0]">
                     ¿Qué quieres lograr?
                   </li>
 
@@ -152,13 +157,13 @@ export default function TrustStripSection() {
                         setOpen(false);
                       }}
                       className={`
-                        px-4 py-3 
+                        px-4 py-[7px]
                         text-[13px] md:text-[14px] 
                         cursor-pointer 
                         transition-all duration-200
                         ${
                           selected === item
-                            ? "bg-[#1A4F9E] text-white"
+                            ? "bg-[#1A4F9E] text-white font-medium"
                             : "text-[#2A3F77] hover:bg-[#F1F5F9]"
                         }
                       `}
@@ -171,19 +176,20 @@ export default function TrustStripSection() {
             </div>
 
             {/* BOTÓN */}
-            <button className="
-              text-[#0B1F3A] 
-              font-semibold 
-              text-[13px] md:text-[14px] 
-              
-              flex items-center justify-center 
-              gap-1 
-              
-              hover:gap-2 
-              transition-all
-              
-              w-full sm:w-auto
-            ">
+            <button
+              onClick={handleVerMiCamino}
+              disabled={!selected}
+              className={`
+                font-semibold 
+                text-[13px] md:text-[14px] 
+                flex items-center justify-center 
+                gap-1 hover:gap-2 
+                transition-all whitespace-nowrap
+                w-full sm:w-auto
+                h-[48px]
+                ${selected ? "text-[#0B1F3A] cursor-pointer" : "text-[#0B1F3A]/40 cursor-not-allowed"}
+              `}
+            >
               Ver mi camino →
             </button>
 

@@ -1,297 +1,197 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+
+type Service = {
+  text: string;
+  icon: string;
+  href?: string;
+};
+
+const SERVICES: readonly Service[] = [
+  { text: "Financiación en Colombia", icon: "💰", href: "/finanzas" },
+  { text: "Tu propiedad en Colombia", icon: "🏠", href: "/inmuebles" },
+  { text: "Servicios legales y migratorios", icon: "⚖️", href: "/legal-migracion" },
+];
+
+// 🔥 AJUSTES PRO (sin cambiar diseño)
+const SECTION_CLASS =
+  "relative isolate flex items-center overflow-hidden min-h-[90vh] md:min-h-[600px]";
+
+const BACKGROUND_CLASS =
+  "absolute inset-0 bg-no-repeat bg-center bg-cover";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-[520px] md:h-[600px] flex items-center overflow-hidden">
+    <section className={SECTION_CLASS}>
+      <BackgroundImage />
 
-      {/* IMAGEN DE FONDO */}
-      <div
-        className="absolute inset-0 bg-no-repeat bg-[center_30%] bg-[length:140%] sm:bg-[length:120%] md:bg-[length:100%]"
-        style={{
-          backgroundImage: "url('/hero-bg.png')",
-        }}
-      />
-
-      {/* CONTENEDOR */}
-      <div className="
-        relative 
-        w-full 
-        max-w-[1416px] 
-        mx-auto 
-        
-        px-[20px] 
-        sm:px-[40px] 
-        md:px-[80px] 
-        lg:px-[156px]
-      ">
-
-        <div className="
-          flex 
-          flex-col 
-          lg:flex-row 
-          items-center 
-          justify-between 
-          gap-[40px]
-        ">
-
-          {/* TEXTO */}
-          <div className="max-w-[620px] text-center lg:text-left">
-
-            {/* EYEBROW */}
-            <div className="flex items-center justify-center lg:justify-start gap-[8px] mt-[3.5px] mb-4">
-              <div className="w-6 h-[1px] bg-[#FFC107]" />
-
-              <p className="
-                text-[#FFC107] 
-                text-[16px] 
-                leading-[24px] 
-                font-medium 
-                italic 
-                max-w-[475px]
-              ">
-                Para colombianos que construyen futuro desde afuera
-              </p>
-            </div>
-
-            {/* TITULO */}
-            <h1 className="
-              text-white 
-              text-[26px] 
-              sm:text-[30px] 
-              md:text-[35.2px] 
-              leading-[34px] 
-              sm:leading-[38px] 
-              md:leading-[38.7px] 
-              mb-4 md:mb-6
-              tracking-[-0.02em]
-            ">
-
-              <span className="block font-normal">
-                Ese dinero que mandas a casa
-              </span>
-
-              <span className="block font-light">
-                puede hacer mucho más que
-              </span>
-
-              <span className="block text-[#FFC107] font-bold italic">
-                llegar a fin de mes.
-              </span>
-
-            </h1>
-
-            {/* DESCRIPCIÓN */}
-            <p className="
-              text-white/70 
-              text-[16.8px] 
-              leading-[29.4px] 
-              font-light 
-              mb-6 md:mb-8
-            ">
-              Te ayudamos a convertir tus remesas en una casa, en un negocio, en algo que dure.
-              Con acompañamiento real, desde donde estás.
-            </p>
-
-            {/* BOTONES */}
-            <div className="
-              flex 
-              flex-col 
-              sm:flex-row 
-              items-center 
-              justify-center 
-              lg:justify-start 
-              gap-4 sm:gap-6
-            ">
-
-              <Link
-                href="/contacto"
-                className="
-                  bg-[#FFC107] text-[#2A3F77] 
-                  w-full sm:w-[209px] 
-                  h-[44px] md:h-[48px] 
-                  flex items-center justify-center 
-                  rounded-full 
-                  text-[14.4px] 
-                  font-semibold 
-                  transition hover:opacity-90
-                "
-              >
-                Quiero saber más →
-              </Link>
-
-              <Link
-                href="/servicios"
-                className="
-                  border border-white text-white 
-                  w-full sm:w-auto 
-                  px-6 
-                  h-[42px] md:h-[44px] 
-                  flex items-center justify-center 
-                  rounded-full 
-                  text-[14.4px] 
-                  font-semibold 
-                  transition hover:bg-white hover:text-[#0B1F3A]
-                "
-              >
-                Conoce el ecosistema
-              </Link>
-
-            </div>
-
-          </div>
-
-          {/* CARD DERECHA */}
-          <div className="
-            relative
-
-            w-full
-            max-w-[420px]
-
-            h-auto
-            lg:h-[401.34px]
-
-            p-[20px]
-            sm:p-[24px]
-            md:p-[30px]
-            lg:p-[35.99px]
-
-            rounded-tl-[16px]
-            rounded-tr-none
-            rounded-bl-none
-            rounded-br-[16px]
-
-            bg-white/95
-            border border-white/40
-            shadow-[0_25px_80px_rgba(0,0,0,0.25)]
-            overflow-visible
-          ">
-
-            {/* LUCES */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(254,243,199,0.9),transparent_55%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(20,79,158,0.25),transparent_60%)] pointer-events-none" />
-
-            {/* CONTENIDO */}
-            <div className="relative z-10">
-
-              {/* TAG */}
-              <div className="inline-flex items-center gap-[6px] px-3 py-1 rounded-full bg-[#2A3F77]/10 border border-[#2A3F77]/15 mb-[20px]">
-                <div className="w-2 h-2 bg-[#FFC107] rounded-full"></div>
-                <span className="text-[11.52px] font-semibold text-[#0F2D5C] tracking-wide">
-                  ECOSISTEMA COLRAICES
-                </span>
-              </div>
-
-              {/* TITULO */}
-              <h3 className="text-[44.8px] font-bold text-[#0F2D5C] leading-none">
-                23 años
-              </h3>
-
-              {/* TEXTO */}
-              <p className="text-[#1A4F9E] text-[12.8px] font-normal mt-[4px] mb-[27.98px]">
-                acompañando la diáspora colombiana
-              </p>
-
-              {/* LISTA */}
-              <div className="flex flex-col gap-[10px]">
-
-                {[
-                  { text: "Financiación en Colombia", icon: "💰" },
-                  { text: "Tu propiedad en Colombia", icon: "🏠" },
-                  { text: "Servicios legales y migratorios", icon: "⚖️" },
-                ].map((item) => (
-                  <div
-                    key={item.text}
-                    className="
-                      flex items-center justify-between
-                      h-[54.53px]
-                      px-[13.98px]
-
-                      rounded-[6px]
-                      bg-[#2A3F77]/[0.07]
-                      border border-[#2A3F77]/[0.12]
-
-                      hover:bg-white/60
-                      transition
-                    "
-                  >
-                    <div className="flex items-center gap-[11.99px]">
-
-                      <div className="
-                        w-[31.99px] h-[31.99px]
-                        flex items-center justify-center
-                        rounded-[8px]
-                        bg-[#2A3F77]/8
-                      ">
-                        {item.icon}
-                      </div>
-
-                      <span className="text-[13.6px] font-medium text-[#0F2D5C]">
-                        {item.text}
-                      </span>
-
-                    </div>
-
-                    <span className="text-[#2A3F77]">›</span>
-                  </div>
-                ))}
-
-              </div>
-
-            </div>
-            
-            {/* BADGE ANIMADO */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1.5,
-                delay: 0.6,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="
-                absolute
-                -left-[31.99px]
-                -bottom-[20px]
-                z-20
-
-                w-[219px]
-                h-[52px]
-
-                bg-white
-                rounded-tl-[16px]
-                rounded-br-[16px]
-
-                pl-[13.98px]
-                flex items-center
-                gap-[10px]
-
-                shadow-[0_6px_18px_rgba(0,0,0,0.1)]
-              "
-            >
-
-              <div className="w-[31.99px] h-[31.99px] flex items-center justify-center rounded-[8px] bg-[#FEF3C7]">
-                🏠
-              </div>
-
-              <div className="flex flex-col justify-center w-[149.02px] leading-none">
-                <p className="text-[10.88px] font-medium text-[#94A3B8] leading-[13.05px]">
-                  Negocios concretados
-                </p>
-                <p className="text-[13.6px] font-semibold text-[#0F2D5C] leading-[17.27px]">
-                  +11.000 en Colombia
-                </p>
-              </div>
-
-            </motion.div>
-
-          </div>
-
-        </div> 
-
-      </div> 
+      <div className="relative w-full max-w-[1200px] xl:max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 py-12 md:py-16">
+          <HeroText />
+          <EcosystemCard services={SERVICES} />
+        </div>
+      </div>
     </section>
+  );
+}
+
+function BackgroundImage() {
+  return (
+    <div
+      className={BACKGROUND_CLASS}
+      style={{ backgroundImage: "url('/hero-bg.png')" }}
+      aria-hidden="true"
+    />
+  );
+}
+
+function HeroText() {
+  return (
+    <div className="w-full max-w-[620px] text-center lg:text-left">
+      <div className="mb-4 flex items-center justify-center gap-2 lg:justify-start">
+        <div className="h-[1px] w-6 bg-[#FFC107]" />
+        <p className="text-[#FFC107] text-sm sm:text-base italic">
+          Para colombianos que construyen futuro desde afuera
+        </p>
+      </div>
+
+      <h1 className="text-white text-[24px] sm:text-[28px] md:text-[34px] lg:text-[36px] leading-tight mb-4 md:mb-6">
+        <span className="block font-normal">Ese dinero que mandas a casa</span>
+        <span className="block font-light">puede hacer mucho más que</span>
+        <span className="block text-[#FFC107] font-bold italic">
+          llegar a fin de mes.
+        </span>
+      </h1>
+
+      <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-6 md:mb-8 max-w-[520px] mx-auto lg:mx-0">
+        Te ayudamos a convertir tus remesas en una casa, en un negocio, en algo que dure. Con
+        acompañamiento real, desde donde estás.
+      </p>
+
+      <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
+        <Link
+          href="/#units-section"
+          className="w-full sm:w-auto px-6 h-[44px] md:h-[48px] flex items-center justify-center rounded-full bg-[#FFC107] text-[#2A3F77] text-sm font-semibold transition hover:opacity-90"
+        >
+          Quiero saber más →
+        </Link>
+
+        <Link
+          href="/servicios"
+          className="w-full sm:w-auto px-6 h-[42px] md:h-[44px] flex items-center justify-center rounded-full border border-white text-white text-sm font-semibold transition hover:bg-white hover:text-[#0B1F3A]"
+        >
+          Conoce el ecosistema
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function EcosystemCard({ services }: { services: readonly Service[] }) {
+  return (
+    <div className="relative w-full max-w-[420px] pb-7">
+      <div
+        className="
+        relative
+        w-full
+        p-5 sm:p-6 md:p-7
+        rounded-tl-[16px]
+        rounded-br-[16px]
+        bg-white/95
+        border border-white/40
+        shadow-[0_25px_80px_rgba(0,0,0,0.25)]
+      "
+      >
+        {/* 🔥 EFECTO COLORES (CORREGIDO SIN ROMPER BADGE) */}
+        <div className="absolute inset-0 overflow-hidden rounded-tl-[16px] rounded-br-[16px] pointer-events-none">
+          <div className="absolute top-[-40px] right-[-40px] w-[180px] h-[180px] bg-[#FFC107] opacity-20 blur-3xl rounded-full" />
+          <div className="absolute bottom-[-40px] left-[-40px] w-[200px] h-[200px] bg-[#2A3F77] opacity-20 blur-3xl rounded-full" />
+        </div>
+
+        <div className="relative z-10">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#2A3F77]/15 bg-[#2A3F77]/10 px-3 py-1">
+            <div className="h-2 w-2 rounded-full bg-[#FFC107]" />
+            <span className="text-xs font-semibold text-[#0F2D5C]">
+              ECOSISTEMA COLRAICES
+            </span>
+          </div>
+
+          {/* 🔥 ajuste responsive sin cambiar look */}
+          <h3 className="text-3xl sm:text-4xl font-bold text-[#0F2D5C]">
+            23 años
+          </h3>
+
+          <p className="mt-1 mb-6 text-xs text-[#1A4F9E]">
+            acompañando la diáspora colombiana
+          </p>
+
+          <ul className="flex flex-col gap-3">
+            {services.map((item) => (
+              <ServiceRow key={item.text} item={item} />
+            ))}
+          </ul>
+        </div>
+
+        <AnimatedBadge />
+      </div>
+    </div>
+  );
+}
+
+function ServiceRow({ item }: { item: Service }) {
+  return (
+    <li>
+      <Link
+        href={item.href || "#"}
+        className="flex items-center justify-between px-4 py-3 rounded-md bg-[#2A3F77]/10 border border-[#2A3F77]/20 hover:bg-white/60 transition"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 flex items-center justify-center rounded-md bg-[#2A3F77]/10">
+            {item.icon}
+          </div>
+          <span className="text-sm font-medium text-[#0F2D5C]">
+            {item.text}
+          </span>
+        </div>
+        <span>›</span>
+      </Link>
+    </li>
+  );
+}
+
+function AnimatedBadge() {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={shouldReduceMotion ? { duration: 0 } : { duration: 1.2, ease: "easeOut" }}
+      className="
+        absolute
+        -bottom-8 md:-bottom-10
+        left-1/2 -translate-x-1/2
+        lg:left-[-32px] lg:translate-x-0
+        w-[220px] h-[52px]
+        bg-white
+        rounded-tl-[16px]
+        rounded-br-[16px]
+        flex items-center gap-3 px-3
+        shadow
+      "
+    >
+      <div className="w-8 h-8 flex items-center justify-center bg-[#FEF3C7] rounded-md">
+        🏠
+      </div>
+
+      <div className="text-xs leading-tight">
+        <p className="text-gray-400">Negocios concretados</p>
+        <p className="font-semibold text-[#0F2D5C]">
+          +11.000 en Colombia
+        </p>
+      </div>
+    </motion.div>
   );
 }

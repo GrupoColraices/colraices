@@ -26,52 +26,91 @@ const item = {
     transition: {
       duration: 0.7,
       ease: (t: number) =>
-        t < 0.5
-          ? 4 * t * t * t
-          : 1 - Math.pow(-2 * t + 2, 3) / 2,
+        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
     },
   },
 };
 
+type ServiceCard = {
+  title: string;
+  description: string;
+  icon: string;
+  tags: string[];
+};
+
+const SERVICE_CARDS: ServiceCard[] = [
+  {
+    icon: "💰",
+    title: "Finanzas inteligentes",
+    description:
+      "Accede a crédito para tu vivienda en Colombia o libre inversión. Si tienes reportes o dudas, te ayudamos a solucionarlo y a prepararte paso a paso.",
+    tags: ["Buena Data", "Brújula Financiera", "Brújula Crediticia", "Monetización", "Crédito"],
+  },
+  {
+    icon: "🏠",
+    title: "Tu propiedad en Colombia",
+    description:
+      "Te ayudamos a encontrar tu propiedad en Colombia o analizamos la que quieres comprar. Para que tomes la decisión con respaldo.",
+    tags: ["Brújula Inmobiliaria", "Llave inmobiliaria"],
+  },
+  {
+    icon: "⚖️",
+    title: "Servicios legales y migratorios",
+    description:
+      "Desde migrar ordenadamente hasta emprender en Colombia. Asesoría legal con gente que habla tu idioma.",
+    tags: [
+      "Asesoría migratoria",
+      "Emprendimiento",
+      "Pensiones",
+      "Representación legal",
+      "Servicios fiscales",
+    ],
+  },
+];
+
 export default function UnitsSection() {
   return (
-    <section id="servicios" className="w-full bg-[#FFFFFF] pt-[60px] md:pt-[80px] pb-[80px] md:pb-[120px]">
-
-      <div className="
+    <section
+      id="units-section"
+      className="w-full scroll-mt-24 bg-white py-[60px] md:py-[90px]"
+    >
+      <div
+        className="
         w-full 
-        max-w-[1416px] 
+        max-w-[1200px] 
         mx-auto 
         
-        px-[20px] 
-        sm:px-[40px] 
-        md:px-[100px] 
-        lg:px-[156px]
-      ">
-
+        px-4 
+        sm:px-6 
+        md:px-10 
+        lg:px-16
+      "
+      >
         {/* HEADER */}
-        <div className="text-center max-w-[1000px] mx-auto mb-[40px] md:mb-[60px]">
-          <p className="text-[#FFC107] text-[16px] md:text-[20px] font-bold italic mb-2">
+        <div className="mx-auto mb-10 max-w-[900px] text-center md:mb-14">
+          <p className="mb-2 text-[15px] font-bold italic text-[#FFC107] md:text-[18px]">
             Nuestros servicios
           </p>
 
-          <h2 className="
+          <h2
+            className="
             text-[#0F2D5C] 
-            text-[24px] 
-            sm:text-[28px] 
-            md:text-[34px] 
-            lg:text-[40px] 
+            text-[22px] 
+            sm:text-[26px] 
+            md:text-[32px] 
+            lg:text-[38px] 
             
             font-semibold 
-            leading-[1.2] 
-            md:leading-[1.15] 
-            
+            leading-tight 
             mb-3 md:mb-4
-          ">
+          "
+          >
             Todo lo que necesitas, en un solo ecosistema.
           </h2>
 
-          <p className="text-[#475569] text-[14px] md:text-[15px] leading-[22px] md:leading-[24px] max-w-[980px] mx-auto">
-            No tienes que buscar en cinco lugares distintos ni explicarle tu historia a desconocidos cada vez. Aquí está todo.
+          <p className="mx-auto max-w-[750px] text-[14px] leading-[22px] text-[#475569] md:text-[15px]">
+            No tienes que buscar en cinco lugares distintos ni explicarle tu historia a desconocidos
+            cada vez. Aquí está todo.
           </p>
         </div>
 
@@ -85,24 +124,23 @@ export default function UnitsSection() {
             grid 
             grid-cols-1 
             sm:grid-cols-2 
-            md:grid-cols-3 
+            lg:grid-cols-3 
             
             gap-4 
             md:gap-6
           "
         >
-
-          {[1, 2, 3].map((_, index) => (
+          {SERVICE_CARDS.map((card) => (
             <motion.div
-              key={index}
+              key={card.title}
               variants={item}
               className="
               relative group bg-white border border-[#E2E8F0] 
               
-              p-5 md:p-7 
+              p-5 md:p-6 
               
               rounded-tl-[16px] rounded-br-[16px]
-              flex flex-col justify-between overflow-hidden
+              flex flex-col justify-between
               
               transition-all duration-500
               hover:-translate-y-[6px]
@@ -111,62 +149,49 @@ export default function UnitsSection() {
               hover:border-[#0F2D5C]/20
               "
             >
-
               {/* BARRA */}
               <div className="absolute top-0 left-0 h-[3px] w-full overflow-hidden">
-                <div className="h-full w-full bg-[#FFC107] 
-                  translate-x-[-100%] group-hover:translate-x-0 
-                  transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                <div
+                  className="
+                  h-full w-full bg-[#FFC107]
+                  translate-x-[-100%] group-hover:translate-x-0
+                  transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
+                "
                 />
               </div>
 
               <div>
-
                 {/* ICONO */}
-                <div className="
-                  w-10 h-10 md:w-12 md:h-12 
-                  bg-[#F1F5F9] 
-                  rounded-lg 
-                  flex items-center justify-center 
-                  mb-4 md:mb-5
-                  
+                <div
+                  className="
+                  mb-4 flex h-10 w-10 items-center justify-center rounded-lg
+                  bg-[#F1F5F9]
                   transition-all duration-500
-                  group-hover:bg-[#FFF6D6]
                   group-hover:-translate-y-[2px]
+                  group-hover:bg-[#FFF6D6]
                   group-hover:shadow-[0_10px_25px_rgba(255,193,7,0.35)]
-                ">
-                  {index === 0 ? "💰" : index === 1 ? "🏠" : "⚖️"}
+                  md:h-11 md:w-11
+                "
+                >
+                  {card.icon}
                 </div>
 
-                <h3 className="text-[#0F2D5C] text-[16px] md:text-[18px] font-semibold mb-2">
-                  {index === 0
-                    ? "Finanzas inteligentes"
-                    : index === 1
-                    ? "Tu propiedad en Colombia"
-                    : "Servicios legales y migratorios"}
+                <h3 className="mb-2 text-[16px] font-semibold text-[#0F2D5C] md:text-[18px]">
+                  {card.title}
                 </h3>
 
-                <p className="text-[#475569] text-[13px] md:text-[14px] leading-[20px] md:leading-[22px] mb-4 md:mb-5">
-                  {index === 0
-                    ? "Accede a crédito para tu vivienda en Colombia o libre inversión. Si tienes reportes o dudas, te ayudamos a solucionarlo y a prepararte paso a paso."
-                    : index === 1
-                    ? "Te ayudamos a encontrar tu propiedad en Colombia o analizamos la que quieres comprar. Para que tomes la decisión con respaldo."
-                    : "Desde migrar ordenadamente hasta emprender en Colombia. Asesoría legal con gente que habla tu idioma."}
+                <p className="mb-4 text-[13px] leading-[20px] text-[#475569] md:text-[14px]">
+                  {card.description}
                 </p>
 
                 {/* TAGS */}
-                <div className="flex flex-wrap gap-2 mb-5 md:mb-6">
-                  {(index === 0
-                    ? ["Buena Data", "Brújula Financiera", "Brújula Crediticia", "Monetización", "Crédito"]
-                    : index === 1
-                    ? ["Brújula Inmobiliaria", "Llave inmobiliaria"]
-                    : ["Asesoría migratoria", "Emprendimiento", "Pensiones", "Representación legal", "Servicios fiscales"]
-                  ).map((tag) => (
+                <div className="mb-5 flex flex-wrap gap-2">
+                  {card.tags.map((tag) => (
                     <span
                       key={tag}
                       className="
                       text-[11px] md:text-[12px] 
-                      px-3 py-[5px] md:py-[6px] 
+                      px-3 py-[5px] 
                       rounded-full 
                       border border-[#1A4F9E]/[0.12] 
                       text-[#1A4F9E] 
@@ -176,32 +201,27 @@ export default function UnitsSection() {
                       hover:bg-[#1A4F9E]
                       hover:text-white
                       hover:border-[#1A4F9E]
-                      hover:shadow-[0_6px_18px_rgba(26,79,158,0.35)]
-                      "
+                    "
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-
               </div>
 
               {/* CTA */}
               <Link
                 href="/"
-                className="text-[#1A4F9E] font-medium text-[13px] md:text-[14px] flex items-center gap-1 group/cta"
+                className="group/cta flex items-center gap-1 text-[13px] font-medium text-[#1A4F9E] md:text-[14px]"
               >
                 Ver servicios
-                <span className="inline-block transition-all duration-300 group-hover/cta:translate-x-[6px]">
+                <span className="transition-all duration-300 group-hover/cta:translate-x-[6px]">
                   →
                 </span>
               </Link>
-
             </motion.div>
           ))}
-
         </motion.div>
-
       </div>
     </section>
   );

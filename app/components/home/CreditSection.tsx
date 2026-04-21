@@ -22,7 +22,6 @@ export default function CreditSection() {
         w-full 
         max-w-[1180px] 
         mx-auto 
-        
         px-[20px] 
         sm:px-[40px] 
         md:px-[60px] 
@@ -55,33 +54,39 @@ export default function CreditSection() {
               </p>
             </div>
 
-            {/* TITULO */}
+            {/* TITULO — sin whitespace-nowrap para que fluya en móvil */}
             <h2 className="text-white mb-4 md:mb-6">
 
               <span className="
                 font-bold 
-                text-[31.2px] 
-                leading-[37.4px]
-                block whitespace-nowrap
+                text-[24px]
+                sm:text-[28px]
+                md:text-[31.2px] 
+                leading-[1.25]
+                block
               ">
                 ¿Tienes ingresos en el exterior?
               </span>
 
               <span className="
                 font-normal 
-                text-[31.2px] 
-                leading-[37.4px]
-                block whitespace-nowrap
+                text-[24px]
+                sm:text-[28px]
+                md:text-[31.2px] 
+                leading-[1.25]
+                block
               ">
                 Tienes capacidad de compra en Colombia.
               </span>
 
               <span className="
                 font-bold italic 
-                text-[29.12px] 
-                leading-[34.9px]
+                text-[22px]
+                sm:text-[26px]
+                md:text-[29.12px] 
+                leading-[1.25]
                 text-[#FFC107]
-                block whitespace-nowrap
+                block
               ">
                 Solo necesitas quien te lo haga posible.
               </span>
@@ -151,8 +156,8 @@ export default function CreditSection() {
 
           </div>
 
-          {/* CARD */}
-          <div className="w-full max-w-[360px] md:ml-auto">
+          {/* CARD — centrada en móvil */}
+          <div className="w-full max-w-[360px] mx-auto md:ml-auto">
 
             <div className="
               bg-[#F8FAFC]

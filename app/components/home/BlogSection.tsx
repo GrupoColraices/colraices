@@ -51,8 +51,7 @@ const itemVariants = {
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.6,
-      eease: "cubic-bezier(0.22, 1, 0.36, 1)"
+      duration: 0.6, // ✅ sin ease
     },
   },
 };
@@ -60,7 +59,8 @@ const itemVariants = {
 export default function BlogSection() {
   return (
     <section className="w-full bg-[#FBF8F3]">
-      <div className="
+      <div
+        className="
         w-full 
         max-w-[1416px] 
         mx-auto 
@@ -77,8 +77,8 @@ export default function BlogSection() {
         pb-[60px] 
         md:pb-[80px] 
         lg:pb-[96px]
-      ">
-
+      "
+      >
         {/* HEADER */}
         <motion.div
           className="flex flex-col items-center text-center"
@@ -124,16 +124,12 @@ export default function BlogSection() {
           className="
             mt-[32px] 
             md:mt-[48px] 
-            
             grid 
             grid-cols-1 
             sm:grid-cols-2 
-            lg:grid-cols-[472.88px_295.56px_295.56px] 
-            
+            lg:grid-cols-3 
             gap-[16px] 
-            md:gap-[20px] 
-            
-            justify-center
+            md:gap-[20px]
           "
           variants={containerVariants}
           initial="hidden"
@@ -156,22 +152,14 @@ export default function BlogSection() {
                 flex flex-col 
                 shadow-[0_4px_12px_rgba(15,45,92,0.08)] 
                 hover:shadow-[0_16px_32px_rgba(15,45,92,0.12)]
+                min-h-[360px] sm:min-h-[380px] md:min-h-[420px]
               "
-              style={{
-                height: "420px",
-              }}
             >
-              {/* IMAGE */}
               <div
-                className={`
+                className="
                   relative flex items-center justify-center bg-[#DADADA] 
-                  
-                  h-[200px] 
-                  sm:h-[240px] 
-                  md:h-[260px] 
-                  
-                  ${article.featured ? "lg:h-[314px]" : "lg:h-[165px]"}
-                `}
+                  h-[200px] sm:h-[240px] md:h-[260px] lg:h-[240px]
+                "
               >
                 <div className="text-black/20 text-[32px] md:text-[40px]">
                   {article.icon}
@@ -180,7 +168,6 @@ export default function BlogSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F2D5C]/10 to-transparent" />
               </div>
 
-              {/* CONTENT */}
               <div className="p-4 md:p-6 flex flex-col flex-1">
                 <span className="inline-flex w-fit rounded-full bg-[#1A4F9E]/7 px-3 py-1 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.08em] text-[#1A4F9E] mb-4">
                   {article.category}

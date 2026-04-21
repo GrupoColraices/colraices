@@ -8,10 +8,11 @@ import BlogSection from "./components/home/BlogSection";
 import CtaBannerSection from "./components/home/CtaBannerSection";
 import AliadosSection from "./components/home/AliadosSection";
 import UnitsSection from "./components/home/UnitsSection";
+import SiteLayout from "@/app/components/layout/SiteLayout";
 
 export default function Home() {
   return (
-    <main>
+    <SiteLayout>
       <HeroSection />
       <TrustStripSection />
       <QuizSection />
@@ -22,6 +23,6 @@ export default function Home() {
       <BlogSection />
       <CtaBannerSection />
       <AliadosSection />
-    </main>
+    </SiteLayout>
   );
 }

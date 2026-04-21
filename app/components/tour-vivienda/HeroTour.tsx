@@ -51,52 +51,82 @@ export default function HeroTour() {
   const [active, setActive] = useState(1);
   const current = MOMENTS.find((m) => m.id === active)!;
 
+  /* 🔥 CLON EXACTO DEL VIDEO */
   useEffect(() => {
-    const move = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 10;
-      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+    const circles = document.querySelectorAll<HTMLElement>(".circle-layer");
 
-      document.querySelectorAll(".ph-atmos").forEach((el) => {
-        (el as HTMLElement).style.transform = `translate(${x}px, ${y}px)`;
-      });
+    let mouseX = 0;
+    let mouseY = 0;
+
+    let currentX = 0;
+    let currentY = 0;
+
+    const inertia = 0.03; // 🔥 aire real
+
+    const handleMove = (e: MouseEvent) => {
+      mouseX = e.clientX / window.innerWidth - 0.5;
+      mouseY = e.clientY / window.innerHeight - 0.5;
     };
 
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
+    // 🔥 ruido orgánico real (no loop)
+    const noise = (t: number, seed: number) => {
+      return (
+        Math.sin(t * 0.6 + seed) * 0.5 +
+        Math.sin(t * 0.3 + seed * 2) * 0.3 +
+        Math.sin(t * 0.15 + seed * 3) * 0.2
+      );
+    };
+
+    let raf = 0;
+
+    const animate = () => {
+      const t = performance.now() * 0.001;
+
+      currentX += (mouseX - currentX) * inertia;
+      currentY += (mouseY - currentY) * inertia;
+
+      circles.forEach((el, i) => {
+        const depth = (i + 1) * 6;
+
+        const moveX = currentX * depth;
+        const moveY = currentY * depth;
+
+        const organicX = noise(t, i) * (8 + i * 1.5);
+        const organicY = noise(t + 10, i) * (10 + i * 2);
+
+        el.style.transform = `translate(${moveX + organicX}px, ${moveY + organicY}px)`;
+        el.style.willChange = "transform";
+      });
+
+      raf = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("mousemove", handleMove);
+    raf = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMove);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
-    <section className="tour-vivienda platform-hero relative isolate w-full flex justify-center bg-transparent overflow-hidden">
+    <section className="tour-vivienda platform-hero relative isolate w-full flex justify-center bg-transparent overflow-hidden min-h-[720px]">
 
-      {/* 🔥 BACKGROUND EXACTO FIGMA */}
-      <div className="absolute inset-0 z-[1] pointer-events-none hidden md:block">
-
-        {/* IZQUIERDA — DORADO GRANDE */}
-        <div className="absolute bottom-[-260px] left-[-200px] w-[480px] h-[480px] bg-[#C9900C]/16 rounded-full" />
-
-        {/* IZQUIERDA — GRIS GRANDE */}
-        <div className="absolute top-[30px] left-[140px] w-[340px] h-[340px] bg-[#0F2D5C]/12 rounded-full" />
-
-        {/* IZQUIERDA — GRIS MEDIO (encima del grande) */}
-        <div className="absolute top-[140px] left-[260px] w-[260px] h-[260px] bg-[#0F2D5C]/10 rounded-full" />
-
-        {/* DERECHA — DORADO GRANDE (más afuera) */}
-        <div className="absolute top-[-180px] right-[-300px] w-[560px] h-[560px] bg-[#C9900C]/12 rounded-full" />
-
-        {/* DERECHA — DORADO PEQUEÑO (alineado con texto) */}
-        <div className="absolute top-[40px] right-[260px] w-[170px] h-[170px] bg-[#C9900C]/18 rounded-full" />
-
-        {/* DERECHA — DORADO MEDIO ABAJO */}
-        <div className="absolute bottom-[-140px] right-[120px] w-[280px] h-[280px] bg-[#C9900C]/12 rounded-full" />
-
+      {/* 🔥 CÍRCULOS */}
+      <div className="absolute inset-0 z-0 pointer-events-none hidden md:block">
+        <div className="circle-layer absolute bottom-[-260px] left-[-200px] w-[480px] h-[480px] bg-[#C9900C]/16 rounded-full" />
+        <div className="circle-layer absolute top-[30px] left-[140px] w-[340px] h-[340px] bg-[#0F2D5C]/12 rounded-full" />
+        <div className="circle-layer absolute top-[140px] left-[260px] w-[260px] h-[260px] bg-[#0F2D5C]/10 rounded-full" />
+        <div className="circle-layer absolute top-[-180px] right-[-300px] w-[560px] h-[560px] bg-[#C9900C]/12 rounded-full" />
+        <div className="circle-layer absolute top-[40px] right-[260px] w-[170px] h-[170px] bg-[#C9900C]/18 rounded-full" />
+        <div className="circle-layer absolute bottom-[-140px] right-[120px] w-[280px] h-[280px] bg-[#C9900C]/12 rounded-full" />
       </div>
 
-      <div className="ph-atmos" />
-
-      <div className="ph-inner relative w-[1180px] px-[36px] pt-[56px]">
+      {/* CONTENIDO */}
+      <div className="ph-inner relative z-10 w-[1180px] px-[36px] pt-[56px]">
 
         <div className="w-[1108px] mx-auto text-center">
-
           <div className="flex justify-center items-center gap-6">
             <div className="w-[136px] h-[100px] relative">
               <Image src="/tour-vivienda.png" alt="" fill className="object-contain" />
@@ -114,7 +144,6 @@ export default function HeroTour() {
         </div>
 
         <div className="mt-[56px] w-[1108px] mx-auto relative">
-
           <div className="absolute top-0 left-0 w-full h-[1px] bg-[#2A3F771A]" />
 
           <div
@@ -160,16 +189,13 @@ export default function HeroTour() {
             <div key={i} className="flex-1 px-[28px] py-[22px] flex flex-col justify-between hover:bg-[#F7F9FC] cursor-pointer">
               <div>
                 <div className="text-[20px]">{item.icon}</div>
-
                 <h4 className="mt-[16px] text-[13px] font-semibold text-[#0F2D5C]">
                   {item.title}
                 </h4>
-
                 <p className="mt-[8px] text-[12px] text-[#475569]">
                   {item.desc}
                 </p>
               </div>
-
               <p className="text-[12px] font-semibold mt-[16px]">
                 {item.cta}
               </p>

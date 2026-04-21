@@ -51,43 +51,63 @@ export default function FinanzasHero() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[700px] md:h-[660.7px] bg-white overflow-hidden">
+    <section className="relative w-full overflow-hidden bg-white pb-0 py-[60px] md:py-[80px] xl:min-h-[660px]">
       
       {/* CÍRCULOS */}
-      <div className="absolute inset-0 z-0 pointer-events-none hidden md:block">
-        <div className="absolute top-[40px] left-[180px] w-[280px] h-[280px] bg-[#0F2D5C]/5 rounded-full animate-float-1" />
-        <div className="absolute bottom-[60px] left-[40px] w-[300px] h-[300px] bg-[#0F2D5C]/5 rounded-full animate-float-2" />
-        <div className="absolute top-[180px] right-[140px] w-[280px] h-[280px] bg-[#0F2D5C]/5 rounded-full animate-float-3" />
+      <div className="pointer-events-none absolute inset-0 z-0 hidden xl:block">
+        <div className="animate-float-1 absolute top-[40px] left-[180px] h-[280px] w-[280px] rounded-full bg-[#0F2D5C]/5" />
+        <div className="animate-float-2 absolute bottom-[60px] left-[40px] h-[300px] w-[300px] rounded-full bg-[#0F2D5C]/5" />
+        <div className="animate-float-3 absolute top-[180px] right-[140px] h-[280px] w-[280px] rounded-full bg-[#0F2D5C]/5" />
       </div>
 
       {/* CONTENEDOR */}
-      <div className="relative z-10 w-full max-w-[1416px] mx-auto pt-[60px] md:pt-[96px] px-[20px] sm:px-[40px] md:px-[100px] lg:px-[156px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1416px] px-[20px] sm:px-[40px] md:px-[80px] lg:px-[120px] xl:px-[156px]">
         
-        <div className="w-full flex flex-col gap-[40px] lg:relative lg:h-[384px] lg:gap-0">
-
+        <div className="flex flex-col gap-[50px] xl:flex-row xl:items-center xl:justify-between">
+          
           {/* IZQUIERDA */}
-          <div className="w-full max-w-[600px] lg:absolute lg:left-0 lg:top-[77.8px] lg:w-[600px] lg:h-[309.4px]">
-
-            <div className={`flex items-center gap-[8px] mb-[16px] transition-all duration-700 ease-out ${animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[20px]"}`}>
-              <div className="w-[24px] h-[2px] bg-[#FFC107]" />
-              <p className="text-[#2A3F77] text-[16px] leading-[24px] font-normal max-w-[464px]">
+          <div className="w-full max-w-[600px]">
+            
+            <div
+              className={`mb-[16px] flex items-center gap-[8px] transition-all duration-700 ${
+                animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[20px]"
+              }`}
+            >
+              <div className="h-[2px] w-[24px] bg-[#FFC107]" />
+              <p className="text-[14px] md:text-[16px] text-[#2A3F77]">
                 Soluciones financieras para colombianos en el exterior
               </p>
             </div>
 
-            <h1 className={`text-[#2A3F77] text-[31.2px] leading-[37.4px] font-semibold transition-all duration-700 ease-out delay-100 ${animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"}`}>
+            <h1
+              className={`text-[26px] sm:text-[30px] md:text-[34px] xl:text-[31.2px] font-semibold text-[#2A3F77] transition-all duration-700 ${
+                animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"
+              }`}
+            >
               Tu dinero ya está en el exterior.{" "}
-              <span className="text-[#FFC107] italic font-semibold">
+              <span className="italic text-[#FFC107]">
                 Ahora ponlo a trabajar en Colombia.
               </span>
             </h1>
 
-            <p className={`mt-[20px] text-[#2A3F77] text-[15.2px] leading-[26.6px] font-normal transition-all duration-700 ease-out delay-200 ${animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"}`}>
-              Obtén tu crédito en Colombia para vivienda o libre inversión, y si necesitas ordenar tu perfil, prepárate, o solucionar reportes negativos te acompañamos.
+            <p
+              className={`mt-[20px] text-[14px] md:text-[15.2px] leading-[24px] md:leading-[26px] text-[#2A3F77] transition-all duration-700 delay-200 ${
+                animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"
+              }`}
+            >
+              Obtén tu crédito en Colombia para vivienda o libre inversión, y si necesitas ordenar tu
+              perfil, prepárate, o solucionar reportes negativos te acompañamos.
             </p>
 
-            <div className={`mt-[35px] transition-all duration-700 ease-out delay-300 ${animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"}`}>
-              <Link href="/finanzas" className="flex items-center justify-center w-[229px] h-[47.56px] rounded-full bg-[#FFC107] text-[#2A3F77] text-[12.48px] leading-[18.7px] font-medium transition-all duration-200 ease-out hover:-translate-y-[2px] hover:shadow-[0_10px_20px_rgba(0,0,0,0.15)]">
+            <div
+              className={`mt-[30px] transition-all duration-700 delay-300 ${
+                animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"
+              }`}
+            >
+              <Link
+                href="/finanzas"
+                className="flex h-[48px] w-full max-w-[230px] items-center justify-center rounded-full bg-[#FFC107] text-[13px] font-medium text-[#2A3F77] hover:-translate-y-[2px] hover:shadow-lg transition"
+              >
                 ¿Por dónde empiezo? →
               </Link>
             </div>
@@ -95,56 +115,69 @@ export default function FinanzasHero() {
           </div>
 
           {/* DERECHA */}
-          <div className="w-full max-w-[360px] mx-auto relative grid grid-cols-1 gap-[12px] lg:absolute lg:right-0 lg:top-0 lg:w-[360px] lg:h-[384px] lg:mx-0">
+          <div className="relative w-full max-w-[360px] mx-auto xl:mx-0">
+            
+            <div className="flex flex-col gap-[12px] xl:hidden">
+              {items.map((item) => (
+                <Card key={item.title} item={item} />
+              ))}
+            </div>
 
-            {items.map((item, index) => (
-              <div
-                key={item.title}
-                className="relative w-full lg:absolute h-auto lg:h-[84.94px] flex items-center gap-[14px] pl-[20px] pt-[15.99px] bg-white/60 backdrop-blur-[10px] rounded-tl-[16px] rounded-br-[16px] overflow-hidden transition-all duration-300 ease-out hover:bg-white/90 hover:-translate-y-[2px] hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)]"
-                style={{ top: `${index * 94.94}px` }}
-              >
-                
-                {/* LÍNEA */}
-                <div className={`absolute left-0 top-0 w-[3px] h-full ${item.color}`} />
-
-                {/* STICKER (EMOJI CENTRADO) */}
-                <div className="flex items-center justify-center min-w-[26px] text-[18px] leading-none">
-                  {item.icon}
+            <div className="hidden xl:block relative h-[384px]">
+              {items.map((item, index) => (
+                <div
+                  key={item.title}
+                  className="absolute w-full"
+                  style={{ top: `${index * 95}px` }}
+                >
+                  <Card item={item} />
                 </div>
-
-                {/* TEXTO (SUBIDO) */}
-                <div className="mt-[-2px]">
-                  <p className="text-[#2A3F77] text-[9.92px] font-bold uppercase tracking-[0.99px] leading-[14.9px]">
-                    {item.tag}
-                  </p>
-
-                  <p className="text-[#2A3F77] text-[14.08px] font-semibold leading-[20px] mt-[2px]">
-                    {item.title}
-                  </p>
-
-                  <p className="text-[#2A3F77]/80 text-[12px] leading-[18px] mt-[2px]">
-                    {item.desc}
-                  </p>
-                </div>
-
-              </div>
-            ))}
+              ))}
+            </div>
 
           </div>
+
         </div>
       </div>
 
-      {/* WAVE */}
-      <div className="absolute bottom-0 left-0 w-full z-[2]">
+      {/* WAVE SIN LÍNEA */}
+      <div className="absolute bottom-[-1px] left-0 w-full leading-none">
         <Image
           src="/texture-top.png"
           alt="wave"
           width={2400}
           height={150}
           priority
-          className="block w-full translate-y-[1px]"
+          className="w-full block"
         />
       </div>
+
     </section>
+  );
+}
+
+/* CARD */
+function Card({ item }: any) {
+  return (
+    <div className="relative flex items-center gap-[14px] rounded-tl-[16px] rounded-br-[16px] bg-white/70 backdrop-blur-md p-[16px] hover:shadow-lg transition">
+      
+      <div className={`absolute top-0 left-0 h-full w-[3px] ${item.color}`} />
+
+      <div className="text-[18px]">{item.icon}</div>
+
+      <div>
+        <p className="text-[10px] font-bold uppercase text-[#2A3F77]">
+          {item.tag}
+        </p>
+
+        <p className="text-[14px] font-semibold text-[#2A3F77]">
+          {item.title}
+        </p>
+
+        <p className="text-[12px] text-[#2A3F77]/80">
+          {item.desc}
+        </p>
+      </div>
+    </div>
   );
 }
