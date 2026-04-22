@@ -3,6 +3,8 @@ import BdHero from "@/app/components/buena-data/BdHero";
 import SiteLayout from "@/app/components/layout/SiteLayout";
 import Buenadatasection from "@/app/components/buena-data/Buenadatasection";
 import ServicioIncluye from "@/app/components/buena-data/ServicioIncluye";
+import DuracionProceso from "@/app/components/buena-data/DuracionProceso";
+import Garantias from "@/app/components/buena-data/Garantias";
 
 
 export default function BuenaDataPage() {
@@ -12,6 +14,8 @@ export default function BuenaDataPage() {
       <BdHero />
       <Buenadatasection />
       <ServicioIncluye />
+      <DuracionProceso />
+      <Garantias />
     </SiteLayout>
   );
 }
