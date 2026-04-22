@@ -6,6 +6,8 @@ import ServicioIncluye from "@/app/components/buena-data/ServicioIncluye";
 import DuracionProceso from "@/app/components/buena-data/DuracionProceso";
 import Garantias from "@/app/components/buena-data/Garantias";
 import FAQSectionBuenaD from "@/app/components/buena-data/FAQSectionBuenaD";
+import CTASection from "@/app/components/buena-data/CTASection";
+
 
 export default function BuenaDataPage() {
   return (
@@ -17,6 +19,7 @@ export default function BuenaDataPage() {
       <DuracionProceso />
       <Garantias />
       <FAQSectionBuenaD />
+      <CTASection />
     </SiteLayout>
   );
 }
