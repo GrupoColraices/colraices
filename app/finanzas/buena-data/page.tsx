@@ -5,7 +5,7 @@ import Buenadatasection from "@/app/components/buena-data/Buenadatasection";
 import ServicioIncluye from "@/app/components/buena-data/ServicioIncluye";
 import DuracionProceso from "@/app/components/buena-data/DuracionProceso";
 import Garantias from "@/app/components/buena-data/Garantias";
-
+import FAQSectionBuenaD from "@/app/components/buena-data/FAQSectionBuenaD";
 
 export default function BuenaDataPage() {
   return (
@@ -16,6 +16,7 @@ export default function BuenaDataPage() {
       <ServicioIncluye />
       <DuracionProceso />
       <Garantias />
+      <FAQSectionBuenaD />
     </SiteLayout>
   );
 }
