@@ -10,208 +10,215 @@ export default function BdHero() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,600&display=swap');
 
-        .bd-hero {
+        .bdh-section {
           background: #091D3E;
-          padding: 72px 0;
-          position: relative;
-          overflow: hidden;
+          width: 100%;
+          padding: clamp(48px, 6vw, 80px) 0 clamp(48px, 6vw, 80px);
           font-family: 'Montserrat', system-ui, sans-serif;
           box-sizing: border-box;
+          overflow: hidden;
         }
-        .bd-hero::before {
-          content: '';
-          position: absolute;
-          top: -120px;
-          right: -80px;
-          width: 480px;
-          height: 480px;
-          background: radial-gradient(circle, rgba(26,79,158,0.45) 0%, transparent 70%);
-          pointer-events: none;
-        }
-        .bd-container {
-          max-width: 1080px;
+
+        .bdh-container {
+          max-width: 1180px;
           margin: 0 auto;
-          padding: 0 40px;
+          padding: 0 clamp(20px, 4vw, 48px);
           box-sizing: border-box;
         }
-        .bd-hero-inner {
-          display: grid;
-          grid-template-columns: 1fr 400px;
-          gap: 56px;
-          align-items: center;
-        }
-        .bd-hero-eyebrow {
+
+        .bdh-inner {
           display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 24px;
+          flex-wrap: wrap;
+          gap: clamp(32px, 5vw, 64px);
+          align-items: flex-start;
         }
-        .bd-hero-eyebrow-line {
-          width: 28px;
-          height: 2px;
-          background: #FFC107;
-          flex-shrink: 0;
+
+        /* ── LEFT ── */
+        .bdh-left {
+          flex: 1 1 320px;
+          display: flex;
+          flex-direction: column;
         }
-        .bd-hero-eyebrow-text {
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.12em;
+
+        .bdh-eyebrow {
+          font-weight: 600;
+          font-size: clamp(9px, 0.9vw, 11.2px);
+          letter-spacing: 1.5px;
+          color: #FFC107;
           text-transform: uppercase;
-          color: #FFC107;
+          margin: 0 0 14px;
         }
-        .bd-hero-heading {
-          font-size: 42px;
-          font-weight: 800;
-          line-height: 1.15;
-          color: #ffffff;
-          margin: 0 0 20px;
-          letter-spacing: -0.02em;
-        }
-        .bd-hero-heading em {
-          font-style: italic;
-          color: #FFC107;
+
+        .bdh-h1-regular {
+          font-weight: 700;
+          font-size: clamp(28px, 4vw, 47.81px);
+          line-height: 1.13;
+          color: #fff;
+          margin: 0;
           display: block;
         }
-        .bd-hero-sub {
-          font-size: 15px;
-          color: rgba(255,255,255,0.7);
-          line-height: 1.7;
-          margin: 0 0 32px;
-          max-width: 480px;
+
+        .bdh-h1-italic {
+          font-weight: 700;
+          font-style: italic;
+          font-size: clamp(23px, 3.3vw, 40px);
+          line-height: 1.2;
+          color: #FFD54F;
+          margin: 0 0 18px;
+          display: block;
         }
-        .btn-gold {
-          display: inline-block;
+
+        .bdh-sub {
+          font-weight: 300;
+          font-size: clamp(13px, 1.1vw, 16px);
+          line-height: 1.75;
+          color: rgba(255,255,255,.52);
+          margin: 0 0 28px;
+          max-width: 460px;
+        }
+
+        .bdh-btn {
+          display: inline-flex;
+          align-items: center;
           background: #FFC107;
           color: #091D3E;
-          font-family: 'Montserrat', system-ui, sans-serif;
-          font-size: 14px;
+          font-family: inherit;
           font-weight: 700;
-          padding: 14px 28px;
+          font-size: clamp(13px, 1vw, 14.4px);
+          padding: 13px 26px;
           border-radius: 100px;
           text-decoration: none;
-          letter-spacing: 0.01em;
-          transition: background 0.2s;
+          border: none;
+          cursor: pointer;
+          transition: background .2s;
+          width: fit-content;
         }
-        .btn-gold:hover { background: #FFD54F; }
-        .bd-hero-card {
-          background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 16px;
-          padding: 28px 28px 24px;
+        .bdh-btn:hover { background: #FFD54F; }
+
+        /* ── CARD ── */
+        .bdh-card {
+          flex: 0 0 clamp(300px, 30vw, 380px);
+          background: rgba(255,255,255,.06);
+          border: 0.8px solid rgba(255,255,255,.10);
+          border-radius: 16px 0 16px 0;
+          padding: clamp(20px, 2.5vw, 28.8px);
+          box-sizing: border-box;
         }
-        .bd-hero-card-title {
-          font-size: 14px;
-          font-weight: 700;
-          color: #ffffff;
-          margin-bottom: 20px;
+
+        .bdh-card-title {
+          font-weight: 600;
+          font-size: clamp(14px, 1.2vw, 16px);
+          color: #fff;
+          margin-bottom: 14px;
         }
-        .bd-hero-card-row {
+
+        .bdh-card-row {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 10px 0;
-          border-bottom: 1px solid rgba(255,255,255,0.08);
+          min-height: 50px;
+          border-bottom: 0.8px solid rgba(255,255,255,.07);
+          gap: 8px;
         }
-        .bd-hero-card-key {
-          font-size: 13px;
-          color: rgba(255,255,255,0.6);
-          font-weight: 500;
+        .bdh-card-row:last-of-type { border-bottom: none; }
+
+        .bdh-row-key {
+          font-size: clamp(11px, 0.9vw, 12.48px);
+          color: rgba(255,255,255,.42);
         }
-        .bd-hero-card-val {
-          font-size: 13px;
+
+        .bdh-row-val {
+          font-weight: 600;
+          font-size: clamp(12px, 1vw, 14.08px);
+          color: #fff;
+          text-align: right;
+        }
+        .bdh-row-val.gold  { font-size: clamp(15px, 1.4vw, 19.2px); color: #FFC107; }
+        .bdh-row-val.green { color: #4ADE80; }
+        .bdh-row-val.muted { color: rgba(255,255,255,.65); }
+
+        .bdh-includes {
+          padding-top: 14px;
+          border-top: 0.8px solid rgba(255,255,255,.07);
+        }
+
+        .bdh-includes-title {
           font-weight: 700;
-          color: #ffffff;
-        }
-        .bd-hero-card-val.gold { color: #FFC107; }
-        .bd-hero-card-val.green { color: #10B981; }
-        .hero-includes {
-          margin-top: 20px;
-          padding-top: 20px;
-          border-top: 1px solid rgba(255,255,255,0.08);
-        }
-        .hero-includes-title {
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 0.1em;
+          font-size: clamp(9px, 0.75vw, 10.4px);
+          letter-spacing: 1.04px;
+          color: rgba(255,255,255,.35);
           text-transform: uppercase;
-          color: rgba(255,255,255,0.4);
-          margin-bottom: 12px;
+          margin-bottom: 8px;
         }
-        .hi-item {
+
+        .bdh-hi-item {
           display: flex;
-          align-items: flex-start;
-          gap: 10px;
-          font-size: 12.5px;
-          color: rgba(255,255,255,0.75);
-          padding: 5px 0;
-          line-height: 1.5;
+          align-items: center;
+          gap: 8px;
+          padding: 3px 0;
+          font-size: clamp(11.5px, 0.95vw, 13.12px);
+          line-height: 1.6;
+          color: rgba(255,255,255,.65);
         }
-        .hi-check {
-          width: 18px;
-          height: 18px;
+
+        .bdh-hi-check {
+          width: 15px;
+          height: 15px;
+          min-width: 15px;
           border-radius: 50%;
-          background: rgba(16,185,129,0.2);
-          color: #10B981;
+          background: rgba(74,222,128,.25);
+          color: #4ADE80;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 10px;
+          font-size: 8px;
           font-weight: 700;
-          flex-shrink: 0;
-          margin-top: 1px;
-        }
-        @media (max-width: 768px) {
-          .bd-hero-inner { grid-template-columns: 1fr; gap: 40px; }
-          .bd-hero-heading { font-size: 30px; }
         }
       `}</style>
 
-      <section className="bd-hero">
-        <div className="bd-container">
-          <div className="bd-hero-inner">
+      <section className="bdh-section">
+        <div className="bdh-container">
+          <div className="bdh-inner">
 
-            <div>
-              <div className="bd-hero-eyebrow">
-                <div className="bd-hero-eyebrow-line" />
-                <span className="bd-hero-eyebrow-text">Resolución activa de reportes y deudas</span>
+            <div className="bdh-left">
+              <p className="bdh-eyebrow">Resolución activa de reportes y deudas</p>
+              <div>
+                <span className="bdh-h1-regular">Soluciones claras para</span>
+                <span className="bdh-h1-italic">un mejor futuro financiero.</span>
               </div>
-              <h1 className="bd-hero-heading">
-                Soluciones claras para<br />
-                <em>un mejor futuro financiero.</em>
-              </h1>
-              <p className="bd-hero-sub">
+              <p className="bdh-sub">
                 Tienes reportes negativos, deudas en mora o un caso de fraude en Colombia.
                 Desde el exterior no puedes resolverlo solo. Colraices se hace cargo
                 directamente — gestiona, negocia y cierra el problema por ti.
               </p>
-              <a href="#precio" className="btn-gold">Contratar →</a>
+              <a href="#precio" className="bdh-btn">Contratar →</a>
             </div>
 
-            <div className="bd-hero-card">
-              <div className="bd-hero-card-title">¿Qué obtienes?</div>
-              <div className="bd-hero-card-row">
-                <span className="bd-hero-card-key">Precio único</span>
-                <span className="bd-hero-card-val gold">USD $290</span>
+            <div className="bdh-card">
+              <div className="bdh-card-title">¿Qué obtienes?</div>
+              <div className="bdh-card-row">
+                <span className="bdh-row-key">Precio único</span>
+                <span className="bdh-row-val gold">USD $290</span>
               </div>
-              <div className="bd-hero-card-row">
-                <span className="bd-hero-card-key">Primera entrega</span>
-                <span className="bd-hero-card-val green">Máx. 3 días</span>
+              <div className="bdh-card-row">
+                <span className="bdh-row-key">Primera entrega</span>
+                <span className="bdh-row-val green">Máx. 3 días</span>
               </div>
-              <div className="bd-hero-card-row">
-                <span className="bd-hero-card-key">Ejecución completa</span>
-                <span className="bd-hero-card-val">30–90 días</span>
+              <div className="bdh-card-row">
+                <span className="bdh-row-key">Ejecución completa</span>
+                <span className="bdh-row-val muted">30–90 días</span>
               </div>
-              <div className="bd-hero-card-row">
-                <span className="bd-hero-card-key">¿Colraices actúa por ti?</span>
-                <span className="bd-hero-card-val green">✓ Sí, directamente</span>
+              <div className="bdh-card-row">
+                <span className="bdh-row-key">¿Colraices actúa por ti?</span>
+                <span className="bdh-row-val green">✓ Sí, directamente</span>
               </div>
-              <div className="hero-includes">
-                <div className="hero-includes-title">El servicio incluye</div>
+              <div className="bdh-includes">
+                <div className="bdh-includes-title">El servicio incluye</div>
                 {includes.map((item) => (
-                  <div className="hi-item" key={item}>
-                    <div className="hi-check">✓</div>
+                  <div className="bdh-hi-item" key={item}>
+                    <div className="bdh-hi-check">✓</div>
                     {item}
                   </div>
                 ))}
