@@ -12,6 +12,8 @@ const preparacion = [
     duration: "3 días",
     color: "bg-[#1A4F9E]",
     icon: "🧭",
+    button: "Ver produto →",
+    href: "/finanzas/brujula-financiera",
   },
   {
     tag: "VIABILIDAD CREDITICIA",
