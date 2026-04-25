@@ -3,6 +3,7 @@ import SiteLayout from "@/app/components/layout/SiteLayout";
 
 import HeroDiagnostico from "@/app/components/brujula-financiera/HeroDiagnostico";
 import ProblemaSolucionSection from "@/app/components/brujula-financiera/ProblemaSolucionSection";
+import ProcesoSection from "@/app/components/brujula-financiera/ProcesoSection";
 
 
 export default function BrujulaFinanPage() {
@@ -11,7 +12,7 @@ export default function BrujulaFinanPage() {
       <Breadcrumb />
       <HeroDiagnostico />
       <ProblemaSolucionSection />
-      
+      <ProcesoSection />
     </SiteLayout>
   );
 }
