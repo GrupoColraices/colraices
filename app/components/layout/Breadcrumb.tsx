@@ -9,10 +9,10 @@ const routeNameMap: Record<string, string> = {
   "legal-migracion": "Legal y Migración",
   "tour-vivienda": "Tour de la Vivienda",
   "blog": "Blog",
-  "brujula-financiera": "Crédito hipotecario",
+  "brujula-financiera": "Brújula Financiera",
   "brujula-crediticia": "Brújula Crediticia",
   "buena-data": "Buena Data",
-  "credito-hipotecario": "Crédito hipotecario",
+  "credito-hipotecario": "Crédito Hipotecario",
 };
 
 export default function Breadcrumb() {

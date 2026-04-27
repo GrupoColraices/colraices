@@ -52,7 +52,7 @@ export default function HeroDiagnostico() {
         {/* RIGHT CARD */}
         <div className="w-full max-w-[380px]">
 
-          <div className="bg-white/[0.04] border border-white/[0.07] rounded-[16px] p-[28.8px] backdrop-blur-md">
+          <div className="bg-white/[0.04] border border-white/[0.07] rounded-[16px_0px_16px_0px] p-[28.8px] backdrop-blur-md">
 
             {/* TITLE */}
             <h3 className="text-white text-[16px] leading-[24px] font-semibold mb-[24px]">

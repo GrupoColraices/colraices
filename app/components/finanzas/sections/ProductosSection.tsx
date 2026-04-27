@@ -24,6 +24,8 @@ const preparacion = [
     duration: "3 días",
     color: "bg-[#FFC107]",
     icon: "📊",
+     button: "Ver produto →",
+    href: "/finanzas/brujula-crediticia",
   },
   {
     tag: "RESOLUCIÓN ACTIVA",
