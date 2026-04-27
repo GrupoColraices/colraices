@@ -5,7 +5,7 @@ import HeroBrujulaCrediticia from "@/app/components/brujula-crediticia/HeroBruju
 import ZonaGrisBc from "@/app/components/brujula-crediticia/ZonaGrisBc";
 import ParaQuienEsBc from "@/app/components/brujula-crediticia/ParaQuienEsBc";
 import CuatroComponentesBc from "@/app/components/brujula-crediticia/CuatroComponentesBc";
-
+import ProcesoSectionBc from "@/app/components/brujula-crediticia/ProcesoSectionBc";
 
 
 export default function BrujulaCredi() {
@@ -16,7 +16,8 @@ export default function BrujulaCredi() {
       <ZonaGrisBc />
       <ParaQuienEsBc />
       <CuatroComponentesBc />
-      
+      <ProcesoSectionBc />
+
     </SiteLayout>
   );
 }
