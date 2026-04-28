@@ -1,7 +1,7 @@
 "use client";
- 
+
 import { useEffect, useRef, useState, RefObject } from "react";
- 
+
 // ─── Static data outside component (no recreación en cada render) ────────────
 const GARANTIAS = [
   "Un análisis técnico y profesional del perfil financiero y crediticio",
@@ -10,25 +10,25 @@ const GARANTIAS = [
   "Una estimación del cupo potencial de crédito (nivel medio-alto de certeza)",
   "Un plan claro para mejorar la posición crediticia si es necesario",
 ];
- 
+
 const NO_GARANTIAS = [
   "Carta bancaria de pre-aprobado — eso es la etapa de Crédito",
   "Aprobación final de crédito por parte del banco",
   "La tasa definitiva ni las condiciones finales del banco",
   "El monto exacto — es una estimación, no una oferta vinculante",
 ];
- 
+
 const CONDICIONES = [
   "Veracidad de la información entregada por el cliente",
   "Comportamiento financiero futuro del cliente",
   "Análisis final del banco y de la garantía inmobiliaria",
 ];
- 
+
 // ─── Hook reutilizable ────────────────────────────────────────────────────────
 function useInView(threshold = 0.1): [RefObject<HTMLDivElement | null>, boolean] {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
- 
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -44,10 +44,10 @@ function useInView(threshold = 0.1): [RefObject<HTMLDivElement | null>, boolean]
     observer.observe(el);
     return () => observer.disconnect();
   }, [threshold]);
- 
+
   return [ref, inView];
 }
- 
+
 // ─── Sub-componente reutilizable para cada fila de lista ──────────────────────
 interface ListItemProps {
   text: string;
@@ -56,12 +56,12 @@ interface ListItemProps {
   delay: number;
   variant: "green" | "red";
 }
- 
+
 function ListItem({ text, inView, delay, variant }: ListItemProps) {
   const icon = variant === "green"
     ? { bg: "bg-[#05966926]", text: "text-[#059669]", symbol: "✓", size: "text-[9px]" }
     : { bg: "bg-[#DC26261A]", text: "text-[#DC2626]", symbol: "×", size: "text-[10px]" };
- 
+
   return (
     <div
       className={`list-row list-row-${variant} flex items-start gap-3 anim-item${inView ? " visible" : ""}`}
@@ -74,7 +74,7 @@ function ListItem({ text, inView, delay, variant }: ListItemProps) {
     </div>
   );
 }
- 
+
 // ─── Estilos de animación (constante fuera del render, no se recrea) ──────────
 const ANIMATION_STYLES = `
   @keyframes fadeUp {
@@ -97,31 +97,31 @@ const ANIMATION_STYLES = `
     from { opacity: 0; transform: scale(0.93); }
     to   { opacity: 1; transform: scale(1); }
   }
- 
+
   .anim-header-label { opacity: 0; }
   .anim-header-label.visible {
     animation: fadeIn 0.5s ease forwards;
     animation-delay: 0.05s;
   }
- 
+
   .anim-header-h2 { opacity: 0; }
   .anim-header-h2.visible {
     animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     animation-delay: 0.18s;
   }
- 
+
   .anim-card-left { opacity: 0; }
   .anim-card-left.visible {
     animation: slideInLeft 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     animation-delay: 0.05s;
   }
- 
+
   .anim-card-right { opacity: 0; }
   .anim-card-right.visible {
     animation: slideInRight 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     animation-delay: 0.15s;
   }
- 
+
   /* En móvil las cards son full-width: slide lateral no aplica, usa fadeUp */
   @media (max-width: 1023px) {
     .anim-card-left.visible,
@@ -130,7 +130,7 @@ const ANIMATION_STYLES = `
       animation-delay: 0.05s;
     }
   }
- 
+
   .anim-item {
     opacity: 0;
     transform: translateY(12px);
@@ -139,18 +139,18 @@ const ANIMATION_STYLES = `
   .anim-item.visible {
     animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
- 
+
   .anim-condiciones { opacity: 0; }
   .anim-condiciones.visible {
     animation: scaleIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     animation-delay: 0.05s;
   }
- 
+
   .anim-cond-item { opacity: 0; }
   .anim-cond-item.visible {
     animation: fadeUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
- 
+
   /* Hover micro-interaction */
   .list-row {
     border-radius: 8px;
@@ -161,7 +161,7 @@ const ANIMATION_STYLES = `
   .list-row:hover { transform: translateX(4px); }
   .list-row-green:hover { background: rgba(5, 150, 105, 0.06); }
   .list-row-red:hover   { background: rgba(220, 38, 38, 0.06); }
- 
+
   /* Accesibilidad: respeta preferencia del usuario de reducir movimiento */
   @media (prefers-reduced-motion: reduce) {
     .anim-header-label, .anim-header-h2,
@@ -174,35 +174,35 @@ const ANIMATION_STYLES = `
     .list-row { transition: none; }
   }
 `;
- 
+
 // ─── Componente principal ─────────────────────────────────────────────────────
 export default function ClaridadTotalBc() {
   const [headerRef,      headerInView]      = useInView();
   const [garantiasRef,   garantiasInView]   = useInView();
   const [noGarantiasRef, noGarantiasInView] = useInView();
   const [condicionesRef, condicionesInView] = useInView();
- 
+
   return (
     <>
       <style>{ANIMATION_STYLES}</style>
- 
+
       <section className="w-full bg-white flex justify-center">
         <div className="w-full max-w-[1280px] px-4 sm:px-6 md:px-10 lg:px-12 pt-[80px] md:pt-[88px] pb-[80px] flex flex-col">
- 
+
           {/* HEADER */}
           <div ref={headerRef} className="w-full max-w-[1084px] mx-auto">
             <p className={`text-[18px] md:text-[20px] leading-[24px] font-normal text-[#0A0A0A] mb-2 anim-header-label${headerInView ? " visible" : ""}`}>
               Claridad total
             </p>
             <h2 className={`text-[32px] sm:text-[38px] md:text-[44px] lg:text-[48px] leading-[1.2] font-semibold text-[#0F2D5C] max-w-[760px] anim-header-h2${headerInView ? " visible" : ""}`}>
-              Lo que sí garantizamos.     Y lo que no prometemos.
+              Lo que sí garantizamos. Y lo que no prometemos.
             </h2>
           </div>
- 
+
           {/* MAIN GRID */}
           <div className="w-full max-w-[1084px] mx-auto mt-[60px] flex flex-col gap-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
- 
+
               {/* GARANTIZAMOS */}
               <div
                 ref={garantiasRef}
@@ -225,7 +225,7 @@ export default function ClaridadTotalBc() {
                   ))}
                 </div>
               </div>
- 
+
               {/* NO GARANTIZA */}
               <div
                 ref={noGarantiasRef}
@@ -249,7 +249,7 @@ export default function ClaridadTotalBc() {
                 </div>
               </div>
             </div>
- 
+
             {/* CONDICIONES */}
             <div
               ref={condicionesRef}
@@ -271,7 +271,7 @@ export default function ClaridadTotalBc() {
                 ))}
               </div>
             </div>
- 
+
           </div>
         </div>
       </section>
