@@ -15,39 +15,20 @@ const SERVICES: readonly Service[] = [
   { text: "Servicios legales y migratorios", icon: "⚖️", href: "/legal-migracion" },
 ];
 
+// 🔥 AJUSTES PRO (sin cambiar diseño)
 const SECTION_CLASS =
-  "relative flex min-h-[520px] items-center overflow-hidden md:h-[600px] md:min-h-0";
+  "relative isolate flex items-center overflow-hidden min-h-[90vh] md:min-h-[600px]";
+
 const BACKGROUND_CLASS =
-  "absolute inset-0 bg-no-repeat bg-[center_30%] bg-[length:140%] sm:bg-[length:120%] md:bg-[length:100%]";
+  "absolute inset-0 bg-no-repeat bg-center bg-cover";
 
 export default function HeroSection() {
   return (
     <section className={SECTION_CLASS}>
       <BackgroundImage />
 
-      <div
-        className="
-        relative 
-        w-full 
-        max-w-[1416px] 
-        mx-auto 
-        
-        px-[20px] 
-        sm:px-[40px] 
-        md:px-[80px] 
-        lg:px-[156px]
-      "
-      >
-        <div
-          className="
-          flex 
-          flex-col 
-          lg:flex-row 
-          items-center 
-          justify-between 
-          gap-[40px]
-        "
-        >
+      <div className="relative w-full max-w-[1200px] xl:max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 py-12 md:py-16">
           <HeroText />
           <EcosystemCard services={SERVICES} />
         </div>
@@ -60,9 +41,7 @@ function BackgroundImage() {
   return (
     <div
       className={BACKGROUND_CLASS}
-      style={{
-        backgroundImage: "url('/hero-bg.png')",
-      }}
+      style={{ backgroundImage: "url('/hero-bg.png')" }}
       aria-hidden="true"
     />
   );
@@ -70,99 +49,38 @@ function BackgroundImage() {
 
 function HeroText() {
   return (
-    <div className="max-w-[620px] text-center lg:text-left">
-      <div className="mt-[3.5px] mb-4 flex items-center justify-center gap-[8px] lg:justify-start">
-        <div className="h-[1px] w-6 bg-[#FFC107]" aria-hidden="true" />
-
-        <p
-          className="
-          text-[#FFC107] 
-          text-[16px] 
-          leading-[24px] 
-          font-medium 
-          italic 
-          max-w-[475px]
-        "
-        >
+    <div className="w-full max-w-[620px] text-center lg:text-left">
+      <div className="mb-4 flex items-center justify-center gap-2 lg:justify-start">
+        <div className="h-[1px] w-6 bg-[#FFC107]" />
+        <p className="text-[#FFC107] text-sm sm:text-base italic">
           Para colombianos que construyen futuro desde afuera
         </p>
       </div>
 
-      <h1
-        className="
-        text-white 
-        text-[26px] 
-        sm:text-[30px] 
-        md:text-[35.2px] 
-        leading-[34px] 
-        sm:leading-[38px] 
-        md:leading-[38.7px] 
-        mb-4 md:mb-6
-        tracking-[-0.02em]
-      "
-      >
+      <h1 className="text-white text-[24px] sm:text-[28px] md:text-[34px] lg:text-[36px] leading-tight mb-4 md:mb-6">
         <span className="block font-normal">Ese dinero que mandas a casa</span>
         <span className="block font-light">puede hacer mucho más que</span>
-        <span className="block text-[#FFC107] font-bold italic">llegar a fin de mes.</span>
+        <span className="block text-[#FFC107] font-bold italic">
+          llegar a fin de mes.
+        </span>
       </h1>
 
-      <p
-        className="
-        text-white/70 
-        text-[16.8px] 
-        leading-[29.4px] 
-        font-light 
-        mb-6 md:mb-8
-      "
-      >
+      <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-6 md:mb-8 max-w-[520px] mx-auto lg:mx-0">
         Te ayudamos a convertir tus remesas en una casa, en un negocio, en algo que dure. Con
         acompañamiento real, desde donde estás.
       </p>
 
-      <div
-        className="
-        flex 
-        flex-col 
-        sm:flex-row 
-        items-center 
-        justify-center 
-        lg:justify-start 
-        gap-4 sm:gap-6
-      "
-      >
+      <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
         <Link
           href="/#units-section"
-          aria-label="Ir a la sección de unidades"
-          className="
-            bg-[#FFC107] text-[#2A3F77] 
-            w-full sm:w-[209px] 
-            h-[44px] md:h-[48px] 
-            flex items-center justify-center 
-            rounded-full 
-            text-[14.4px] 
-            font-semibold 
-            transition hover:opacity-90
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC107] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F2D5C]
-          "
+          className="w-full sm:w-auto px-6 h-[44px] md:h-[48px] flex items-center justify-center rounded-full bg-[#FFC107] text-[#2A3F77] text-sm font-semibold transition hover:opacity-90"
         >
           Quiero saber más →
         </Link>
 
         <Link
           href="/servicios"
-          aria-label="Ir a servicios para conocer el ecosistema"
-          className="
-            border border-white text-white 
-            w-full sm:w-auto 
-            px-6 
-            h-[42px] md:h-[44px] 
-            flex items-center justify-center 
-            rounded-full 
-            text-[14.4px] 
-            font-semibold 
-            transition hover:bg-white hover:text-[#0B1F3A]
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F2D5C]
-          "
+          className="w-full sm:w-auto px-6 h-[42px] md:h-[44px] flex items-center justify-center rounded-full border border-white text-white text-sm font-semibold transition hover:bg-white hover:text-[#0B1F3A]"
         >
           Conoce el ecosistema
         </Link>
@@ -173,168 +91,104 @@ function HeroText() {
 
 function EcosystemCard({ services }: { services: readonly Service[] }) {
   return (
-    <div
-      className="
-      relative
-
-      w-full
-      max-w-[420px]
-
-      h-auto
-      lg:h-[401.34px]
-
-      p-[20px]
-      sm:p-[24px]
-      md:p-[30px]
-      lg:p-[35.99px]
-
-      rounded-tl-[16px]
-      rounded-tr-none
-      rounded-bl-none
-      rounded-br-[16px]
-
-      bg-white/95
-      border border-white/40
-      shadow-[0_25px_80px_rgba(0,0,0,0.25)]
-      overflow-visible
-    "
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(254,243,199,0.9),transparent_55%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(20,79,158,0.25),transparent_60%)]" />
-
-      <div className="relative z-10">
-        <div className="mb-[20px] inline-flex items-center gap-[6px] rounded-full border border-[#2A3F77]/15 bg-[#2A3F77]/10 px-3 py-1">
-          <div className="h-2 w-2 rounded-full bg-[#FFC107]" aria-hidden="true" />
-          <span className="text-[11.52px] font-semibold tracking-wide text-[#0F2D5C]">
-            ECOSISTEMA COLRAICES
-          </span>
+    <div className="relative w-full max-w-[420px] pb-7">
+      <div
+        className="
+        relative
+        w-full
+        p-5 sm:p-6 md:p-7
+        rounded-tl-[16px]
+        rounded-br-[16px]
+        bg-white/95
+        border border-white/40
+        shadow-[0_25px_80px_rgba(0,0,0,0.25)]
+      "
+      >
+        {/* 🔥 EFECTO COLORES (CORREGIDO SIN ROMPER BADGE) */}
+        <div className="absolute inset-0 overflow-hidden rounded-tl-[16px] rounded-br-[16px] pointer-events-none">
+          <div className="absolute top-[-40px] right-[-40px] w-[180px] h-[180px] bg-[#FFC107] opacity-20 blur-3xl rounded-full" />
+          <div className="absolute bottom-[-40px] left-[-40px] w-[200px] h-[200px] bg-[#2A3F77] opacity-20 blur-3xl rounded-full" />
         </div>
 
-        <h3 className="text-[44.8px] leading-none font-bold text-[#0F2D5C]">23 años</h3>
+        <div className="relative z-10">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#2A3F77]/15 bg-[#2A3F77]/10 px-3 py-1">
+            <div className="h-2 w-2 rounded-full bg-[#FFC107]" />
+            <span className="text-xs font-semibold text-[#0F2D5C]">
+              ECOSISTEMA COLRAICES
+            </span>
+          </div>
 
-        <p className="mt-[4px] mb-[27.98px] text-[12.8px] font-normal text-[#1A4F9E]">
-          acompañando la diáspora colombiana
-        </p>
+          {/* 🔥 ajuste responsive sin cambiar look */}
+          <h3 className="text-3xl sm:text-4xl font-bold text-[#0F2D5C]">
+            23 años
+          </h3>
 
-        <ul className="flex flex-col gap-[10px]">
-          {services.map((item) => (
-            <ServiceRow key={item.text} item={item} />
-          ))}
-        </ul>
+          <p className="mt-1 mb-6 text-xs text-[#1A4F9E]">
+            acompañando la diáspora colombiana
+          </p>
+
+          <ul className="flex flex-col gap-3">
+            {services.map((item) => (
+              <ServiceRow key={item.text} item={item} />
+            ))}
+          </ul>
+        </div>
+
+        <AnimatedBadge />
       </div>
-
-      <AnimatedBadge />
     </div>
   );
 }
 
 function ServiceRow({ item }: { item: Service }) {
-  const rowClassName = `
-        flex items-center justify-between
-        h-[54.53px]
-        px-[13.98px]
-
-        rounded-[6px]
-        bg-[#2A3F77]/[0.07]
-        border border-[#2A3F77]/[0.12]
-
-        hover:bg-white/60
-        transition
-      `;
-
-  const content = (
-    <>
-      <div className="flex items-center gap-[11.99px]">
-        <div
-          className="
-          w-[31.99px] h-[31.99px]
-          flex items-center justify-center
-          rounded-[8px]
-          bg-[#2A3F77]/8
-        "
-          aria-hidden="true"
-        >
-          {item.icon}
-        </div>
-
-        <span className="text-[13.6px] font-medium text-[#0F2D5C]">{item.text}</span>
-      </div>
-
-      <span className="text-[#2A3F77]" aria-hidden="true">
-        ›
-      </span>
-    </>
-  );
-
   return (
     <li>
-      {item.href ? (
-        <Link
-          href={item.href}
-          className={`${rowClassName} group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1A4F9E]/50`}
-          aria-label={`Ir a ${item.text}`}
-        >
-          {content}
-        </Link>
-      ) : (
-        <div className={rowClassName}>{content}</div>
-      )}
+      <Link
+        href={item.href || "#"}
+        className="flex items-center justify-between px-4 py-3 rounded-md bg-[#2A3F77]/10 border border-[#2A3F77]/20 hover:bg-white/60 transition"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 flex items-center justify-center rounded-md bg-[#2A3F77]/10">
+            {item.icon}
+          </div>
+          <span className="text-sm font-medium text-[#0F2D5C]">
+            {item.text}
+          </span>
+        </div>
+        <span>›</span>
+      </Link>
     </li>
   );
 }
 
 function AnimatedBadge() {
   const shouldReduceMotion = useReducedMotion();
-  const finalState = { opacity: 1, y: 0 };
 
   return (
     <motion.div
       initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-      animate={finalState}
-      transition={
-        shouldReduceMotion
-          ? { duration: 0 }
-          : {
-              duration: 1.5,
-              delay: 0.6,
-              ease: [0.22, 1, 0.36, 1],
-            }
-      }
+      animate={{ opacity: 1, y: 0 }}
+      transition={shouldReduceMotion ? { duration: 0 } : { duration: 1.2, ease: "easeOut" }}
       className="
         absolute
-        -left-[31.99px]
-        -bottom-[20px]
-        z-20
-
-        max-[420px]:left-1/2
-        max-[420px]:-translate-x-1/2
-
-        w-[219px]
-        h-[52px]
-
+        -bottom-8 md:-bottom-10
+        left-1/2 -translate-x-1/2
+        lg:left-[-32px] lg:translate-x-0
+        w-[220px] h-[52px]
         bg-white
         rounded-tl-[16px]
         rounded-br-[16px]
-
-        pl-[13.98px]
-        flex items-center
-        gap-[10px]
-
-        shadow-[0_6px_18px_rgba(0,0,0,0.1)]
+        flex items-center gap-3 px-3
+        shadow
       "
     >
-      <div
-        className="flex h-[31.99px] w-[31.99px] items-center justify-center rounded-[8px] bg-[#FEF3C7]"
-        aria-hidden="true"
-      >
+      <div className="w-8 h-8 flex items-center justify-center bg-[#FEF3C7] rounded-md">
         🏠
       </div>
 
-      <div className="flex w-[149.02px] flex-col justify-center leading-none">
-        <p className="text-[10.88px] leading-[13.05px] font-medium text-[#94A3B8]">
-          Negocios concretados
-        </p>
-        <p className="text-[13.6px] leading-[17.27px] font-semibold text-[#0F2D5C]">
+      <div className="text-xs leading-tight">
+        <p className="text-gray-400">Negocios concretados</p>
+        <p className="font-semibold text-[#0F2D5C]">
           +11.000 en Colombia
         </p>
       </div>

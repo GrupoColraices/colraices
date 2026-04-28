@@ -1,7 +1,7 @@
 "use client";
-
+ 
 import { useRouter } from "next/navigation";
-
+ 
 const preparacion = [
   {
     tag: "DIAGNÓSTICO FINANCIERO",
@@ -12,6 +12,8 @@ const preparacion = [
     duration: "3 días",
     color: "bg-[#1A4F9E]",
     icon: "🧭",
+    button: "Ver produto →",
+    href: "/finanzas/brujula-financiera",
   },
   {
     tag: "VIABILIDAD CREDITICIA",
@@ -22,6 +24,8 @@ const preparacion = [
     duration: "3 días",
     color: "bg-[#FFC107]",
     icon: "📊",
+     button: "Ver produto →",
+    href: "/finanzas/brujula-crediticia",
   },
   {
     tag: "RESOLUCIÓN ACTIVA",
@@ -32,9 +36,11 @@ const preparacion = [
     duration: "30–90 días",
     color: "bg-[#DC2626]",
     icon: "🔧",
+    button: "Ver produto →",
+    href: "/finanzas/buena-data",
   },
 ];
-
+ 
 const ejecucion = [
   {
     tag: "Banco Davivienda · Bróker autorizado",
@@ -72,22 +78,31 @@ const ejecucion = [
     button: "Ver producto →",
   },
 ];
-
+ 
 function Card({ item, index }: any) {
   const router = useRouter();
-
+ 
   const textColorMap: any = {
     "bg-[#1A4F9E]": "text-[#1A4F9E]",
     "bg-[#FFC107]": "text-[#FFC107]",
     "bg-[#DC2626]": "text-[#DC2626]",
     "bg-[#059669]": "text-[#059669]",
   };
-
+ 
   return (
-    <div className={`
-      relative w-[348px] h-[507.94px] border border-[#0F2D5C]/10 
-      rounded-tl-[16px] rounded-br-[16px] px-[28.8px] pt-[28.8px]
-
+    <div
+      className={`
+      relative
+      w-full
+ 
+      border border-[#0F2D5C]/10
+      rounded-tl-[16px] rounded-br-[16px]
+ 
+      px-4 pt-4 pb-6
+      md:px-[28.8px] md:pt-[28.8px] md:pb-[28.8px]
+ 
+      flex flex-col
+ 
       ${
         item.extra1
           ? index === 0
@@ -97,162 +112,149 @@ function Card({ item, index }: any) {
             : "bg-white"
           : "bg-white"
       }
-
-      overflow-hidden
-      
+ 
       transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]
       hover:-translate-y-[4px]
       hover:shadow-[0_20px_40px_rgba(15,45,92,0.12)]
       group
-    `}>
-
+    `}
+    >
       {/* TOP LINE */}
       <div className={`absolute top-0 left-0 w-full h-[2px] ${item.color}`} />
-
+ 
       {/* TAG */}
-      {item.extra1 && index < 2 ? (
-        <div className="mt-[6px]">
-          <span className="
-            inline-flex items-center
-            px-[10px] py-[4px]
-            rounded-full
-            bg-[#FBF8F3]
-            text-[#0F2D5C]
-            text-[11.52px]
-            font-semibold
-            leading-[17.3px]
-            tracking-[0px]
-          ">
+      <div className="mt-[6px] h-[28px] flex items-center">
+        {item.extra1 && index < 2 ? (
+          <span className="inline-flex items-center px-[10px] py-[4px] rounded-full bg-[#FBF8F3] text-[#0F2D5C] text-[11.52px] font-semibold">
             {item.tag}
           </span>
-        </div>
-      ) : (
-        <p className={`
-          text-[9.92px] font-bold tracking-[0.99px] leading-[14.9px] uppercase
-          ${textColorMap[item.color]}
-        `}>
-          {item.tag}
-        </p>
-      )}
-
+        ) : (
+          <p className={`text-[9.92px] font-bold uppercase ${textColorMap[item.color]}`}>
+            {item.tag}
+          </p>
+        )}
+      </div>
+ 
       {/* ICON */}
-      <div className="text-[24px] leading-[42px] mt-[13px] opacity-80 group-hover:opacity-100 transition">
+      <div className="text-[24px] mt-[13px] opacity-80 group-hover:opacity-100 transition">
         {item.icon}
       </div>
-
+ 
       {/* TITLE */}
-      <h3 className="text-[#0F2D5C] text-[18.4px] font-semibold leading-[27.6px] mt-[12px]">
+      <h3 className="text-[#0F2D5C] text-[18.4px] font-semibold mt-[12px]">
         {item.title}
       </h3>
-
+ 
       {/* SUBTITLE */}
-      <p className="text-[#94A3B8] italic text-[12.48px] leading-[18.7px] mt-[4px]">
+      <p className="text-[#94A3B8] italic text-[12.48px] mt-[4px]">
         {item.subtitle}
       </p>
-
+ 
       {/* DIVIDER */}
       <div className="w-full h-[1px] bg-[#0F2D5C]/10 mt-[18px]" />
-
+ 
       {/* DESC */}
-      <p className="text-[#475569] text-[13.6px] leading-[22.4px] mt-[12px]">
+      <p className="text-[#475569] text-[13.6px] mt-[12px] flex-1">
         {item.desc}
       </p>
-
+ 
       {/* INFO */}
-      <div className="absolute bottom-[86px] left-[28.8px] right-[28.8px] border-t border-[#0F2D5C]/10 pt-[14px] flex justify-between">
-
+      <div className="mt-6 border-t border-[#0F2D5C]/10 pt-4 flex justify-between">
         <div>
-          <p className="text-[#94A3B8] text-[10.4px] font-bold tracking-[0.83px] uppercase">
+          <p className="text-[#94A3B8] text-[10.4px] font-bold uppercase">
             {item.price ? "PRECIO" : "FINANCIACIÓN"}
           </p>
           <p className="text-[#0F2D5C] text-[14.08px] font-bold">
             {item.price || item.extra1}
           </p>
         </div>
-
         <div className="text-right">
-          <p className="text-[#94A3B8] text-[10.4px] font-bold tracking-[0.83px] uppercase">
+          <p className="text-[#94A3B8] text-[10.4px] font-bold uppercase">
             {item.duration ? "DURACIÓN" : "PLAZO MÁX."}
           </p>
           <p className="text-[#475569] text-[13.12px] font-medium">
             {item.duration || item.extra2}
           </p>
         </div>
-
       </div>
-
+ 
       {/* BUTTON */}
       <button
         onClick={() => item.href && router.push(item.href)}
         className={`
-          absolute bottom-[28.8px] left-[28.8px] right-[28.8px]
-          h-[41.29px] rounded-full text-[13.12px] font-semibold
-
-          transition-all duration-200
-          active:scale-[0.98]
-          hover:shadow-[0_2px_6px_rgba(0,0,0,0.06)]
-
-          ${item.href ? "cursor-pointer" : "cursor-default"}
-
-          ${item.filled
+        mt-4
+        w-full
+        h-[41.29px] rounded-full text-[13.12px] font-semibold
+ 
+        transition-all duration-200
+        active:scale-[0.98]
+ 
+        ${item.href ? "cursor-pointer" : "cursor-default"}
+ 
+        ${
+          item.filled
             ? "bg-[#0F2D5C] text-white hover:bg-[#0B254A]"
             : "border border-[#CCCCCC]/20 text-[#0F2D5C] hover:bg-[#0F2D5C] hover:text-white hover:border-[#0F2D5C]"
-          }
-        `}
+        }
+      `}
       >
-        {item.button || "Ver producto"}
+        {item.button || "Ver producto →"}
       </button>
-
     </div>
   );
 }
-
+ 
+// Contenedor idéntico para ambas secciones:
+// - móvil (<md):   1 columna
+// - tablet (md):   2 columnas
+// - desktop (lg):  3 columnas
+function CardGrid({ items }: { items: any[] }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+      {items.map((item, i) => (
+        <Card key={i} item={item} index={i} />
+      ))}
+    </div>
+  );
+}
+ 
 export default function ProductosSection() {
   return (
     <section className="w-full bg-white pt-[88px] pb-[143px]">
-
-      <div className="w-[1084px] mx-auto">
-
+      <div className="max-w-[1084px] w-full mx-auto px-4 md:px-0">
+ 
         <div className="text-center mb-[57px]">
           <p className="text-[#FFC107] text-[20px] italic font-bold leading-[30px]">
             Nuestros productos financieros
           </p>
-
           <h2 className="text-[#0F2D5C] text-[35.86px] font-bold leading-[43px] mt-[8px]">
             Seis herramientas. Un solo objetivo:
           </h2>
-
           <p className="text-[#0F2D5C] italic text-[35.86px] leading-[43px] mt-[4px]">
             que tu dinero trabaje en Colombia.
           </p>
         </div>
-
+ 
+        {/* PREPARACIÓN */}
         <div className="flex items-center gap-[10px] mb-[30px]">
           <p className="text-[#94A3B8] text-[9.92px] font-bold tracking-[1.19px] uppercase">
             PREPARACIÓN — ANTES DE COMPRAR
           </p>
           <div className="flex-1 h-[1px] bg-[#94A3B8]" />
         </div>
-
-        <div className="flex gap-[20px] mb-[60px]">
-          {preparacion.map((item, i) => (
-            <Card key={i} item={item} index={i} />
-          ))}
+        <div className="mb-[60px]">
+          <CardGrid items={preparacion} />
         </div>
-
+ 
+        {/* EJECUCIÓN */}
         <div className="flex items-center gap-[10px] mb-[30px]">
           <p className="text-[#94A3B8] text-[9.92px] font-bold tracking-[1.19px] uppercase">
             EJECUCIÓN — CUANDO ESTÁS LISTO PARA ACTUAR
           </p>
           <div className="flex-1 h-[1px] bg-[#94A3B8]" />
         </div>
-
-        <div className="flex gap-[20px]">
-          {ejecucion.map((item, i) => (
-            <Card key={i} item={item} index={i} />
-          ))}
-        </div>
-
+        <CardGrid items={ejecucion} />
+ 
       </div>
     </section>
   );

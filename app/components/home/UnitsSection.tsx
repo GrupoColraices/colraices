@@ -72,45 +72,43 @@ export default function UnitsSection() {
   return (
     <section
       id="units-section"
-      className="w-full scroll-mt-24 bg-[#FFFFFF] pt-[60px] pb-[80px] md:pt-[80px] md:pb-[120px]"
+      className="w-full scroll-mt-24 bg-white py-[60px] md:py-[90px]"
     >
       <div
         className="
         w-full 
-        max-w-[1416px] 
+        max-w-[1200px] 
         mx-auto 
         
-        px-[20px] 
-        sm:px-[40px] 
-        md:px-[100px] 
-        lg:px-[156px]
+        px-4 
+        sm:px-6 
+        md:px-10 
+        lg:px-16
       "
       >
         {/* HEADER */}
-        <div className="mx-auto mb-[40px] max-w-[1000px] text-center md:mb-[60px]">
-          <p className="mb-2 text-[16px] font-bold italic text-[#FFC107] md:text-[20px]">
+        <div className="mx-auto mb-10 max-w-[900px] text-center md:mb-14">
+          <p className="mb-2 text-[15px] font-bold italic text-[#FFC107] md:text-[18px]">
             Nuestros servicios
           </p>
 
           <h2
             className="
             text-[#0F2D5C] 
-            text-[24px] 
-            sm:text-[28px] 
-            md:text-[34px] 
-            lg:text-[40px] 
+            text-[22px] 
+            sm:text-[26px] 
+            md:text-[32px] 
+            lg:text-[38px] 
             
             font-semibold 
-            leading-[1.2] 
-            md:leading-[1.15] 
-            
+            leading-tight 
             mb-3 md:mb-4
           "
           >
             Todo lo que necesitas, en un solo ecosistema.
           </h2>
 
-          <p className="mx-auto max-w-[980px] text-[14px] leading-[22px] text-[#475569] md:text-[15px] md:leading-[24px]">
+          <p className="mx-auto max-w-[750px] text-[14px] leading-[22px] text-[#475569] md:text-[15px]">
             No tienes que buscar en cinco lugares distintos ni explicarle tu historia a desconocidos
             cada vez. Aquí está todo.
           </p>
@@ -139,10 +137,10 @@ export default function UnitsSection() {
               className="
               relative group bg-white border border-[#E2E8F0] 
               
-              p-5 md:p-7 
+              p-5 md:p-6 
               
               rounded-tl-[16px] rounded-br-[16px]
-              flex flex-col justify-between overflow-hidden
+              flex flex-col justify-between
               
               transition-all duration-500
               hover:-translate-y-[6px]
@@ -154,9 +152,11 @@ export default function UnitsSection() {
               {/* BARRA */}
               <div className="absolute top-0 left-0 h-[3px] w-full overflow-hidden">
                 <div
-                  className="h-full w-full bg-[#FFC107]
+                  className="
+                  h-full w-full bg-[#FFC107]
                   translate-x-[-100%] group-hover:translate-x-0
-                  transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
+                "
                 />
               </div>
 
@@ -170,9 +170,8 @@ export default function UnitsSection() {
                   group-hover:-translate-y-[2px]
                   group-hover:bg-[#FFF6D6]
                   group-hover:shadow-[0_10px_25px_rgba(255,193,7,0.35)]
-                  md:mb-5 md:h-12 md:w-12
+                  md:h-11 md:w-11
                 "
-                  aria-hidden="true"
                 >
                   {card.icon}
                 </div>
@@ -181,18 +180,18 @@ export default function UnitsSection() {
                   {card.title}
                 </h3>
 
-                <p className="mb-4 text-[13px] leading-[20px] text-[#475569] md:mb-5 md:text-[14px] md:leading-[22px]">
+                <p className="mb-4 text-[13px] leading-[20px] text-[#475569] md:text-[14px]">
                   {card.description}
                 </p>
 
                 {/* TAGS */}
-                <div className="mb-5 flex flex-wrap gap-2 md:mb-6">
+                <div className="mb-5 flex flex-wrap gap-2">
                   {card.tags.map((tag) => (
                     <span
                       key={tag}
                       className="
                       text-[11px] md:text-[12px] 
-                      px-3 py-[5px] md:py-[6px] 
+                      px-3 py-[5px] 
                       rounded-full 
                       border border-[#1A4F9E]/[0.12] 
                       text-[#1A4F9E] 
@@ -202,8 +201,7 @@ export default function UnitsSection() {
                       hover:bg-[#1A4F9E]
                       hover:text-white
                       hover:border-[#1A4F9E]
-                      hover:shadow-[0_6px_18px_rgba(26,79,158,0.35)]
-                      "
+                    "
                     >
                       {tag}
                     </span>
@@ -214,10 +212,10 @@ export default function UnitsSection() {
               {/* CTA */}
               <Link
                 href="/"
-                className="group/cta flex items-center gap-1 text-[13px] font-medium text-[#1A4F9E] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1A4F9E]/40 focus-visible:ring-offset-2 md:text-[14px]"
+                className="group/cta flex items-center gap-1 text-[13px] font-medium text-[#1A4F9E] md:text-[14px]"
               >
                 Ver servicios
-                <span className="inline-block transition-all duration-300 group-hover/cta:translate-x-[6px]">
+                <span className="transition-all duration-300 group-hover/cta:translate-x-[6px]">
                   →
                 </span>
               </Link>

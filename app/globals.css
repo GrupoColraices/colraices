@@ -1,91 +1,105 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
-
+ 
 @import "tailwindcss";
-
+ 
 /* ================================
    🌍 BASE
 ================================ */
-
+ 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
-
+ 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
 }
-
+ 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Montserrat', sans-serif;
 }
-
+ 
+/* ================================
+   🔢 INPUTS NUMBER (sin flechas)
+================================ */
+ 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+ 
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+ 
 /* ================================
    💰 HERO FINANZAS (NO TOCAR)
 ================================ */
-
+ 
 @keyframes floatSlow1 {
   0% { transform: translate(0,0); }
   50% { transform: translate(10px,6px); }
   100% { transform: translate(0,0); }
 }
-
+ 
 @keyframes floatSlow2 {
   0% { transform: translate(0,0); }
   50% { transform: translate(-8px,10px); }
   100% { transform: translate(0,0); }
 }
-
+ 
 @keyframes floatSlow3 {
   0% { transform: translate(0,0); }
   50% { transform: translate(6px,-8px); }
   100% { transform: translate(0,0); }
 }
-
+ 
 .animate-float-1 {
   animation: floatSlow1 2s ease-in-out infinite;
 }
-
+ 
 .animate-float-2 {
   animation: floatSlow2 2s ease-in-out infinite;
 }
-
+ 
 .animate-float-3 {
   animation: floatSlow3 2s ease-in-out infinite;
 }
-
+ 
 /* ================================
    🚀 HERO TOUR
 ================================ */
-
+ 
 .tour-vivienda {
   position: relative;
   overflow: hidden;
   z-index: 0;
 }
-
+ 
 .tour-vivienda .ph-atmos {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
 }
-
+ 
 .tour-vivienda .ph-inner {
   position: relative;
   z-index: 2;
 }
-
+ 
 /* ================================
    🎬 ANIMACIONES RÁPIDAS (FIX REAL)
 ================================ */
-
-/* MÁS MOVIMIENTO + MÁS FLUIDO */
-
+ 
 @keyframes float-circles {
   0%   { transform: translate(0, 0); }
   25%  { transform: translate(30px, -20px); }
@@ -93,7 +107,7 @@ body {
   75%  { transform: translate(25px, -15px); }
   100% { transform: translate(0, 0); }
 }
-
+ 
 @keyframes float-circles-alt {
   0%   { transform: translate(0, 0); }
   25%  { transform: translate(-25px, 20px); }
@@ -101,7 +115,7 @@ body {
   75%  { transform: translate(-20px, 15px); }
   100% { transform: translate(0, 0); }
 }
-
+ 
 @keyframes float-circles-slow {
   0%   { transform: translate(0, 0); }
   25%  { transform: translate(20px, 12px); }
@@ -109,24 +123,42 @@ body {
   75%  { transform: translate(15px, 10px); }
   100% { transform: translate(0, 0); }
 }
-
+ 
 /* ================================
    ⚡ VELOCIDADES (RÁPIDO REAL)
 ================================ */
-
+ 
 .animate-float-fast {
   animation: float-circles 3s linear infinite;
 }
-
+ 
 .animate-float-medium {
   animation: float-circles-alt 4s linear infinite;
 }
-
+ 
 .animate-float-slow {
   animation: float-circles-slow 5s linear infinite;
 }
-
-
-body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+ 
+/* ================================
+   🟢 PULSE GREEN
+================================ */
+ 
+@keyframes pulseGreen {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+ 
+.animate-pulse-green {
+  animation: pulseGreen 1.8s ease-in-out infinite;
 }

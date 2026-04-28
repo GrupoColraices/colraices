@@ -7,17 +7,19 @@ import TestimoniosFinanzasSection from "@/app/components/finanzas/sections/Testi
 import FaqSection from "@/app/components/finanzas/sections/FaqSection";
 import CtaFinalFinanzas from "@/app/components/finanzas/sections/CtaFinalFinanzas";
 
+import SiteLayout from "@/app/components/layout/SiteLayout";
+
 export default function FinanzasPage() {
   return (
-    <>
+    <SiteLayout>
       <Breadcrumb />
       <FinanzasHero /> 
       <DiagnosticoSection />
       <ProductosSection />
       <TestimoniosFinanzasSection />
-      
+
       <FaqSection />
       <CtaFinalFinanzas />
-    </>
+    </SiteLayout>
   );
 }

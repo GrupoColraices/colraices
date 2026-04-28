@@ -6,10 +6,12 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="w-full bg-[#091D3E] text-white">
-      <div className="w-full max-w-[1416.15px] mx-auto px-[156.07px] pt-[63.99px] pb-0">
+      <div className="w-full max-w-[1416.15px] mx-auto px-6 sm:px-10 lg:px-[156.07px] pt-[63.99px] pb-0">
         <div className="w-full max-w-[1104px] mx-auto">
+
           {/* TOP CONTENT */}
-          <div className="grid grid-cols-1 lg:grid-cols-[383.99px_192px_192px_192px] gap-[48px] items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[383.99px_192px_192px_192px] gap-10 lg:gap-[48px] items-start">
+
             {/* BRAND */}
             <div className="w-full">
               <Image
@@ -17,7 +19,7 @@ export default function Footer() {
                 alt="Colraices"
                 width={285}
                 height={40}
-                className="w-[284.61px] h-[39.99px] object-contain"
+                className="w-[220px] sm:w-[260px] lg:w-[284.61px] h-auto object-contain"
                 priority
               />
 
@@ -135,7 +137,7 @@ export default function Footer() {
                 © 2026 Colraices. Colombia y España. Todos los derechos reservados.
               </p>
 
-              <div className="flex flex-wrap items-center gap-[24px] text-[12px] leading-[18px] text-white/50">
+              <div className="flex flex-wrap items-center gap-[16px] sm:gap-[24px] text-[12px] leading-[18px] text-white/50">
                 <Link href="/privacidad" className="transition-colors duration-200 hover:text-white">
                   Política de privacidad
                 </Link>
@@ -148,6 +150,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </footer>
