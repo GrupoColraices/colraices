@@ -76,6 +76,8 @@ const ejecucion = [
     color: "bg-[#059669]",
     icon: "💱",
     button: "Ver producto →",
+    filled: true,
+    href: "/finanzas/monetizacion",
   },
 ];
  
