@@ -13,17 +13,55 @@ export default function AsesoriaMigratoria() {
 
   return (
     <section className="relative w-full min-h-[916px] overflow-hidden bg-[#091D3E]">
-      {/* Grid background */}
+      {/* Grid background — opacidad reducida al 70% */}
       <div
-        className="absolute inset-0 opacity-[0.06]"
+        className="absolute inset-0 opacity-[0.018]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)
+            linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)
           `,
           backgroundSize: "44px 44px",
         }}
       />
+
+      {/* Amber glow 1 — aparece y desaparece */}
+      <div
+        className="absolute pointer-events-none rounded-full"
+        style={{
+          width: "380px",
+          height: "380px",
+          top: "60px",
+          left: "-80px",
+          background:
+            "radial-gradient(circle, rgba(240,180,41,0.18) 0%, rgba(240,180,41,0.06) 50%, transparent 70%)",
+          animation: "amberPulse 4s ease-in-out infinite",
+          animationDelay: "0s",
+        }}
+      />
+
+      {/* Amber glow 2 — desfasado */}
+      <div
+        className="absolute pointer-events-none rounded-full"
+        style={{
+          width: "260px",
+          height: "260px",
+          bottom: "120px",
+          right: "60px",
+          background:
+            "radial-gradient(circle, rgba(240,180,41,0.18) 0%, rgba(240,180,41,0.06) 50%, transparent 70%)",
+          animation: "amberPulse 4s ease-in-out infinite",
+          animationDelay: "2s",
+        }}
+      />
+
+      {/* Keyframes inyectados inline */}
+      <style>{`
+        @keyframes amberPulse {
+          0%, 100% { opacity: 0; transform: scale(0.85); }
+          50%       { opacity: 1; transform: scale(1.05); }
+        }
+      `}</style>
 
       {/* Decorative circles */}
       <div className="absolute top-[78px] left-[140px] w-[58px] h-[58px] rounded-full border border-[#FFC107]/30 bg-[#FFC107]/10" />
@@ -63,7 +101,7 @@ export default function AsesoriaMigratoria() {
               {paises.map((pais, index) => (
                 <div
                   key={index}
-                  className="h-[36px] px-[14px] rounded-full border border-white/10 bg-white/[0.06] flex items-center justify-center text-white/70 text-[11.2px] font-semibold"
+                  className="h-[36px] px-[14px] rounded-full border border-white/10 bg-white/[0.06] flex items-center justify-center text-white/70 text-[11.2px] font-semibold transition-all duration-300 hover:bg-white/[0.12] hover:border-white/20 cursor-default"
                 >
                   {pais}
                 </div>
@@ -83,7 +121,12 @@ export default function AsesoriaMigratoria() {
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="w-[400px] rounded-[32px] border border-white/10 bg-white/[0.04] backdrop-blur-[18px] px-[33px] pt-[33px] pb-[24px]">
+          <div
+            className="w-[400px] rounded-[32px] border border-white/10 flex-shrink-0 backdrop-blur-[18px] px-[33px] pt-[33px] pb-[24px]"
+            style={{
+              background: `radial-gradient(ellipse 160% 170% at -10% -5%, rgba(255,193,7,0.23) 0%, rgba(255,193,7,0.10) 35%, transparent 55%), radial-gradient(ellipse 150% 160% at 110% 105%, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 40%, transparent 60%), rgba(255,255,255,0.04)`,
+            }}
+          >
             
             {/* Title */}
             <p className="text-white/40 uppercase font-bold text-[9.92px] tracking-[1.39px] leading-[14.9px]">
@@ -91,7 +134,7 @@ export default function AsesoriaMigratoria() {
             </p>
 
             {/* Card 1 */}
-            <div className="mt-[30px] rounded-[20px] border border-white/[0.09] bg-white/[0.05] p-[21px]">
+            <div className="mt-[30px] rounded-[20px] border border-white/[0.09] bg-white/[0.05] p-[21px] transition-all duration-300 hover:bg-white/[0.10] hover:border-white/[0.16] cursor-default">
               <div className="flex justify-between items-start">
                 <h3 className="text-white font-bold text-[14.72px] leading-[22px]">
                   Asesoría Completa
@@ -112,7 +155,7 @@ export default function AsesoriaMigratoria() {
             </div>
 
             {/* Card 2 */}
-            <div className="mt-[14px] rounded-[20px] border border-white/[0.09] bg-white/[0.05] p-[21px]">
+            <div className="mt-[14px] rounded-[20px] border border-white/[0.09] bg-white/[0.05] p-[21px] transition-all duration-300 hover:bg-white/[0.10] hover:border-white/[0.16] cursor-default">
               <div className="flex justify-between items-start">
                 <h3 className="text-white font-bold text-[14.72px] leading-[22px]">
                   Asesoría de Retoma
