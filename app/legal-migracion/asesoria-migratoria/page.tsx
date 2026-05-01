@@ -7,6 +7,7 @@ import CoberturaSlider from "@/app/components/asesoria-migratoria/CoberturaSlide
 import ServiceCarousel from "@/app/components/asesoria-migratoria/ServiceCarousel";
 import OchoPasosProceso from "@/app/components/asesoria-migratoria/OchoPasosProceso";
 import ModalidadesServicios from "@/app/components/asesoria-migratoria/ModalidadesServicios";
+import PagasProcesoSection from "@/app/components/asesoria-migratoria/PagasProcesoSection";
 
 export default function AsesoriaMigratori() 
 {
@@ -19,6 +20,7 @@ export default function AsesoriaMigratori()
       <ServiceCarousel />
       <OchoPasosProceso />
       <ModalidadesServicios />
+      <PagasProcesoSection />
 
     </SiteLayout>
   );
