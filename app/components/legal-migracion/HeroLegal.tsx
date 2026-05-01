@@ -9,11 +9,11 @@ const montserrat = Montserrat({
 });
 
 const LEGAL_SERVICES = [
-  { icon: "🛂", text: "Asesoría migratoria y visas", href: "/app/legal-migracion/asesoria-migratoria" },
-  { icon: "🏢", text: "Asesoría en emprendimiento", href: "/app/legal-migracion/emprendimiento" },
-  { icon: "⚖️", text: "Pensiones", href: "/app/legal-migracion/pensiones" },
-  { icon: "💼", text: "Representación legal", href: "/app/legal-migracion/representacion-legal" },
-  { icon: "📄", text: "Servicios fiscales", href: "/app/legal-migracion/servicios-fiscales" },
+  { icon: "🛂", text: "Asesoría migratoria y visas", href: "/legal-migracion/asesoria-migratoria" },
+  { icon: "🏢", text: "Asesoría en emprendimiento", href: "/legal-migracion/emprendimiento" },
+  { icon: "⚖️", text: "Pensiones", href: "/legal-migracion/pensiones" },
+  { icon: "💼", text: "Representación legal", href: "/legal-migracion/representacion-legal" },
+  { icon: "📄", text: "Servicios fiscales", href: "/legal-migracion/servicios-fiscales" },
 ] as const;
 
 export default function HeroLegal() {
