@@ -10,16 +10,22 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
 
   const isInmuebles = pathname.startsWith("/inmuebles");
 
+  // Nuevo: ocultar footer también en monetización
+  const isMonetizacion =
+    pathname === "/monetizacion" ||
+    pathname.startsWith("/monetizacion/") ||
+    pathname === "/finanzas/monetizacion" ||
+    pathname.startsWith("/finanzas/monetizacion/");
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
-      
       <Navbar />
 
       <main className="flex-1 pt-[68px]">
         {children}
       </main>
 
-      {!isInmuebles && <Footer />}
+      {!isInmuebles && !isMonetizacion && <Footer />}
     </div>
   );
 }
