@@ -3,6 +3,7 @@ import SiteLayout from "@/app/components/layout/SiteLayout";
 
 import HeroMonetizacion from "@/app/components/monetizacion/HeroMonetizacion";
 import TopBarBc from "@/app/components/monetizacion/TopBarBc";
+import ProblemaRealMo from "@/app/components/monetizacion/ProblemaRealMo";
 
 export default function Monetizacion() {
   return (
@@ -10,8 +11,7 @@ export default function Monetizacion() {
       <Breadcrumb />
       <HeroMonetizacion />
       <TopBarBc />
- 
-
+      <ProblemaRealMo />
     </SiteLayout>
   );
 }
