@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
@@ -8,20 +9,18 @@ const montserrat = Montserrat({
 });
 
 const LEGAL_SERVICES = [
-  { icon: "🛂", text: "Asesoría migratoria y visas" },
-  { icon: "🏢", text: "Asesoría en emprendimiento" },
-  { icon: "⚖️", text: "Pensiones" },
-  { icon: "💼", text: "Representación legal" },
-  { icon: "📄", text: "Servicios fiscales" },
+  { icon: "🛂", text: "Asesoría migratoria y visas", href: "/app/legal-migracion/asesoria-migratoria" },
+  { icon: "🏢", text: "Asesoría en emprendimiento", href: "/app/legal-migracion/emprendimiento" },
+  { icon: "⚖️", text: "Pensiones", href: "/app/legal-migracion/pensiones" },
+  { icon: "💼", text: "Representación legal", href: "/app/legal-migracion/representacion-legal" },
+  { icon: "📄", text: "Servicios fiscales", href: "/app/legal-migracion/servicios-fiscales" },
 ] as const;
 
 export default function HeroLegal() {
   return (
     <section
       className={`${montserrat.className} relative flex w-full min-h-[653px] items-start justify-center overflow-hidden`}
-      style={{
-        backgroundColor: "#0B1F3F",
-      }}
+      style={{ backgroundColor: "#0B1F3F" }}
     >
       {/* 🔳 GRID */}
       <div
@@ -69,7 +68,6 @@ export default function HeroLegal() {
             <h1 className="text-[34px] leading-[1.08] font-bold text-white sm:text-[42px] lg:text-[59.76px] lg:leading-[65.7px]">
               Tu puente legal
             </h1>
-
             <h1 className="text-[34px] leading-[1.08] font-bold italic text-[#FFC107] sm:text-[42px] lg:text-[59.76px] lg:leading-[65.7px]">
               para Colombia
             </h1>
@@ -86,28 +84,22 @@ export default function HeroLegal() {
             </p>
           </div>
 
-          {/* 🔥 BOTONES PRO */}
+          {/* 🔥 BOTONES */}
           <div className="mt-[30px] flex min-h-[51px] flex-col gap-[12px] sm:flex-row sm:gap-[14px]">
-            {/* PRINCIPAL */}
             <button
               className="h-[51px] rounded-full bg-[#FFC107] px-[28px] font-semibold text-[#091D3E] transition-all duration-300 ease-out
-              hover:-translate-y-[4px]
-              hover:shadow-[0_10px_30px_rgba(255,193,7,0.45)]
+              hover:-translate-y-[4px] hover:shadow-[0_10px_30px_rgba(255,193,7,0.45)]
               active:translate-y-[0px] active:shadow-[0_4px_10px_rgba(255,193,7,0.25)]"
             >
               Hablar con un asesor
             </button>
 
-            {/* SECUNDARIO */}
             <button
               className="h-[51px] rounded-full border border-white/25 px-[28px] text-white transition-all duration-300 ease-out
-              hover:-translate-y-[2px]
-              hover:bg-white/10
-              backdrop-blur-md"
+              hover:-translate-y-[2px] hover:bg-white/10 backdrop-blur-md"
             >
               Ver servicios
             </button>
-            
           </div>
         </div>
 
@@ -116,9 +108,9 @@ export default function HeroLegal() {
           className="h-auto w-full max-w-[420px] rounded-tl-[16px] rounded-br-[16px] p-6 sm:p-7 lg:h-[453.36px] lg:p-[32.8px]"
           style={{
             background: `
-            radial-gradient(circle at 0% 0%, rgba(201,144,12,0.28) 0%, rgba(201,144,12,0.08) 35%, transparent 65%),
-            linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)
-        `,
+              radial-gradient(circle at 0% 0%, rgba(201,144,12,0.28) 0%, rgba(201,144,12,0.08) 35%, transparent 65%),
+              linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)
+            `,
             border: "0.8px solid rgba(255,255,255,0.1)",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
@@ -132,8 +124,9 @@ export default function HeroLegal() {
 
           <div className="mt-[20px] flex flex-col gap-[12px]">
             {LEGAL_SERVICES.map((item) => (
-              <div
+              <Link
                 key={item.text}
+                href={item.href}
                 className="group relative flex min-h-[54.4px] w-full items-center gap-[12px] rounded-[12px] px-[14px] py-[9px] transition-all duration-300 ease-out"
                 style={{
                   background: "rgba(255,255,255,0.04)",
@@ -144,18 +137,16 @@ export default function HeroLegal() {
                   {item.icon}
                 </span>
 
-                <span className="text-[13.12px] text-white/65 transition-colors duration-300 hover:text-[#FFC107]">
+                <span className="text-[13.12px] text-white/65 transition-colors duration-300 group-hover:text-[#FFC107]">
                   {item.text}
                 </span>
 
                 {/* overlay hover */}
                 <div
                   className="pointer-events-none absolute inset-0 rounded-[12px] opacity-0 transition duration-300 group-hover:opacity-100"
-                  style={{
-                    background: "rgba(255,255,255,0.06)",
-                  }}
+                  style={{ background: "rgba(255,255,255,0.06)" }}
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
