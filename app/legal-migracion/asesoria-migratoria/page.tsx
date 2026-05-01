@@ -5,7 +5,8 @@ import AsesoriaMigratoria from "@/app/components/asesoria-migratoria/AsesoriaMig
 import ProblemaRealMigracion from "@/app/components/asesoria-migratoria/ProblemaRealMigracion";
 import CoberturaSlider from "@/app/components/asesoria-migratoria/CoberturaSlider";
 import ServiceCarousel from "@/app/components/asesoria-migratoria/ServiceCarousel";
-
+import OchoPasosProceso from "@/app/components/asesoria-migratoria/OchoPasosProceso";
+import ModalidadesServicios from "@/app/components/asesoria-migratoria/ModalidadesServicios";
 
 export default function AsesoriaMigratori() 
 {
@@ -16,6 +17,8 @@ export default function AsesoriaMigratori()
       <ProblemaRealMigracion />
       <CoberturaSlider />
       <ServiceCarousel />
+      <OchoPasosProceso />
+      <ModalidadesServicios />
 
     </SiteLayout>
   );
