@@ -5,6 +5,7 @@ import AsesoriaEmprendimientoH from "@/app/components/constitucion-empresas/Ases
 import PartiesSection from "@/app/components/constitucion-empresas/PartiesSection";
 import ProblemaDineroSection from "@/app/components/constitucion-empresas/ProblemaDineroSection";
 import ProcesoSection from "@/app/components/constitucion-empresas/ProcesoSection";
+import QueIncluyeSection from "@/app/components/constitucion-empresas/QueIncluyeSection";
 
 export default function ConstitucionEmpresas() 
 {
@@ -15,6 +16,7 @@ export default function ConstitucionEmpresas()
       <PartiesSection />
       <ProblemaDineroSection />
       <ProcesoSection />
+      <QueIncluyeSection />
 
     </SiteLayout>
   );
