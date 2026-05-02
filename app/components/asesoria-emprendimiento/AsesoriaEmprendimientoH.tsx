@@ -21,7 +21,7 @@ const fasesPago = [
   },
 ];
 
-export default function AsesoriaEmprendimiento() {
+export default function AsesoriaEmprendimientoH() {
   return (
     <section className="relative w-full overflow-hidden bg-[#081D3F] border-b-[3px] border-[#FFC107]">
       
