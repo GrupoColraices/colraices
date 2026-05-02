@@ -9,6 +9,9 @@ import OchoPasosProceso from "@/app/components/asesoria-migratoria/OchoPasosProc
 import ModalidadesServicios from "@/app/components/asesoria-migratoria/ModalidadesServicios";
 import PagasProcesoSection from "@/app/components/asesoria-migratoria/PagasProcesoSection";
 import PerfilamientoServicio from "@/app/components/asesoria-migratoria/PerfilamientoServicio";
+import BannerMigracion from "@/app/components/asesoria-migratoria/BannerMigracion";
+
+
 
 export default function AsesoriaMigratori() 
 {
@@ -23,6 +26,7 @@ export default function AsesoriaMigratori()
       <ModalidadesServicios />
       <PagasProcesoSection />
       <PerfilamientoServicio />
+      <BannerMigracion />
 
     </SiteLayout>
   );
