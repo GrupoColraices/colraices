@@ -4,226 +4,90 @@ import Link from "next/link";
 
 export default function CreditSection() {
   return (
-    <section className="relative w-full bg-[#2A3F77] overflow-hidden pt-[80px] md:pt-[120px] pb-[80px] md:pb-[110px]">
-
-      {/* FONDO BLANCO */}
-      <div className="absolute top-0 left-0 w-full h-[60px] md:h-[88px] bg-white z-[5]" />
-
-      {/* SHAPE */}
+    <section className="relative w-full overflow-hidden bg-[#2A3F77] pb-[80px] pt-[80px] md:pb-[110px] md:pt-[120px]">
+      <div className="absolute left-0 top-0 z-[5] h-[60px] w-full bg-white md:h-[88px]" />
       <img
         src="/texture-top.png"
         alt=""
-        className="absolute top-0 left-0 w-full h-[60px] md:h-[88px] object-cover z-10 pointer-events-none"
+        className="pointer-events-none absolute left-0 top-0 z-10 h-[60px] w-full object-cover md:h-[88px]"
       />
 
-      {/* CONTENEDOR */}
-      <div className="
-        relative 
-        w-full 
-        max-w-[1180px] 
-        mx-auto 
-        px-[20px] 
-        sm:px-[40px] 
-        md:px-[60px] 
-      ">
 
-        <div className="
-          grid 
-          grid-cols-1 
-          md:grid-cols-[660px_360px]
-          gap-[40px] 
-          md:gap-[64px] 
-          items-start
-        ">
+      <div className="pointer-events-none absolute left-[-300px] top-[60px] hidden h-[760px] w-[760px] rounded-full border border-white/10 lg:block" />
+      <div className="pointer-events-none absolute left-[-250px] top-[110px] hidden h-[660px] w-[660px] rounded-full border border-white/10 lg:block" />
+      <div className="pointer-events-none absolute left-[-200px] top-[160px] hidden h-[560px] w-[560px] rounded-full border border-white/10 lg:block" />
+      <div className="pointer-events-none absolute left-[-150px] top-[210px] hidden h-[460px] w-[460px] rounded-full border border-white/10 lg:block" />
 
-          {/* IZQUIERDA */}
-          <div>
-
-            {/* LABEL */}
-            <div className="flex items-center gap-3 mb-4 md:mb-6">
-              <div className="w-6 h-[2px] bg-[#FFC107]" />
-              <p className="
-                text-[#FFC107]
-                text-[11.2px]
-                leading-[16.8px]
-                tracking-[1.57px]
-                font-semibold
-                uppercase
-              ">
-                Crédito hipotecario y libre inversión
-              </p>
-            </div>
-
-            {/* TITULO — sin whitespace-nowrap para que fluya en móvil */}
-            <h2 className="text-white mb-4 md:mb-6">
-
-              <span className="
-                font-bold 
-                text-[24px]
-                sm:text-[28px]
-                md:text-[31.2px] 
-                leading-[1.25]
-                block
-              ">
+      <div className="relative z-20 mx-auto w-full max-w-[1180px] px-[20px] sm:px-[40px] md:px-[60px]">
+        <div className="grid grid-cols-1 items-start gap-[40px] md:grid-cols-[1fr_359px] md:gap-[64px]">
+          <div className="pt-[54px] md:pt-[58px]">
+            <h2 className="mb-[28px] md:mb-[30px] text-left">
+              <span className="block text-[26px] leading-[1.198] text-white sm:text-[30px] md:text-[31.2px] font-bold">
                 ¿Tienes ingresos en el exterior?
               </span>
-
-              <span className="
-                font-normal 
-                text-[24px]
-                sm:text-[28px]
-                md:text-[31.2px] 
-                leading-[1.25]
-                block
-              ">
-                Tienes capacidad de compra en Colombia.
+              <span className="block text-[26px] leading-[1.198] text-white sm:text-[30px] md:text-[28.29px] font-normal md:whitespace-nowrap">
+                Puedes invertir y construir tu patrimonio en Colombia.
               </span>
-
-              <span className="
-                font-bold italic 
-                text-[22px]
-                sm:text-[26px]
-                md:text-[29.12px] 
-                leading-[1.25]
-                text-[#FFC107]
-                block
-              ">
-                Solo necesitas quien te lo haga posible.
+              <span className="mt-[2px] block text-[24px] leading-[1.198] text-[#FFC107] sm:text-[28px] md:text-[29.12px] font-bold italic md:whitespace-nowrap">
+                Solo necesitas conocer tu cupo de crédito.
               </span>
-
             </h2>
 
-            {/* PÁRRAFO */}
-            <p className="
-              text-white/70 
-              text-[15.2px] 
-              leading-[26.6px] 
-              max-w-[664px] 
-              mb-6 md:mb-8
-            ">
-              Accede a crédito para comprar vivienda o para libre inversión con garantía hipotecaria, estés donde estés. Te acompañamos desde la consulta hasta la firma.
-            </p>
-
-            {/* BOTONES */}
-            <div className="flex flex-wrap gap-2 md:gap-3">
-
-              <Link
-                href="/credito"
-                className="
-                  px-4 md:px-5 py-[8px] md:py-[10px] 
-                  rounded-full 
-                  text-[12.48px] 
-                  leading-[18.7px]
-                  font-medium
-                  text-white 
-                  border border-white/20 
-                  bg-white/5 
-                  backdrop-blur-sm 
-                  hover:bg-white/10 
-                  transition
-                "
-              >
-                Crédito de vivienda
-              </Link>
-
-              <span className="
-                px-4 md:px-5 py-[8px] md:py-[10px] 
-                rounded-full 
-                text-[12.48px] 
-                leading-[18.7px]
-                font-medium
-                text-white 
-                border border-white/20 
-                bg-white/5 
-                backdrop-blur-sm
-              ">
-                Libre inversión
-              </span>
-
-              <span className="
-                px-4 md:px-5 py-[8px] md:py-[10px] 
-                rounded-full 
-                text-[12.48px] 
-                leading-[18.7px]
-                font-medium
-                bg-[#FFC107] 
-                text-[#2A3F77]
-              ">
-                Contacto
-              </span>
-
+            <div className="mb-[28px] md:mb-[30px] max-w-[768.29px] text-[15.2px] leading-[26.6px] text-white/[0.55] font-normal space-y-[8px]">
+              <p>Te ayudamos a calcular tu capacidad de financiamiento y validar si hoy tu crédito es viable.</p>
+              <p>Crédito Hipotecario | Libre Inversión | Leasing</p>
             </div>
 
+            <Link
+              href="/contacto"
+              className="inline-flex h-[33.26px] items-center rounded-[100px] border border-white/[0.12] bg-[#FFC107] px-[16px] text-[14px] font-semibold leading-[21px] text-[#2A3F77] transition hover:bg-[#FFD54F]"
+            >
+              Contacto
+            </Link>
           </div>
 
-          {/* CARD — centrada en móvil */}
-          <div className="w-full max-w-[360px] mx-auto md:ml-auto">
-
-            <div className="
-              bg-[#F8FAFC]
-              p-5 md:p-7
-              rounded-tl-[16px] rounded-tr-none rounded-bl-none rounded-br-[16px]
-              shadow-[0_30px_80px_rgba(0,0,0,0.25)]
-            ">
-
-              <div className="flex items-center justify-between mb-4 md:mb-5">
-                <p className="text-[#0B1F3A] text-[13px] md:text-[14px] font-semibold">
-                  Viabilidad de crédito
-                </p>
-
-                <span className="text-[10px] md:text-[11px] px-2 md:px-3 py-[3px] rounded-full bg-[#FEF3C7] text-[#D97706] font-semibold">
-                  GRATIS
+          <div className="mx-auto w-full max-w-[359px] md:ml-auto">
+            <div className="h-auto min-h-[466.07px] rounded-tl-[16px] rounded-tr-none rounded-bl-none rounded-br-[16px] bg-gradient-to-b from-[#F8F9FA] to-white p-[28px] shadow-[0_20px_50px_rgba(10,10,10,0.15)]">
+              <div className="mb-[20px] mx-auto flex h-[35.97px] w-fit items-center justify-center gap-[8px] rounded-[20px] bg-[#FFC107] px-[15.99px] py-[6px] text-[#2A3F77]">
+                <span className="text-[16px] leading-[24px] text-[#0A0A0A]" aria-hidden>
+                  💳
                 </span>
+                <span className="text-[12px] font-semibold leading-[19.5px]">Tu cupo de crédito 100% online</span>
               </div>
 
-              <p className="text-[#94A3B8] text-[10px] md:text-[11px] tracking-wide mb-1 uppercase">
-                Monto estimado
-              </p>
+              <h3 className="mb-[28px] text-left text-[22px] font-normal leading-[28.6px] text-[#2A3F77]">
+                Conoce cuánto te prestan
+                <br />
+                los bancos en <span className="text-[#FFC107]">Colombia</span>
+              </h3>
 
-              <p className="text-[26px] md:text-[34px] font-bold text-[#0B1F3A] tracking-tight">
-                $___.____
-              </p>
-
-              <p className="text-[#94A3B8] text-[11px] md:text-[12px] mb-4 md:mb-5">
-                COP — Pesos colombianos
-              </p>
-
-              <div className="w-full h-[1px] bg-[#E2E8F0] mb-4 md:mb-5" />
-
-              <div className="space-y-3 md:space-y-4 text-[12px] md:text-[13px]">
-
-                <div className="flex justify-between">
-                  <span className="text-[#64748B]">Plazo</span>
-                  <span className="text-[#0B1F3A] font-medium">__ años</span>
-                </div>
-
-                <div className="flex justify-between">
-                  <span className="text-[#64748B]">Tasa de interés</span>
-                  <span className="text-[#0B1F3A] font-medium">__ %</span>
-                </div>
-
-                <div className="flex justify-between">
-                  <span className="text-[#64748B]">Cuota mensual aprox.</span>
-                  <span className="text-[#0B1F3A] font-medium">$___</span>
-                </div>
-
+              <div className="mb-[30px] flex w-full max-w-[304.03px] flex-col gap-[22px]">
+                {[
+                  ["🛡️", "Sin documentos"],
+                  ["⚡", "Sin esperas"],
+                  ["⭐", "Sin costo ni compromisos"],
+                ].map(([icon, label]) => (
+                  <div key={label} className="flex items-center gap-[13.98px]">
+                    <div className="flex h-[44px] w-[44px] items-center justify-center rounded-[22px] bg-[#2A3F77] px-[8.27px] text-[20px]">
+                      <span aria-hidden>{icon}</span>
+                    </div>
+                    <span className="text-[14px] leading-[26.47px] font-semibold text-[#2A3F77]">
+                      {label}
+                    </span>
+                  </div>
+                ))}
               </div>
 
               <Link
                 href="/credito"
-                className="block mt-5 md:mt-7 text-center bg-[#16325C] text-white py-[12px] md:py-[14px] rounded-full text-[13px] md:text-[14px] font-medium hover:opacity-90 transition"
+                className="block h-[52.98px] w-full max-w-[304.03px] rounded-[12px] bg-[#2A3F77] py-[15px] text-center text-[14px] font-bold leading-[21px] text-white transition hover:opacity-90"
               >
-                Verificar mi viabilidad →
+                Obtén tu cupo de crédito
               </Link>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
   );
 }

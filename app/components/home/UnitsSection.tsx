@@ -36,15 +36,23 @@ type ServiceCard = {
   description: string;
   icon: string;
   tags: string[];
+  cta: string;
 };
 
 const SERVICE_CARDS: ServiceCard[] = [
   {
     icon: "💰",
-    title: "Finanzas inteligentes",
+    title: "Financiación en Colombia",
     description:
       "Accede a crédito para tu vivienda en Colombia o libre inversión. Si tienes reportes o dudas, te ayudamos a solucionarlo y a prepararte paso a paso.",
-    tags: ["Buena Data", "Brújula Financiera", "Brújula Crediticia", "Monetización", "Crédito"],
+    tags: [
+      "Buena Data",
+      "Brújula Financiera",
+      "Brújula Crediticia",
+      "Monetización",
+      "Crédito",
+    ],
+    cta: "Ver servicios financieros",
   },
   {
     icon: "🏠",
@@ -52,6 +60,7 @@ const SERVICE_CARDS: ServiceCard[] = [
     description:
       "Te ayudamos a encontrar tu propiedad en Colombia o analizamos la que quieres comprar. Para que tomes la decisión con respaldo.",
     tags: ["Brújula Inmobiliaria", "Llave inmobiliaria"],
+    cta: "Ver servicios inmobiliarios",
   },
   {
     icon: "⚖️",
@@ -65,6 +74,7 @@ const SERVICE_CARDS: ServiceCard[] = [
       "Representación legal",
       "Servicios fiscales",
     ],
+    cta: "Ver servicios legales",
   },
 ];
 
@@ -79,7 +89,6 @@ export default function UnitsSection() {
         w-full 
         max-w-[1200px] 
         mx-auto 
-        
         px-4 
         sm:px-6 
         md:px-10 
@@ -99,7 +108,6 @@ export default function UnitsSection() {
             sm:text-[26px] 
             md:text-[32px] 
             lg:text-[38px] 
-            
             font-semibold 
             leading-tight 
             mb-3 md:mb-4
@@ -108,9 +116,10 @@ export default function UnitsSection() {
             Todo lo que necesitas, en un solo ecosistema.
           </h2>
 
-          <p className="mx-auto max-w-[750px] text-[14px] leading-[22px] text-[#475569] md:text-[15px]">
-            No tienes que buscar en cinco lugares distintos ni explicarle tu historia a desconocidos
-            cada vez. Aquí está todo.
+          <p className="mx-auto max-w-[690px] text-[14px] leading-[22px] text-[#475569] md:text-[15px]">
+            No tienes que buscar en cinco lugares distintos ni explicarle tu
+            <br />
+            historia a desconocidos cada vez. Aquí está todo.
           </p>
         </div>
 
@@ -125,7 +134,6 @@ export default function UnitsSection() {
             grid-cols-1 
             sm:grid-cols-2 
             lg:grid-cols-3 
-            
             gap-4 
             md:gap-6
           "
@@ -136,12 +144,9 @@ export default function UnitsSection() {
               variants={item}
               className="
               relative group bg-white border border-[#E2E8F0] 
-              
               p-5 md:p-6 
-              
               rounded-tl-[16px] rounded-br-[16px]
               flex flex-col justify-between
-              
               transition-all duration-500
               hover:-translate-y-[6px]
               hover:scale-[1.01]
@@ -196,7 +201,6 @@ export default function UnitsSection() {
                       border border-[#1A4F9E]/[0.12] 
                       text-[#1A4F9E] 
                       bg-[#1A4F9E]/[0.06]
-                      
                       transition-all duration-300
                       hover:bg-[#1A4F9E]
                       hover:text-white
@@ -214,7 +218,7 @@ export default function UnitsSection() {
                 href="/"
                 className="group/cta flex items-center gap-1 text-[13px] font-medium text-[#1A4F9E] md:text-[14px]"
               >
-                Ver servicios
+                {card.cta}
                 <span className="transition-all duration-300 group-hover/cta:translate-x-[6px]">
                   →
                 </span>
