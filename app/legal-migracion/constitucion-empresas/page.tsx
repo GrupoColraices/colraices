@@ -1,8 +1,8 @@
 import Breadcrumb from "@/app/components/layout/Breadcrumb";
 import SiteLayout from "@/app/components/layout/SiteLayout";
 
-import AsesoriaEmprendimientoH from "@/app/components/asesoria-emprendimiento/AsesoriaEmprendimientoH";
-import PartiesSection from "@/app/components/asesoria-emprendimiento/PartiesSection";
+import AsesoriaEmprendimientoH from "@/app/components/constitucion-empresas/AsesoriaEmprendimientoH";
+import PartiesSection from "@/app/components/constitucion-empresas/PartiesSection";
 
 export default function AsesoriaEmprendimient() 
 {
@@ -11,7 +11,7 @@ export default function AsesoriaEmprendimient()
       <Breadcrumb />
       <AsesoriaEmprendimientoH />
       <PartiesSection />
-      
+
     </SiteLayout>
   );
 }

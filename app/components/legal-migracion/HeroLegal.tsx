@@ -10,7 +10,7 @@ const montserrat = Montserrat({
 
 const LEGAL_SERVICES = [
   { icon: "🛂", text: "Asesoría migratoria y visas", href: "/legal-migracion/asesoria-migratoria" },
-  { icon: "🏢", text: "Asesoría en emprendimiento", href: "/legal-migracion/asesoria-emprendimiento" },
+  { icon: "🏢", text: "Asesoría en emprendimiento", href: "/legal-migracion/constitucion-empresas" },
   { icon: "⚖️", text: "Pensiones", href: "/legal-migracion/pensiones" },
   { icon: "💼", text: "Representación legal", href: "/legal-migracion/representacion-legal" },
   { icon: "📄", text: "Servicios fiscales", href: "/legal-migracion/servicios-fiscales" },
