@@ -27,13 +27,13 @@ export default function CoberturaSlider() {
         }}
       />
 
-      <div className="relative max-w-[1180px] mx-auto py-[52px] flex flex-col items-center">
+      <div className="relative max-w-[1180px] mx-auto py-[40px] sm:py-[46px] lg:py-[52px] px-4 sm:px-8 md:px-12 lg:px-6 flex flex-col items-center">
         {/* Título */}
         <h2
-          className="text-white font-bold tracking-[-0.02em] mb-[38px]"
+          className="text-white font-bold tracking-[-0.02em] mb-[28px] sm:mb-[34px] lg:mb-[38px] text-center"
           style={{
-            fontSize: "54px",
-            lineHeight: "100%",
+            fontSize: "clamp(30px, 6vw, 54px)",
+            lineHeight: "1",
             fontFamily: "Montserrat, sans-serif",
           }}
         >
@@ -46,10 +46,10 @@ export default function CoberturaSlider() {
         {/* Slider */}
         <div className="relative w-full overflow-hidden">
           {/* Fade izquierdo */}
-          <div className="absolute left-0 top-0 h-full w-[140px] bg-gradient-to-r from-[#091D3E] to-transparent z-20 pointer-events-none" />
+          <div className="absolute left-0 top-0 h-full w-[40px] sm:w-[80px] lg:w-[140px] bg-gradient-to-r from-[#091D3E] to-transparent z-20 pointer-events-none" />
 
           {/* Fade derecho */}
-          <div className="absolute right-0 top-0 h-full w-[140px] bg-gradient-to-l from-[#091D3E] to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 h-full w-[40px] sm:w-[80px] lg:w-[140px] bg-gradient-to-l from-[#091D3E] to-transparent z-20 pointer-events-none" />
 
           {/* Track */}
           <div
@@ -64,10 +64,10 @@ export default function CoberturaSlider() {
             {sliderItems.map((pais, index) => (
               <div
                 key={index}
-                className="group flex items-center justify-center h-[52px] px-[22px] mx-[12px] border border-white/[0.12] bg-white/[0.03] backdrop-blur-[8px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] rounded-tl-[16px] rounded-tr-none rounded-bl-none rounded-br-[16px] transition-all duration-300 hover:-translate-y-[4px] hover:border-[#DFA428] hover:shadow-[0_8px_24px_rgba(223,164,40,0.18)] cursor-pointer"
+                className="group flex items-center justify-center h-[46px] sm:h-[50px] lg:h-[52px] px-[16px] sm:px-[20px] lg:px-[22px] mx-[6px] sm:mx-[10px] lg:mx-[12px] border border-white/[0.12] bg-white/[0.03] backdrop-blur-[8px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] rounded-tl-[16px] rounded-tr-none rounded-bl-none rounded-br-[16px] transition-all duration-300 hover:-translate-y-[4px] hover:border-[#DFA428] hover:shadow-[0_8px_24px_rgba(223,164,40,0.18)] cursor-pointer"
               >
                 {/* Bandera */}
-                <span className="text-[20px] mr-[12px] leading-none">
+                <span className="text-[18px] sm:text-[19px] lg:text-[20px] mr-[8px] sm:mr-[10px] lg:mr-[12px] leading-none">
                   {pais.bandera}
                 </span>
 
@@ -75,8 +75,8 @@ export default function CoberturaSlider() {
                 <span
                   className="text-white font-semibold whitespace-nowrap"
                   style={{
-                    fontSize: "15.8px",
-                    lineHeight: "100%",
+                    fontSize: "clamp(13px, 2vw, 15.8px)",
+                    lineHeight: "1",
                     fontFamily: "Montserrat, sans-serif",
                   }}
                 >
@@ -101,6 +101,12 @@ export default function CoberturaSlider() {
 
         .animate-infinite-slider {
           animation: infiniteSlider 30s linear infinite;
+        }
+
+        @media (max-width: 768px) {
+          .animate-infinite-slider {
+            animation: infiniteSlider 22s linear infinite;
+          }
         }
       `}</style>
     </section>

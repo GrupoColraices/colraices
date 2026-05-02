@@ -48,18 +48,19 @@ const tenEnCuenta = [
 
 export default function PerfilamientoServicio() {
   return (
-    <section className="w-full bg-[#F5F1EB] border-t border-[#0A2E63] pt-[60px] sm:pt-[72px] md:pt-[86px] pb-[70px] md:pb-[95px] px-4 sm:px-6 md:px-10 lg:px-0">
-      <div className="max-w-[95%] sm:max-w-[90%] md:max-w-[853px] mx-auto">
+    <section className="w-full bg-[#F5F1EB] border-t border-[#0A2E63] pt-[56px] xs:pt-[60px] sm:pt-[72px] md:pt-[86px] pb-[64px] sm:pb-[78px] md:pb-[95px] px-4 sm:px-6 md:px-8 lg:px-0 overflow-hidden">
+      <div className="w-full max-w-[95%] sm:max-w-[90%] md:max-w-[853px] mx-auto">
+        
         {/* Encabezado */}
         <div className="text-center mb-[30px] sm:mb-[34px] md:mb-[36px]">
-          <div className="flex items-center justify-center gap-[8px] mb-[16px] sm:mb-[18px]">
+          <div className="flex items-center justify-center gap-[8px] mb-[14px] sm:mb-[18px]">
             <div className="w-[18px] h-[1.5px] bg-[#F4B400]" />
-            <span className="text-[9px] sm:text-[10px] font-semibold tracking-[0.24em] uppercase text-[#F4B400] leading-none">
+            <span className="text-[9px] sm:text-[10px] font-semibold tracking-[0.24em] uppercase text-[#F4B400] leading-none whitespace-nowrap">
               Perfilamiento
             </span>
           </div>
 
-          <h2 className="text-[34px] sm:text-[42px] md:text-[56px] leading-[1.05] font-semibold tracking-[-0.035em] text-[#0A2E63] px-2">
+          <h2 className="text-[28px] xs:text-[32px] sm:text-[42px] md:text-[56px] leading-[1.05] font-semibold tracking-[-0.035em] text-[#0A2E63] px-2 break-words">
             ¿Es este servicio{" "}
             <span className="text-[#F4B400] italic font-medium">
               para ti?
@@ -68,9 +69,10 @@ export default function PerfilamientoServicio() {
         </div>
 
         {/* Tarjetas */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[16px] md:gap-[20px] mb-[28px] md:mb-[32px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[18px] sm:gap-[20px] mb-[28px] md:mb-[32px]">
+          
           {/* Izquierda */}
-          <div className="bg-[#F7F0DF] border border-[#E8D2A3] rounded-[18px] px-[18px] sm:px-[22px] pt-[20px] sm:pt-[24px] pb-[20px] sm:pb-[22px] min-h-auto md:min-h-[281px]">
+          <div className="bg-[#F7F0DF] border border-[#E8D2A3] rounded-[18px] px-[18px] sm:px-[22px] pt-[20px] sm:pt-[24px] pb-[20px] sm:pb-[22px] h-auto md:min-h-[281px]">
             <div className="flex items-center gap-[10px] mb-[18px]">
               <div className="w-[23px] h-[23px] rounded-full bg-[#F4B400] flex items-center justify-center text-white text-[12px] font-bold shrink-0">
                 ✓
@@ -84,7 +86,7 @@ export default function PerfilamientoServicio() {
               {aplicaSi.map((item, index) => (
                 <li
                   key={index}
-                  className="flex items-start gap-[10px] text-[#4F5A6D] text-[12px] sm:text-[13px] leading-[1.5]"
+                  className="flex items-start gap-[10px] text-[#4F5A6D] text-[13px] leading-[1.5]"
                 >
                   <span className="text-[12px] mt-[2px] shrink-0">
                     {item.icono}
@@ -96,7 +98,7 @@ export default function PerfilamientoServicio() {
           </div>
 
           {/* Derecha */}
-          <div className="bg-[#ECEEF3] border border-[#D4D8E1] rounded-[18px] px-[18px] sm:px-[22px] pt-[20px] sm:pt-[24px] pb-[20px] sm:pb-[22px] min-h-auto md:min-h-[281px]">
+          <div className="bg-[#ECEEF3] border border-[#D4D8E1] rounded-[18px] px-[18px] sm:px-[22px] pt-[20px] sm:pt-[24px] pb-[20px] sm:pb-[22px] h-auto md:min-h-[281px]">
             <div className="flex items-center gap-[10px] mb-[18px]">
               <div className="w-[23px] h-[23px] rounded-full bg-[#9AA6BB] flex items-center justify-center text-white text-[12px] font-bold shrink-0">
                 →
@@ -110,7 +112,7 @@ export default function PerfilamientoServicio() {
               {tenEnCuenta.map((item, index) => (
                 <li
                   key={index}
-                  className="flex items-start gap-[10px] text-[#8B96AA] text-[12px] sm:text-[13px] leading-[1.5]"
+                  className="flex items-start gap-[10px] text-[#8B96AA] text-[13px] leading-[1.5]"
                 >
                   <span className="text-[12px] mt-[2px] shrink-0">
                     {item.icono}
@@ -124,7 +126,7 @@ export default function PerfilamientoServicio() {
 
         {/* Nota inferior */}
         <div className="bg-[#F8F1DE] border border-[#F4B400] border-l-[3px] rounded-[14px] px-[16px] sm:px-[22px] py-[16px] sm:py-[18px]">
-          <p className="text-[12px] sm:text-[13px] leading-[1.6] text-[#D79B00]">
+          <p className="text-[13px] leading-[1.6] text-[#D79B00]">
             <span className="font-semibold">
               Una nota importante sobre los tiempos:
             </span>{" "}
