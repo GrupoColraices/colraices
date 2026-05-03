@@ -141,6 +141,10 @@ export default function TestimonialsSection() {
     setIndex((prev) => prev - 1);
   };
 
+  const handleYoutube = () => {
+    window.open("https://www.youtube.com/@colraices_canal_oficial", "_blank");
+  };
+
   return (
     <>
       <section className="w-full bg-[#FFFFFF]">
@@ -213,7 +217,10 @@ export default function TestimonialsSection() {
 
                       {(item.name === "Tito Venegas" ||
                         item.name === "Diana Prieto") && (
-                        <button className="mt-[14px] w-full h-[40px] bg-[#2A3F77] rounded-[6px] flex items-center justify-center gap-[8px] text-white font-semibold text-[13px] hover:opacity-95 transition">
+                        <button
+                          onClick={handleYoutube}
+                          className="mt-[14px] w-full h-[40px] bg-[#2A3F77] rounded-[6px] flex items-center justify-center gap-[8px] text-white font-semibold text-[13px] hover:opacity-95 transition"
+                        >
                           <span className="text-[11px] leading-none">▶</span>
                           VER VIDEO TESTIMONIO
                         </button>
