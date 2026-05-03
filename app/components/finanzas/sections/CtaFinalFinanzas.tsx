@@ -45,16 +45,17 @@ export default function CtaFinalFinanzas() {
         <p
           style={{
             marginTop: '16px',
-            color: 'rgba(255,255,255,0.46)',
+            color: 'rgba(255,255,255,0.72)',
             fontFamily: 'Montserrat, sans-serif',
             fontSize: '15.2px',
-            lineHeight: '1.7',
+            lineHeight: '1.4',
             whiteSpace: 'nowrap',
-            width: 'max-content',
-            maxWidth: 'none',
+            textAlign: 'center',
+            alignSelf: 'center',
+            flexShrink: 0,
           }}
         >
-          No importa en qué momento estés. Siempre hay un primer paso. Cuéntanos tu caso y te decimos por dónde empezar.
+          Empieza con una conversación. Sin compromisos, sin letra pequeña, sin enredos.
         </p>
 
         {/* BOTONES */}
