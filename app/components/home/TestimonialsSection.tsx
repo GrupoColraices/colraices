@@ -224,7 +224,7 @@ export default function TestimonialsSection() {
               </div>
             </div>
 
-            <div className="flex justify-center gap-[20px] mt-[32px]">
+            <div className="flex justify-center gap-[70px] mt-[32px]">
               <button
                 onClick={handlePrev}
                 className="w-[48px] h-[48px] rounded-full bg-[#2A3F77] text-white flex items-center justify-center text-xl"
