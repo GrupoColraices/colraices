@@ -47,12 +47,11 @@ export default function CtaFinalFinanzas() {
             marginTop: '16px',
             color: 'rgba(255,255,255,0.46)',
             fontFamily: 'Montserrat, sans-serif',
-            fontSize: 'clamp(14px, 1.2vw, 15.2px)',
+            fontSize: '15.2px',
             lineHeight: '1.7',
-            whiteSpace: 'nowrap', // 🔥 fuerza una sola línea en desktop
-            maxWidth: '100%',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            width: 'max-content',
+            maxWidth: 'none',
           }}
         >
           No importa en qué momento estés. Siempre hay un primer paso. Cuéntanos tu caso y te decimos por dónde empezar.
