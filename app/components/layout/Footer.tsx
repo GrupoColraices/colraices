@@ -24,6 +24,7 @@ export default function Footer() {
                 src="/logo-foote.png"
                 alt="Colraices Logo"
                 fill
+                sizes="(max-width: 640px) 140px, (max-width: 1024px) 180px, 220px"
                 className="object-contain object-left"
                 priority
               />

@@ -25,6 +25,7 @@ export default function CtaFinalFinanzas() {
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
+          overflow: 'visible',
         }}
       >
         {/* TITULO */}
@@ -45,14 +46,16 @@ export default function CtaFinalFinanzas() {
         <p
           style={{
             marginTop: '16px',
+            marginBottom: 0,
             color: 'rgba(255,255,255,0.72)',
             fontFamily: 'Montserrat, sans-serif',
             fontSize: '15.2px',
             lineHeight: '1.4',
-            whiteSpace: 'nowrap',
             textAlign: 'center',
-            alignSelf: 'center',
-            flexShrink: 0,
+            maxWidth: '600px',
+            width: '100%',
+            whiteSpace: 'nowrap',
+            overflow: 'visible',
           }}
         >
           Empieza con una conversación. Sin compromisos, sin letra pequeña, sin enredos.
