@@ -52,8 +52,7 @@ export default function CtaFinalFinanzas() {
             maxWidth: '700px', // 🔥 evita textos muy largos en PC
           }}
         >
-          No importa en qué momento estés. Siempre hay un primer paso. Cuéntanos tu
-          caso y te decimos por dónde empezar.
+          No importa en qué momento estés. Siempre hay un primer paso. Cuéntanos tu caso y te decimos por dónde empezar.
         </p>
 
         {/* BOTONES */}
