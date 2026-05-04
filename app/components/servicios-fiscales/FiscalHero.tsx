@@ -5,17 +5,9 @@ export default function FiscalHero() {
     <section className="relative w-full bg-[#FBF8F3] overflow-hidden">
       <style jsx>{`
         @keyframes pulseDotFloat {
-          0%,
-          100% {
-            transform: translateY(0px);
-            opacity: 1;
-          }
-          50% {
-            transform: translateY(-3px);
-            opacity: 0.85;
-          }
+          0%, 100% { transform: translateY(0px); opacity: 1; }
+          50%       { transform: translateY(-3px); opacity: 0.85; }
         }
-
         .animate-pulse-dot {
           animation: pulseDotFloat 2s ease-in-out infinite;
         }
@@ -24,27 +16,26 @@ export default function FiscalHero() {
       {/* Right background circles */}
       <div className="absolute right-[-260px] top-[170px] hidden xl:block pointer-events-none">
         <div className="relative w-[760px] h-[760px] rounded-full border border-[#0F2D5C]/4">
-          <div className="absolute inset-[80px] rounded-full border border-[#0F2D5C]/4" />
+          <div className="absolute inset-[80px]  rounded-full border border-[#0F2D5C]/4" />
           <div className="absolute inset-[160px] rounded-full border border-[#0F2D5C]/4" />
           <div className="absolute inset-[240px] rounded-full border border-[#0F2D5C]/4" />
           <div className="absolute inset-[320px] rounded-full border border-[#0F2D5C]/4" />
         </div>
       </div>
 
-      {/* Main container */}
-      <div className="max-w-[1180px] mx-auto pt-[60px] pb-[68px] pr-[96px] px-6 lg:px-0">
-        <div className="flex flex-col lg:flex-row justify-between items-start">
+      {/* Main container — FIX 1: px-6 en móvil, pr-[96px] solo en lg */}
+      <div className="max-w-[1180px] mx-auto pt-[60px] pb-[68px] px-6 lg:pl-0 lg:pr-[96px]">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-0">
 
           {/* LEFT CONTENT */}
-          <div className="w-full max-w-[612px] mt-[80px] lg:mt-[142px] lg:ml-[52px]">
+          <div className="w-full max-w-[612px] mt-[40px] sm:mt-[60px] lg:mt-[142px] lg:ml-[52px]">
 
             {/* Headline block */}
-            <div className="w-full max-w-[612px] mb-[20px]">
-              <h1 className="font-semibold text-[#0F2D5C] text-[40px] sm:text-[48px] lg:text-[53.78px] leading-[1.12]">
+            <div className="w-full mb-[20px]">
+              <h1 className="font-semibold text-[#0F2D5C] text-[36px] sm:text-[48px] lg:text-[53.78px] leading-[1.12]">
                 Saliste de Colombia.
               </h1>
-
-              <h2 className="font-semibold italic text-[#1A4F9E] text-[34px] sm:text-[38px] lg:text-[40px] leading-[1.12]">
+              <h2 className="font-semibold italic text-[#1A4F9E] text-[28px] sm:text-[38px] lg:text-[40px] leading-[1.12]">
                 Tus obligaciones <br />
                 fiscales, no.
               </h2>
@@ -64,15 +55,14 @@ export default function FiscalHero() {
               <button className="h-[51.2px] px-[28px] rounded-full bg-[#FFC107] text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] whitespace-nowrap shadow-md hover:scale-[1.02] transition-all duration-300">
                 Hacer diagnóstico gratuito →
               </button>
-
               <button className="h-[51.2px] px-[28px] rounded-full border border-[#0F2D5C]/25 text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] whitespace-nowrap hover:bg-[#0F2D5C]/5 transition-all duration-300">
                 Ver qué resolvemos
               </button>
             </div>
           </div>
 
-          {/* RIGHT CARD */}
-          <div className="w-full max-w-[400px] min-h-[685.67px] rounded-[32px] bg-[#0F2D5C] px-[36px] pt-[36px] pb-[36px] mt-16 lg:mt-0 shadow-[0_30px_60px_rgba(15,45,92,0.18)]">
+          {/* RIGHT CARD — FIX 2: mx-auto en móvil, min-h solo en lg */}
+          <div className="w-full max-w-[400px] mx-auto lg:mx-0 lg:min-h-[685.67px] rounded-[32px] bg-[#0F2D5C] px-[36px] pt-[36px] pb-[36px] shadow-[0_30px_60px_rgba(15,45,92,0.18)]">
 
             {/* Badge */}
             <div className="inline-flex items-center gap-[6px] h-[28.4px] px-[14px] rounded-full bg-[#059669]/25 border border-[#10B981]/30 mb-[20px]">
@@ -106,9 +96,7 @@ export default function FiscalHero() {
                   <div className="min-w-[20px] h-[20px] rounded-full bg-[#059669]/25 border border-[#10B981]/30 flex items-center justify-center text-[#FFC107] text-[11px] font-semibold mt-[2px]">
                     {i + 1}
                   </div>
-                  <p className="text-white/65 text-[13.12px] leading-[19.7px]">
-                    {item}
-                  </p>
+                  <p className="text-white/65 text-[13.12px] leading-[19.7px]">{item}</p>
                 </div>
               ))}
             </div>
@@ -131,9 +119,7 @@ export default function FiscalHero() {
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <span className="text-[#FFC107] text-[14px] mt-[2px]">✓</span>
-                  <p className="text-white/55 text-[12.48px] leading-[18.7px]">
-                    {item}
-                  </p>
+                  <p className="text-white/55 text-[12.48px] leading-[18.7px]">{item}</p>
                 </div>
               ))}
             </div>
@@ -143,6 +129,7 @@ export default function FiscalHero() {
               Empezar el diagnóstico →
             </button>
           </div>
+
         </div>
       </div>
     </section>

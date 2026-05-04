@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const beliefsData = [
   {
-    myth: "“Vivo afuera, no tengo que declarar en Colombia.”",
+    myth: '"Vivo afuera, no tengo que declarar en Colombia."',
     reality: (
       <>
         La obligación de declarar depende de tu{" "}
@@ -19,7 +19,7 @@ const beliefsData = [
     ),
   },
   {
-    myth: "“Declarar es pagar impuestos. Mejor no moverlo.”",
+    myth: '"Declarar es pagar impuestos. Mejor no moverlo."',
     reality: (
       <>
         Declarar y pagar son cosas distintas. Puedes estar obligado a declarar y
@@ -31,7 +31,7 @@ const beliefsData = [
     ),
   },
   {
-    myth: "“Eso es solo para los ricos. Yo no tengo tanto.”",
+    myth: '"Eso es solo para los ricos. Yo no tengo tanto."',
     reality: (
       <>
         Los umbrales no son tan altos como se cree.{" "}
@@ -43,7 +43,7 @@ const beliefsData = [
     ),
   },
   {
-    myth: "“El predial lo está pagando el familiar que vive ahí.”",
+    myth: '"El predial lo está pagando el familiar que vive ahí',
     reality: (
       <>
         El predial es una obligación del{" "}
@@ -56,7 +56,7 @@ const beliefsData = [
     ),
   },
   {
-    myth: "“Si no declaro, nadie se va a dar cuenta desde aquí.”",
+    myth: '"Si no declaro, nadie se va a dar cuenta desde aquí."',
     reality: (
       <>
         La DIAN cruza información con bancos, notarías y registros públicos en
@@ -125,14 +125,14 @@ export default function BeliefsSection() {
   };
 
   return (
-    <section className="w-full bg-white py-[88px] overflow-hidden">
+    <section className="w-full bg-white py-12 sm:py-16 lg:py-[88px] overflow-hidden">
       {/* HEADER */}
-      <div className="max-w-[1180px] mx-auto mb-[40px] px-[52px]">
+      <div className="max-w-[1180px] mx-auto mb-8 sm:mb-10 px-5 sm:px-8 xl:px-[52px]">
         <p className="text-[11.2px] font-semibold uppercase tracking-[1.57px] leading-[16.8px] text-[#FFC107] mb-[12px]">
           Por qué la mayoría no actúa
         </p>
 
-        <h2 className="text-[35.86px] leading-[43px] font-semibold text-[#0F2D5C] mb-[12px]">
+        <h2 className="text-[26px] sm:text-[32px] lg:text-[35.86px] leading-[1.2] font-semibold text-[#0F2D5C] mb-[12px]">
           Las creencias que{" "}
           <span className="italic text-[#1A4F9E]">cuestan caro</span>
         </h2>
@@ -143,14 +143,14 @@ export default function BeliefsSection() {
       </div>
 
       {/* SLIDER */}
-      <div className="relative max-w-[1038px] mx-auto">
+      <div className="relative max-w-[1038px] mx-auto px-5 sm:px-8 xl:px-0">
         <Slider {...settings}>
           {beliefsData.map((item, index) => (
-            <div key={index} className="!w-[346px]">
-              <div className="w-[346px] h-[268.5px] border border-[#0F2D5C]/10 rounded-[20px] overflow-hidden bg-white">
+            <div key={index} className="px-2 sm:px-[10px]">
+              <div className="w-full border border-[#0F2D5C]/10 rounded-[20px] overflow-hidden bg-white">
 
                 {/* TOP */}
-                <div className="w-full h-[111.2px] bg-[#FBF8F3] border-b border-[#0F2D5C]/6 px-[22px] pt-[22px]">
+                <div className="w-full bg-[#FBF8F3] border-b border-[#0F2D5C]/6 px-[22px] pt-[22px] pb-[22px]">
                   <div className="inline-flex items-center gap-[5px] h-[22px] rounded-full px-[12px] border border-[#DC2626]/15 bg-[#DC2626]/8 mb-[14px]">
                     <span className="w-[5px] h-[5px] rounded-full bg-[#B91C1C]" />
                     <span className="text-[9.6px] font-bold uppercase tracking-[1.06px] text-[#B91C1C]">
@@ -158,13 +158,13 @@ export default function BeliefsSection() {
                     </span>
                   </div>
 
-                  <p className="text-[13.6px] italic leading-[21.8px] text-[#475569] max-w-[300px]">
+                  <p className="text-[13.6px] italic leading-[21.8px] text-[#475569] w-full">
                     {item.myth}
                   </p>
                 </div>
 
                 {/* BOTTOM */}
-                <div className="w-full h-[155.7px] bg-white px-[22px] pt-[18px]">
+                <div className="w-full bg-white px-[22px] pt-[18px] pb-[22px]">
                   <div className="inline-flex items-center gap-[5px] h-[22px] rounded-full px-[12px] border border-[#059669]/20 bg-[#FEF3C7] mb-[14px]">
                     <span className="w-[5px] h-[5px] rounded-full bg-[#E6AC00]" />
                     <span className="text-[9.6px] font-bold uppercase tracking-[1.06px] text-[#E6AC00]">
@@ -172,7 +172,7 @@ export default function BeliefsSection() {
                     </span>
                   </div>
 
-                  <p className="text-[13.28px] leading-[21.9px] text-[#1E293B] max-w-[300px]">
+                  <p className="text-[13.28px] leading-[21.9px] text-[#1E293B] w-full">
                     {item.reality}
                   </p>
                 </div>
@@ -186,27 +186,24 @@ export default function BeliefsSection() {
         .slick-list {
           padding: 0 !important;
           margin: 0 !important;
+          overflow: hidden !important;
         }
 
         .slick-track {
           display: flex !important;
-          gap: 0 !important;
-          margin: 0 !important;
+          align-items: stretch !important;
         }
 
         .slick-slide {
-          margin: 0 !important;
-          padding: 0 !important;
-          display: block !important;
+          height: auto !important;
         }
 
         .slick-slide > div {
-          margin: 0 !important;
-          padding: 0 !important;
+          height: 100%;
         }
 
         .slick-slide > div > div {
-          margin: 0 !important;
+          height: 100%;
         }
 
         .custom-dots li.slick-active div {

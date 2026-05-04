@@ -38,373 +38,109 @@ const steps = [
 
 export default function FiscalDiagnosticSection() {
   return (
-    <>
-      <section className="fds-section">
-        <div className="fds-container">
-          {/* LEFT */}
-          <div className="fds-left">
-            <div className="fds-kicker-wrap">
-              <span className="fds-kicker">EL CENTRO DEL SERVICIO</span>
-            </div>
+    <section className="relative w-full bg-[#091D3E] py-16 lg:py-[88px] overflow-hidden">
+      {/* Grid background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "52px 52px",
+        }}
+      />
 
-            <h2 className="fds-title">
+      <div className="relative z-10 max-w-[1180px] mx-auto px-5 sm:px-8 xl:px-[52px]">
+        <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-14">
+
+          {/* LEFT */}
+          <div className="w-full lg:w-[510px] shrink-0">
+            <p className="text-[#FFC107] text-[11.2px] font-semibold tracking-[1.57px] leading-[16.8px] uppercase mb-7">
+              EL CENTRO DEL SERVICIO
+            </p>
+
+            <h2 className="text-white text-[28px] sm:text-[32px] lg:text-[35.86px] font-semibold leading-[1.2] mb-8">
               El diagnóstico <br />
-              <span>que lo resuelve todo</span>
+              <span className="text-[#FFC107] italic">que lo resuelve todo</span>
             </h2>
 
-            <p className="fds-description">
+            <p className="text-white/65 text-[16.8px] leading-[29.4px] font-light mb-8">
               El 80% de los colombianos en el exterior no sabe si tiene
               obligaciones fiscales activas en Colombia. Este diagnóstico
               gratuito te lo aclara en minutos, para que sepas con certeza
               dónde estás y qué hacer si hay algo pendiente.
             </p>
 
-            <div className="fds-card-list">
+            <div className="flex flex-col gap-[14px]">
               {leftCards.map((card, index) => (
-                <div key={index} className="fds-info-card">
-                  <div className="fds-icon-box">{card.icon}</div>
-                  <div className="fds-card-content">
-                    <h3>{card.title}</h3>
-                    <p>{card.text}</p>
+                <div
+                  key={index}
+                  className="group flex gap-[14px] p-5 rounded-[20px] bg-white/4 border border-white/8 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[8px_8px_24px_rgba(0,0,0,0.22)] hover:bg-white/[0.09] hover:border-white/[0.16] cursor-pointer"
+                >
+                  <div className="w-9 h-9 min-w-[36px] rounded-md bg-[#059669]/18 border border-[#10B981]/25 flex items-center justify-center text-[15.2px] text-white transition-all duration-300 group-hover:bg-[#059669]/28 group-hover:border-[#10B981]/40 group-hover:scale-105">
+                    {card.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-white text-[14.08px] font-semibold leading-[21.1px] mb-0.5">
+                      {card.title}
+                    </h3>
+                    <p className="text-white/50 text-[12.64px] leading-[20.2px] transition-colors duration-300 group-hover:text-white/72">
+                      {card.text}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* RIGHT */}
-          <div className="fds-right-card">
-            <div className="fds-right-header">
-              <p className="fds-header-mini">DIAGNÓSTICO FISCAL GRATUITO</p>
-              <h3>Cómo funciona</h3>
-              <p className="fds-header-sub">Sin costo · Sin compromisos</p>
-              <div className="fds-header-circle"></div>
+          {/* RIGHT CARD */}
+          <div className="w-full lg:w-[510px] shrink-0 bg-white rounded-[32px] overflow-hidden">
+
+            {/* Card header */}
+            <div className="relative bg-[#FFC107] px-7 pt-7 pb-6 overflow-hidden">
+              <div className="absolute w-[110px] h-[110px] rounded-full bg-white/15 -top-9 -right-9" />
+              <p className="text-white/60 text-[10.4px] font-semibold tracking-[1.35px] leading-[15.6px] uppercase mb-1">
+                DIAGNÓSTICO FISCAL GRATUITO
+              </p>
+              <h3 className="text-white text-[22.4px] font-bold leading-[25.8px] mb-1">
+                Cómo funciona
+              </h3>
+              <p className="text-white/65 text-[12.48px] leading-[18.7px]">
+                Sin costo · Sin compromisos
+              </p>
             </div>
 
-            <div className="fds-steps-container">
+            {/* Steps */}
+            <div className="px-7 pt-6">
               {steps.map((step, index) => (
-                <div key={index} className="fds-step-item">
-                  <div className="fds-step-number">{step.number}</div>
-                  <div className="fds-step-text">
-                    <h4>{step.title}</h4>
-                    <p>{step.text}</p>
+                <div key={index} className="flex gap-[14px] pb-[18px]">
+                  <div className="w-7 h-7 min-w-[28px] rounded-full bg-[#FFC107] text-white flex items-center justify-center text-[13px] font-semibold">
+                    {step.number}
+                  </div>
+                  <div>
+                    <h4 className="text-[#0F2D5C] text-[13.6px] font-semibold leading-[20.4px] mb-0.5">
+                      {step.title}
+                    </h4>
+                    <p className="text-[#475569] text-[12.48px] leading-[19.3px]">
+                      {step.text}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="fds-cta-section">
-              <button className="fds-cta-button">
+            {/* CTA */}
+            <div className="px-7 pb-7 mt-1.5">
+              <button className="w-full h-[49.6px] rounded-full bg-[#0F2D5C] text-white text-[14.4px] font-semibold leading-[21.6px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_22px_rgba(15,45,92,0.22)]">
                 Empezar el diagnóstico ahora
               </button>
-              <p className="fds-cta-sub">
+              <p className="text-[#94A3B8] text-[11.52px] leading-[17.3px] text-center mt-2.5">
                 Sin costo · Sin compromisos · 3 días
               </p>
             </div>
           </div>
+
         </div>
-      </section>
-
-      <style jsx>{`
-        .fds-section {
-          width: 100%;
-          background: #091d3e;
-          padding: 88px 0;
-          min-height: 786.84px;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .fds-section::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background-image:
-            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-            linear-gradient(
-              90deg,
-              rgba(255, 255, 255, 0.03) 1px,
-              transparent 1px
-            );
-          background-size: 52px 52px;
-          pointer-events: none;
-        }
-
-        .fds-container {
-          max-width: 1180px;
-          height: 610.84px;
-          margin: 0 auto;
-          display: flex;
-          align-items: flex-start;
-          gap: 56px;
-          position: relative;
-          z-index: 2;
-        }
-
-        .fds-left {
-          width: 510px;
-          height: 610.84px;
-          margin-left: 52px;
-        }
-
-        .fds-kicker-wrap {
-          margin-bottom: 28.8px;
-        }
-
-        .fds-kicker {
-          font-size: 11.2px;
-          font-weight: 600;
-          letter-spacing: 1.57px;
-          color: #ffc107;
-          line-height: 16.8px;
-        }
-
-        .fds-title {
-          font-size: 35.86px;
-          line-height: 43px;
-          font-weight: 600;
-          color: white;
-          margin-bottom: 40px;
-        }
-
-        .fds-title span {
-          color: #ffc107;
-          font-style: italic;
-        }
-
-        .fds-description {
-          width: 510px;
-          font-size: 16.8px;
-          line-height: 29.4px;
-          color: rgba(255, 255, 255, 0.65);
-          margin-bottom: 32px;
-          font-weight: 300;
-        }
-
-        .fds-card-list {
-          display: flex;
-          flex-direction: column;
-          gap: 14px;
-          width: 510px;
-        }
-
-        .fds-info-card {
-          width: 510px;
-          min-height: 102.14px;
-          display: flex;
-          gap: 14px;
-          padding: 22px 18px 22px 22px;
-          border-radius: 20px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 0.8px solid rgba(255, 255, 255, 0.08);
-          transition:
-            transform 0.3s ease,
-            box-shadow 0.3s ease,
-            background 0.3s ease,
-            border-color 0.3s ease;
-          cursor: pointer;
-        }
-
-        .fds-info-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 8px 8px 24px rgba(0, 0, 0, 0.22);
-          background: rgba(255, 255, 255, 0.09);
-          border-color: rgba(255, 255, 255, 0.16);
-        }
-
-        .fds-icon-box {
-          width: 36px;
-          height: 36px;
-          min-width: 36px;
-          border-radius: 6px;
-          background: rgba(5, 150, 105, 0.18);
-          border: 0.8px solid rgba(16, 185, 129, 0.25);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 15.2px;
-          color: white;
-          transition:
-            background 0.3s ease,
-            border-color 0.3s ease,
-            transform 0.3s ease;
-        }
-
-        .fds-info-card:hover .fds-icon-box {
-          background: rgba(5, 150, 105, 0.28);
-          border-color: rgba(16, 185, 129, 0.4);
-          transform: scale(1.05);
-        }
-
-        .fds-card-content h3 {
-          font-size: 14.08px;
-          line-height: 21.1px;
-          color: white;
-          font-weight: 600;
-          margin-bottom: 3px;
-          transition: color 0.3s ease;
-        }
-
-        .fds-card-content p {
-          font-size: 12.64px;
-          line-height: 20.2px;
-          color: rgba(255, 255, 255, 0.5);
-          transition: color 0.3s ease;
-        }
-
-        .fds-info-card:hover .fds-card-content p {
-          color: rgba(255, 255, 255, 0.72);
-        }
-
-        .fds-right-card {
-          width: 510px;
-          height: 516.1px;
-          background: white;
-          border-radius: 32px;
-          overflow: hidden;
-        }
-
-        .fds-right-header {
-          height: 116.06px;
-          background: #ffc107;
-          padding: 28px 24px 0 28px;
-          position: relative;
-        }
-
-        .fds-header-circle {
-          position: absolute;
-          width: 110px;
-          height: 110px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.15);
-          top: -35px;
-          right: -35px;
-        }
-
-        .fds-header-mini {
-          font-size: 10.4px;
-          line-height: 15.6px;
-          letter-spacing: 1.35px;
-          font-weight: 600;
-          color: rgba(255, 255, 255, 0.6);
-          margin-bottom: 4px;
-        }
-
-        .fds-right-header h3 {
-          font-size: 22.4px;
-          line-height: 25.8px;
-          font-weight: 700;
-          color: white;
-          margin-bottom: 4px;
-        }
-
-        .fds-header-sub {
-          font-size: 12.48px;
-          line-height: 18.7px;
-          color: rgba(255, 255, 255, 0.65);
-        }
-
-        .fds-steps-container {
-          width: 454px;
-          padding: 24px 28px;
-        }
-
-        .fds-step-item {
-          display: flex;
-          gap: 14px;
-          min-height: 81.05px;
-          padding-bottom: 18px;
-        }
-
-        .fds-step-number {
-          width: 28px;
-          height: 28px;
-          min-width: 28px;
-          border-radius: 50%;
-          background: #ffc107;
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 13px;
-          font-weight: 600;
-        }
-
-        .fds-step-text h4 {
-          font-size: 13.6px;
-          line-height: 20.4px;
-          color: #0f2d5c;
-          font-weight: 600;
-          margin-bottom: 2px;
-        }
-
-        .fds-step-text p {
-          font-size: 12.48px;
-          line-height: 19.3px;
-          color: #475569;
-        }
-
-        .fds-cta-section {
-          padding: 0 28px;
-          margin-top: 6px;
-        }
-
-        .fds-cta-button {
-          width: 454px;
-          height: 49.6px;
-          border-radius: 100px;
-          border: none;
-          background: #0f2d5c;
-          color: white;
-          font-size: 14.4px;
-          line-height: 21.6px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .fds-cta-button:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 10px 22px rgba(15, 45, 92, 0.22);
-        }
-
-        .fds-cta-sub {
-          margin-top: 10px;
-          font-size: 11.52px;
-          line-height: 17.3px;
-          color: #94a3b8;
-          text-align: center;
-        }
-
-        @media (max-width: 1200px) {
-          .fds-container {
-            flex-direction: column;
-            height: auto;
-            align-items: center;
-          }
-
-          .fds-left {
-            margin-left: 0;
-          }
-
-          .fds-left,
-          .fds-right-card {
-            width: 100%;
-            max-width: 700px;
-          }
-
-          .fds-info-card,
-          .fds-card-list,
-          .fds-description,
-          .fds-cta-button {
-            width: 100%;
-          }
-
-          .fds-steps-container {
-            width: 100%;
-          }
-        }
-      `}</style>
-    </>
+      </div>
+    </section>
   );
 }
