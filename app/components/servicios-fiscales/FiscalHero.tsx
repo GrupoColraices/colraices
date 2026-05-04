@@ -61,7 +61,7 @@ export default function FiscalHero() {
 
             {/* Buttons row */}
             <div className="flex flex-col sm:flex-row gap-3 w-full">
-              <button className="h-[51.2px] px-[28px] rounded-full bg-[#FFC107] text-white font-semibold text-[14.4px] leading-[21.6px] whitespace-nowrap shadow-md hover:scale-[1.02] transition-all duration-300">
+              <button className="h-[51.2px] px-[28px] rounded-full bg-[#FFC107] text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] whitespace-nowrap shadow-md hover:scale-[1.02] transition-all duration-300">
                 Hacer diagnóstico gratuito →
               </button>
 
@@ -139,7 +139,7 @@ export default function FiscalHero() {
             </div>
 
             {/* CTA */}
-            <button className="w-full h-[49.6px] rounded-full bg-[#FFC107] text-white font-semibold text-[14.4px] leading-[21.6px] shadow-md hover:scale-[1.02] transition-all duration-300">
+            <button className="w-full h-[49.6px] rounded-full bg-[#FFC107] text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] shadow-md hover:scale-[1.02] transition-all duration-300">
               Empezar el diagnóstico →
             </button>
           </div>
