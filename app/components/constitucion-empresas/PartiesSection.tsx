@@ -47,7 +47,7 @@ export default function PartiesSection() {
           <div className="bg-white rounded-[24px] overflow-hidden border border-[rgba(15,45,92,0.06)] shadow-[0_12px_34px_rgba(15,45,92,0.06)] hover:-translate-y-1.5 hover:shadow-[0_18px_48px_rgba(15,45,92,0.10)] transition-all duration-500 flex flex-col">
             <div className="relative min-h-[165px] bg-[linear-gradient(135deg,#0A2B63_0%,#0F2D5C_58%,#183F82_100%)] px-7 sm:px-8 pt-8 pb-7">
               <div className="absolute top-0 right-0 w-[120px] h-[120px] rounded-full border border-white/10 translate-x-7 -translate-y-2" />
-              <div className="absolute top-7 right-8 w-[74px] h-[74px] rounded-full border border-white/10" />
+
 
               <div className="relative z-10">
                 <div className="text-[32px] mb-4">🌍</div>
@@ -86,7 +86,6 @@ export default function PartiesSection() {
           <div className="bg-white rounded-[24px] overflow-hidden border border-[rgba(15,45,92,0.06)] shadow-[0_12px_34px_rgba(15,45,92,0.06)] hover:-translate-y-1.5 hover:shadow-[0_18px_48px_rgba(15,45,92,0.10)] transition-all duration-500 flex flex-col">
             <div className="relative min-h-[165px] bg-[linear-gradient(135deg,#7A5900_0%,#B88600_48%,#E4A900_100%)] px-7 sm:px-8 pt-8 pb-7">
               <div className="absolute top-0 right-0 w-[120px] h-[120px] rounded-full border border-white/10 translate-x-7 -translate-y-2" />
-              <div className="absolute top-7 right-8 w-[74px] h-[74px] rounded-full border border-white/10" />
 
               <div className="relative z-10">
                 <div className="text-[32px] mb-4">🇨🇴</div>

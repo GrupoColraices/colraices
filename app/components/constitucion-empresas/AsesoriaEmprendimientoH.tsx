@@ -87,6 +87,7 @@ export default function AsesoriaEmprendimientoH() {
       <div className="absolute top-[30px] right-[4%] hidden xl:block pointer-events-none">
         <div className="relative w-[360px] h-[360px] rounded-full border border-[#FFC107]/10">
           <div className="absolute inset-[28px] rounded-full border border-[#FFC107]/8" />
+          <div className="absolute inset-[58px] rounded-full border border-[#1A4F9E]/15" />
         </div>
       </div>
 
