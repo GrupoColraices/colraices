@@ -25,17 +25,17 @@ export default function ProblemSection() {
       <div className="max-w-[1180px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-[56px]">
         
         {/* LEFT CONTENT */}
-        <div className="w-full max-w-[510px] flex flex-col items-center lg:items-start text-center lg:text-left">
+        <div className="w-full max-w-[510px] flex flex-col items-center text-center">
         
         {/* EYEBROW */}
-        <div className="mb-5 w-full">
+        <div className="mb-5 w-full flex justify-center">
             <span className="block text-[#F0B429] uppercase tracking-[1.57px] text-[16px] font-semibold leading-[16.8px] whitespace-nowrap">
             POR QUÉ EXISTE ESTE SERVICIO
             </span>
         </div>
 
         {/* TITLE */}
-        <h2 className="mb-6 flex flex-col gap-[8px] w-full">
+        <h2 className="mb-6 flex flex-col gap-[8px] items-center w-full">
             <span className="block text-white font-semibold text-[35.86px] leading-[43px] whitespace-nowrap tracking-[-0.03em]">
             Cuando no puedes viajar,
             </span>
@@ -46,7 +46,7 @@ export default function ProblemSection() {
         </h2>
 
         {/* DESCRIPTION */}
-        <p className="text-white/58 font-normal text-[15.2px] leading-[26.6px] max-w-[484px] w-full">
+        <p className="text-white/58 font-normal text-[15.2px] leading-[26.6px] max-w-[484px] text-center">
             Hasta ahora había tres caminos. Ninguno funciona bien cuando
             hay una fecha de escritura que no se puede mover.
         </p>
