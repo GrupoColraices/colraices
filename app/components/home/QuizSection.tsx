@@ -11,14 +11,14 @@ export default function TrustStripSection() {
 
   const routeMap: Record<string, string> = {
     "Quiero financiar mi vivienda en Colombia": "/finanzas/credito-hipotecario",
-    "Quiero saber si hoy aplico para crédito": "/finanzas/credito-hipotecario",
-    "Quiero entender mi situación financiera": "/finanzas/credito-hipotecario",
-    "Tengo reportes en Colombia": "/finanzas/credito-hipotecario",
-    "Quiero traer mi dinero a Colombia": "/finanzas/credito-hipotecario",
-    "Quiero ver proyectos": "/finanzas/credito-hipotecario",
+    "Quiero saber si hoy aplico para crédito": "/finanzas/brujula-crediticia",
+    "Quiero entender mi situación financiera": "/finanzas/brujula-financiera",
+    "Tengo reportes en Colombia": "/finanzas/buena-data",
+    "Quiero traer mi dinero a Colombia": "/finanzas/monetizacion",
+    "Quiero ver proyectos": "/tour-vivienda",
     "Quiero que busquen un inmueble por mí": "/finanzas/credito-hipotecario",
     "Quiero analizar un inmueble que ya encontré": "/finanzas/credito-hipotecario",
-    "Quiero gestionar temas legales o migratorios": "/finanzas/credito-hipotecario",
+    "Quiero gestionar temas legales o migratorios": "/legal-migracion",
   };
 
   const handleVerMiCamino = () => {

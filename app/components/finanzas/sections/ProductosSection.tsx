@@ -1,7 +1,7 @@
 "use client";
- 
+
 import { useRouter } from "next/navigation";
- 
+
 const preparacion = [
   {
     tag: "DIAGNÓSTICO FINANCIERO",
@@ -24,7 +24,7 @@ const preparacion = [
     duration: "3 días",
     color: "bg-[#FFC107]",
     icon: "📊",
-     button: "Ver produto →",
+    button: "Ver produto →",
     href: "/finanzas/brujula-crediticia",
   },
   {
@@ -40,12 +40,12 @@ const preparacion = [
     href: "/finanzas/buena-data",
   },
 ];
- 
+
 const ejecucion = [
   {
     tag: "Banco Davivienda · Bróker autorizado",
     title: "Crédito hipotecario",
-    subtitle: "Para comprar vivienda en Colombia",
+    subtitle: "Para comprar vivienda nueva o usada en Colombia",
     desc: "Hasta el 80% de financiación. Hasta 30 años de plazo. Tramitado directamente con Davivienda — sin intermediarios adicionales.",
     extra1: "Hasta 80%",
     extra2: "30 años",
@@ -69,40 +69,39 @@ const ejecucion = [
   {
     tag: "TRANSFERENCIA DE DIVISAS",
     title: "Monetización",
-    subtitle: '"Trae tu dinero a Colombia"',
+    subtitle: "Trae tu dinero a Colombia con seguridad y buena tasa",
     desc: "Tienes más de USD $10.000 que quieres traer a Colombia. El proceso requiere legalización correcta ante el Banco de la República y negociación en mesa de dinero. Colraices gestiona todo.",
-    extra1: "1%",
-    extra2: "USD 10.000",
+    extra1: "1% del monto",
+    extra2: "USD $10.000",
     color: "bg-[#059669]",
     icon: "💱",
     button: "Ver producto →",
+    href: "/finanzas/monetizacion",
   },
 ];
- 
+
 function Card({ item, index }: any) {
   const router = useRouter();
- 
+
   const textColorMap: any = {
     "bg-[#1A4F9E]": "text-[#1A4F9E]",
     "bg-[#FFC107]": "text-[#FFC107]",
     "bg-[#DC2626]": "text-[#DC2626]",
     "bg-[#059669]": "text-[#059669]",
   };
- 
+
   return (
     <div
       className={`
       relative
       w-full
- 
       border border-[#0F2D5C]/10
       rounded-tl-[16px] rounded-br-[16px]
- 
+      overflow-hidden
       px-4 pt-4 pb-6
       md:px-[28.8px] md:pt-[28.8px] md:pb-[28.8px]
- 
       flex flex-col
- 
+
       ${
         item.extra1
           ? index === 0
@@ -112,7 +111,7 @@ function Card({ item, index }: any) {
             : "bg-white"
           : "bg-white"
       }
- 
+
       transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]
       hover:-translate-y-[4px]
       hover:shadow-[0_20px_40px_rgba(15,45,92,0.12)]
@@ -120,8 +119,10 @@ function Card({ item, index }: any) {
     `}
     >
       {/* TOP LINE */}
-      <div className={`absolute top-0 left-0 w-full h-[2px] ${item.color}`} />
- 
+      <div className="absolute top-0 left-0 right-0 h-[2px] overflow-hidden rounded-tl-[16px]">
+        <div className={`w-full h-full ${item.color}`} />
+      </div>
+
       {/* TAG */}
       <div className="mt-[6px] h-[28px] flex items-center">
         {item.extra1 && index < 2 ? (
@@ -134,63 +135,75 @@ function Card({ item, index }: any) {
           </p>
         )}
       </div>
- 
+
       {/* ICON */}
       <div className="text-[24px] mt-[13px] opacity-80 group-hover:opacity-100 transition">
         {item.icon}
       </div>
- 
+
       {/* TITLE */}
       <h3 className="text-[#0F2D5C] text-[18.4px] font-semibold mt-[12px]">
         {item.title}
       </h3>
- 
+
       {/* SUBTITLE */}
       <p className="text-[#94A3B8] italic text-[12.48px] mt-[4px]">
         {item.subtitle}
       </p>
- 
+
       {/* DIVIDER */}
       <div className="w-full h-[1px] bg-[#0F2D5C]/10 mt-[18px]" />
- 
+
       {/* DESC */}
       <p className="text-[#475569] text-[13.6px] mt-[12px] flex-1">
         {item.desc}
       </p>
- 
+
       {/* INFO */}
       <div className="mt-6 border-t border-[#0F2D5C]/10 pt-4 flex justify-between">
         <div>
           <p className="text-[#94A3B8] text-[10.4px] font-bold uppercase">
-            {item.price ? "PRECIO" : "FINANCIACIÓN"}
+            {item.price
+              ? "PRECIO"
+              : item.title === "Monetización"
+              ? "COSTO"
+              : "FINANCIACIÓN"}
           </p>
           <p className="text-[#0F2D5C] text-[14.08px] font-bold">
             {item.price || item.extra1}
           </p>
         </div>
+
         <div className="text-right">
           <p className="text-[#94A3B8] text-[10.4px] font-bold uppercase">
-            {item.duration ? "DURACIÓN" : "PLAZO MÁX."}
+            {item.duration
+              ? "DURACIÓN"
+              : item.title === "Monetización"
+              ? "MÍNIMO"
+              : "PLAZO MÁX."}
           </p>
           <p className="text-[#475569] text-[13.12px] font-medium">
             {item.duration || item.extra2}
           </p>
         </div>
       </div>
- 
+
       {/* BUTTON */}
       <button
         onClick={() => item.href && router.push(item.href)}
         className={`
         mt-4
         w-full
-        h-[41.29px] rounded-full text-[13.12px] font-semibold
- 
-        transition-all duration-200
+        h-[41.29px]
+        rounded-full
+        text-[13.12px]
+        font-semibold
+        transition-all
+        duration-200
         active:scale-[0.98]
- 
+
         ${item.href ? "cursor-pointer" : "cursor-default"}
- 
+
         ${
           item.filled
             ? "bg-[#0F2D5C] text-white hover:bg-[#0B254A]"
@@ -203,11 +216,7 @@ function Card({ item, index }: any) {
     </div>
   );
 }
- 
-// Contenedor idéntico para ambas secciones:
-// - móvil (<md):   1 columna
-// - tablet (md):   2 columnas
-// - desktop (lg):  3 columnas
+
 function CardGrid({ items }: { items: any[] }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
@@ -217,12 +226,12 @@ function CardGrid({ items }: { items: any[] }) {
     </div>
   );
 }
- 
+
 export default function ProductosSection() {
   return (
     <section className="w-full bg-white pt-[88px] pb-[143px]">
       <div className="max-w-[1084px] w-full mx-auto px-4 md:px-0">
- 
+
         <div className="text-center mb-[57px]">
           <p className="text-[#FFC107] text-[20px] italic font-bold leading-[30px]">
             Nuestros productos financieros
@@ -234,7 +243,7 @@ export default function ProductosSection() {
             que tu dinero trabaje en Colombia.
           </p>
         </div>
- 
+
         {/* PREPARACIÓN */}
         <div className="flex items-center gap-[10px] mb-[30px]">
           <p className="text-[#94A3B8] text-[9.92px] font-bold tracking-[1.19px] uppercase">
@@ -242,10 +251,11 @@ export default function ProductosSection() {
           </p>
           <div className="flex-1 h-[1px] bg-[#94A3B8]" />
         </div>
+
         <div className="mb-[60px]">
           <CardGrid items={preparacion} />
         </div>
- 
+
         {/* EJECUCIÓN */}
         <div className="flex items-center gap-[10px] mb-[30px]">
           <p className="text-[#94A3B8] text-[9.92px] font-bold tracking-[1.19px] uppercase">
@@ -253,8 +263,9 @@ export default function ProductosSection() {
           </p>
           <div className="flex-1 h-[1px] bg-[#94A3B8]" />
         </div>
+
         <CardGrid items={ejecucion} />
- 
+
       </div>
     </section>
   );

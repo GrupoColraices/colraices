@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 const cards = [
   {
     icon: "⚠️",
-    label: "SITUACIÓN A",
     text: "Tengo reportes negativos o deudas pendientes en Colombia",
     tag: "Buena Data →",
     href: "/buena-data",
@@ -16,7 +15,6 @@ const cards = [
   },
   {
     icon: "🔍",
-    label: "SITUACIÓN B",
     text: "No sé cómo está mi situación financiera en Colombia",
     tag: "Brújula Financiera →",
     href: "/brujula-financiera",
@@ -26,7 +24,6 @@ const cards = [
   },
   {
     icon: "🏠",
-    label: "SITUACIÓN C",
     text: "Quiero comprar vivienda en Colombia pero no sé si califico para crédito",
     tag: "Brújula Crediticia →",
     href: "/brujula-crediticia",
@@ -36,7 +33,6 @@ const cards = [
   },
   {
     icon: "🏢",
-    label: "SITUACIÓN D",
     text: "Envío remesas a Colombia y quiero convertir ese dinero en mi patrimonio",
     tag: "Crédito →",
     href: "/credito",
@@ -46,7 +42,6 @@ const cards = [
   },
   {
     icon: "💸",
-    label: "SITUACIÓN E",
     text: "Tengo más de USD $10.000 que quiero traer a Colombia de forma segura",
     tag: "Monetización →",
     href: "/monetizacion",

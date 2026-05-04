@@ -13,6 +13,12 @@ const routeNameMap: Record<string, string> = {
   "brujula-crediticia": "Brújula Crediticia",
   "buena-data": "Buena Data",
   "credito-hipotecario": "Crédito Hipotecario",
+  "monetizacion": "Monetización",
+  "asesoria-migratoria": "Asesoría Migratoria",
+  "constitucion-empresas": "Constitución de Empresas",
+  "pensiones": "Pensiones",
+  "representacion-legal": "Representación Legal",
+  "servicios-fiscales": "Servicios Fiscales",
 };
 
 export default function Breadcrumb() {

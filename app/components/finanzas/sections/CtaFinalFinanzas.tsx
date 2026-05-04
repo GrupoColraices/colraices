@@ -13,18 +13,19 @@ export default function CtaFinalFinanzas() {
         backgroundColor: '#091D3E',
         display: 'flex',
         justifyContent: 'center',
-        padding: '100px 20px', // 🔥 padding lateral para móvil
+        padding: '100px 20px',
       }}
       aria-label="CTA final finanzas"
     >
       <div
         style={{
           width: '100%',
-          maxWidth: '1180px', // 🔥 mantiene el diseño en desktop
+          maxWidth: '1180px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
+          overflow: 'visible',
         }}
       >
         {/* TITULO */}
@@ -35,7 +36,7 @@ export default function CtaFinalFinanzas() {
             fontFamily: 'Montserrat, sans-serif',
             fontWeight: 300,
             lineHeight: '1.2',
-            fontSize: 'clamp(28px, 4vw, 41.83px)', // 🔥 responsive real
+            fontSize: 'clamp(28px, 4vw, 41.83px)',
           }}
         >
           Empieza hoy. Compra mañana.
@@ -45,15 +46,19 @@ export default function CtaFinalFinanzas() {
         <p
           style={{
             marginTop: '16px',
-            color: 'rgba(255,255,255,0.46)',
+            marginBottom: 0,
+            color: 'rgba(255,255,255,0.72)',
             fontFamily: 'Montserrat, sans-serif',
-            fontSize: 'clamp(14px, 2.5vw, 15.2px)',
-            lineHeight: '1.7',
-            maxWidth: '700px', // 🔥 evita textos muy largos en PC
+            fontSize: '15.2px',
+            lineHeight: '1.4',
+            textAlign: 'center',
+            maxWidth: '600px',
+            width: '100%',
+            whiteSpace: 'nowrap',
+            overflow: 'visible',
           }}
         >
-          No importa en qué momento estés. Siempre hay un primer paso. Cuéntanos tu
-          caso y te decimos por dónde empezar.
+          Empieza con una conversación. Sin compromisos, sin letra pequeña, sin enredos.
         </p>
 
         {/* BOTONES */}
@@ -62,7 +67,7 @@ export default function CtaFinalFinanzas() {
             marginTop: '32px',
             display: 'flex',
             gap: '12px',
-            flexWrap: 'wrap', // 🔥 permite bajar en móvil
+            flexWrap: 'wrap',
             justifyContent: 'center',
           }}
         >

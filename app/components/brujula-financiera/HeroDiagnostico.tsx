@@ -43,7 +43,7 @@ export default function HeroDiagnostico() {
 
           {/* BUTTON */}
           <div className="mt-[32px]">
-            <button className="bg-[#FFC107] text-white text-[14.4px] font-semibold px-[24px] py-[13px] rounded-full leading-[21.6px] tracking-[0px] shadow-[0_10px_30px_rgba(255,193,7,0.35)] hover:scale-[1.03] transition">
+            <button className="bg-[#FFC107] text-[#2A3F77] text-[14.4px] font-bold px-[24px] py-[13px] rounded-full leading-[21.6px] tracking-[0px] shadow-[0_10px_30px_rgba(255,193,7,0.35)] hover:scale-[1.03] transition">
               Contratar →
             </button>
           </div>

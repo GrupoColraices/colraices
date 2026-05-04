@@ -2,8 +2,8 @@
 
 export default function ProblemaSolucionSection() {
   return (
-    <section className="w-full bg-[#FBF8F3] flex justify-center px-4 md:px-8 py-[80px]">
-      <div className="w-full max-w-[1180px] grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-[48px] items-start">
+    <section className="w-full bg-[#FBF8F3] flex justify-center px-4 md:px-8 py-[80px] overflow-visible">
+      <div className="w-full max-w-[1180px] grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-[48px] items-start relative">
 
         {/* LEFT SIDE */}
         <div className="flex flex-col gap-[24px]">
@@ -52,12 +52,21 @@ export default function ProblemaSolucionSection() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex items-start gap-[12px] border border-[#0F2D5C]/10 
-                rounded-tr-[0px] rounded-br-[16px] rounded-tl-[16px] rounded-bl-[0px] 
-                p-[16px] bg-white"
+                className="group relative flex items-start gap-[12px]
+                rounded-tr-[0px] rounded-br-[16px] rounded-tl-[16px] rounded-bl-[0px]
+                overflow-hidden
+                p-[16px] bg-white border border-[#0F2D5C]/10
+                transition-all duration-300 ease-out
+                hover:-translate-y-[4px]
+                hover:shadow-[0_12px_30px_rgba(15,45,92,0.10)]"
               >
-                <span className="text-[20px]">{item.icon}</span>
-                <p className="text-[14px] leading-[1.6] text-[#1E293B]">
+                <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#0F2D5C]" />
+
+                <span className="text-[20px] relative z-10 ml-[8px]">
+                  {item.icon}
+                </span>
+
+                <p className="text-[14px] leading-[1.6] text-[#1E293B] relative z-10">
                   {item.text}
                 </p>
               </div>
@@ -67,66 +76,85 @@ export default function ProblemaSolucionSection() {
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="w-[510px] h-auto bg-[#0F2D5C] rounded-[20px] p-[32px] text-white flex flex-col gap-[20px]">
+        <div className="relative w-[510px] self-start h-[620px]">
+          <div
+            className="
+              sticky
+              top-[90px]
+              w-[510px]
+              bg-[#0F2D5C]
+              rounded-[20px]
+              p-[32px]
+              text-white
+              flex
+              flex-col
+              gap-[20px]
+              shadow-[0_20px_60px_rgba(15,45,92,0.18)]
+              transition-all
+              duration-500
+              ease-out
+            "
+          >
 
-          {/* LABEL */}
-          <p className="text-[10px] tracking-[1.2px] uppercase text-white/40 font-bold">
-            La solución
-          </p>
+            {/* LABEL */}
+            <p className="text-[10px] tracking-[1.2px] uppercase text-white/40 font-bold">
+              La solución
+            </p>
 
-          {/* TITLE */}
-          <h3 className="text-[18px] md:text-[19px] leading-[1.4] font-bold">
-            Claridad antes de comprometer tiempo o dinero en algo que no sabes si es viable.
-          </h3>
+            {/* TITLE */}
+            <h3 className="text-[18px] md:text-[19px] leading-[1.4] font-bold">
+              Claridad antes de comprometer tiempo o dinero en algo que no sabes si es viable.
+            </h3>
 
-          {/* TEXT */}
-          <p className="text-[14px] leading-[1.7] text-white/60">
-            Brújula financiera te entrega un diagnóstico honesto de tu
-            situación real y un plan concreto para mejorarla.
-          </p>
+            {/* TEXT */}
+            <p className="text-[14px] leading-[1.7] text-white/60">
+              Brújula financiera te entrega un diagnóstico honesto de tu
+              situación real y un plan concreto para mejorarla.
+            </p>
 
-          {/* DIVIDER */}
-          <div className="w-full h-[1px] bg-white/10" />
+            {/* DIVIDER */}
+            <div className="w-full h-[1px] bg-white/10" />
 
-          {/* INFO ROWS */}
-          <div className="flex flex-col gap-[14px]">
+            {/* INFO ROWS */}
+            <div className="flex flex-col gap-[14px]">
 
-            <div className="flex justify-between items-center">
-              <span className="text-white/50 text-[13px]">
-                ¿Ejecuta por ti?
-              </span>
-              <span className="text-white text-[14px] font-semibold">
-                No — solo orienta
-              </span>
+              <div className="flex justify-between items-center">
+                <span className="text-white/50 text-[13px]">
+                  ¿Ejecuta por ti?
+                </span>
+                <span className="text-white text-[14px] font-semibold">
+                  No — solo orienta
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <span className="text-white/50 text-[13px]">
+                  ¿Requiere documentación?
+                </span>
+                <span className="text-white text-[14px] font-semibold">
+                  Mínima
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <span className="text-white/50 text-[13px]">
+                  Precio único
+                </span>
+                <span className="text-[#FFD54F] text-[16px] font-semibold">
+                  USD $45
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <span className="text-white/50 text-[13px]">
+                  Entrega
+                </span>
+                <span className="text-white text-[14px] font-semibold">
+                  3 días calendario
+                </span>
+              </div>
+
             </div>
-
-            <div className="flex justify-between items-center">
-              <span className="text-white/50 text-[13px]">
-                ¿Requiere documentación?
-              </span>
-              <span className="text-white text-[14px] font-semibold">
-                Mínima
-              </span>
-            </div>
-
-            <div className="flex justify-between items-center">
-              <span className="text-white/50 text-[13px]">
-                Precio único
-              </span>
-              <span className="text-[#FFD54F] text-[16px] font-semibold">
-                USD $45
-              </span>
-            </div>
-
-            <div className="flex justify-between items-center">
-              <span className="text-white/50 text-[13px]">
-                Entrega
-              </span>
-              <span className="text-white text-[14px] font-semibold">
-                3 días calendario
-              </span>
-            </div>
-
           </div>
         </div>
 

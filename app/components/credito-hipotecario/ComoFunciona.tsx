@@ -17,43 +17,46 @@ const STEPS = [
   },
 ];
 
+const CIRCLE_POSITIONS = ['c1', 'c2', 'c3'] as const;
 const PROXIMITY_THRESHOLD = 90;
 
 const css = `
   .cf-wrapper {
     width: 1180px;
-    padding: 88px 48px;
+    padding: 96px 48px 88px;
     box-sizing: border-box;
   }
-  .cf-header { width: 1084px; }
-
-  /* ── Contenedor unificado (circles + cards) ── */
+  .cf-header {
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: center;
+    transform: translateX(-8px);
+  }
   .cf-steps {
-    width: 1084px;
+    max-width: 1084px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 56px 32px auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 56px 52px auto;
+    column-gap: 34px;
     position: relative;
   }
-
-  /* SVG spindle */
   .cf-line-svg {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 56px;
+    inset: 0;
+    width: 100%;
+    height: 56px;
     z-index: 0;
     pointer-events: none;
     overflow: visible;
   }
-
-  /* Círculos — fila 1 del grid */
   .cf-circle {
     grid-row: 1;
     width: 56px;
     height: 56px;
-    border-radius: 28px;
-    background-color: #FFFFFF;
-    border: 1.6px solid rgba(15,45,92,0.18);
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1.6px solid rgba(15,45,92,0.14);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,12 +64,10 @@ const css = `
     font-weight: 700;
     font-size: 19.2px;
     color: #0F2D5C;
-    z-index: 1;
-    cursor: default;
-    transition:
-      background-color 0.35s cubic-bezier(0.22,1,0.36,1),
-      border-color     0.35s cubic-bezier(0.22,1,0.36,1),
-      color            0.35s cubic-bezier(0.22,1,0.36,1);
+    z-index: 2;
+    transition: background-color 0.35s cubic-bezier(0.22,1,0.36,1),
+                border-color     0.35s cubic-bezier(0.22,1,0.36,1),
+                color            0.35s cubic-bezier(0.22,1,0.36,1);
   }
   .cf-circle.c1 { grid-column: 1; justify-self: start; }
   .cf-circle.c2 { grid-column: 2; justify-self: center; }
@@ -74,81 +75,71 @@ const css = `
   .cf-circle.inverted {
     background-color: #0F2D5C;
     border-color: #0F2D5C;
-    color: #FFFFFF;
+    color: #fff;
   }
-
-  /* Cards — fila 3 del grid */
   .cf-card {
     grid-row: 3;
     box-sizing: border-box;
-    padding-right: 20px;
+    width: 100%;
   }
-  .cf-card.card1 { grid-column: 1; }
-  .cf-card.card2 { grid-column: 2; }
-  .cf-card.card3 { grid-column: 3; padding-right: 0; }
+  .cf-card.card1 { grid-column: 1; padding-right: 28px; }
+  .cf-card.card2 { grid-column: 2; padding-right: 24px; }
+  .cf-card.card3 { grid-column: 3; }
 
-  .cf-card-text {
-    text-align: justify;
-    text-justify: inter-word;
-  }
-
-  /* ════ TABLET ≤ 1200px ════ */
   @media (max-width: 1200px) {
-    .cf-wrapper { width: 100%; }
-    .cf-header  { width: 100%; }
-    .cf-steps   { width: 100%; }
+    .cf-wrapper { width: 100%; padding: 88px 32px; }
+    .cf-header, .cf-steps { max-width: 100%; transform: none; }
+    .cf-steps { column-gap: 28px; }
   }
-
-  /* ════ MÓVIL ≤ 768px ════ */
   @media (max-width: 768px) {
-    .cf-wrapper { padding: 64px 24px; box-sizing: border-box; }
-
-    /* Pasar a flex columna e intercalar con order */
-    .cf-steps {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    /* Ocultar SVG horizontal */
+    .cf-wrapper { padding: 64px 24px; }
+    .cf-steps { display: flex; flex-direction: column; }
     .cf-line-svg { display: none; }
-
-    /* Círculos como bloques normales */
-    .cf-circle {
-      align-self: flex-start;
-      flex-shrink: 0;
-      margin-bottom: 0;
-    }
+    .cf-circle { align-self: flex-start; flex-shrink: 0; }
     .cf-circle.c1 { order: 1; }
     .cf-circle.c2 { order: 3; }
     .cf-circle.c3 { order: 5; }
-
-    /* Cards intercaladas con los círculos */
     .cf-card {
       padding-right: 0;
       padding-left: 20px;
       padding-bottom: 32px;
       margin-left: 27px;
       border-left: 2px solid #FFC107;
-      box-sizing: border-box;
       width: auto;
     }
     .cf-card.card1 { order: 2; margin-top: 12px; }
     .cf-card.card2 { order: 4; margin-top: 12px; }
     .cf-card.card3 { order: 6; margin-top: 12px; border-left-color: transparent; padding-bottom: 0; }
   }
-
-  /* ════ MÓVIL PEQUEÑO ≤ 400px ════ */
   @media (max-width: 400px) {
     .cf-wrapper { padding: 48px 16px; }
   }
 `;
 
+const TITLE_STYLE: React.CSSProperties = {
+  fontFamily: 'Montserrat',
+  fontWeight: 600,
+  fontSize: '18px',
+  lineHeight: '24px',
+  color: '#0F2D5C',
+  marginBottom: '14px',
+};
+
+const TEXT_STYLE: React.CSSProperties = {
+  fontFamily: 'Montserrat',
+  fontWeight: 400,
+  fontSize: '15px',
+  lineHeight: '30px',
+  color: '#475569',
+  margin: 0,
+};
+
 export default function ComoFunciona() {
-  const ref0 = useRef<HTMLDivElement>(null);
-  const ref1 = useRef<HTMLDivElement>(null);
-  const ref2 = useRef<HTMLDivElement>(null);
-  const circleRefs = [ref0, ref1, ref2];
+  const circleRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
 
   const [active, setActive] = useState([false, false, false]);
 
@@ -156,10 +147,8 @@ export default function ComoFunciona() {
     setActive(
       circleRefs.map((ref) => {
         if (!ref.current) return false;
-        const r = ref.current.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
-        return Math.hypot(e.clientX - cx, e.clientY - cy) < PROXIMITY_THRESHOLD;
+        const { left, top, width, height } = ref.current.getBoundingClientRect();
+        return Math.hypot(e.clientX - (left + width / 2), e.clientY - (top + height / 2)) < PROXIMITY_THRESHOLD;
       })
     );
   }, []);
@@ -183,56 +172,49 @@ export default function ComoFunciona() {
 
         {/* HEADER */}
         <div className="cf-header">
-          <p style={{ fontFamily:'Montserrat', fontStyle:'italic', fontSize:'20px', lineHeight:'30px', color:'#0A0A0A', marginBottom:'10px' }}>
+          <p style={{ fontFamily: 'Montserrat', fontStyle: 'italic', fontSize: '20px', lineHeight: '30px', color: '#0A0A0A', marginBottom: '8px' }}>
             Cómo funciona
           </p>
-          <h2 style={{ fontFamily:'Montserrat', fontWeight:600, fontSize:'35.86px', lineHeight:'43px', color:'#0F2D5C', marginBottom:'10px' }}>
+          <h2 style={{ fontFamily: 'Montserrat', fontWeight: 600, fontSize: '58px', lineHeight: '66px', color: '#0F2D5C', marginBottom: '14px', letterSpacing: '-0.02em' }}>
             Tres pasos. Todo remoto.
           </h2>
-          <p style={{ fontFamily:'Montserrat', fontWeight:400, fontSize:'15.2px', lineHeight:'25.8px', color:'#475569' }}>
+          <p style={{ fontFamily: 'Montserrat', fontSize: '17px', lineHeight: '31px', color: '#475569', margin: '0 auto', maxWidth: '920px' }}>
             Desde la evaluación inicial hasta la radicación ante el banco, te acompañamos en cada paso del proceso.
             <br />
             Todo se gestiona de forma remota, sin viajes ni trámites presenciales.
           </p>
         </div>
 
-        <div style={{ height:'80px' }} />
+        <div style={{ height: '74px' }} />
 
-        {/* STEPS: círculos + cards en un solo grid/flex */}
+        {/* STEPS */}
         <div className="cf-steps">
 
-          {/* SVG spindle (solo visible en desktop) */}
-          <svg
-            className="cf-line-svg"
-            viewBox="0 0 1084 56"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          {/* SVG líneas */}
+          <svg className="cf-line-svg" viewBox="0 0 1084 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 28,28 L 1056,28" stroke="#DEDAD4" strokeWidth="1.2" fill="none" />
             <path
-              d="M 285,28 Q 542,25.5 799,28 Q 542,30.5 285,28 Z"
+              d="M 28,28 C 200,27.6 380,27 542,27 C 704,27 884,27.6 1056,28 C 884,28.4 704,29 542,29 C 380,29 200,28.4 28,28 Z"
               fill="#FFC107"
+              stroke="none"
             />
           </svg>
 
           {/* Círculos */}
-          <div ref={ref0} className={'cf-circle c1' + (active[0] ? ' inverted' : '')}>1</div>
-          <div ref={ref1} className={'cf-circle c2' + (active[1] ? ' inverted' : '')}>2</div>
-          <div ref={ref2} className={'cf-circle c3' + (active[2] ? ' inverted' : '')}>3</div>
+          {circleRefs.map((ref, i) => (
+            <div key={i} ref={ref} className={`cf-circle ${CIRCLE_POSITIONS[i]}${active[i] ? ' inverted' : ''}`}>
+              {i + 1}
+            </div>
+          ))}
 
           {/* Cards */}
           {STEPS.map((step, i) => (
             <div key={step.title} className={`cf-card card${i + 1}`}>
-              <h3 style={{ fontFamily:'Montserrat', fontWeight:600, fontSize:'16px', lineHeight:'20.8px', color:'#0F2D5C', marginBottom:'8px' }}>
-                {step.title}
-              </h3>
-              <p className="cf-card-text" style={{ fontFamily:'Montserrat', fontWeight:400, fontSize:'13.12px', lineHeight:'21px', color:'#475569', margin:0 }}>
-                {step.text}
-              </p>
+              <h3 style={TITLE_STYLE}>{step.title}</h3>
+              <p style={TEXT_STYLE}>{step.text}</p>
             </div>
           ))}
-
         </div>
-
       </div>
     </section>
   );
