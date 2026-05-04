@@ -7,6 +7,7 @@ import BeliefsSection from "@/app/components/servicios-fiscales/BeliefsSection";
 import TributosSection from "@/app/components/servicios-fiscales/TributosSection";
 import FiscalDiagnosticSection from "@/app/components/servicios-fiscales/FiscalDiagnosticSection";
 import PerfilamientoSection from "@/app/components/servicios-fiscales/PerfilamientoSection";
+import QuoteFiscal from "@/app/components/servicios-fiscales/QuoteFiscal";
 
 export default function Penciones() 
 {
@@ -18,7 +19,9 @@ export default function Penciones()
       <BeliefsSection />
       <TributosSection />
       <FiscalDiagnosticSection /> 
-      <PerfilamientoSection />         
+      <PerfilamientoSection />      
+      <QuoteFiscal />      
+        
       
     
     </SiteLayout>
