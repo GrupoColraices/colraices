@@ -7,8 +7,9 @@ import ProfilesSectionP from "@/app/components/pensiones/ProfilesSectionP";
 import ModuleSectionP from "@/app/components/pensiones/ModuleSectionP";
 import ModuleSectionLegal from "@/app/components/pensiones/ModuleSectionLegal";
 import PricingSection from "@/app/components/pensiones/PricingSection";
+import WhenService from "@/app/components/pensiones/WhenService";
 
-export default function ConstitucionEmpresas() 
+export default function Penciones() 
 {
   return (
     <SiteLayout>
@@ -19,6 +20,7 @@ export default function ConstitucionEmpresas()
       <ModuleSectionP />
       <ModuleSectionLegal />
       <PricingSection />
+      <WhenService />
       
  
 
