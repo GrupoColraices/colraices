@@ -8,6 +8,7 @@ import ModuleSectionP from "@/app/components/pensiones/ModuleSectionP";
 import ModuleSectionLegal from "@/app/components/pensiones/ModuleSectionLegal";
 import PricingSection from "@/app/components/pensiones/PricingSection";
 import WhenService from "@/app/components/pensiones/WhenService";
+import QuoteSection from "@/app/components/pensiones/QuoteSection";
 
 export default function Penciones() 
 {
@@ -21,7 +22,7 @@ export default function Penciones()
       <ModuleSectionLegal />
       <PricingSection />
       <WhenService />
-      
+      <QuoteSection />
  
 
     </SiteLayout>
