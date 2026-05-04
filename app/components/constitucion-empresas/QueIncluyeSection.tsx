@@ -91,9 +91,7 @@ export default function QueIncluyeSection() {
   };
 
   const prevPage = () => {
-    setPagina((prev) =>
-      prev === 0 ? incluyeItems.length - 1 : prev - 1
-    );
+    setPagina((prev) => (prev === 0 ? incluyeItems.length - 1 : prev - 1));
   };
 
   const visibleItems = Array.from({ length: cardsPerPage }, (_, i) => {
@@ -103,9 +101,8 @@ export default function QueIncluyeSection() {
   return (
     <section className="w-full bg-white py-[96px] border-b-[3px] border-[#FFC107] overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 lg:px-12">
-        {/* Header */}
-        <div className="max-w-[760px] mx-auto lg:mx-0 mb-[42px]">
-          <div className="flex items-center gap-3 mb-5">
+        <div className="max-w-[1280px] mx-auto mb-[42px] text-center">
+          <div className="flex items-center justify-center gap-3 mb-5">
             <div className="w-4 h-[2px] bg-[#FFC107]" />
             <span className="uppercase text-[11px] tracking-[0.22em] font-semibold text-[#C9900C]">
               Qué incluye
@@ -116,15 +113,13 @@ export default function QueIncluyeSection() {
             Más que una asesoría: Un proceso completo
           </h2>
 
-          <p className="text-[#475569] text-[18px] leading-[1.7] max-w-[640px]">
+          <p className="text-[#475569] text-[18px] leading-[1.7] max-w-[1000px] mx-auto">
             Todo lo que necesitas para pasar de idea a negocio real, sin tener
             que coordinar con múltiples proveedores.
           </p>
         </div>
 
-        {/* Carousel */}
-        <div className="relative w-full max-w-[1180px] mx-auto flex items-center justify-center">
-          {/* Prev */}
+        <div className="relative w-full max-w-[1240px] mx-auto flex items-center justify-center">
           <button
             onClick={prevPage}
             className="hidden lg:flex absolute left-[8px] z-20 w-[38px] h-[38px] rounded-full border border-[#C9900C] items-center justify-center text-[#C9900C] text-lg hover:bg-[#FFC107] hover:text-white transition-all duration-300"
@@ -132,13 +127,12 @@ export default function QueIncluyeSection() {
             ←
           </button>
 
-          {/* Cards wrapper */}
-          <div className="w-full overflow-hidden px-[70px]">
+          <div className="w-full max-w-[1080px] overflow-hidden px-[48px] mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[14px]">
               {visibleItems.map((item, index) => (
                 <div
                   key={`${item.numero}-${index}`}
-                  className="bg-[#FBF8F3] border border-[rgba(15,45,92,0.08)] rounded-[18px] h-[142px] md:h-[145px] px-5 py-5 flex gap-4"
+                  className="bg-[#FDF7EE] border border-[rgba(15,45,92,0.08)] rounded-[18px] h-[170px] px-5 py-5 flex gap-4"
                 >
                   <div className="w-[28px] h-[28px] rounded-full bg-[#FFC107] flex items-center justify-center text-white text-[13px] font-bold flex-shrink-0 mt-[2px]">
                     {item.numero}
@@ -158,7 +152,6 @@ export default function QueIncluyeSection() {
             </div>
           </div>
 
-          {/* Next */}
           <button
             onClick={nextPage}
             className="hidden lg:flex absolute right-[8px] z-20 w-[38px] h-[38px] rounded-full border border-[#C9900C] items-center justify-center text-[#C9900C] text-lg hover:bg-[#FFC107] hover:text-white transition-all duration-300"
@@ -167,16 +160,13 @@ export default function QueIncluyeSection() {
           </button>
         </div>
 
-        {/* Dots */}
         <div className="flex justify-center mt-8 gap-2">
           {incluyeItems.map((_, index) => (
             <button
               key={index}
               onClick={() => setPagina(index)}
               className={`h-[8px] rounded-full transition-all duration-300 ${
-                pagina === index
-                  ? "w-[22px] bg-[#E0A800]"
-                  : "w-[8px] bg-[#D6D3D1]"
+                pagina === index ? "w-[22px] bg-[#E0A800]" : "w-[8px] bg-[#D6D3D1]"
               }`}
             />
           ))}
