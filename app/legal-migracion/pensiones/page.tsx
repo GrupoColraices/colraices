@@ -5,7 +5,7 @@ import PensionHero from "@/app/components/pensiones/PensionHero";
 import TrustStripP from "@/app/components/pensiones/TrustStripP";
 import ProfilesSectionP from "@/app/components/pensiones/ProfilesSectionP";
 import ModuleSectionP from "@/app/components/pensiones/ModuleSectionP";
-
+import ModuleSectionLegal from "@/app/components/pensiones/ModuleSectionLegal";
 
 export default function ConstitucionEmpresas() 
 {
@@ -16,6 +16,7 @@ export default function ConstitucionEmpresas()
       <TrustStripP />
       <ProfilesSectionP />
       <ModuleSectionP />
+      <ModuleSectionLegal />
  
 
     </SiteLayout>
