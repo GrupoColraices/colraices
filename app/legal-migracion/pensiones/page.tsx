@@ -4,6 +4,8 @@ import SiteLayout from "@/app/components/layout/SiteLayout";
 import PensionHero from "@/app/components/pensiones/PensionHero";
 import TrustStripP from "@/app/components/pensiones/TrustStripP";
 import ProfilesSectionP from "@/app/components/pensiones/ProfilesSectionP";
+import ModuleSectionP from "@/app/components/pensiones/ModuleSectionP";
+
 
 export default function ConstitucionEmpresas() 
 {
@@ -13,6 +15,7 @@ export default function ConstitucionEmpresas()
       <PensionHero />
       <TrustStripP />
       <ProfilesSectionP />
+      <ModuleSectionP />
  
 
     </SiteLayout>
