@@ -32,7 +32,7 @@ export default function FiscalHero() {
       </div>
 
       {/* Main container */}
-      <div className="max-w-[1180px] mx-auto pt-[108px] pb-[68px] pr-[96px] px-6 lg:px-0">
+      <div className="max-w-[1180px] mx-auto pt-[60px] pb-[68px] pr-[96px] px-6 lg:px-0">
         <div className="flex flex-col lg:flex-row justify-between items-start">
 
           {/* LEFT CONTENT */}
