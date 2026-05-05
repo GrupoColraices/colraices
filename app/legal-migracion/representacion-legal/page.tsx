@@ -7,6 +7,8 @@ import PoderEspecialSection from "@/app/components/representacion-legal/PoderEsp
 import SeccionIncluyeServicio from "@/app/components/representacion-legal/SeccionIncluyeServicio";
 import PriceSection from "@/app/components/representacion-legal/PriceSection";
 import ProcessSection from "@/app/components/representacion-legal/ProcessSection";
+import WhenSection from "@/app/components/representacion-legal/WhenSection";
+import QuoteSection from "@/app/components/representacion-legal/QuoteSection";
 
 export default function Penciones() 
 {
@@ -19,6 +21,9 @@ export default function Penciones()
       <SeccionIncluyeServicio />
       <PriceSection />
       <ProcessSection />
+      <WhenSection />
+      <QuoteSection />
+      
       
 
       
