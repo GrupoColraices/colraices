@@ -3,6 +3,8 @@ import SiteLayout from "@/app/components/layout/SiteLayout";
 
 import RepresentationHero from "@/app/components/representacion-legal/RepresentationHero";
 import ProblemSection from "@/app/components/representacion-legal/ProblemSection";
+import PoderEspecialSection from "@/app/components/representacion-legal/PoderEspecialSection";
+import SeccionIncluyeServicio from "@/app/components/representacion-legal/SeccionIncluyeServicio";
 
 export default function Penciones() 
 {
@@ -11,6 +13,10 @@ export default function Penciones()
       <Breadcrumb />
       <RepresentationHero />
       <ProblemSection />
+      <PoderEspecialSection />
+      <SeccionIncluyeServicio />
+      
+      
 
       
  
