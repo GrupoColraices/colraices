@@ -6,6 +6,7 @@ import ProblemsSection from "@/app/components/encontramos-inmueble/ProblemsSecti
 import IncluyeServicioSection from "@/app/components/encontramos-inmueble/IncluyeServicioSection";
 import ServicioProcesoSection from "@/app/components/encontramos-inmueble/ServicioProcesoSection";
 import InversionSection from "@/app/components/encontramos-inmueble/InversionSection";
+import PerfilamientoSection from "@/app/components/encontramos-inmueble/PerfilamientoSection";
 
 export default function EncontramosInmueb() 
 {
@@ -17,6 +18,7 @@ export default function EncontramosInmueb()
       <IncluyeServicioSection />
       <ServicioProcesoSection />
       <InversionSection />
+      <PerfilamientoSection />
       
       
 
