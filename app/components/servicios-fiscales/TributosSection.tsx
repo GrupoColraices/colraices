@@ -46,302 +46,100 @@ const tributos = [
 
 export default function TributosSection() {
   return (
-    <>
-      <section className="tributos-section">
-        <div className="tributos-wrap">
-          <div className="tributos-header">
-            <div className="eyebrow">— QUÉ RESOLVEMOS</div>
+    <section className="w-full bg-[#FBF8F3] py-12 sm:py-16 lg:py-[72px]">
+      <div className="max-w-[1180px] mx-auto px-5 sm:px-8 xl:px-[52px]">
 
-            <h2>
-              Los tres tributos que más <span>se descuidan</span>
-            </h2>
+        {/* HEADER */}
+        <div className="mb-10">
+          <p className="text-[#FFC107] text-[11.2px] font-semibold leading-[16.8px] tracking-[1.57px] uppercase mb-2">
+            — QUÉ RESOLVEMOS
+          </p>
 
-            <p>
-              El servicio cubre exactamente lo que el diagnóstico detecte para tu
-              caso. Sin módulos que no necesitas.
+          <h2 className="text-[#0F2D5C] text-[26px] sm:text-[32px] lg:text-[35.86px] font-semibold leading-[1.2] tracking-[-0.4px] mb-2">
+            Los tres tributos que más{" "}
+            <span className="text-[#1A4F9E] italic">se descuidan</span>
+          </h2>
+
+          <p className="text-[#475569] text-[15.2px] leading-[26px] max-w-[580px] mt-2">
+            El servicio cubre exactamente lo que el diagnóstico detecte para tu
+            caso. Sin módulos que no necesitas.
+          </p>
+        </div>
+
+        {/* GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+          {tributos.map((item, i) => (
+            <div
+              key={i}
+              className="bg-white border border-[#0F2D5C]/10 rounded-[32px] overflow-hidden shadow-[0_2px_6px_rgba(15,45,92,0.03)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_18px_40px_rgba(15,45,92,0.14),8px_18px_28px_rgba(15,45,92,0.08)] cursor-default flex flex-col"
+            >
+              {/* Card top */}
+              <div
+                className="px-7 pt-[22px] pb-[18px]"
+                style={{
+                  background:
+                    "radial-gradient(circle at top right, rgba(31,119,255,0.18), transparent 30%), linear-gradient(135deg, #0F2D5C 0%, #12386F 55%, #0D4C7D 100%)",
+                }}
+              >
+                <div className="text-2xl mb-3 leading-none">{item.icon}</div>
+                <p className="text-white/35 text-[9.92px] font-semibold leading-[14.9px] tracking-[1.09px] uppercase mb-2">
+                  {item.eyebrow}
+                </p>
+                <h3 className="text-white text-[16.8px] font-semibold leading-[21.8px] m-0">
+                  {item.title.split("\n").map((line, idx) => (
+                    <React.Fragment key={idx}>
+                      {line}
+                      <br />
+                    </React.Fragment>
+                  ))}
+                </h3>
+              </div>
+
+              {/* Card body */}
+              <div className="px-7 pt-4 pb-[18px] flex flex-col flex-1">
+                <h4 className="text-[#0F2D5C] text-[13.12px] font-semibold leading-[19.7px] mb-2">
+                  Para ti si...
+                </h4>
+                <p className="text-[#475569] text-[13.12px] leading-[20px] mb-3">
+                  {item.intro}
+                </p>
+                <ul className="flex flex-col gap-[6px] p-0 m-0 list-none">
+                  {item.bullets.map((bullet, idx) => (
+                    <li
+                      key={idx}
+                      className="relative pl-[14px] text-[#475569] text-[12.8px] leading-[18px]"
+                    >
+                      <span className="absolute left-0 top-[6px] w-1 h-1 rounded-full bg-[#FFC107]" />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* BOTTOM BANNER */}
+        <div className="w-full bg-white border border-[#0F2D5C]/10 rounded-[32px] flex flex-col sm:flex-row items-start gap-4 p-6 sm:p-8 shadow-[0_2px_6px_rgba(15,45,92,0.03)]">
+          <div className="text-[28px] leading-none pt-1 shrink-0">🗓️</div>
+          <div className="flex-1">
+            <p className="text-[#FFC107] text-[10.4px] font-semibold leading-[15.6px] tracking-[1.25px] uppercase mb-2">
+              TAMBIÉN RESOLVEMOS
+            </p>
+            <h3 className="text-[#0F2D5C] text-[16.8px] font-semibold m-0 mb-2">
+              Años anteriores pendientes
+            </h3>
+            <p className="text-[#475569] text-[13.28px] leading-[21.5px] m-0">
+              Si llevas varios años sin declarar, no hace falta entrar en
+              pánico. El diagnóstico identifica exactamente cuántos años tienes
+              pendientes, cuánto está acumulado en sanciones, y cuál es la forma
+              más ordenada de regularizarlo. Se cotiza por año adicional — solo
+              pagas lo que te corresponde.
             </p>
           </div>
-
-          <div className="tributos-grid">
-            {tributos.map((item, i) => (
-              <div className="tributo-card" key={i}>
-                <div className="tributo-top">
-                  <div className="icon">{item.icon}</div>
-
-                  <div className="card-eyebrow">{item.eyebrow}</div>
-
-                  <h3>
-                    {item.title.split("\n").map((line, idx) => (
-                      <React.Fragment key={idx}>
-                        {line}
-                        <br />
-                      </React.Fragment>
-                    ))}
-                  </h3>
-                </div>
-
-                <div className="tributo-body">
-                  <h4>Para ti si...</h4>
-
-                  <p className="intro">{item.intro}</p>
-
-                  <ul>
-                    {item.bullets.map((bullet, idx) => (
-                      <li key={idx}>{bullet}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="tributos-bottom">
-            <div className="bottom-icon">🗓️</div>
-
-            <div className="bottom-content">
-              <div className="bottom-eyebrow">TAMBIÉN RESOLVEMOS</div>
-
-              <h3>Años anteriores pendientes</h3>
-
-              <p>
-                Si llevas varios años sin declarar, no hace falta entrar en
-                pánico. El diagnóstico identifica exactamente cuántos años tienes
-                pendientes, cuánto está acumulado en sanciones, y cuál es la forma
-                más ordenada de regularizarlo. Se cotiza por año adicional — solo
-                pagas lo que te corresponde.
-              </p>
-            </div>
-          </div>
         </div>
-      </section>
 
-      <style jsx>{`
-        .tributos-section {
-          width: 100%;
-          background: #fbf8f3;
-          padding: 48px 0 72px;
-        }
-
-        .tributos-wrap {
-          width: 1180px;
-          margin: 0 auto;
-        }
-
-        .tributos-header {
-          padding: 0 52px;
-          margin-bottom: 42px;
-        }
-
-        .eyebrow {
-          color: #ffc107;
-          font-size: 11.2px;
-          font-weight: 600;
-          line-height: 16.8px;
-          letter-spacing: 1.57px;
-          text-transform: uppercase;
-          font-family: Montserrat, sans-serif;
-          margin-bottom: 10px;
-        }
-
-        .tributos-header h2 {
-          font-family: Montserrat, sans-serif;
-          font-size: 35.86px;
-          font-weight: 600;
-          line-height: 43px;
-          color: #0f2d5c;
-          margin: 0;
-          letter-spacing: -0.4px;
-        }
-
-        .tributos-header h2 span {
-          color: #1a4f9e;
-          font-style: italic;
-        }
-
-        .tributos-header p {
-          margin-top: 10px;
-          max-width: 580px;
-          color: #475569;
-          font-size: 15.2px;
-          line-height: 26px;
-          font-family: Montserrat, sans-serif;
-        }
-
-        .tributos-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 345.33px);
-          gap: 12px;
-          padding: 0 52px;
-          margin-bottom: 22px;
-          align-items: stretch;
-        }
-
-        .tributo-card {
-          background: #ffffff;
-          border: 0.8px solid rgba(15, 45, 92, 0.1);
-          border-radius: 32px;
-          overflow: hidden;
-          box-shadow: 0 2px 6px rgba(15, 45, 92, 0.03);
-          min-height: 462px;
-          height: auto;
-          transition:
-            transform 0.32s ease,
-            box-shadow 0.32s ease;
-          cursor: default;
-        }
-
-        .tributo-card:hover {
-          transform: translateY(-10px);
-          box-shadow:
-            0 18px 40px rgba(15, 45, 92, 0.14),
-            8px 18px 28px rgba(15, 45, 92, 0.08);
-        }
-
-        .tributo-top {
-          min-height: 146px;
-          padding: 22px 28px 18px;
-          background: radial-gradient(
-              circle at top right,
-              rgba(31, 119, 255, 0.18),
-              transparent 30%
-            ),
-            linear-gradient(135deg, #0f2d5c 0%, #12386f 55%, #0d4c7d 100%);
-        }
-
-        .icon {
-          font-size: 24px;
-          margin-bottom: 12px;
-          line-height: 1;
-        }
-
-        .card-eyebrow {
-          font-size: 9.92px;
-          line-height: 14.9px;
-          letter-spacing: 1.09px;
-          text-transform: uppercase;
-          color: rgba(255, 255, 255, 0.35);
-          font-weight: 600;
-          font-family: Montserrat, sans-serif;
-          margin-bottom: 8px;
-        }
-
-        .tributo-top h3 {
-          margin: 0;
-          color: #ffffff;
-          font-size: 16.8px;
-          line-height: 21.8px;
-          font-weight: 600;
-          font-family: Montserrat, sans-serif;
-        }
-
-        .tributo-body {
-          padding: 16px 28px 18px;
-        }
-
-        .tributo-body h4 {
-          margin: 0 0 10px;
-          font-size: 13.12px;
-          line-height: 19.7px;
-          font-weight: 600;
-          color: #0f2d5c;
-          font-family: Montserrat, sans-serif;
-        }
-
-        .intro {
-          color: #475569;
-          font-size: 13.12px;
-          line-height: 20px;
-          margin-bottom: 12px;
-          font-family: Montserrat, sans-serif;
-        }
-
-        .tributo-body ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-
-        .tributo-body li {
-          position: relative;
-          padding-left: 14px;
-          color: #475569;
-          font-size: 12.8px;
-          line-height: 18px;
-          font-family: Montserrat, sans-serif;
-        }
-
-        .tributo-body li::before {
-          content: "";
-          width: 4px;
-          height: 4px;
-          border-radius: 50%;
-          background: #ffc107;
-          position: absolute;
-          left: 0;
-          top: 6px;
-        }
-
-        .tributos-bottom {
-          width: 1076px;
-          margin: 0 auto;
-          background: #ffffff;
-          border: 0.8px solid rgba(15, 45, 92, 0.1);
-          border-radius: 32px;
-          display: flex;
-          align-items: flex-start;
-          padding: 24px 32px;
-          gap: 20px;
-          box-shadow: 0 2px 6px rgba(15, 45, 92, 0.03);
-        }
-
-        .bottom-icon {
-          font-size: 28px;
-          line-height: 1;
-          padding-top: 6px;
-        }
-
-        .bottom-content {
-          flex: 1;
-        }
-
-        .bottom-eyebrow {
-          color: #ffc107;
-          font-size: 10.4px;
-          line-height: 15.6px;
-          letter-spacing: 1.25px;
-          text-transform: uppercase;
-          font-weight: 600;
-          margin-bottom: 8px;
-          font-family: Montserrat, sans-serif;
-        }
-
-        .bottom-content h3 {
-          margin: 0 0 10px;
-          color: #0f2d5c;
-          font-size: 16.8px;
-          font-weight: 600;
-          font-family: Montserrat, sans-serif;
-        }
-
-        .bottom-content p {
-          margin: 0;
-          color: #475569;
-          font-size: 13.28px;
-          line-height: 21.5px;
-          font-family: Montserrat, sans-serif;
-          max-width: 942px;
-        }
-
-        @media (max-width: 1280px) {
-          .tributos-wrap {
-            transform: scale(0.92);
-            transform-origin: top center;
-          }
-        }
-      `}</style>
-    </>
+      </div>
+    </section>
   );
 }

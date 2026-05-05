@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./HeroInmuebles.module.css";
 
 export default function HeroInmuebles() {
   const [hovered, setHovered] = useState<number | null>(null);
+  const router = useRouter();
 
   return (
     <section className={styles.hero}>
@@ -16,9 +18,11 @@ export default function HeroInmuebles() {
             <h1 className={`${styles.titleMain} ${styles.fadeUp} ${styles.delay1}`}>
               Tu inversión en Colombia,
             </h1>
+
             <h2 className={`${styles.titleAccent} ${styles.fadeUp} ${styles.delay2}`}>
               acompañada en cada paso
             </h2>
+
             <div className={`${styles.underline} ${styles.fadeUp} ${styles.delay3}`} />
           </div>
 
@@ -30,15 +34,20 @@ export default function HeroInmuebles() {
 
           <div className={`${styles.card} ${styles.fadeUp} ${styles.delay5}`}>
             <p className={styles.tag}>CUÉNTANOS TU SITUACIÓN</p>
+
             <h3 className={styles.question}>
               ¿Ya tienes un inmueble identificado o todavía estás buscando?
             </h3>
 
             <div className={styles.options}>
               <button
+                type="button"
+                onClick={() => router.push("/inmuebles/encontramos-inmueble")}
                 onMouseEnter={() => setHovered(1)}
                 onMouseLeave={() => setHovered(null)}
-                className={`${styles.option} ${styles.left} ${hovered === 1 ? styles.activeLeft : ""}`}
+                className={`${styles.option} ${styles.left} ${
+                  hovered === 1 ? styles.activeLeft : ""
+                }`}
               >
                 <span className={styles.icon}>🔎</span>
 
@@ -49,13 +58,28 @@ export default function HeroInmuebles() {
                   </span>
                 </div>
 
-                <span className={styles.arrow}>→</span>
+                <span
+                  className={styles.arrow}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    alignSelf: "center",
+                    lineHeight: 1,
+                  }}
+                >
+                  →
+                </span>
               </button>
 
               <button
+                type="button"
+                onClick={() => router.push("/inmuebles/brujula-inmobiliaria")}
                 onMouseEnter={() => setHovered(2)}
                 onMouseLeave={() => setHovered(null)}
-                className={`${styles.option} ${styles.right} ${hovered === 2 ? styles.activeRight : ""}`}
+                className={`${styles.option} ${styles.right} ${
+                  hovered === 2 ? styles.activeRight : ""
+                }`}
               >
                 <span className={styles.icon}>🏠</span>
 
@@ -66,7 +90,18 @@ export default function HeroInmuebles() {
                   </span>
                 </div>
 
-                <span className={styles.arrow}>→</span>
+                <span
+                  className={styles.arrow}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    alignSelf: "center",
+                    lineHeight: 1,
+                  }}
+                >
+                  →
+                </span>
               </button>
             </div>
           </div>
