@@ -19,6 +19,7 @@ const routeNameMap: Record<string, string> = {
   "pensiones": "Pensiones",
   "representacion-legal": "Representación Legal",
   "servicios-fiscales": "Servicios Fiscales",
+  "encontramos-inmueble": "Encontramos tu inmueble",
 };
 
 export default function Breadcrumb() {
