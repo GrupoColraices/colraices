@@ -74,6 +74,7 @@ export default function HeroInmuebles() {
 
               <button
                 type="button"
+                onClick={() => router.push("/inmuebles/brujula-inmobiliaria")}
                 onMouseEnter={() => setHovered(2)}
                 onMouseLeave={() => setHovered(null)}
                 className={`${styles.option} ${styles.right} ${
