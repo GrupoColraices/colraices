@@ -5,6 +5,8 @@ import RepresentationHero from "@/app/components/representacion-legal/Representa
 import ProblemSection from "@/app/components/representacion-legal/ProblemSection";
 import PoderEspecialSection from "@/app/components/representacion-legal/PoderEspecialSection";
 import SeccionIncluyeServicio from "@/app/components/representacion-legal/SeccionIncluyeServicio";
+import PriceSection from "@/app/components/representacion-legal/PriceSection";
+import ProcessSection from "@/app/components/representacion-legal/ProcessSection";
 
 export default function Penciones() 
 {
@@ -15,6 +17,11 @@ export default function Penciones()
       <ProblemSection />
       <PoderEspecialSection />
       <SeccionIncluyeServicio />
+      <PriceSection />
+      <ProcessSection />
+      
+
+      
       
       
 
