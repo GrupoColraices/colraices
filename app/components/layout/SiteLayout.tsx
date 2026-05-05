@@ -8,9 +8,10 @@ import { usePathname } from "next/navigation";
 export default function SiteLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
-  const isInmuebles = pathname.startsWith("/inmuebles");
+  // Oculta el footer SOLO en la página general de inmuebles
+  const isInmuebles = pathname === "/inmuebles";
 
-  // Nuevo: ocultar footer también en monetización
+  // Ocultar footer también en monetización
   const isMonetizacion =
     pathname === "/monetizacion" ||
     pathname.startsWith("/monetizacion/") ||

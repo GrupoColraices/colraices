@@ -7,6 +7,8 @@ import IncluyeServicioSection from "@/app/components/encontramos-inmueble/Incluy
 import ServicioProcesoSection from "@/app/components/encontramos-inmueble/ServicioProcesoSection";
 import InversionSection from "@/app/components/encontramos-inmueble/InversionSection";
 import PerfilamientoSection from "@/app/components/encontramos-inmueble/PerfilamientoSection";
+import FAQSectionEi from "@/app/components/encontramos-inmueble/FAQSectionEi";
+import QuoteLlaveSection from "@/app/components/encontramos-inmueble/QuoteLlaveSection";
 
 export default function EncontramosInmueb() 
 {
@@ -19,13 +21,8 @@ export default function EncontramosInmueb()
       <ServicioProcesoSection />
       <InversionSection />
       <PerfilamientoSection />
-      
-      
-
-      
-      
-
-      
+      <FAQSectionEi />
+      <QuoteLlaveSection />
     </SiteLayout>
   );
 }
