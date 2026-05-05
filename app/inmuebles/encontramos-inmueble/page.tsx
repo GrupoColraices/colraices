@@ -4,6 +4,8 @@ import SiteLayout from "@/app/components/layout/SiteLayout";
 import LlaveInmobiliariaHero from "@/app/components/encontramos-inmueble/LlaveInmobiliariaHero";
 import ProblemsSection from "@/app/components/encontramos-inmueble/ProblemsSection";
 import IncluyeServicioSection from "@/app/components/encontramos-inmueble/IncluyeServicioSection";
+import ServicioProcesoSection from "@/app/components/encontramos-inmueble/ServicioProcesoSection";
+import InversionSection from "@/app/components/encontramos-inmueble/InversionSection";
 
 export default function EncontramosInmueb() 
 {
@@ -13,6 +15,9 @@ export default function EncontramosInmueb()
       <LlaveInmobiliariaHero />
       <ProblemsSection />
       <IncluyeServicioSection />
+      <ServicioProcesoSection />
+      <InversionSection />
+      
       
 
       
