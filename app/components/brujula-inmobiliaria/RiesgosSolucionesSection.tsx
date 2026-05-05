@@ -87,7 +87,7 @@ export default function RiesgosSolucionesSection() {
   const timeoutRef = useRef<number | null>(null);
   const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
 
-  const [cardStep, setCardStep] = useState(355);
+  const [cardStep, setCardStep] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(BASE_INDEX);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [isReady, setIsReady] = useState(false);
@@ -109,7 +109,8 @@ export default function RiesgosSolucionesSection() {
     const updateSize = () => {
       if (!firstCardRef.current) return;
 
-      const cardWidth = firstCardRef.current.offsetWidth;
+      const cardWidth = firstCardRef.current.getBoundingClientRect().width;
+
       setCardStep(cardWidth + GAP);
       setIsReady(true);
     };
@@ -125,6 +126,10 @@ export default function RiesgosSolucionesSection() {
       resizeObserver.observe(viewportRef.current);
     }
 
+    if (firstCardRef.current && resizeObserver) {
+      resizeObserver.observe(firstCardRef.current);
+    }
+
     window.addEventListener("resize", updateSize);
 
     return () => {
@@ -138,7 +143,7 @@ export default function RiesgosSolucionesSection() {
   }, []);
 
   const moveCarousel = (direction: "left" | "right") => {
-    if (isAnimatingRef.current || !isReady) return;
+    if (isAnimatingRef.current || !isReady || cardStep === 0) return;
 
     isAnimatingRef.current = true;
     setTransitionEnabled(true);
@@ -206,24 +211,24 @@ export default function RiesgosSolucionesSection() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#FBF8F3] pt-[76px] pb-[46px] sm:pt-[96px] sm:pb-[50px]"
+      className="relative w-full overflow-hidden bg-[#FBF8F3] pt-[68px] pb-[42px] sm:pt-[82px] sm:pb-[46px] lg:pt-[96px] lg:pb-[50px]"
       style={{ fontFamily: "Montserrat, system-ui, sans-serif" }}
     >
-      <div className="mx-auto w-full">
+      <div className="mx-auto w-full overflow-hidden">
         {/* HEADER */}
-        <div className="mx-auto mb-[56px] max-w-[900px] px-4 text-center sm:mb-[78px] sm:px-6">
-          <div className="mb-[14px] inline-block text-[10px] font-bold uppercase tracking-[0.26em] text-[#C9900C] sm:mb-[16px] sm:text-[11px] sm:tracking-[0.28em]">
+        <div className="mx-auto mb-[44px] max-w-[900px] px-4 text-center sm:mb-[56px] sm:px-6 lg:mb-[78px]">
+          <div className="mb-[14px] inline-block text-[10px] font-bold uppercase tracking-[0.24em] text-[#C9900C] sm:mb-[16px] sm:text-[11px] sm:tracking-[0.28em]">
             Riesgos que eliminamos
           </div>
 
-          <h2 className="text-[30px] font-extrabold leading-[1.14] tracking-[-0.035em] text-[#0F2D5C] sm:text-[40px] lg:text-[43px]">
+          <h2 className="text-[28px] font-extrabold leading-[1.14] tracking-[-0.035em] text-[#0F2D5C] sm:text-[36px] lg:text-[43px]">
             Cada riesgo tiene{" "}
             <em className="font-semibold italic text-[#C9900C]">
               una solución
             </em>
           </h2>
 
-          <p className="mx-auto mt-[20px] max-w-[820px] text-[15.5px] font-normal leading-[1.7] tracking-[-0.01em] text-[#475569] sm:mt-[24px] sm:text-[18px]">
+          <p className="mx-auto mt-[18px] max-w-[820px] text-[15px] font-normal leading-[1.68] tracking-[-0.01em] text-[#475569] sm:mt-[22px] sm:text-[17px] lg:mt-[24px] lg:text-[18px]">
             El colombiano que compra desde el exterior enfrenta 13 riesgos
             concretos. Brújula Inmobiliaria fue diseñada para resolverlos
             todos.
@@ -242,7 +247,7 @@ export default function RiesgosSolucionesSection() {
             pointerStartRef.current = null;
           }}
           className="
-            relative w-full overflow-hidden px-4 pt-8 pb-12 -mt-8
+            relative w-full overflow-hidden px-4 pt-8 pb-8 -mt-8
             sm:px-6
             lg:px-[max(32px,calc((100vw-1680px)/2+32px))]
           "
@@ -267,15 +272,16 @@ export default function RiesgosSolucionesSection() {
                 key={`${item.title}-${index}`}
                 ref={index === 0 ? firstCardRef : null}
                 className="
-                  group relative flex min-h-[315px] w-[calc(100vw-32px)] shrink-0 flex-col
+                  group relative flex min-h-[292px] w-full shrink-0 flex-col
                   overflow-hidden rounded-[18px] border border-[rgba(15,45,92,0.10)]
-                  bg-white px-[28px] py-[28px]
+                  bg-white px-[26px] py-[28px]
                   shadow-[0_1px_3px_rgba(15,45,92,0.05)]
                   transition-all duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]
                   hover:-translate-y-[7px]
                   hover:border-[rgba(15,45,92,0.12)]
                   hover:shadow-[0_14px_34px_rgba(15,45,92,0.08),0_4px_10px_rgba(15,45,92,0.04)]
-                  sm:w-[335px]
+                  sm:min-h-[300px] sm:px-[28px]
+                  lg:min-h-[315px] lg:w-[335px]
                 "
               >
                 {/* Línea inferior animada */}
@@ -307,7 +313,7 @@ export default function RiesgosSolucionesSection() {
                   {item.title}
                 </h3>
 
-                <p className="text-[15px] font-normal leading-[1.55] tracking-[0.01em] text-[#64748B]">
+                <p className="text-[15px] font-normal leading-[1.58] tracking-[0.01em] text-[#64748B]">
                   {item.desc}
                 </p>
               </article>
@@ -316,7 +322,7 @@ export default function RiesgosSolucionesSection() {
         </div>
 
         {/* CONTROLES */}
-        <div className="mt-[48px] flex items-center justify-center gap-[28px] sm:mt-[64px] sm:gap-[32px]">
+        <div className="mt-[28px] flex items-center justify-center gap-[24px] sm:mt-[36px] sm:gap-[28px] lg:mt-[64px] lg:gap-[32px]">
           <button
             type="button"
             aria-label="Ver tarjetas anteriores"

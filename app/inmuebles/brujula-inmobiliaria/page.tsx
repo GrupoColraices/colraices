@@ -5,7 +5,8 @@ import BrujulaHero from "@/app/components/brujula-inmobiliaria/BrujulaHero";
 import RiesgosSolucionesSection from "@/app/components/brujula-inmobiliaria/RiesgosSolucionesSection";
 import CompraSeguraProcesoSection from "@/app/components/brujula-inmobiliaria/CompraSeguraProcesoSection";
 import BrujulaPrecioSection from "@/app/components/brujula-inmobiliaria/BrujulaPrecioSection";
-import BrujulaFaqSection from "@/app/components/brujula-inmobiliaria/BrujulaPrecioSection";
+import FAQSectionBrujula from "@/app/components/brujula-inmobiliaria/FAQSectionBrujula";
+import BrujulaQuoteSection from "@/app/components/brujula-inmobiliaria/BrujulaQuoteSection";
 
 export default function InmobiliariaBrujula() 
 {
@@ -16,7 +17,9 @@ export default function InmobiliariaBrujula()
       <RiesgosSolucionesSection />
       <CompraSeguraProcesoSection />
       <BrujulaPrecioSection />
-      <BrujulaFaqSection />
+      <FAQSectionBrujula />
+      <BrujulaQuoteSection />
+      
     </SiteLayout>
   );
 }
