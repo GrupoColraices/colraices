@@ -35,14 +35,14 @@ export default function PerfilamientoSection() {
         {/* Header */}
         <div className="text-center">
           <div
-            className="mb-[14px] flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[#C9900C]"
+            className="mb-[14px] flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFC107]"
             style={{
               animation:
                 "perfilFadeDown 850ms cubic-bezier(0.22, 1, 0.36, 1) both",
             }}
           >
             <span
-              className="h-[2px] w-[20px] bg-[#C9900C]"
+              className="h-[2px] w-[20px] bg-[#FFC107]"
               style={{
                 animation:
                   "perfilLineReveal 900ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both",
@@ -59,7 +59,7 @@ export default function PerfilamientoSection() {
             }}
           >
             ¿Es este producto{" "}
-            <em className="font-semibold italic text-[#C9900C]">para ti?</em>
+            <em className="font-semibold italic text-[#FFC107]">para ti?</em>
           </h2>
         </div>
 
