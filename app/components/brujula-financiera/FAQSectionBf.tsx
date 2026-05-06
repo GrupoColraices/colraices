@@ -36,25 +36,25 @@ export default function FAQSectionBuenaD() {
   const [hoveredBtn, setHoveredBtn] = useState(false);
 
   return (
-    <section className="w-full bg-[#FFFFFF] flex justify-center px-4 md:px-8 pt-[88px] pb-[120px] relative z-10">
-      <div className="w-full max-w-[1180px] flex flex-col gap-[40px]">
+    <section className="relative z-10 flex w-full justify-center bg-[#FFFFFF] px-4 pt-[88px] pb-[120px] md:px-8">
+      <div className="flex w-full max-w-[1180px] flex-col gap-[40px]">
 
         {/* HEADER */}
-        <div className="text-left flex flex-col gap-2">
+        <div className="flex w-full flex-col items-center justify-center gap-2 text-center">
           <span className="text-[20px] text-[#0A0A0A]">
             Preguntas frecuentes
           </span>
 
-          <h2 className="text-[28px] md:text-[36px] font-semibold text-[#0F2D5C]">
-            Las dudas más comunes sobre Buena Data.
+          <h2 className="mx-auto max-w-[980px] text-[28px] leading-[1.15] font-semibold text-[#0F2D5C] md:text-[36px]">
+            Lo que suelen preguntar antes de contratar.
           </h2>
         </div>
 
         {/* CONTENT */}
-        <div className="flex flex-col lg:flex-row gap-[40px]">
+        <div className="flex flex-col gap-[40px] lg:flex-row">
 
           {/* FAQ LIST */}
-          <div className="w-full lg:w-[708px] border-t border-[#0F2D5C1A]">
+          <div className="w-full border-t border-[#0F2D5C1A] lg:w-[708px]">
             {faqs.map((faq, i) => {
               const active = openIndex === i;
               const isHighlighted = active || hovered === i;
@@ -65,14 +65,14 @@ export default function FAQSectionBuenaD() {
                     onClick={() => setOpenIndex(active ? null : i)}
                     onMouseEnter={() => setHovered(i)}
                     onMouseLeave={() => setHovered(null)}
-                    className="w-full flex justify-between items-start gap-4 py-[20px] text-left"
+                    className="flex w-full items-start justify-between gap-4 py-[20px] text-left"
                   >
-                    <span className="text-[15px] text-[#0F2D5C] leading-[21.3px]">
+                    <span className="text-[15px] leading-[21.3px] text-[#0F2D5C]">
                       {faq.question}
                     </span>
 
                     <div
-                      className="w-[26px] h-[26px] rounded-full flex items-center justify-center text-[13.6px] transition-all duration-200"
+                      className="flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full text-[13.6px] transition-all duration-200"
                       style={{
                         background: isHighlighted ? "#F5B400" : "#FBF8F3",
                         border: "0.8px solid #0F2D5C1A",
@@ -84,7 +84,7 @@ export default function FAQSectionBuenaD() {
                   </button>
 
                   {active && (
-                    <p className="text-[14px] text-[#475569] leading-[21px] pb-[20px] pr-4">
+                    <p className="pb-[20px] pr-4 text-[14px] leading-[21px] text-[#475569]">
                       {faq.answer}
                     </p>
                   )}
@@ -94,13 +94,12 @@ export default function FAQSectionBuenaD() {
           </div>
 
           {/* RIGHT CARD */}
-          <div className="w-full lg:w-[320px] bg-[#FBF8F3] rounded-[20px] p-[28px] flex flex-col items-center text-center gap-5">
-
+          <div className="flex w-full flex-col items-center gap-5 rounded-[20px] bg-[#FBF8F3] p-[28px] text-center lg:w-[320px]">
             <h3 className="text-[16px] font-semibold text-[#0F2D5C]">
               ¿Tienes una pregunta que no está aquí?
             </h3>
 
-            <p className="text-[13px] text-[#475569] leading-[21px]">
+            <p className="text-[13px] leading-[21px] text-[#475569]">
               Escríbenos. Un asesor Colraices te responde antes de que tengas que decidir nada.
             </p>
 
@@ -127,7 +126,6 @@ export default function FAQSectionBuenaD() {
               Sin compromiso · Respuesta en menos de 24h
             </span>
           </div>
-
         </div>
       </div>
     </section>

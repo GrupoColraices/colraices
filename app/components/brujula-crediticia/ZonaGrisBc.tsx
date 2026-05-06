@@ -7,12 +7,12 @@ export default function ZonaGrisBc() {
       <div className="w-full max-w-[1180px] px-[48px] flex flex-col gap-[48px]">
 
         {/* HEADER */}
-        <div className="w-full flex flex-col gap-[8px]">
-          <span className="text-[20px] text-[#0A0A0A] leading-[24px]">
+        <div className="flex w-full flex-col items-center justify-center gap-[8px] text-center">
+          <span className="text-[18px] leading-[24px] text-[#0A0A0A] md:text-[20px]">
             La zona gris
           </span>
 
-          <h2 className="text-[32px] font-semibold text-[#0F2D5C] leading-[43px]">
+          <h2 className="max-w-[900px] text-[30px] font-semibold leading-[38px] text-[#0F2D5C] md:text-[32px] md:leading-[43px]">
             Muchos clientes llegan en este punto.
           </h2>
         </div>
@@ -26,19 +26,19 @@ export default function ZonaGrisBc() {
             {[
               {
                 icon: "🏠",
-                text: "Ya quiero comprar en Colombia — tengo ingresos y estabilidad. Pero no sé si hoy califico para crédito."
+                text: '"Ya quiero comprar en Colombia — tengo ingresos y estabilidad. Pero no sé si hoy califico para crédito."'
               },
               {
                 icon: "⚠️",
-                text: "Sospecho que tengo algún reporte negativo pero no sé exactamente cómo afecta mis posibilidades."
+                text: '"Sospecho que tengo algún reporte negativo pero no sé exactamente cómo afecta mis posibilidades."'
               },
               {
                 icon: "❓",
-                text: "No sé qué variables están jugando a favor o en contra de mi perfil crediticio."
+                text: '"No sé qué variables están jugando a favor o en contra de mi perfil crediticio."'
               },
               {
                 icon: "⏳",
-                text: "He ido postergando la decisión indefinidamente porque no quiero ilusionarme sin base real."
+                text: '"He ido postergando la decisión indefinidamente porque no quiero ilusionarme sin base real."'
               }
             ].map((item, index) => (
               <div

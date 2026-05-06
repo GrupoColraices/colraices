@@ -38,7 +38,7 @@ export default function HeroBrujulaCrediticia() {
               con claridad si estás listo para acceder a crédito, y si no, qué ajustar y en cuánto tiempo.
             </p>
 
-            <button className="mt-[32px] w-fit bg-[#FFC107] text-white text-[14.4px] font-semibold px-[24px] py-[13px] rounded-full hover:brightness-110 transition">
+            <button className="mt-[32px] w-fit bg-[#FFC107] text-[#0F2D5C] text-[14.4px] font-semibold px-[24px] py-[13px] rounded-full hover:brightness-110 transition">
               Contratar →
             </button>
           </div>
