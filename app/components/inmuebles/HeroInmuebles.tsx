@@ -58,18 +58,7 @@ export default function HeroInmuebles() {
                   </span>
                 </div>
 
-                <span
-                  className={styles.arrow}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    alignSelf: "center",
-                    lineHeight: 1,
-                  }}
-                >
-                  →
-                </span>
+                <span className={styles.arrow}>→</span>
               </button>
 
               <button
@@ -90,18 +79,7 @@ export default function HeroInmuebles() {
                   </span>
                 </div>
 
-                <span
-                  className={styles.arrow}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    alignSelf: "center",
-                    lineHeight: 1,
-                  }}
-                >
-                  →
-                </span>
+                <span className={styles.arrow}>→</span>
               </button>
             </div>
           </div>
