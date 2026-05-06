@@ -120,7 +120,7 @@ export default function StatsSection() {
                 +15
               </p>
               <p className="text-white/60 text-[11px] sm:text-[12px] md:text-[13px] mt-1">
-                A los que hemos llegado
+                Países a los que hemos llegado
               </p>
             </div>
           </div>

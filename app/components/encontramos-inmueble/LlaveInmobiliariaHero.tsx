@@ -169,7 +169,7 @@ export default function LlaveInmobiliariaHero() {
                 ))}
               </div>
 
-              <div className="mt-5 border-t border-white/9 pt-4 text-center text-[11.5px] font-medium leading-relaxed text-white/32">
+              <div className="mt-5 whitespace-nowrap border-t border-white/9 pt-4 text-center text-[10.5px] font-medium leading-relaxed text-white/32 sm:text-[11.5px]">
                 Si no encuentras el inmueble correcto, no sigues pagando
               </div>
             </div>
@@ -177,15 +177,7 @@ export default function LlaveInmobiliariaHero() {
         </div>
       </div>
 
-      {/* CHAT FLOATING */}
-      <button
-        type="button"
-        aria-label="Abrir chat"
-        className="fixed bottom-8 right-8 z-20 flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#314987] text-[24px] shadow-[0_18px_45px_rgba(0,0,0,0.28)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#3b58a2]"
-      >
-        💬
-      </button>
-
+ 
       <style jsx>{`
         @keyframes liFadeUp {
           from {
