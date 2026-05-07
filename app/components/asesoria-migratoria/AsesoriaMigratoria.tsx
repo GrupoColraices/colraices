@@ -2,13 +2,13 @@
 
 export default function AsesoriaMigratoria() {
   const paises = [
-    "🇨🇦 Canadá",
-    "🇲🇽 México",
-    "🇪🇸 España",
-    "🇬🇧 Reino Unido",
-    "🇫🇷 Francia",
-    "🇩🇪 Alemania",
-    "🇦🇺 Australia",
+    { code: "ca", nombre: "Canadá" },
+    { code: "mx", nombre: "México" },
+    { code: "es", nombre: "España" },
+    { code: "gb", nombre: "Reino Unido" },
+    { code: "fr", nombre: "Francia" },
+    { code: "de", nombre: "Alemania" },
+    { code: "au", nombre: "Australia" },
   ];
 
   return (
@@ -69,11 +69,9 @@ export default function AsesoriaMigratoria() {
 
       {/* Main container */}
       <div className="relative max-w-[1375px] mx-auto pt-[120px] sm:pt-[160px] lg:pt-[220px] pb-[120px] sm:pb-[160px] lg:pb-[215px] px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col xl:flex-row justify-center items-center xl:items-start gap-[60px] xl:gap-[72px] max-w-[1160px] mx-auto">
-
+        <div className="flex flex-col xl:flex-row justify-center items-center xl:items-start gap-[60px] xl:gap-[72px] max-w-[1280px] mx-auto">
           {/* LEFT SIDE */}
-          <div className="w-full max-w-[674px] text-center xl:text-left">
-
+          <div className="w-full max-w-[820px] text-center xl:text-left">
             {/* Heading */}
             <div className="leading-none">
               <h1
@@ -85,6 +83,7 @@ export default function AsesoriaMigratoria() {
               >
                 Asesoría
               </h1>
+
               <h2
                 className="text-[#F0B429] font-bold italic"
                 style={{
@@ -113,13 +112,19 @@ export default function AsesoriaMigratoria() {
             </p>
 
             {/* Countries */}
-            <div className="flex flex-wrap justify-center xl:justify-start gap-[8px] mt-[36px]">
-              {paises.map((pais, index) => (
+            <div className="mt-[36px] flex w-full max-w-full flex-nowrap justify-start xl:justify-start gap-[8px] overflow-x-auto xl:overflow-visible pb-1">
+              {paises.map((pais) => (
                 <div
-                  key={index}
-                  className="h-[36px] px-[14px] rounded-full border border-white/10 bg-white/[0.06] flex items-center justify-center text-white/70 text-[11.2px] font-semibold transition-all duration-300 hover:bg-white/[0.12] hover:border-white/20 cursor-default"
+                  key={pais.code}
+                  className="h-[36px] px-[14px] shrink-0 rounded-full border border-white/10 bg-white/[0.06] flex items-center justify-center gap-[6px] text-white/70 text-[11.2px] font-semibold whitespace-nowrap transition-all duration-300 hover:bg-white/[0.12] hover:border-white/20 cursor-default"
                 >
-                  {pais}
+                  <img
+                    src={`https://flagcdn.com/20x15/${pais.code}.png`}
+                    alt={`Bandera de ${pais.nombre}`}
+                    className="w-[16px] h-[12px] object-cover rounded-[1px] shrink-0"
+                  />
+
+                  <span>{pais.nombre}</span>
                 </div>
               ))}
             </div>
@@ -143,7 +148,6 @@ export default function AsesoriaMigratoria() {
               background: `radial-gradient(ellipse 160% 170% at -10% -5%, rgba(255,193,7,0.23) 0%, rgba(255,193,7,0.10) 35%, transparent 55%), radial-gradient(ellipse 150% 160% at 110% 105%, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 40%, transparent 60%), rgba(255,255,255,0.04)`,
             }}
           >
-
             <p className="text-white/40 uppercase font-bold text-[9.92px] tracking-[1.39px] leading-[14.9px]">
               Modalidades disponibles
             </p>
@@ -154,6 +158,7 @@ export default function AsesoriaMigratoria() {
                 <h3 className="text-white font-bold text-[14.72px] leading-[22px]">
                   Asesoría Completa
                 </h3>
+
                 <span className="text-[#F0B429] font-bold text-[19.2px] leading-[28.8px] whitespace-nowrap">
                   US$500
                 </span>
@@ -175,6 +180,7 @@ export default function AsesoriaMigratoria() {
                 <h3 className="text-white font-bold text-[14.72px] leading-[22px]">
                   Asesoría de Retoma
                 </h3>
+
                 <span className="text-[#F0B429] font-bold text-[19.2px] leading-[28.8px] whitespace-nowrap">
                   US$100
                 </span>

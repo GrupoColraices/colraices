@@ -37,14 +37,14 @@ export default function ProblemsSection() {
       <div className="mx-auto w-full max-w-[1152px] px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-24 lg:px-[48px] lg:py-[100px]">
         {/* Encabezado */}
         <div className="mx-auto w-full max-w-[1056px] text-center">
-          <div className="mb-[18px] flex items-center justify-center gap-[10px] text-[10px] font-bold uppercase tracking-[0.28em] text-[#C9900C] sm:text-[11px]">
-            <span className="h-px w-[20px] shrink-0 bg-[#C9900C]" />
+          <div className="mb-[18px] flex items-center justify-center gap-[10px] text-[10px] font-bold uppercase tracking-[0.28em] text-[#2A3F77] sm:text-[11px]">
+            <span className="h-px w-[20px] shrink-0 bg-[#FFC107]" />
             <span>Por qué existe este producto</span>
           </div>
 
           <h2 className="mx-auto max-w-[1056px] text-[30px] font-bold leading-[1.12] tracking-[-0.03em] text-[#0F2D5C] sm:text-[38px] md:text-[44px] lg:text-[46px]">
             Comprar desde lejos{" "}
-            <em className="font-bold italic text-[#C9900C]">
+            <em className="font-bold italic text-[#FFC107]">
               tiene sus obstáculos
             </em>
           </h2>

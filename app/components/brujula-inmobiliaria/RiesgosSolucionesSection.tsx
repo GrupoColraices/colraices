@@ -217,13 +217,13 @@ export default function RiesgosSolucionesSection() {
       <div className="mx-auto w-full overflow-hidden">
         {/* HEADER */}
         <div className="mx-auto mb-[44px] max-w-[900px] px-4 text-center sm:mb-[56px] sm:px-6 lg:mb-[78px]">
-          <div className="mb-[14px] inline-block text-[10px] font-bold uppercase tracking-[0.24em] text-[#C9900C] sm:mb-[16px] sm:text-[11px] sm:tracking-[0.28em]">
+          <div className="mb-[14px] inline-block text-[10px] font-bold uppercase tracking-[0.24em] text-[#FFC107] sm:mb-[16px] sm:text-[11px] sm:tracking-[0.28em]">
             Riesgos que eliminamos
           </div>
 
           <h2 className="text-[28px] font-extrabold leading-[1.14] tracking-[-0.035em] text-[#0F2D5C] sm:text-[36px] lg:text-[43px]">
             Cada riesgo tiene{" "}
-            <em className="font-semibold italic text-[#C9900C]">
+            <em className="font-semibold italic text-[#FFC107]">
               una solución
             </em>
           </h2>

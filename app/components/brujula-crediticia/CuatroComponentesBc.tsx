@@ -18,14 +18,20 @@ export default function CuatroComponentesBc() {
             ¿Qué incluye exactamente?
           </p>
 
-          <h2 className="
-            mt-[8px] 
-            text-[#0F2D5C] 
-            text-[26px] sm:text-[30px] lg:text-[36px] 
-            leading-[34px] sm:leading-[38px] lg:leading-[43px] 
-            font-semibold 
-            max-w-[800px]
-          ">
+          <h2
+            className="
+              mt-[8px]
+              w-full
+              max-w-none
+              text-center
+              text-[#0F2D5C]
+              text-[26px] sm:text-[30px] lg:text-[36px]
+              leading-[34px] sm:leading-[38px] lg:leading-[43px]
+              font-semibold
+              tracking-[-0.02em]
+              lg:whitespace-nowrap
+            "
+          >
             Cuatro componentes. Un diagnóstico que te dice la verdad.
           </h2>
 

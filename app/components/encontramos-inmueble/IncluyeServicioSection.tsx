@@ -36,16 +36,16 @@ export default function IncluyeServicioSection() {
         {/* Header */}
         <div className="li-fade-up mx-auto text-center">
           <div className="mb-5 flex items-center justify-center gap-[10px]">
-            <span className="li-line h-[2px] w-[21px] bg-[#C9900C]" />
+            <span className="li-line h-[2px] w-[21px] bg-[#FFC107]" />
 
-            <span className="text-[10.88px] font-semibold uppercase leading-[16.3px] tracking-[1.74px] text-[#C9900C]">
+            <span className="text-[10.88px] font-semibold uppercase leading-[16.3px] tracking-[1.74px] text-[#FFC107]">
               Qué incluye el servicio
             </span>
           </div>
 
           <h2 className="text-[35.02px] font-semibold leading-[42px] text-[#0F2D5C]">
             <span>Tres etapas. </span>
-            <span className="li-title-accent italic text-[#C9900C]">
+            <span className="li-title-accent italic text-[#FFC107]">
               Un solo aliado.
             </span>
           </h2>
@@ -72,7 +72,7 @@ export default function IncluyeServicioSection() {
                   {etapa.number}
                 </span>
 
-                <span className="li-floating-circle absolute -right-4 bottom-[-16px] h-[76px] w-[76px] rounded-full bg-white/14 transition-all duration-500 group-hover:scale-125 group-hover:bg-[#C9900C]/20" />
+                <span className="li-floating-circle absolute -right-4 bottom-[-16px] h-[76px] w-[76px] rounded-full bg-white/14 transition-all duration-500 group-hover:scale-125 group-hover:bg-[#FFC107]/20" />
 
                 <h3 className="relative z-10 max-w-[280px] text-[17.6px] font-semibold leading-[22.9px] text-white transition-all duration-500 group-hover:translate-x-1">
                   {etapa.title}
@@ -92,7 +92,7 @@ export default function IncluyeServicioSection() {
                       }}
                       className="li-item flex items-start gap-3"
                     >
-                      <span className="mt-[8px] h-[6px] w-[6px] shrink-0 rounded-full bg-[#C9900C] transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_12px_rgba(201,144,12,0.55)]" />
+                      <span className="mt-[8px] h-[6px] w-[6px] shrink-0 rounded-full bg-[#FFC107] transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_12px_rgba(201,144,12,0.55)]" />
 
                       <p className="text-[13.28px] font-normal leading-[21.2px] text-[#475569] transition-colors duration-300 group-hover:text-[#334155]">
                         {item}

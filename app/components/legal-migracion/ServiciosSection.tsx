@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import Link from "next/link";
 
 type ServiceItem = {
   icon: string;
@@ -6,54 +7,60 @@ type ServiceItem = {
   description: string;
   priceLabel: string;
   priceValue: string;
+  href: string;
 };
 
 const services: ServiceItem[] = [
   {
-    icon: '🛂',
-    title: 'Asesoría Migratoria',
+    icon: "🛂",
+    title: "Asesoría Migratoria",
     description:
-      'Orientación completa para visas, cédulas de extranjería, permisos especiales y nacionalización. Te ayudamos a elegir la mejor ruta migratoria según tu caso.',
-    priceLabel: 'Desde',
-    priceValue: 'US$100',
+      "Orientación completa para visas, cédulas de extranjería, permisos especiales y nacionalización. Te ayudamos a elegir la mejor ruta migratoria según tu caso.",
+    priceLabel: "Desde",
+    priceValue: "US$100",
+    href: "/legal-migracion/asesoria-migratoria",
   },
   {
-    icon: '🏢',
-    title: 'Asesoría en emprendimiento',
+    icon: "🏢",
+    title: "Asesoría en emprendimiento",
     description:
-      'Creación de SAS, registros mercantiles, RUT, cuentas bancarias empresariales. Todo el proceso legal para emprender en Colombia desde el exterior.',
-    priceLabel: 'Desde',
-    priceValue: 'US$3.200',
+      "Creación de SAS, registros mercantiles, RUT, cuentas bancarias empresariales. Todo el proceso legal para emprender en Colombia desde el exterior.",
+    priceLabel: "Desde",
+    priceValue: "US$3.200",
+    href: "/legal-migracion/constitucion-empresas",
   },
   {
-    icon: '📊',
-    title: 'Trámites de Pensiones',
+    icon: "📊",
+    title: "Trámites de Pensiones",
     description:
-      'Solicitud de pensión por vejez, invalidez o sobrevivientes. Asesoría en convenios internacionales y gestión ante fondos colombianos.',
-    priceLabel: 'Desde',
-    priceValue: 'US$370',
+      "Solicitud de pensión por vejez, invalidez o sobrevivientes. Asesoría en convenios internacionales y gestión ante fondos colombianos.",
+    priceLabel: "Desde",
+    priceValue: "US$370",
+    href: "/legal-migracion/pensiones",
   },
   {
-    icon: '💼',
-    title: 'Representación Legal',
+    icon: "💼",
+    title: "Representación Legal",
     description:
-      'Poder notarial, representación en trámites administrativos, gestión de documentos. Actuamos en tu nombre ante entidades colombianas.',
-    priceLabel: 'Desde',
-    priceValue: 'US$230',
+      "Poder notarial, representación en trámites administrativos, gestión de documentos. Actuamos en tu nombre ante entidades colombianas.",
+    priceLabel: "Desde",
+    priceValue: "US$230",
+    href: "/legal-migracion/representacion-legal",
   },
   {
-    icon: '📄',
-    title: 'Servicios Fiscales',
+    icon: "📄",
+    title: "Servicios Fiscales",
     description:
-      'Declaraciones de renta, planificación fiscal, cumplimiento tributario. Asesoría para optimizar tus impuestos y cumplir con las obligaciones legales.',
-    priceLabel: '',
-    priceValue: 'Inicia Gratis',
+      "Declaraciones de renta, planificación fiscal, cumplimiento tributario. Asesoría para optimizar tus impuestos y cumplir con las obligaciones legales.",
+    priceLabel: "",
+    priceValue: "Inicia Gratis",
+    href: "/legal-migracion/servicios-fiscales",
   },
 ];
 
 const ServiciosSection: React.FC = () => {
   return (
-    <section className="servicios-bg">
+    <section id="servicios" className="servicios-bg">
       <div className="servicios-section">
         <div className="servicios-header">
           <p className="servicios-kicker">NUESTROS SERVICIOS</p>
@@ -68,7 +75,12 @@ const ServiciosSection: React.FC = () => {
 
         <div className="servicios-grid">
           {services.map((service) => (
-            <article key={service.title} className="servicio-card">
+            <Link
+              key={service.title}
+              href={service.href}
+              className="servicio-card"
+              aria-label={`Ver servicio: ${service.title}`}
+            >
               <div className="servicio-icon" aria-hidden="true">
                 {service.icon}
               </div>
@@ -79,10 +91,10 @@ const ServiciosSection: React.FC = () => {
               <div className="servicio-price-wrap">
                 {service.priceLabel ? (
                   <span className="servicio-price-label">{service.priceLabel}</span>
-                ) : null}{' '}
+                ) : null}{" "}
                 <strong className="servicio-price-value">{service.priceValue}</strong>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
@@ -168,6 +180,8 @@ const ServiciosSection: React.FC = () => {
           background: #FFFFFF;
           display: flex;
           flex-direction: column;
+          color: inherit;
+          text-decoration: none;
           transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease, background 280ms ease;
         }
 
@@ -189,6 +203,11 @@ const ServiciosSection: React.FC = () => {
           border-color: rgba(15, 45, 92, 0.18);
           background: #FFFFFF;
           box-shadow: 0 18px 38px rgba(10, 10, 10, 0.14), 0 0 0 1px rgba(15, 45, 92, 0.04);
+        }
+
+        .servicio-card:focus-visible {
+          outline: 2px solid #ffc107;
+          outline-offset: 4px;
         }
 
         .servicio-card:hover::after {

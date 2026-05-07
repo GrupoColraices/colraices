@@ -17,7 +17,7 @@ export default function PricingSection() {
           <div className="flex flex-col items-center text-center h-[114.83px]">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-[16px] h-[2px] bg-[#FFC107]" />
-              <span className="uppercase text-[#FFC107] font-semibold tracking-[2.2px] text-[12px] leading-none">
+              <span className="uppercase text-[#2A3F77] font-semibold tracking-[2.2px] text-[12px] leading-none">
                 Inversión
               </span>
             </div>

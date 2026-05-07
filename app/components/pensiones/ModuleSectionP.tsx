@@ -54,7 +54,7 @@ export default function ModuleSectionP() {
       <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-[52px]">
         {/* HEADER */}
         <div className="max-w-[760px] mb-[44px]">
-          <div className="text-[#FFC107] uppercase tracking-[1.57px] text-[11.2px] font-semibold leading-[16.8px] mb-[10px]">
+          <div className="text-[#2A3F77] uppercase tracking-[1.57px] text-[11.2px] font-semibold leading-[16.8px] mb-[10px]">
             MÓDULO I
           </div>
 

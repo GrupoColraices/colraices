@@ -4,7 +4,7 @@ import StatsBar from "@/app/components/credito-hipotecario/StatsBar";
 import CreditAudience from "@/app/components/credito-hipotecario/CreditAudience";
 import CreditTypes from "@/app/components/credito-hipotecario/CreditTypes";
 import ComoFunciona from "@/app/components/credito-hipotecario/ComoFunciona";
-import FormCredito from "@/app/components/credito-hipotecario/FormCredito";
+import ViabilidadSection from "@/app/components/credito-hipotecario/ViabilidadSection";
 import SiteLayout from "@/app/components/layout/SiteLayout";
 import HistoriasReales from "@/app/components/credito-hipotecario/HistoriasReales";
 import FAQCredito from "@/app/components/credito-hipotecario/FAQCredito";
@@ -20,7 +20,7 @@ export default function CreditoHipotecarioPage() {
       <CreditAudience />
       <CreditTypes />
       <ComoFunciona />
-      <FormCredito />
+      <ViabilidadSection />
       <HistoriasReales />
       <FAQCredito />
       <CTACompra />

@@ -31,7 +31,7 @@ export default function CtaBannerSection() {
             </Link>
 
             <Link
-              href="/servicios"
+              href="#servicios"
               className="inline-flex h-[51.2px] w-full sm:w-[225.53px] items-center justify-center rounded-[50px] border-[0.8px] border-white/25 text-white text-[14.4px] font-semibold leading-[21.6px] tracking-[0.43px] transition-all duration-300 hover:bg-white hover:text-[#0F2D5C] hover:border-white"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >

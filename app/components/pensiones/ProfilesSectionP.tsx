@@ -48,7 +48,7 @@ export default function ProfilesSectionP() {
 
         {/* ── HEADER ── */}
         <div className="text-center max-w-[760px] mx-auto mb-10 sm:mb-14 lg:mb-[56px]">
-          <p className="text-[#FFC107] uppercase tracking-[3px] text-[11px] sm:text-[13px] font-semibold mb-4 sm:mb-6">
+          <p className="text-[#2A3F77] uppercase tracking-[3px] text-[11px] sm:text-[13px] font-semibold mb-4 sm:mb-6">
             ¿PARA QUIÉN ES?
           </p>
 

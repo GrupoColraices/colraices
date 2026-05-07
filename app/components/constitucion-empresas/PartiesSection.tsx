@@ -1,5 +1,3 @@
-"use client";
-
 const exteriorSituations = [
   "Ya intentó apoyar un emprendimiento familiar antes y fracasó. Esta vez quiere hacerlo con método.",
   "Tiene una idea de negocio —o su familiar la tiene— pero no sabe si es viable ni cómo formalizarla.",
@@ -14,27 +12,41 @@ const colombiaSituations = [
   "Necesita herramientas prácticas para rendir cuentas con estructura a quien lo está respaldando.",
 ];
 
+function ColombiaFlag() {
+  return (
+    <div
+      role="img"
+      aria-label="Bandera de Colombia"
+      className="w-[32px] h-[22px] overflow-hidden rounded-[4px] border border-white/30 shadow-[0_4px_10px_rgba(0,0,0,0.18)]"
+    >
+      <div className="h-1/2 w-full bg-[#FCD116]" />
+      <div className="h-1/4 w-full bg-[#003893]" />
+      <div className="h-1/4 w-full bg-[#CE1126]" />
+    </div>
+  );
+}
+
 export default function PartiesSection() {
   return (
     <section className="w-full bg-[#FBF8F3] py-10 sm:py-12 lg:py-14 px-4 sm:px-5 overflow-hidden">
-      <div className="max-w-[1060px] mx-auto">
+      <div className="max-w-[1120px] mx-auto">
         {/* HEADER */}
-        <div className="text-center max-w-[920px] mx-auto mb-8 lg:mb-10">
+        <div className="text-center max-w-[1120px] mx-auto mb-8 lg:mb-10">
           <div className="inline-flex items-center justify-center gap-2.5 mb-3.5">
             <span className="w-6 h-[1.5px] bg-[#D4A017]" />
-            <span className="uppercase tracking-[0.26em] text-[9px] sm:text-[10px] font-semibold text-[#D4A017]">
+            <span className="uppercase tracking-[0.26em] text-[9px] sm:text-[10px] font-semibold text-[#0F2D5C]">
               Para quién es
             </span>
           </div>
 
-          <h2 className="font-montserrat font-bold text-[#0F2D5C] text-[30px] sm:text-[42px] lg:text-[50px] leading-[1.1] tracking-[-0.015em]">
+          <h2 className="mx-auto font-montserrat font-bold text-[#0F2D5C] text-[30px] sm:text-[38px] md:text-[44px] lg:text-[46px] xl:text-[50px] leading-[1.08] tracking-[-0.02em] text-center lg:whitespace-nowrap">
             Un servicio que trabaja{" "}
-            <span className="text-[#E4A900] italic font-semibold">
+            <span className="text-[#FFC107] italic font-semibold">
               con dos personas
             </span>
           </h2>
 
-          <p className="mt-3.5 text-[#5E6C84] text-[15px] sm:text-[16px] lg:text-[18px] leading-[1.62] font-medium max-w-[860px] mx-auto">
+          <p className="mt-4 text-[#5E6C84] text-[15px] sm:text-[16px] lg:text-[18px] leading-[1.62] font-medium max-w-[860px] mx-auto">
             Asesoría de Emprendimiento reconoce una dinámica que ningún otro
             servicio del ecosistema atiende: el colombiano que financia desde
             afuera y el familiar que construye desde Colombia.
@@ -55,22 +67,22 @@ export default function PartiesSection() {
                   El colombiano en el exterior
                 </h3>
 
-                <p className="mt-1.5 text-white/70 text-[12.5px] sm:text-[13px] font-medium">
+                <p className="mt-1.5 text-white/70 text-[12.5px] sm:text-[15px] font-medium">
                   Quien impulsa · quien financia · quien sueña con volver
                 </p>
               </div>
             </div>
 
-            <div className="px-5 sm:px-6 py-4.5 sm:py-5 flex-1">
+            <div className="px-5 sm:px-6 py-[18px] sm:py-5 flex-1">
               <p className="text-[#475569] text-[14.5px] sm:text-[15px] leading-[1.72] font-medium mb-5">
                 Lleva años enviando remesas y quiere que ese dinero construya
                 algo real y sostenible en Colombia.
               </p>
 
               <div className="space-y-3">
-                {exteriorSituations.map((item, idx) => (
+                {exteriorSituations.map((item) => (
                   <div
-                    key={idx}
+                    key={item}
                     className="flex items-start gap-2.5 text-[#667085] text-[12.5px] sm:text-[13px] leading-[1.65]"
                   >
                     <span className="w-[5px] h-[5px] rounded-full bg-[#0F2D5C] mt-[8px] flex-shrink-0" />
@@ -87,31 +99,33 @@ export default function PartiesSection() {
               <div className="absolute top-0 right-0 w-[94px] h-[94px] rounded-full border border-white/10 translate-x-5 -translate-y-2" />
 
               <div className="relative z-10">
-                <div className="text-[24px] mb-2.5">🇨🇴</div>
+                <div className="mb-2.5">
+                  <ColombiaFlag />
+                </div>
 
                 <h3 className="font-montserrat font-bold text-white text-[20px] sm:text-[26px] leading-[1.14] tracking-[-0.015em] max-w-[95%]">
                   El familiar en Colombia
                 </h3>
 
-                <p className="mt-1.5 text-white/85 text-[12.5px] sm:text-[13px] font-medium">
+                <p className="mt-1.5 text-white/85 text-[12.5px] sm:text-[15px] font-medium">
                   Quien ejecuta · quien opera · quien necesita formación
                 </p>
               </div>
             </div>
 
-            <div className="px-5 sm:px-6 py-4.5 sm:py-5 flex-1">
+            <div className="px-5 sm:px-6 py-[18px] sm:py-5 flex-1">
               <p className="text-[#475569] text-[14.5px] sm:text-[15px] leading-[1.72] font-medium mb-5">
                 Tiene energía y disposición para trabajar, pero nunca ha tenido
                 un negocio formal y no sabe por dónde empezar.
               </p>
 
               <div className="space-y-3">
-                {colombiaSituations.map((item, idx) => (
+                {colombiaSituations.map((item) => (
                   <div
-                    key={idx}
+                    key={item}
                     className="flex items-start gap-2.5 text-[#667085] text-[12.5px] sm:text-[13px] leading-[1.65]"
                   >
-                    <span className="w-[5px] h-[5px] rounded-full bg-[#E4A900] mt-[8px] flex-shrink-0" />
+                    <span className="w-[5px] h-[5px] rounded-full bg-[#FFC107] mt-[8px] flex-shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -121,7 +135,7 @@ export default function PartiesSection() {
         </div>
 
         {/* CONNECTION BANNER */}
-        <div className="mt-6 rounded-[18px] border border-[#E9D79D] bg-[linear-gradient(90deg,rgba(15,45,92,0.06)_0%,rgba(255,193,7,0.06)_100%)] px-4 sm:px-6 py-4.5 flex flex-col sm:flex-row items-start sm:items-center gap-3.5 shadow-none">
+        <div className="mt-6 rounded-[18px] border border-[#E9D79D] bg-[linear-gradient(90deg,rgba(15,45,92,0.06)_0%,rgba(255,193,7,0.06)_100%)] px-4 sm:px-6 py-[18px] flex flex-col sm:flex-row items-start sm:items-center gap-3.5 shadow-none">
           <div className="w-[48px] h-[48px] rounded-full bg-[#F2EDF9] border border-[#E5DBF5] flex items-center justify-center flex-shrink-0">
             <span className="text-[20px] text-[#B8A8DA]">🔗</span>
           </div>

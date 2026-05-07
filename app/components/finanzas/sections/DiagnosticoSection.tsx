@@ -8,7 +8,7 @@ const cards = [
     icon: "⚠️",
     text: "Tengo reportes negativos o deudas pendientes en Colombia",
     tag: "Buena Data →",
-    href: "/buena-data",
+    href: "/finanzas/buena-data",
     color: "#DC2626",
     bg: "#FEF2F2",
     line: "#DC2626",
@@ -17,7 +17,7 @@ const cards = [
     icon: "🔍",
     text: "No sé cómo está mi situación financiera en Colombia",
     tag: "Brújula Financiera →",
-    href: "/brujula-financiera",
+    href: "/finanzas/brujula-financiera",
     color: "#2A3F77",
     bg: "#F1F5F9",
     line: "#2A3F77",
@@ -26,7 +26,7 @@ const cards = [
     icon: "🏠",
     text: "Quiero comprar vivienda en Colombia pero no sé si califico para crédito",
     tag: "Brújula Crediticia →",
-    href: "/brujula-crediticia",
+    href: "/finanzas/brujula-crediticia",
     color: "#FFC107",
     bg: "#FEF3C7",
     line: "#FFC107",
@@ -35,16 +35,16 @@ const cards = [
     icon: "🏢",
     text: "Envío remesas a Colombia y quiero convertir ese dinero en mi patrimonio",
     tag: "Crédito →",
-    href: "/credito",
+    href: "/finanzas/credito-hipotecario",
     color: "#2A3F77",
-    bg: "transparent",
+    bg: "#F1F5F9",
     line: "#2A3F77",
   },
   {
     icon: "💸",
     text: "Tengo más de USD $10.000 que quiero traer a Colombia de forma segura",
     tag: "Monetización →",
-    href: "/monetizacion",
+    href: "/finanzas/monetizacion",
     color: "#059669",
     bg: "#ECFDF5",
     line: "#059669",
@@ -56,7 +56,7 @@ const cards = [
     tag: "Hablar con asesor — sin costo →",
     href: "#",
     color: "#475569",
-    bg: "transparent",
+    bg: "#F1F5F9",
     line: "#475569",
   },
 ];
@@ -79,6 +79,7 @@ export default function DiagnosticoSection() {
 
   return (
     <section
+      id="diagnostico"
       className="
       w-full 
       bg-[#2A3F77] 
