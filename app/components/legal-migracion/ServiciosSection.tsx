@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
 type ServiceItem = {
   icon: string;
@@ -12,49 +12,49 @@ type ServiceItem = {
 
 const services: ServiceItem[] = [
   {
-    icon: '🛂',
-    title: 'Asesoría Migratoria',
+    icon: "🛂",
+    title: "Asesoría Migratoria",
     description:
-      'Orientación completa para visas, cédulas de extranjería, permisos especiales y nacionalización. Te ayudamos a elegir la mejor ruta migratoria según tu caso.',
-    priceLabel: 'Desde',
-    priceValue: 'US$100',
-    href: '/legal-migracion/asesoria-migratoria',
+      "Orientación completa para visas, cédulas de extranjería, permisos especiales y nacionalización. Te ayudamos a elegir la mejor ruta migratoria según tu caso.",
+    priceLabel: "Desde",
+    priceValue: "US$100",
+    href: "/legal-migracion/asesoria-migratoria",
   },
   {
-    icon: '🏢',
-    title: 'Asesoría en emprendimiento',
+    icon: "🏢",
+    title: "Asesoría en emprendimiento",
     description:
-      'Creación de SAS, registros mercantiles, RUT, cuentas bancarias empresariales. Todo el proceso legal para emprender en Colombia desde el exterior.',
-    priceLabel: 'Desde',
-    priceValue: 'US$3.200',
-    href: '/legal-migracion/constitucion-empresas',
+      "Creación de SAS, registros mercantiles, RUT, cuentas bancarias empresariales. Todo el proceso legal para emprender en Colombia desde el exterior.",
+    priceLabel: "Desde",
+    priceValue: "US$3.200",
+    href: "/legal-migracion/constitucion-empresas",
   },
   {
-    icon: '📊',
-    title: 'Trámites de Pensiones',
+    icon: "📊",
+    title: "Trámites de Pensiones",
     description:
-      'Solicitud de pensión por vejez, invalidez o sobrevivientes. Asesoría en convenios internacionales y gestión ante fondos colombianos.',
-    priceLabel: 'Desde',
-    priceValue: 'US$370',
-    href: '/legal-migracion/pensiones',
+      "Solicitud de pensión por vejez, invalidez o sobrevivientes. Asesoría en convenios internacionales y gestión ante fondos colombianos.",
+    priceLabel: "Desde",
+    priceValue: "US$370",
+    href: "/legal-migracion/pensiones",
   },
   {
-    icon: '💼',
-    title: 'Representación Legal',
+    icon: "💼",
+    title: "Representación Legal",
     description:
-      'Poder notarial, representación en trámites administrativos, gestión de documentos. Actuamos en tu nombre ante entidades colombianas.',
-    priceLabel: 'Desde',
-    priceValue: 'US$230',
-    href: '/legal-migracion/representacion-legal',
+      "Poder notarial, representación en trámites administrativos, gestión de documentos. Actuamos en tu nombre ante entidades colombianas.",
+    priceLabel: "Desde",
+    priceValue: "US$230",
+    href: "/legal-migracion/representacion-legal",
   },
   {
-    icon: '📄',
-    title: 'Servicios Fiscales',
+    icon: "📄",
+    title: "Servicios Fiscales",
     description:
-      'Declaraciones de renta, planificación fiscal, cumplimiento tributario. Asesoría para optimizar tus impuestos y cumplir con las obligaciones legales.',
-    priceLabel: '',
-    priceValue: 'Inicia Gratis',
-    href: '/legal-migracion/servicios-fiscales',
+      "Declaraciones de renta, planificación fiscal, cumplimiento tributario. Asesoría para optimizar tus impuestos y cumplir con las obligaciones legales.",
+    priceLabel: "",
+    priceValue: "Inicia Gratis",
+    href: "/legal-migracion/servicios-fiscales",
   },
 ];
 
@@ -91,7 +91,7 @@ const ServiciosSection: React.FC = () => {
               <div className="servicio-price-wrap">
                 {service.priceLabel ? (
                   <span className="servicio-price-label">{service.priceLabel}</span>
-                ) : null}{' '}
+                ) : null}{" "}
                 <strong className="servicio-price-value">{service.priceValue}</strong>
               </div>
             </Link>
