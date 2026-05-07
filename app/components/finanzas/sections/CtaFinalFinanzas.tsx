@@ -6,6 +6,17 @@ export default function CtaFinalFinanzas() {
   const [isPrimaryHovered, setIsPrimaryHovered] = useState(false);
   const [isSecondaryHovered, setIsSecondaryHovered] = useState(false);
 
+  const scrollToProductos = () => {
+    const productosSection = document.getElementById('productos');
+
+    if (productosSection) {
+      productosSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   return (
     <section
       style={{
@@ -71,8 +82,10 @@ export default function CtaFinalFinanzas() {
             justifyContent: 'center',
           }}
         >
-          <button
-            type="button"
+          <a
+            href="https://wa.me/573169013283"
+            target="_blank"
+            rel="noopener noreferrer"
             onMouseEnter={() => setIsPrimaryHovered(true)}
             onMouseLeave={() => setIsPrimaryHovered(false)}
             style={{
@@ -90,13 +103,19 @@ export default function CtaFinalFinanzas() {
                 ? '0 10px 24px rgba(255, 193, 7, 0.45), 0 0 20px rgba(255, 193, 7, 0.35)'
                 : 'none',
               transition: 'all 0.2s ease',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              whiteSpace: 'nowrap',
             }}
           >
             Hablar con un asesor
-          </button>
+          </a>
 
           <button
             type="button"
+            onClick={scrollToProductos}
             onMouseEnter={() => setIsSecondaryHovered(true)}
             onMouseLeave={() => setIsSecondaryHovered(false)}
             style={{
@@ -114,6 +133,7 @@ export default function CtaFinalFinanzas() {
                 ? '0 8px 20px rgba(9, 29, 62, 0.55), 0 0 16px rgba(255, 255, 255, 0.12)'
                 : 'none',
               transition: 'all 0.2s ease',
+              whiteSpace: 'nowrap',
             }}
           >
             Ver todos los productos

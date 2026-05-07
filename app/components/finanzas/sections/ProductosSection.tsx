@@ -229,9 +229,8 @@ function CardGrid({ items }: { items: any[] }) {
 
 export default function ProductosSection() {
   return (
-    <section className="w-full bg-white pt-[88px] pb-[143px]">
+    <section id="productos" className="w-full bg-white pt-[88px] pb-[143px]">
       <div className="max-w-[1084px] w-full mx-auto px-4 md:px-0">
-
         <div className="text-center mb-[57px]">
           <p className="text-[#FFC107] text-[20px] italic font-bold leading-[30px]">
             Nuestros productos financieros
@@ -265,7 +264,6 @@ export default function ProductosSection() {
         </div>
 
         <CardGrid items={ejecucion} />
-
       </div>
     </section>
   );
