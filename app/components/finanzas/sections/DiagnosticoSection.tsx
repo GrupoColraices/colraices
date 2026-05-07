@@ -34,7 +34,7 @@ const cards = [
   {
     icon: "🏢",
     text: "Envío remesas a Colombia y quiero convertir ese dinero en mi patrimonio",
-    tag: "Hipotecario · Leasing · Libre inversión →",
+    tag: "Crédito →",
     href: "/finanzas/credito-hipotecario",
     color: "#2A3F77",
     bg: "#F1F5F9",
