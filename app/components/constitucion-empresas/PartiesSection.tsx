@@ -41,7 +41,7 @@ export default function PartiesSection() {
 
           <h2 className="mx-auto font-montserrat font-bold text-[#0F2D5C] text-[30px] sm:text-[38px] md:text-[44px] lg:text-[46px] xl:text-[50px] leading-[1.08] tracking-[-0.02em] text-center lg:whitespace-nowrap">
             Un servicio que trabaja{" "}
-            <span className="text-[#E4A900] italic font-semibold">
+            <span className="text-[#FFC107] italic font-semibold">
               con dos personas
             </span>
           </h2>
@@ -125,7 +125,7 @@ export default function PartiesSection() {
                     key={item}
                     className="flex items-start gap-2.5 text-[#667085] text-[12.5px] sm:text-[13px] leading-[1.65]"
                   >
-                    <span className="w-[5px] h-[5px] rounded-full bg-[#E4A900] mt-[8px] flex-shrink-0" />
+                    <span className="w-[5px] h-[5px] rounded-full bg-[#FFC107] mt-[8px] flex-shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
