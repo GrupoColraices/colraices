@@ -72,7 +72,7 @@ function HeroText() {
 
       <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
         <Link
-          href="/#units-section"
+          href="#UnitsSection"
           className="w-full sm:w-auto px-6 h-[44px] md:h-[48px] flex items-center justify-center rounded-full bg-[#FFC107] text-[#2A3F77] text-sm font-semibold transition hover:opacity-90"
         >
           Quiero saber más →

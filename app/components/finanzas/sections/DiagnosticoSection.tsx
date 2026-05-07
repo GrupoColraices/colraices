@@ -79,6 +79,7 @@ export default function DiagnosticoSection() {
 
   return (
     <section
+      id="diagnostico"
       className="
       w-full 
       bg-[#2A3F77] 
