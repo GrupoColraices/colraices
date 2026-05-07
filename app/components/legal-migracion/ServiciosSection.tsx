@@ -53,7 +53,7 @@ const services: ServiceItem[] = [
 
 const ServiciosSection: React.FC = () => {
   return (
-    <section className="servicios-bg">
+    <section id="servicios" className="servicios-bg">
       <div className="servicios-section">
         <div className="servicios-header">
           <p className="servicios-kicker">NUESTROS SERVICIOS</p>

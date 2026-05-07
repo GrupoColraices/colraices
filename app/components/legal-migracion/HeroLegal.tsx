@@ -36,6 +36,9 @@ const LEGAL_SERVICES = [
   },
 ] as const;
 
+const WHATSAPP_URL =
+  "https://wa.me/573165119987?text=Hola%2C%20quiero%20hablar%20con%20un%20asesor.";
+
 export default function HeroLegal() {
   return (
     <section
@@ -91,15 +94,10 @@ export default function HeroLegal() {
       <div className="relative mt-[72px] flex w-full max-w-[1108px] flex-col gap-10 px-5 pb-14 sm:px-8 md:mt-[96px] md:px-12 lg:mt-[120px] lg:flex-row lg:gap-[48px] lg:px-0 xl:gap-[72px]">
         {/* LEFT */}
         <div className="relative w-full max-w-[520px]">
-          <div>
-            <h1 className="text-[34px] leading-[1.08] font-bold text-white sm:text-[42px] lg:text-[59.76px] lg:leading-[65.7px]">
-              Tu puente legal
-            </h1>
-
-            <h1 className="text-[34px] leading-[1.08] font-bold italic text-[#FFC107] sm:text-[42px] lg:text-[59.76px] lg:leading-[65.7px]">
-              para Colombia
-            </h1>
-          </div>
+          <h1 className="text-[34px] leading-[1.08] font-bold text-white sm:text-[42px] lg:text-[59.76px] lg:leading-[65.7px]">
+            Tu puente legal
+            <span className="block italic text-[#FFC107]">para Colombia</span>
+          </h1>
 
           <div className="mt-[20px] h-[3px] w-[72px] rounded-[2px] bg-[#FFC107]" />
 
@@ -117,19 +115,23 @@ export default function HeroLegal() {
 
           {/* 🔥 BOTONES */}
           <div className="mt-[30px] flex min-h-[51px] flex-col gap-[12px] sm:flex-row sm:gap-[14px]">
-            <button
-              type="button"
-              className="h-[51px] rounded-full bg-[#FFC107] px-[28px] font-semibold text-[#091D3E] transition-all duration-300 ease-out hover:-translate-y-[4px] hover:shadow-[0_10px_30px_rgba(255,193,7,0.45)] active:translate-y-[0px] active:shadow-[0_4px_10px_rgba(255,193,7,0.25)]"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-[51px] items-center justify-center rounded-full bg-[#FFC107] px-[28px] font-semibold text-[#091D3E] transition-all duration-300 ease-out hover:-translate-y-[4px] hover:shadow-[0_10px_30px_rgba(255,193,7,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC107] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1F3F] active:translate-y-[0px] active:shadow-[0_4px_10px_rgba(255,193,7,0.25)]"
+              aria-label="Hablar con un asesor por WhatsApp"
             >
               Hablar con un asesor
-            </button>
+            </a>
 
-            <button
-              type="button"
-              className="h-[51px] rounded-full border border-white/25 px-[28px] text-white transition-all duration-300 ease-out hover:-translate-y-[2px] hover:bg-white/10 backdrop-blur-md"
+            <Link
+              href="#servicios"
+              className="inline-flex h-[51px] items-center justify-center rounded-full border border-white/25 px-[28px] text-white backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-[2px] hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1F3F]"
+              aria-label="Ver la sección de servicios"
             >
               Ver servicios
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -159,20 +161,20 @@ export default function HeroLegal() {
               <Link
                 key={item.text}
                 href={item.href}
-                className="group relative flex min-h-[54.4px] w-full items-center gap-[12px] rounded-[12px] px-[14px] py-[9px] transition-all duration-300 ease-out"
+                className="group relative flex min-h-[54.4px] w-full items-center gap-[12px] overflow-hidden rounded-[12px] px-[14px] py-[9px] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC107] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1F3F]"
                 style={{
                   background: "rgba(255,255,255,0.04)",
                   border: "0.8px solid rgba(255,255,255,0.07)",
                 }}
               >
                 <span
-                  className="text-[19.2px] leading-[28.8px] text-black"
+                  className="relative z-10 text-[19.2px] leading-[28.8px] text-black"
                   aria-hidden="true"
                 >
                   {item.icon}
                 </span>
 
-                <span className="text-[13.12px] text-white/65 transition-colors duration-300 group-hover:text-[#FFC107]">
+                <span className="relative z-10 text-[13.12px] text-white/65 transition-colors duration-300 group-hover:text-[#FFC107]">
                   {item.text}
                 </span>
 
