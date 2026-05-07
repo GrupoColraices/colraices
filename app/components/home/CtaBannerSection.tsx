@@ -36,12 +36,12 @@ export default function CtaBannerSection() {
               <span aria-hidden="true">→</span>
             </a>
 
-            <Link
+            <a
               href="#UnitsSection"
               className={`${buttonBaseClasses} border border-white/30 font-medium text-white hover:border-white hover:bg-white hover:text-[#0F2D5C]`}
             >
               Explora los servicios
-            </Link>
+            </a>
           </div>
         </div>
       </div>
