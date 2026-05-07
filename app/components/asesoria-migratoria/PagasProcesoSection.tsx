@@ -55,7 +55,7 @@ export default function PagasProcesoSection() {
             <div className="absolute top-[16px] right-[16px]">
               <div className="bg-[#FFC107] rounded-full px-[14px] sm:px-[16px] lg:px-[18px] py-[5px]">
                 <span
-                  className="text-white uppercase whitespace-nowrap"
+                  className="text-[#0F2D5C] uppercase whitespace-nowrap"
                   style={{
                     fontFamily: "Montserrat, sans-serif",
                     fontSize: "10px",
@@ -120,7 +120,7 @@ export default function PagasProcesoSection() {
                 <div className="flex gap-[14px] sm:gap-[16px] mb-[30px] sm:mb-[36px] relative z-10">
                   <div className="w-[36px] h-[36px] rounded-full bg-gradient-to-r from-[#FFC107] to-[#F0B429] flex items-center justify-center shrink-0">
                     <span
-                      className="text-white"
+                      className="text-[0F2D5C]"
                       style={{
                         fontFamily: "Montserrat, sans-serif",
                         fontSize: "11.52px",
@@ -175,7 +175,7 @@ export default function PagasProcesoSection() {
                 <div className="flex gap-[14px] sm:gap-[16px] relative z-10">
                   <div className="w-[36px] h-[36px] rounded-full bg-gradient-to-r from-[#FFC107] to-[#F0B429] flex items-center justify-center shrink-0">
                     <span
-                      className="text-white"
+                      className="text-[0F2D5C]"
                       style={{
                         fontFamily: "Montserrat, sans-serif",
                         fontSize: "11.52px",
