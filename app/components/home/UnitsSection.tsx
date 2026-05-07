@@ -48,14 +48,14 @@ const SERVICE_CARDS: ServiceCard[] = [
     description:
       "Desde migrar ordenadamente hasta emprender en Colombia. Asesoría legal con gente que habla tu idioma.",
     tags: [
-      { label: "Asesoría migratoria", href: "/asesoria-migratoria" },
-      { label: "Emprendimiento", href: "/emprendimiento" },
-      { label: "Pensiones", href: "/pensiones" },
-      { label: "Representación legal", href: "/representacion-legal" },
-      { label: "Servicios fiscales", href: "/servicios-fiscales" },
+      { label: "Asesoría migratoria", href: "legal-migracion/asesoria-migratoria" },
+      { label: "Emprendimiento", href: "legal-migracion/constitucion-empresas" },
+      { label: "Pensiones", href: "legal-migracion/pensiones" },
+      { label: "Representación legal", href: "legal-migracion/representacion-legal" },
+      { label: "Servicios fiscales", href: "legal-migracion/servicios-fiscales" },
     ],
     cta: "Ver servicios legales",
-    href: "/servicios-legales",
+    href: "/legal-migracion",
   },
 ];
 
