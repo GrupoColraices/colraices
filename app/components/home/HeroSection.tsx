@@ -79,7 +79,7 @@ function HeroText() {
         </Link>
 
         <Link
-          href="/servicios"
+          href="/nosotros#hero-nosotros"
           className="w-full sm:w-auto px-6 h-[42px] md:h-[44px] flex items-center justify-center rounded-full border border-white text-white text-sm font-semibold transition hover:bg-white hover:text-[#0B1F3A]"
         >
           Conoce el ecosistema
