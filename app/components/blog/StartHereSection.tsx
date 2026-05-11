@@ -51,51 +51,19 @@ const themeClasses = {
   credit: {
     image: "bg-[linear-gradient(135deg,#1A2A5E_0%,#2A3F77_100%)]",
     badge: "bg-[#EEF2FF] text-[#2A3F77]",
+    icon: "bottom-[10px] right-[10px] -rotate-[10deg]",
   },
   inmob: {
     image: "bg-[linear-gradient(135deg,#1E3A2F_0%,#2D6A4F_100%)]",
     badge: "bg-[#ECFDF5] text-[#065F46]",
+    icon: "bottom-[10px] right-[10px] -rotate-[10deg]",
   },
   migra: {
     image: "bg-[linear-gradient(135deg,#1A2A5E_0%,#2A3F77_100%)]",
     badge: "bg-[#EEF2FF] text-[#1D4ED8]",
+    icon: "bottom-[10px] right-[10px] -rotate-[10deg]",
   },
 };
-
-function ClockIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-[12px] w-[12px]"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
-  );
-}
-
-function ArrowIcon() {
-  return (
-    <svg
-      width="10"
-      height="10"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="3.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="transition-transform duration-300 group-hover:translate-x-1"
-    >
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-  );
-}
 
 export default function StartHereSection() {
   return (
@@ -106,7 +74,7 @@ export default function StartHereSection() {
             Empieza por aquí
           </h2>
 
-          <p className="mt-[28px] font-['Montserrat'] text-[15px] font-normal leading-[22.5px] tracking-[0px] text-[#4B5563]">
+          <p className="mt-[28px] font-['Montserrat'] text-[15px] font-normal leading-[22.5px] text-[#4B5563]">
             Si no sabes por dónde empezar, aquí encontrarás algunos de los temas
             más importantes para entender tu situación y avanzar con más
             claridad.
@@ -129,7 +97,9 @@ export default function StartHereSection() {
                     {guide.number}
                   </div>
 
-                  <span className="absolute bottom-[23px] right-[32px] text-[48px] leading-none opacity-20 transition-all duration-300 group-hover:scale-110 group-hover:opacity-30">
+                  <span
+                    className={`absolute inline-block text-[52px] leading-none opacity-25 transition-all duration-300 group-hover:scale-110 group-hover:opacity-35 ${theme.icon}`}
+                  >
                     {guide.emoji}
                   </span>
                 </div>
@@ -141,21 +111,46 @@ export default function StartHereSection() {
                     {guide.category}
                   </span>
 
-                  <h3 className="mt-[14px] w-[217px] font-['Montserrat'] text-[14px] font-bold leading-[19.6px] tracking-[0px] text-[#1A2340]">
+                  <h3 className="mt-[14px] w-[217px] font-['Montserrat'] text-[14px] font-bold leading-[19.6px] text-[#1A2340]">
                     {guide.title}
                   </h3>
 
-                  <div className="mt-[12px] flex h-[18px] items-center gap-[6px] font-['Montserrat'] text-[11.5px] font-medium leading-[17.3px] tracking-[0px] text-[#B0B8C1]">
-                    <ClockIcon />
+                  <div className="mt-[12px] flex h-[18px] items-center gap-[6px] font-['Montserrat'] text-[11.5px] font-medium leading-[17.3px] text-[#B0B8C1]">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-[12px] w-[12px]"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+
                     {guide.time}
                   </div>
 
                   <a
                     href={guide.href}
-                    className="mt-auto flex h-[33px] w-full items-end justify-between border-t border-[#EDEDED] font-['Montserrat'] text-[12px] font-semibold leading-[18px] tracking-[0px] text-[#2A3F77]"
+                    className="group/cta mt-auto flex h-[33px] w-full items-end justify-between border-t border-[#EDEDED] font-['Montserrat'] text-[12px] font-semibold leading-[18px] text-[#2A3F77] transition-colors duration-300 hover:text-[#FFC107]"
                   >
                     <span>Leer guía</span>
-                    <ArrowIcon />
+
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="transition-transform duration-300 group-hover/cta:translate-x-1"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
                   </a>
                 </div>
               </article>
