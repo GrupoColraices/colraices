@@ -4,7 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const items = [
+type FinanceItem = {
+  tag: string;
+  title: string;
+  desc: string;
+  color: string;
+  icon: string;
+  href: string;
+};
+
+const items: FinanceItem[] = [
   {
     tag: "EL DESTINO",
     title: "Crédito hipotecario o libre inversión",
@@ -162,7 +171,7 @@ export default function FinanzasHero() {
 }
 
 /* CARD */
-function Card({ item }: any) {
+function Card({ item }: { item: FinanceItem }) {
   return (
     <Link
       href={item.href}

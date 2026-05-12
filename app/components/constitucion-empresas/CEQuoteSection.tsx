@@ -49,7 +49,7 @@ export default function CEQuoteSection() {
             letterSpacing: "0px",
           }}
         >
-          "
+          {'"'}
         </div>
 
         {/* Quote Text */}
