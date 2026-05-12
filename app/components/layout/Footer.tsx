@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import PrivacyPolicy from "./PrivacyPolicy";
 import {
   FaFacebookF,
   FaInstagram,
@@ -85,7 +86,7 @@ export default function Footer() {
               © 2026 Colraices. Colombia y España. Todos los derechos reservados.
             </p>
             <div className="flex flex-wrap items-center gap-4 text-sm leading-6 text-white/35 sm:gap-5 lg:text-[12.48px] lg:leading-[18.7px] lg:text-white/28">
-              <Link href="/politica-de-privacidad" className="transition-colors hover:text-white">Política de privacidad</Link>
+              <PrivacyPolicy className="transition-colors hover:text-white" />
               <Link href="/terminos-de-uso" className="transition-colors hover:text-white">Términos de uso</Link>
               <Link href="/cookies" className="transition-colors hover:text-white">Cookies</Link>
             </div>

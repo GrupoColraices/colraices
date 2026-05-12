@@ -1,0 +1,309 @@
+"use client";
+
+import { useMemo, useState } from "react";
+
+type Article = {
+  emoji: string;
+  color: string;
+  category: string;
+  tags: string[];
+  title: string;
+  desc: string;
+  readTime: string;
+  date: string;
+};
+
+const categories = [
+  "Todos",
+  "Crédito y finanzas",
+  "Inversión inmobiliaria",
+  "Legal y Migración",
+  "Fiscal",
+  "Herramientas Colraices",
+  "Oportunidades B2B",
+];
+
+const articles: Article[] = [
+  {
+    emoji: "🏠",
+    color: "from-[#0F2A1D] to-[#1E5C3A]",
+    category: "Inversión inmobiliaria",
+    tags: ["Inversión inmobiliaria"],
+    title: "De las remesas a la vivienda: el poder del ahorro en el exterior",
+    desc: "Cómo convertir tus remesas en una estrategia de ahorro sólida para comprar vivienda en Colombia.",
+    readTime: "9 min",
+    date: "Mar 2025",
+  },
+  {
+    emoji: "📈",
+    color: "from-[#162039] to-[#2A3F77]",
+    category: "Inversión inmobiliaria",
+    tags: ["Inversión inmobiliaria"],
+    title: "Rentabilidad inmobiliaria: inversión en Colombia desde el exterior",
+    desc: "Análisis real de rentabilidad y zonas clave para invertir en finca raíz desde el exterior.",
+    readTime: "11 min",
+    date: "Feb 2025",
+  },
+  {
+    emoji: "📋",
+    color: "from-[#33143D] to-[#6D2A78]",
+    category: "Legal y fiscal",
+    tags: ["Legal y Migración", "Fiscal"],
+    title: "Impuestos en Colombia para colombianos en el exterior",
+    desc: "Qué obligaciones fiscales tienes en Colombia cuando vives fuera del país y cómo manejarlas.",
+    readTime: "8 min",
+    date: "Abr 2025",
+  },
+  {
+    emoji: "🧳",
+    color: "from-[#1C3E78] to-[#2F63B4]",
+    category: "Herramientas Colraices",
+    tags: ["Herramientas Colraices"],
+    title: "Aprovecha tu viaje a Colombia para fortalecer tu patrimonio",
+    desc: "Una guía práctica de qué hacer cuando estás en Colombia para avanzar con tus metas financieras.",
+    readTime: "6 min",
+    date: "Ene 2025",
+  },
+  {
+    emoji: "🧭",
+    color: "from-[#162039] to-[#2A3F77]",
+    category: "Herramientas Colraices",
+    tags: ["Herramientas Colraices"],
+    title: "Brújula Financiera: organiza y proyecta tu futuro desde el exterior",
+    desc: "Conoce la herramienta gratuita de Colraices para entender tu situación financiera y proyectar tus metas.",
+    readTime: "5 min",
+    date: "Mar 2025",
+  },
+  {
+    emoji: "🔑",
+    color: "from-[#2A1500] to-[#C85C00]",
+    category: "Herramientas Colraices",
+    tags: ["Herramientas Colraices"],
+    title: "Tour de la Vivienda: conecta con oportunidades en Colombia",
+    desc: "Cómo el Tour de la Vivienda te permite conocer proyectos y tomar decisiones con información real.",
+    readTime: "7 min",
+    date: "Feb 2025",
+  },
+];
+
+const topArticles = [
+  "¿Quieres saber si eres viable para crédito desde el exterior?",
+  "Guía para comprar vivienda en Colombia desde el exterior",
+  "Impuestos en Colombia para colombianos en el exterior",
+  "Cómo consultar tu historial crediticio desde el exterior",
+  "Brújula Financiera: organiza y proyecta tu futuro desde el exterior",
+];
+
+const topArticleColors = [
+  "bg-[#1A2E5C]",
+  "bg-[#0F4A2E]",
+  "bg-[#4B205D]",
+  "bg-[#2A4F91]",
+  "bg-[#2D2B5F]",
+];
+
+function SearchIcon() {
+  return (
+    <svg
+      className="h-4 w-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.35-4.35" />
+    </svg>
+  );
+}
+
+function ClockIcon() {
+  return (
+    <svg
+      className="h-3 w-3"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
+
+export default function ExploreSection() {
+  const [activeCategory, setActiveCategory] = useState("Todos");
+  const [query, setQuery] = useState("");
+
+  const filteredArticles = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+
+    return articles.filter((article) => {
+      const matchesCategory =
+        activeCategory === "Todos" || article.tags.includes(activeCategory);
+
+      const matchesSearch =
+        !normalizedQuery ||
+        article.title.toLowerCase().includes(normalizedQuery) ||
+        article.desc.toLowerCase().includes(normalizedQuery) ||
+        article.category.toLowerCase().includes(normalizedQuery);
+
+      return matchesCategory && matchesSearch;
+    });
+  }, [activeCategory, query]);
+
+  return (
+    <section id="explorar" className="bg-white py-[72px] lg:py-[88px]">
+      <div className="mx-auto w-full max-w-[1088px] px-4 sm:px-6 lg:px-0">
+        <div className="mx-auto text-center">
+          <h2 className="text-[34px] font-extrabold leading-[40.8px] tracking-[-0.5px] text-[#192440]">
+            Busca por tema
+          </h2>
+
+          <p className="mt-[10px] text-[15px] leading-[22.5px] text-[#4B5563]">
+            Contenido organizado según lo que necesitas resolver.
+          </p>
+        </div>
+
+        <div className="relative mx-auto mt-[22px] h-[41px] w-full max-w-[408px]">
+          <input
+            type="text"
+            placeholder="Busca un tema específico..."
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            className="h-full w-full rounded-[10px] border border-[#EDEDED] bg-white px-[16px] pr-[44px] text-[13.5px] text-[#1A2340] shadow-none outline-none transition placeholder:text-[#9CA3AF] focus:border-[#2A3F77] focus:ring-4 focus:ring-[#2A3F77]/10"
+          />
+
+          <div className="pointer-events-none absolute right-[15px] top-1/2 -translate-y-1/2 text-[#94A3B8]">
+            <SearchIcon />
+          </div>
+        </div>
+
+        <div className="relative left-1/2 mt-[28px] flex w-[calc(100vw-32px)] max-w-[1180px] -translate-x-1/2 flex-nowrap justify-start gap-[10px] overflow-x-auto px-0 pb-2 sm:w-[calc(100vw-48px)] xl:justify-center [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {categories.map((category) => {
+            const isActive = activeCategory === category;
+
+            return (
+              <button
+                key={category}
+                type="button"
+                onClick={() => setActiveCategory(category)}
+                className={[
+                  "h-[38px] shrink-0 whitespace-nowrap rounded-full border px-[20px] text-[13px] font-semibold leading-none transition",
+                  isActive
+                    ? "border-[#2A3F77] bg-[#2A3F77] text-white shadow-[0_8px_20px_rgba(42,63,119,0.18)]"
+                    : "border-[#EDEDED] bg-white text-[#4B5563] hover:border-[#2A3F77] hover:text-[#2A3F77]",
+                ].join(" ")}
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-[34px] grid gap-[44px] lg:grid-cols-[1fr_300px] lg:items-start">
+          <div>
+            {filteredArticles.length > 0 ? (
+              <div className="grid gap-x-[24px] gap-y-[24px] sm:grid-cols-2">
+                {filteredArticles.map((article) => (
+                  <article
+                    key={article.title}
+                    className="group overflow-hidden rounded-[12px] border border-[#EDEDED] bg-white shadow-[0_8px_24px_rgba(15,45,92,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(15,45,92,0.14)]"
+                  >
+                    <div
+                      className={`relative flex h-[140px] items-center justify-center overflow-hidden bg-gradient-to-br ${article.color}`}
+                    >
+                      <span className="absolute bottom-[10px] right-[14px] text-[40px] opacity-20 transition duration-300 group-hover:scale-110 group-hover:opacity-30">
+                        {article.emoji}
+                      </span>
+                    </div>
+
+                    <div className="px-[18px] pb-[18px] pt-[16px]">
+                      <div className="mb-[9px] text-[10px] font-bold uppercase leading-[15px] tracking-[0.8px] text-[#2A3F77]">
+                        {article.category}
+                      </div>
+
+                      <h3 className="line-clamp-2 text-[15px] font-bold leading-[19.6px] text-[#1A2340]">
+                        {article.title}
+                      </h3>
+
+                      <p className="mt-[9px] line-clamp-2 text-[12.5px] leading-[20px] text-[#4B5563]">
+                        {article.desc}
+                      </p>
+
+                      <div className="mt-[14px] flex items-center gap-[12px] text-[11.5px] leading-none text-[#B0B8C1]">
+                        <div className="flex items-center gap-[4px]">
+                          <ClockIcon />
+                          <span>{article.readTime}</span>
+                        </div>
+
+                        <span>{article.date}</span>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <div className="rounded-[12px] border border-dashed border-[#EDEDED] bg-white p-10 text-center">
+                <h3 className="text-[16px] font-bold text-[#1A2340]">
+                  No encontramos artículos
+                </h3>
+
+                <p className="mt-2 text-[13px] text-[#4B5563]">
+                  Intenta buscar con otra palabra o cambia el filtro activo.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <aside className="pt-[2px] lg:sticky lg:top-[96px] lg:self-start">
+            <div className="flex items-center gap-[10px]">
+              <h3 className="shrink-0 text-[14px] font-extrabold leading-[21px] tracking-[-0.2px] text-[#192440]">
+                Artículos destacados
+              </h3>
+
+              <span className="h-px flex-1 bg-[#EDEDED]" />
+            </div>
+
+            <div className="mt-[16px]">
+              {topArticles.map((title, index) => (
+                <a
+                  key={title}
+                  href="#"
+                  className="group grid grid-cols-[28px_52px_1fr] items-center gap-[12px] border-b border-[#EDEDED] py-[12px] transition hover:bg-[#FAFAFA]"
+                >
+                  <span className="text-[22px] font-extrabold leading-[22px] text-[#EDEDED]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <span
+                    className={[
+                      "h-[44px] w-[52px] rounded-[8px] shadow-[var(--shadow-sm)] transition duration-300 group-hover:scale-105",
+                      topArticleColors[index],
+                    ].join(" ")}
+                  />
+
+                  <span className="text-[12.5px] font-semibold leading-[17.5px] text-[#1A2340] transition group-hover:text-[#2A3F77]">
+                    {title}
+                  </span>
+                </a>
+              ))}
+            </div>
+
+            <a
+              href="#"
+              className="mt-[28px] inline-flex h-[40px] w-full items-center justify-center rounded-[8px] border border-[#2A3F77] bg-white px-5 text-[13px] font-bold leading-none text-[#2A3F77] transition hover:bg-[#2A3F77] hover:text-white"
+            >
+              Ver todos los artículos →
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  );
+}
