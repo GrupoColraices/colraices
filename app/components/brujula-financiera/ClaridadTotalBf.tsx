@@ -136,7 +136,7 @@ export default function ClaridadTotalSection() {
                 ].map((text, i) => (
                   <div key={i} className="flex items-start gap-[10px]">
                     <div className="w-[18px] h-[18px] mt-[2px] flex items-center justify-center rounded-full bg-[#DC2626]/10 shrink-0">
-                      <span className="text-[10px] text-[#DC2626]">•</span>
+                      <span className="text-[20px] text-[#DC2626]">×</span>
                     </div>
                     <p className="text-[14px] leading-[21.7px] text-[#475569]">
                       {text}
