@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const WHATSAPP_NUMBER = "573169013283";
 
 const WHATSAPP_MESSAGE = encodeURIComponent(
