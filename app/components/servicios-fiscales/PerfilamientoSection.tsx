@@ -6,7 +6,11 @@ export default function PerfilamientoSection() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setLoaded(true);
+    const frame = requestAnimationFrame(() => {
+      setLoaded(true);
+    });
+
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   const aplicaItems = [
