@@ -19,11 +19,10 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#F4F6F8] border-b border-black/5">
-      
       <div className="max-w-[1416px] mx-auto px-6 lg:px-[156px] h-[68px] flex items-center justify-between">
-        
         {/* LOGO */}
         <Link href="/">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo.png"
             alt="Colraices"
@@ -45,9 +44,10 @@ export default function Navbar() {
                   text-[14px] leading-[21px]
                   transition-all duration-200
 
-                  ${isActive
-                    ? "text-[#0F2D5C] font-semibold"
-                    : "text-[#475569] font-medium hover:text-[#0F2D5C]"
+                  ${
+                    isActive
+                      ? "text-[#0F2D5C] font-semibold"
+                      : "text-[#475569] font-medium hover:text-[#0F2D5C]"
                   }
                 `}
               >
@@ -58,9 +58,10 @@ export default function Navbar() {
                     className={`
                       absolute left-0 bottom-0 h-[2px] w-full bg-[#FFC107]
 
-                      ${isActive
-                        ? "scale-x-100 origin-left"
-                        : "scale-x-0 origin-right group-hover:scale-x-100 group-hover:origin-left"
+                      ${
+                        isActive
+                          ? "scale-x-100 origin-left"
+                          : "scale-x-0 origin-right group-hover:scale-x-100 group-hover:origin-left"
                       }
 
                       transition-transform duration-300 
@@ -98,9 +99,21 @@ export default function Navbar() {
           onClick={() => setIsOpen(!isOpen)}
           className="lg:hidden flex flex-col justify-center items-center gap-[4px]"
         >
-          <span className={`w-6 h-[2px] bg-[#0F2D5C] transition-all ${isOpen ? "rotate-45 translate-y-[6px]" : ""}`} />
-          <span className={`w-6 h-[2px] bg-[#0F2D5C] transition-all ${isOpen ? "opacity-0" : ""}`} />
-          <span className={`w-6 h-[2px] bg-[#0F2D5C] transition-all ${isOpen ? "-rotate-45 -translate-y-[6px]" : ""}`} />
+          <span
+            className={`w-6 h-[2px] bg-[#0F2D5C] transition-all ${
+              isOpen ? "rotate-45 translate-y-[6px]" : ""
+            }`}
+          />
+          <span
+            className={`w-6 h-[2px] bg-[#0F2D5C] transition-all ${
+              isOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`w-6 h-[2px] bg-[#0F2D5C] transition-all ${
+              isOpen ? "-rotate-45 -translate-y-[6px]" : ""
+            }`}
+          />
         </button>
       </div>
 
@@ -123,9 +136,10 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className={`
                   text-[15px]
-                  ${isActive
-                    ? "text-[#0F2D5C] font-semibold"
-                    : "text-[#475569]"
+                  ${
+                    isActive
+                      ? "text-[#0F2D5C] font-semibold"
+                      : "text-[#475569]"
                   }
                 `}
               >

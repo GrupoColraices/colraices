@@ -2,7 +2,29 @@
 
 import { useRouter } from "next/navigation";
 
-const preparacion = [
+type CardColor =
+  | "bg-[#1A4F9E]"
+  | "bg-[#FFC107]"
+  | "bg-[#DC2626]"
+  | "bg-[#059669]";
+
+type ProductItem = {
+  tag: string;
+  title: string;
+  subtitle: string;
+  desc: string;
+  color: CardColor;
+  icon: string;
+  button?: string;
+  href?: string;
+  filled?: boolean;
+  price?: string;
+  duration?: string;
+  extra1?: string;
+  extra2?: string;
+};
+
+const preparacion: ProductItem[] = [
   {
     tag: "DIAGNÓSTICO FINANCIERO",
     title: "Brújula Financiera",
@@ -41,7 +63,7 @@ const preparacion = [
   },
 ];
 
-const ejecucion = [
+const ejecucion: ProductItem[] = [
   {
     tag: "Banco Davivienda · Bróker autorizado",
     title: "Crédito hipotecario",
@@ -80,10 +102,10 @@ const ejecucion = [
   },
 ];
 
-function Card({ item, index }: any) {
+function Card({ item, index }: { item: ProductItem; index: number }) {
   const router = useRouter();
 
-  const textColorMap: any = {
+  const textColorMap: Record<CardColor, string> = {
     "bg-[#1A4F9E]": "text-[#1A4F9E]",
     "bg-[#FFC107]": "text-[#FFC107]",
     "bg-[#DC2626]": "text-[#DC2626]",
@@ -217,7 +239,7 @@ function Card({ item, index }: any) {
   );
 }
 
-function CardGrid({ items }: { items: any[] }) {
+function CardGrid({ items }: { items: ProductItem[] }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
       {items.map((item, i) => (

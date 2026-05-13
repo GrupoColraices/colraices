@@ -1,5 +1,6 @@
 "use client";
 
+import type { ComponentProps } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -69,7 +70,9 @@ const beliefsData = [
   },
 ];
 
-function NextArrow({ onClick }: any) {
+type SliderArrowProps = Pick<ComponentProps<"button">, "onClick">;
+
+function NextArrow({ onClick }: SliderArrowProps) {
   return (
     <button
       onClick={onClick}
@@ -81,7 +84,7 @@ function NextArrow({ onClick }: any) {
   );
 }
 
-function PrevArrow({ onClick }: any) {
+function PrevArrow({ onClick }: SliderArrowProps) {
   return (
     <button
       onClick={onClick}
@@ -146,9 +149,8 @@ export default function BeliefsSection() {
       <div className="relative max-w-[1038px] mx-auto px-5 sm:px-8 xl:px-0">
         <Slider {...settings}>
           {beliefsData.map((item, index) => (
-            <div key={index} className="px-2 sm:px-[10px]">
-              <div className="w-full border border-[#0F2D5C]/10 rounded-[20px] overflow-hidden bg-white">
-
+            <div key={index} className="h-full px-2 sm:px-[10px]">
+              <div className="h-full w-full border border-[#0F2D5C]/10 rounded-[20px] overflow-hidden bg-white flex flex-col">
                 {/* TOP */}
                 <div className="w-full bg-[#FBF8F3] border-b border-[#0F2D5C]/6 px-[22px] pt-[22px] pb-[22px]">
                   <div className="inline-flex items-center gap-[5px] h-[22px] rounded-full px-[12px] border border-[#DC2626]/15 bg-[#DC2626]/8 mb-[14px]">
@@ -164,7 +166,7 @@ export default function BeliefsSection() {
                 </div>
 
                 {/* BOTTOM */}
-                <div className="w-full bg-white px-[22px] pt-[18px] pb-[22px]">
+                <div className="w-full bg-white px-[22px] pt-[18px] pb-[22px] flex-1">
                   <div className="inline-flex items-center gap-[5px] h-[22px] rounded-full px-[12px] border border-[#059669]/20 bg-[#FEF3C7] mb-[14px]">
                     <span className="w-[5px] h-[5px] rounded-full bg-[#E6AC00]" />
                     <span className="text-[9.6px] font-bold uppercase tracking-[1.06px] text-[#E6AC00]">

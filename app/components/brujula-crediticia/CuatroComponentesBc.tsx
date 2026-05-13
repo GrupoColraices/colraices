@@ -1,5 +1,7 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 export default function CuatroComponentesBc() {
   return (
     <section className="w-full flex justify-center bg-white">
@@ -65,7 +67,15 @@ export default function CuatroComponentesBc() {
 
 
 /* CARD RESPONSIVE */
-function Card({ number, icon, title, desc, items }: any) {
+type CardProps = {
+  number: string;
+  icon: ReactNode;
+  title: string;
+  desc: string;
+  items: string[];
+};
+
+function Card({ number, icon, title, desc, items }: CardProps) {
   return (
     <div
       className="

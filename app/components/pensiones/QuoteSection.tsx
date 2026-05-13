@@ -20,7 +20,7 @@ export default function QuoteSection() {
             fontFamily: "Montserrat, sans-serif",
           }}
         >
-          "
+          &quot;
         </div>
 
         {/* QUOTE TEXT */}
