@@ -88,7 +88,7 @@ export default function ProcesoSectionBc() {
 
           {/* CARDS */}
           <div className="flex gap-[16px] transition-all duration-500">
-            {slides[index].map((card, i) => {
+            {slides[index].map((card) => {
               const isActive = card.active;
 
               return (
