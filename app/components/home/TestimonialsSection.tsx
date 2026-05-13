@@ -67,9 +67,12 @@ export default function TestimonialsSection() {
   }, []);
 
   useEffect(() => {
-    updateCardWidth();
+    const frame = requestAnimationFrame(updateCardWidth);
     window.addEventListener("resize", updateCardWidth);
-    return () => window.removeEventListener("resize", updateCardWidth);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", updateCardWidth);
+    };
   }, [updateCardWidth]);
 
   useEffect(() => {
@@ -186,7 +189,9 @@ export default function TestimonialsSection() {
                       </div>
 
                       <p className="text-[#1E293B] text-[14px] sm:text-[15px] md:text-[16px] italic leading-[26px] md:leading-[28px] whitespace-pre-line">
-                        "{item.quote}"
+                        {'"'}
+                        {item.quote}
+                        {'"'}
                       </p>
 
                       {(item.name === "Tito Venegas" ||
@@ -274,7 +279,9 @@ export default function TestimonialsSection() {
             </div>
 
             <p className="text-[#2A3F77] text-[15px] leading-[26px] mb-[36px]">
-              "{selectedTestimonial.fullQuote}"
+              {'"'}
+              {selectedTestimonial.fullQuote}
+              {'"'}
             </p>
 
             <div className="flex items-center gap-[14px]">

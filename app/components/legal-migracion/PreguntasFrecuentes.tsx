@@ -1,11 +1,14 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 type FaqItem = {
   pregunta: string;
   respuesta: string;
 };
+
+const BASE_HEIGHT = 818.53;
+const EXTRA_HEIGHT = 50;
 
 const preguntas: FaqItem[] = [
   {
@@ -45,26 +48,30 @@ const PreguntasFrecuentes: React.FC = () => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [containerHeight, setContainerHeight] = useState<number>(818.53);
+  const [containerHeight, setContainerHeight] = useState<number>(BASE_HEIGHT);
 
-  const togglePregunta = (index: number) => {
-    setAbierta((actual) => (actual === index ? null : index));
-  };
-
-  useEffect(() => {
-    if (abierta === null) {
-      setContainerHeight(818.53);
+  const actualizarAltura = (index: number | null) => {
+    if (index === null) {
+      setContainerHeight(BASE_HEIGHT);
       return;
     }
 
-    const el = contentRefs.current[abierta];
-    if (el) {
-      const extra = 50;
-      const newHeight = 818.53 + el.scrollHeight + extra;
+    window.requestAnimationFrame(() => {
+      const el = contentRefs.current[index];
 
-      setContainerHeight((prev) => Math.max(prev, newHeight));
-    }
-  }, [abierta]);
+      if (el) {
+        const newHeight = BASE_HEIGHT + el.scrollHeight + EXTRA_HEIGHT;
+        setContainerHeight((prev) => Math.max(prev, newHeight));
+      }
+    });
+  };
+
+  const togglePregunta = (index: number) => {
+    const nextOpen = abierta === index ? null : index;
+
+    setAbierta(nextOpen);
+    actualizarAltura(nextOpen);
+  };
 
   return (
     <section
