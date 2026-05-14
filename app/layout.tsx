@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
 import "./globals.css";
@@ -10,6 +11,18 @@ const montserrat = Montserrat({
 });
 
 const GTM_ID = "GTM-WQDR37KG";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Home | Colraices",
+    template: "%s | Colraices",
+  },
+  description:
+    "Invierte en Colombia desde el exterior. Créditos de vivienda, compra de inmuebles y asesoría integral con Colraices.",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
 
 export default function RootLayout({
   children,
