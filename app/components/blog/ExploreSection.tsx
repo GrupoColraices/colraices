@@ -1,8 +1,19 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
+import type { BlogPagination, BlogPost } from "@/app/lib/blogApi";
 
 type Article = {
+  id: string;
   emoji: string;
   color: string;
   category: string;
@@ -11,6 +22,15 @@ type Article = {
   desc: string;
   readTime: string;
   date: string;
+  href: string;
+  imageUrl: string | null;
+};
+
+type ExploreSectionProps = {
+  posts?: BlogPost[];
+  latestPost?: BlogPost | null;
+  postsError?: string | null;
+  pagination?: BlogPagination | null;
 };
 
 const categories = [
@@ -25,6 +45,7 @@ const categories = [
 
 const articles: Article[] = [
   {
+    id: "static-remesas-vivienda",
     emoji: "🏠",
     color: "from-[#0F2A1D] to-[#1E5C3A]",
     category: "Inversión inmobiliaria",
@@ -33,8 +54,11 @@ const articles: Article[] = [
     desc: "Cómo convertir tus remesas en una estrategia de ahorro sólida para comprar vivienda en Colombia.",
     readTime: "9 min",
     date: "Mar 2025",
+    href: "#",
+    imageUrl: null,
   },
   {
+    id: "static-rentabilidad-inmobiliaria",
     emoji: "📈",
     color: "from-[#162039] to-[#2A3F77]",
     category: "Inversión inmobiliaria",
@@ -43,8 +67,11 @@ const articles: Article[] = [
     desc: "Análisis real de rentabilidad y zonas clave para invertir en finca raíz desde el exterior.",
     readTime: "11 min",
     date: "Feb 2025",
+    href: "#",
+    imageUrl: null,
   },
   {
+    id: "static-impuestos-colombia",
     emoji: "📋",
     color: "from-[#33143D] to-[#6D2A78]",
     category: "Legal y fiscal",
@@ -53,8 +80,11 @@ const articles: Article[] = [
     desc: "Qué obligaciones fiscales tienes en Colombia cuando vives fuera del país y cómo manejarlas.",
     readTime: "8 min",
     date: "Abr 2025",
+    href: "#",
+    imageUrl: null,
   },
   {
+    id: "static-viaje-colombia",
     emoji: "🧳",
     color: "from-[#1C3E78] to-[#2F63B4]",
     category: "Herramientas Colraices",
@@ -63,8 +93,11 @@ const articles: Article[] = [
     desc: "Una guía práctica de qué hacer cuando estás en Colombia para avanzar con tus metas financieras.",
     readTime: "6 min",
     date: "Ene 2025",
+    href: "#",
+    imageUrl: null,
   },
   {
+    id: "static-brujula-financiera",
     emoji: "🧭",
     color: "from-[#162039] to-[#2A3F77]",
     category: "Herramientas Colraices",
@@ -73,8 +106,11 @@ const articles: Article[] = [
     desc: "Conoce la herramienta gratuita de Colraices para entender tu situación financiera y proyectar tus metas.",
     readTime: "5 min",
     date: "Mar 2025",
+    href: "#",
+    imageUrl: null,
   },
   {
+    id: "static-tour-vivienda",
     emoji: "🔑",
     color: "from-[#2A1500] to-[#C85C00]",
     category: "Herramientas Colraices",
@@ -83,6 +119,8 @@ const articles: Article[] = [
     desc: "Cómo el Tour de la Vivienda te permite conocer proyectos y tomar decisiones con información real.",
     readTime: "7 min",
     date: "Feb 2025",
+    href: "#",
+    imageUrl: null,
   },
 ];
 
@@ -102,6 +140,152 @@ const topArticleColors = [
   "bg-[#2D2B5F]",
 ];
 
+const fallbackApiArticle: Article = {
+  id: "fallback-api-article",
+  emoji: "📰",
+  color: "from-[#162039] to-[#2A3F77]",
+  category: "Herramientas Colraices",
+  tags: ["Herramientas Colraices"],
+  title: "",
+  desc: "Lee esta publicación del blog de Colraices y conoce información útil para colombianos en el exterior.",
+  readTime: "Blog",
+  date: "Reciente",
+  href: "#",
+  imageUrl: null,
+};
+
+function formatBlogDate(date?: string | null): string {
+  const value = date?.trim();
+
+  if (!value) {
+    return "Reciente";
+  }
+
+  const shortDateMatch = value.match(/^(\d{1,2})-(\d{1,2})-(\d{2}|\d{4})$/);
+  const normalizedDate = shortDateMatch
+    ? new Date(
+        Date.UTC(
+          Number(
+            shortDateMatch[3].length === 2
+              ? `20${shortDateMatch[3]}`
+              : shortDateMatch[3],
+          ),
+          Number(shortDateMatch[2]) - 1,
+          Number(shortDateMatch[1]),
+        ),
+      )
+    : new Date(value.replace(/\.(\d{3})\d*Z$/, ".$1Z"));
+
+  if (Number.isNaN(normalizedDate.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat("es-CO", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(normalizedDate);
+}
+
+function normalizeCategory(category?: string | null): string {
+  const value = category?.trim().toLowerCase();
+
+  if (!value) {
+    return "Herramientas Colraices";
+  }
+
+  if (
+    value.includes("crédito") ||
+    value.includes("credito") ||
+    value.includes("finanza")
+  ) {
+    return "Crédito y finanzas";
+  }
+
+  if (
+    value.includes("inversión") ||
+    value.includes("inversion") ||
+    value.includes("inmobiliaria") ||
+    value.includes("vivienda") ||
+    value.includes("remesa")
+  ) {
+    return "Inversión inmobiliaria";
+  }
+
+  if (
+    value.includes("fiscal") ||
+    value.includes("impuesto") ||
+    value.includes("tribut")
+  ) {
+    return "Fiscal";
+  }
+
+  if (
+    value.includes("legal") ||
+    value.includes("migración") ||
+    value.includes("migracion")
+  ) {
+    return "Legal y Migración";
+  }
+
+  if (
+    value.includes("herramienta") ||
+    value.includes("colraices") ||
+    value.includes("colraíces") ||
+    value.includes("brújula") ||
+    value.includes("brujula") ||
+    value.includes("tour")
+  ) {
+    return "Herramientas Colraices";
+  }
+
+  if (
+    value.includes("b2b") ||
+    value.includes("oportunidad") ||
+    value.includes("alianza") ||
+    value.includes("empresa")
+  ) {
+    return "Oportunidades B2B";
+  }
+
+  return "Herramientas Colraices";
+}
+
+function mapPostToArticle(post: BlogPost, index: number): Article {
+  const template = articles[index % articles.length] ?? fallbackApiArticle;
+  const category = normalizeCategory(post.category || template.category);
+
+  return {
+    ...template,
+    id: post.id,
+    title: post.title,
+    href: post.href,
+    imageUrl: post.imageUrl,
+    desc:
+      post.excerpt ||
+      "Lee esta publicación del blog de Colraices y conoce información útil para colombianos en el exterior.",
+    category,
+    tags: [category],
+    date: formatBlogDate(post.createdAt),
+    readTime: post.readTime || "Artículo",
+  };
+}
+
+function getPaginationPage(url?: string | null): number | null {
+  if (!url) {
+    return null;
+  }
+
+  try {
+    const parsedUrl = new URL(url);
+    const page = Number(parsedUrl.searchParams.get("page"));
+
+    return Number.isFinite(page) && page > 0 ? page : null;
+  } catch {
+    return null;
+  }
+}
+
 function SearchIcon() {
   return (
     <svg
@@ -112,6 +296,7 @@ function SearchIcon() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
     >
       <circle cx="11" cy="11" r="8" />
       <path d="m21 21-4.35-4.35" />
@@ -129,6 +314,7 @@ function ClockIcon() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
     >
       <circle cx="12" cy="12" r="10" />
       <polyline points="12 6 12 12 16 14" />
@@ -136,16 +322,106 @@ function ClockIcon() {
   );
 }
 
-export default function ExploreSection() {
+function BlogPaginationControls({
+  pagination,
+  isPending,
+  onPageChange,
+}: {
+  pagination?: BlogPagination | null;
+  isPending: boolean;
+  onPageChange: (page: number) => void;
+}) {
+  if (!pagination || !pagination.lastPage || pagination.lastPage <= 1) {
+    return null;
+  }
+
+  const currentPage = pagination.currentPage ?? 1;
+  const prevPage = getPaginationPage(pagination.prevUrl);
+  const nextPage = getPaginationPage(pagination.nextUrl);
+
+  return (
+    <nav
+      className="mt-10 flex flex-col items-center justify-between gap-4 rounded-[12px] border border-[#EDEDED] bg-white px-5 py-4 sm:flex-row"
+      aria-label="Paginación de publicaciones"
+    >
+      <p className="text-[13px] text-[#4B5563]">
+        Página{" "}
+        <span className="font-bold text-[#1A2340]">{currentPage}</span> de{" "}
+        <span className="font-bold text-[#1A2340]">{pagination.lastPage}</span>
+      </p>
+
+      <div className="flex items-center gap-3">
+        {prevPage ? (
+          <button
+            type="button"
+            disabled={isPending}
+            onClick={() => onPageChange(prevPage)}
+            className="inline-flex h-[38px] items-center justify-center rounded-[8px] border border-[#EDEDED] bg-white px-4 text-[13px] font-bold text-[#2A3F77] transition hover:border-[#2A3F77] hover:bg-[#F8FAFC] disabled:cursor-wait disabled:opacity-60"
+          >
+            ← Anterior
+          </button>
+        ) : (
+          <span className="inline-flex h-[38px] cursor-not-allowed items-center justify-center rounded-[8px] border border-[#EDEDED] bg-[#F8FAFC] px-4 text-[13px] font-bold text-[#B0B8C1]">
+            ← Anterior
+          </span>
+        )}
+
+        {nextPage ? (
+          <button
+            type="button"
+            disabled={isPending}
+            onClick={() => onPageChange(nextPage)}
+            className="inline-flex h-[38px] items-center justify-center rounded-[8px] border border-[#2A3F77] bg-[#2A3F77] px-4 text-[13px] font-bold text-white transition hover:bg-[#1A2E5C] disabled:cursor-wait disabled:opacity-60"
+          >
+            {isPending ? "Cargando..." : "Siguiente →"}
+          </button>
+        ) : (
+          <span className="inline-flex h-[38px] cursor-not-allowed items-center justify-center rounded-[8px] border border-[#EDEDED] bg-[#F8FAFC] px-4 text-[13px] font-bold text-[#B0B8C1]">
+            Siguiente →
+          </span>
+        )}
+      </div>
+    </nav>
+  );
+}
+
+export default function ExploreSection({
+  posts,
+  latestPost = null,
+  postsError = null,
+  pagination = null,
+}: ExploreSectionProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const shouldScrollToListRef = useRef(false);
+  const [isPending, startTransition] = useTransition();
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [query, setQuery] = useState("");
+
+  const apiArticles = useMemo(
+    () => posts?.map(mapPostToArticle) ?? [],
+    [posts],
+  );
+  const latestArticle = useMemo(
+    () => (latestPost ? mapPostToArticle(latestPost, 0) : null),
+    [latestPost],
+  );
+
+  const hasApiPosts = Array.isArray(posts);
+  const sourceArticles = hasApiPosts ? apiArticles : articles;
+  const availableCategories = useMemo(() => categories, []);
+  const effectiveActiveCategory = availableCategories.includes(activeCategory)
+    ? activeCategory
+    : "Todos";
 
   const filteredArticles = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return articles.filter((article) => {
+    return sourceArticles.filter((article) => {
       const matchesCategory =
-        activeCategory === "Todos" || article.tags.includes(activeCategory);
+        effectiveActiveCategory === "Todos" ||
+        article.tags.includes(effectiveActiveCategory);
 
       const matchesSearch =
         !normalizedQuery ||
@@ -155,10 +431,63 @@ export default function ExploreSection() {
 
       return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, query]);
+  }, [effectiveActiveCategory, query, sourceArticles]);
+
+  const featuredSourceArticles = latestArticle
+    ? sourceArticles.filter((article) => article.id !== latestArticle.id)
+    : sourceArticles;
+
+  const featuredArticles = hasApiPosts
+    ? featuredSourceArticles.slice(0, 5).map((article, index) => ({
+        id: article.id,
+        title: article.title,
+        href: article.href,
+        color: topArticleColors[index] ?? "bg-[#1A2E5C]",
+      }))
+    : topArticles.map((title, index) => ({
+        id: title,
+        title,
+        href: "#",
+        color: topArticleColors[index] ?? "bg-[#1A2E5C]",
+      }));
+
+  const hasSourceArticles = sourceArticles.length > 0;
+  const isSearchEmpty = hasSourceArticles && filteredArticles.length === 0;
+  const isApiEmpty = !postsError && hasApiPosts && sourceArticles.length === 0;
+
+  useEffect(() => {
+    if (!shouldScrollToListRef.current) {
+      return;
+    }
+
+    shouldScrollToListRef.current = false;
+
+    window.requestAnimationFrame(() => {
+      document.getElementById("explorar")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }, [pagination?.currentPage]);
+
+  function handlePageChange(page: number) {
+    const params = new URLSearchParams(searchParams.toString());
+
+    params.set("page", String(page));
+    shouldScrollToListRef.current = true;
+
+    startTransition(() => {
+      router.push(`${pathname}?${params.toString()}`, {
+        scroll: false,
+      });
+    });
+  }
 
   return (
-    <section id="explorar" className="bg-white py-[72px] lg:py-[88px]">
+    <section
+      id="explorar"
+      className="scroll-mt-[96px] bg-white py-[72px] lg:py-[88px]"
+    >
       <div className="mx-auto w-full max-w-[1088px] px-4 sm:px-6 lg:px-0">
         <div className="mx-auto text-center">
           <h2 className="text-[34px] font-extrabold leading-[40.8px] tracking-[-0.5px] text-[#192440]">
@@ -185,8 +514,8 @@ export default function ExploreSection() {
         </div>
 
         <div className="relative left-1/2 mt-[28px] flex w-[calc(100vw-32px)] max-w-[1180px] -translate-x-1/2 flex-nowrap justify-start gap-[10px] overflow-x-auto px-0 pb-2 sm:w-[calc(100vw-48px)] xl:justify-center [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {categories.map((category) => {
-            const isActive = activeCategory === category;
+          {availableCategories.map((category) => {
+            const isActive = effectiveActiveCategory === category;
 
             return (
               <button
@@ -206,56 +535,89 @@ export default function ExploreSection() {
           })}
         </div>
 
+        {postsError ? (
+          <div
+            className="mt-6 rounded-[12px] border border-[#F4C7C7] bg-[#FFF5F5] px-5 py-4 text-center text-[13px] text-[#8A1F1F]"
+            role="alert"
+          >
+            {postsError}
+          </div>
+        ) : null}
+
         <div className="mt-[34px] grid gap-[44px] lg:grid-cols-[1fr_300px] lg:items-start">
           <div>
             {filteredArticles.length > 0 ? (
-              <div className="grid gap-x-[24px] gap-y-[24px] sm:grid-cols-2">
-                {filteredArticles.map((article) => (
-                  <article
-                    key={article.title}
-                    className="group overflow-hidden rounded-[12px] border border-[#EDEDED] bg-white shadow-[0_8px_24px_rgba(15,45,92,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(15,45,92,0.14)]"
-                  >
-                    <div
-                      className={`relative flex h-[140px] items-center justify-center overflow-hidden bg-gradient-to-br ${article.color}`}
-                    >
-                      <span className="absolute bottom-[10px] right-[14px] text-[40px] opacity-20 transition duration-300 group-hover:scale-110 group-hover:opacity-30">
-                        {article.emoji}
-                      </span>
-                    </div>
-
-                    <div className="px-[18px] pb-[18px] pt-[16px]">
-                      <div className="mb-[9px] text-[10px] font-bold uppercase leading-[15px] tracking-[0.8px] text-[#2A3F77]">
-                        {article.category}
-                      </div>
-
-                      <h3 className="line-clamp-2 text-[15px] font-bold leading-[19.6px] text-[#1A2340]">
-                        {article.title}
-                      </h3>
-
-                      <p className="mt-[9px] line-clamp-2 text-[12.5px] leading-[20px] text-[#4B5563]">
-                        {article.desc}
-                      </p>
-
-                      <div className="mt-[14px] flex items-center gap-[12px] text-[11.5px] leading-none text-[#B0B8C1]">
-                        <div className="flex items-center gap-[4px]">
-                          <ClockIcon />
-                          <span>{article.readTime}</span>
+              <>
+                <div className="grid gap-x-[24px] gap-y-[24px] sm:grid-cols-2">
+                  {filteredArticles.map((article) => (
+                    <article key={article.id}>
+                      <Link
+                        href={article.href}
+                        className="group block overflow-hidden rounded-[12px] border border-[#EDEDED] bg-white shadow-[0_8px_24px_rgba(15,45,92,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(15,45,92,0.14)]"
+                      >
+                        <div
+                          className={`relative flex h-[140px] items-center justify-center overflow-hidden bg-gradient-to-br ${article.color}`}
+                        >
+                          {article.imageUrl ? (
+                            <Image
+                              src={article.imageUrl}
+                              alt={article.title}
+                              fill
+                              sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+                              className="object-cover transition duration-300 group-hover:scale-105"
+                            />
+                          ) : (
+                            <span className="absolute bottom-[10px] right-[14px] text-[40px] opacity-20 transition duration-300 group-hover:scale-110 group-hover:opacity-30">
+                              {article.emoji}
+                            </span>
+                          )}
                         </div>
 
-                        <span>{article.date}</span>
-                      </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
+                        <div className="px-[18px] pb-[18px] pt-[16px]">
+                          <div className="mb-[9px] text-[10px] font-bold uppercase leading-[15px] tracking-[0.8px] text-[#2A3F77]">
+                            {article.category}
+                          </div>
+
+                          <h3 className="line-clamp-2 text-[15px] font-bold leading-[19.6px] text-[#1A2340] transition group-hover:text-[#2A3F77]">
+                            {article.title}
+                          </h3>
+
+                          <p className="mt-[9px] line-clamp-2 text-[12.5px] leading-[20px] text-[#4B5563]">
+                            {article.desc}
+                          </p>
+
+                          <div className="mt-[14px] flex items-center gap-[12px] text-[11.5px] leading-none text-[#B0B8C1]">
+                            <div className="flex items-center gap-[4px]">
+                              <ClockIcon />
+                              <span>{article.readTime}</span>
+                            </div>
+
+                            <span>{article.date}</span>
+                          </div>
+                        </div>
+                      </Link>
+                    </article>
+                  ))}
+                </div>
+
+                <BlogPaginationControls
+                  pagination={pagination}
+                  isPending={isPending}
+                  onPageChange={handlePageChange}
+                />
+              </>
             ) : (
               <div className="rounded-[12px] border border-dashed border-[#EDEDED] bg-white p-10 text-center">
                 <h3 className="text-[16px] font-bold text-[#1A2340]">
-                  No encontramos artículos
+                  {isApiEmpty
+                    ? "Aún no hay publicaciones disponibles"
+                    : "No encontramos artículos"}
                 </h3>
 
                 <p className="mt-2 text-[13px] text-[#4B5563]">
-                  Intenta buscar con otra palabra o cambia el filtro activo.
+                  {isSearchEmpty
+                    ? "Intenta buscar con otra palabra o cambia el filtro activo."
+                    : "Cuando haya publicaciones disponibles, las verás en esta sección."}
                 </p>
               </div>
             )}
@@ -270,33 +632,97 @@ export default function ExploreSection() {
               <span className="h-px flex-1 bg-[#EDEDED]" />
             </div>
 
-            <div className="mt-[16px]">
-              {topArticles.map((title, index) => (
-                <a
-                  key={title}
-                  href="#"
-                  className="group grid grid-cols-[28px_52px_1fr] items-center gap-[12px] border-b border-[#EDEDED] py-[12px] transition hover:bg-[#FAFAFA]"
+            {latestArticle ? (
+              <Link
+                href={latestArticle.href}
+                className="group mt-[16px] block overflow-hidden rounded-[12px] border border-[#EDEDED] bg-white shadow-[0_8px_24px_rgba(15,45,92,0.08)] transition hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(15,45,92,0.12)]"
+              >
+                <div
+                  className={`relative h-[116px] overflow-hidden bg-gradient-to-br ${latestArticle.color}`}
                 >
-                  <span className="text-[22px] font-extrabold leading-[22px] text-[#EDEDED]">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                  {latestArticle.imageUrl ? (
+                    <Image
+                      src={latestArticle.imageUrl}
+                      alt={latestArticle.title}
+                      fill
+                      sizes="300px"
+                      className="object-cover transition duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <span className="absolute bottom-[10px] right-[14px] text-[38px] opacity-25 transition duration-300 group-hover:scale-110">
+                      {latestArticle.emoji}
+                    </span>
+                  )}
+                </div>
 
-                  <span
-                    className={[
-                      "h-[44px] w-[52px] rounded-[8px] shadow-[var(--shadow-sm)] transition duration-300 group-hover:scale-105",
-                      topArticleColors[index],
-                    ].join(" ")}
-                  />
+                <div className="px-[16px] py-[15px]">
+                  <p className="text-[10px] font-bold uppercase leading-[15px] tracking-[0.8px] text-[#2A3F77]">
+                    Último artículo
+                  </p>
 
-                  <span className="text-[12.5px] font-semibold leading-[17.5px] text-[#1A2340] transition group-hover:text-[#2A3F77]">
-                    {title}
-                  </span>
-                </a>
-              ))}
+                  <h4 className="mt-[7px] line-clamp-2 text-[13.5px] font-bold leading-[18.5px] text-[#1A2340] transition group-hover:text-[#2A3F77]">
+                    {latestArticle.title}
+                  </h4>
+
+                  <div className="mt-[12px] flex items-center gap-[8px] text-[11px] leading-none text-[#B0B8C1]">
+                    <span>{latestArticle.readTime}</span>
+                    <span>{latestArticle.date}</span>
+                  </div>
+                </div>
+              </Link>
+            ) : null}
+
+            <div className="mt-[16px]">
+              {featuredArticles.map((article, index) =>
+                article.href === "#" ? (
+                  <div
+                    key={article.id}
+                    className="group grid grid-cols-[28px_52px_1fr] items-center gap-[12px] border-b border-[#EDEDED] py-[12px]"
+                  >
+                    <span className="text-[22px] font-extrabold leading-[22px] text-[#EDEDED]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span
+                      className={[
+                        "h-[44px] w-[52px] rounded-[8px] shadow-[var(--shadow-sm)]",
+                        article.color,
+                      ].join(" ")}
+                    />
+
+                    <span className="text-[12.5px] font-semibold leading-[17.5px] text-[#1A2340]">
+                      {article.title}
+                    </span>
+                  </div>
+                ) : (
+                  <Link
+                    key={article.id}
+                    href={article.href}
+                    className="group grid grid-cols-[28px_52px_1fr] items-center gap-[12px] border-b border-[#EDEDED] py-[12px] transition hover:bg-[#FAFAFA]"
+                  >
+                    <span className="text-[22px] font-extrabold leading-[22px] text-[#EDEDED]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span
+                      className={[
+                        "h-[44px] w-[52px] rounded-[8px] shadow-[var(--shadow-sm)] transition duration-300 group-hover:scale-105",
+                        article.color,
+                      ].join(" ")}
+                    />
+
+                    <span className="text-[12.5px] font-semibold leading-[17.5px] text-[#1A2340] transition group-hover:text-[#2A3F77]">
+                      {article.title}
+                    </span>
+                  </Link>
+                ),
+              )}
             </div>
 
             <a
-              href="#"
+              href="https://blog.colraices.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-[28px] inline-flex h-[40px] w-full items-center justify-center rounded-[8px] border border-[#2A3F77] bg-white px-5 text-[13px] font-bold leading-none text-[#2A3F77] transition hover:bg-[#2A3F77] hover:text-white"
             >
               Ver todos los artículos →
