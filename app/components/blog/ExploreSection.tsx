@@ -28,6 +28,7 @@ type Article = {
 
 type ExploreSectionProps = {
   posts?: BlogPost[];
+  latestPost?: BlogPost | null;
   postsError?: string | null;
   pagination?: BlogPagination | null;
 };
@@ -154,16 +155,105 @@ const fallbackApiArticle: Article = {
 };
 
 function formatBlogDate(date?: string | null): string {
-  if (!date) {
+  const value = date?.trim();
+
+  if (!value) {
     return "Reciente";
   }
 
-  return date;
+  const shortDateMatch = value.match(/^(\d{1,2})-(\d{1,2})-(\d{2}|\d{4})$/);
+  const normalizedDate = shortDateMatch
+    ? new Date(
+        Date.UTC(
+          Number(
+            shortDateMatch[3].length === 2
+              ? `20${shortDateMatch[3]}`
+              : shortDateMatch[3],
+          ),
+          Number(shortDateMatch[2]) - 1,
+          Number(shortDateMatch[1]),
+        ),
+      )
+    : new Date(value.replace(/\.(\d{3})\d*Z$/, ".$1Z"));
+
+  if (Number.isNaN(normalizedDate.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat("es-CO", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(normalizedDate);
+}
+
+function normalizeCategory(category?: string | null): string {
+  const value = category?.trim().toLowerCase();
+
+  if (!value) {
+    return "Herramientas Colraices";
+  }
+
+  if (
+    value.includes("crédito") ||
+    value.includes("credito") ||
+    value.includes("finanza")
+  ) {
+    return "Crédito y finanzas";
+  }
+
+  if (
+    value.includes("inversión") ||
+    value.includes("inversion") ||
+    value.includes("inmobiliaria") ||
+    value.includes("vivienda") ||
+    value.includes("remesa")
+  ) {
+    return "Inversión inmobiliaria";
+  }
+
+  if (
+    value.includes("fiscal") ||
+    value.includes("impuesto") ||
+    value.includes("tribut")
+  ) {
+    return "Fiscal";
+  }
+
+  if (
+    value.includes("legal") ||
+    value.includes("migración") ||
+    value.includes("migracion")
+  ) {
+    return "Legal y Migración";
+  }
+
+  if (
+    value.includes("herramienta") ||
+    value.includes("colraices") ||
+    value.includes("colraíces") ||
+    value.includes("brújula") ||
+    value.includes("brujula") ||
+    value.includes("tour")
+  ) {
+    return "Herramientas Colraices";
+  }
+
+  if (
+    value.includes("b2b") ||
+    value.includes("oportunidad") ||
+    value.includes("alianza") ||
+    value.includes("empresa")
+  ) {
+    return "Oportunidades B2B";
+  }
+
+  return "Herramientas Colraices";
 }
 
 function mapPostToArticle(post: BlogPost, index: number): Article {
   const template = articles[index % articles.length] ?? fallbackApiArticle;
-  const category = post.category || template.category;
+  const category = normalizeCategory(post.category || template.category);
 
   return {
     ...template,
@@ -175,9 +265,9 @@ function mapPostToArticle(post: BlogPost, index: number): Article {
       post.excerpt ||
       "Lee esta publicación del blog de Colraices y conoce información útil para colombianos en el exterior.",
     category,
-    tags: post.category ? [post.category] : template.tags,
+    tags: [category],
     date: formatBlogDate(post.createdAt),
-    readTime: "Artículo",
+    readTime: post.readTime || "Artículo",
   };
 }
 
@@ -297,6 +387,7 @@ function BlogPaginationControls({
 
 export default function ExploreSection({
   posts,
+  latestPost = null,
   postsError = null,
   pagination = null,
 }: ExploreSectionProps) {
@@ -312,16 +403,25 @@ export default function ExploreSection({
     () => posts?.map(mapPostToArticle) ?? [],
     [posts],
   );
+  const latestArticle = useMemo(
+    () => (latestPost ? mapPostToArticle(latestPost, 0) : null),
+    [latestPost],
+  );
 
   const hasApiPosts = Array.isArray(posts);
   const sourceArticles = hasApiPosts ? apiArticles : articles;
+  const availableCategories = useMemo(() => categories, []);
+  const effectiveActiveCategory = availableCategories.includes(activeCategory)
+    ? activeCategory
+    : "Todos";
 
   const filteredArticles = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
     return sourceArticles.filter((article) => {
       const matchesCategory =
-        activeCategory === "Todos" || article.tags.includes(activeCategory);
+        effectiveActiveCategory === "Todos" ||
+        article.tags.includes(effectiveActiveCategory);
 
       const matchesSearch =
         !normalizedQuery ||
@@ -331,10 +431,14 @@ export default function ExploreSection({
 
       return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, query, sourceArticles]);
+  }, [effectiveActiveCategory, query, sourceArticles]);
+
+  const featuredSourceArticles = latestArticle
+    ? sourceArticles.filter((article) => article.id !== latestArticle.id)
+    : sourceArticles;
 
   const featuredArticles = hasApiPosts
-    ? sourceArticles.slice(0, 5).map((article, index) => ({
+    ? featuredSourceArticles.slice(0, 5).map((article, index) => ({
         id: article.id,
         title: article.title,
         href: article.href,
@@ -410,8 +514,8 @@ export default function ExploreSection({
         </div>
 
         <div className="relative left-1/2 mt-[28px] flex w-[calc(100vw-32px)] max-w-[1180px] -translate-x-1/2 flex-nowrap justify-start gap-[10px] overflow-x-auto px-0 pb-2 sm:w-[calc(100vw-48px)] xl:justify-center [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {categories.map((category) => {
-            const isActive = activeCategory === category;
+          {availableCategories.map((category) => {
+            const isActive = effectiveActiveCategory === category;
 
             return (
               <button
@@ -527,6 +631,46 @@ export default function ExploreSection({
 
               <span className="h-px flex-1 bg-[#EDEDED]" />
             </div>
+
+            {latestArticle ? (
+              <Link
+                href={latestArticle.href}
+                className="group mt-[16px] block overflow-hidden rounded-[12px] border border-[#EDEDED] bg-white shadow-[0_8px_24px_rgba(15,45,92,0.08)] transition hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(15,45,92,0.12)]"
+              >
+                <div
+                  className={`relative h-[116px] overflow-hidden bg-gradient-to-br ${latestArticle.color}`}
+                >
+                  {latestArticle.imageUrl ? (
+                    <Image
+                      src={latestArticle.imageUrl}
+                      alt={latestArticle.title}
+                      fill
+                      sizes="300px"
+                      className="object-cover transition duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <span className="absolute bottom-[10px] right-[14px] text-[38px] opacity-25 transition duration-300 group-hover:scale-110">
+                      {latestArticle.emoji}
+                    </span>
+                  )}
+                </div>
+
+                <div className="px-[16px] py-[15px]">
+                  <p className="text-[10px] font-bold uppercase leading-[15px] tracking-[0.8px] text-[#2A3F77]">
+                    Último artículo
+                  </p>
+
+                  <h4 className="mt-[7px] line-clamp-2 text-[13.5px] font-bold leading-[18.5px] text-[#1A2340] transition group-hover:text-[#2A3F77]">
+                    {latestArticle.title}
+                  </h4>
+
+                  <div className="mt-[12px] flex items-center gap-[8px] text-[11px] leading-none text-[#B0B8C1]">
+                    <span>{latestArticle.readTime}</span>
+                    <span>{latestArticle.date}</span>
+                  </div>
+                </div>
+              </Link>
+            ) : null}
 
             <div className="mt-[16px]">
               {featuredArticles.map((article, index) =>

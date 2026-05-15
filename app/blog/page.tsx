@@ -5,7 +5,7 @@ import StartHereSection from "@/app/components/blog/StartHereSection";
 import ExploreSection from "@/app/components/blog/ExploreSection";
 import StartHelpSection from "@/app/components/blog/StartHelpSection";
 import MultimediaSection from "@/app/components/blog/MultimediaSection";
-import { getAllBlogPosts } from "@/app/lib/blogApi";
+import { getAllBlogPosts, getLastBlogPost } from "@/app/lib/blogApi";
 
 type BlogPageProps = {
   searchParams?: Promise<{
@@ -27,7 +27,10 @@ function getPageParam(page?: string | string[]): number {
 export default async function Blog({ searchParams }: BlogPageProps) {
   const resolvedSearchParams = await searchParams;
   const currentPage = getPageParam(resolvedSearchParams?.page);
-  const { posts, error, pagination } = await getAllBlogPosts(currentPage);
+  const [
+    { posts, error, pagination },
+    { post: latestPost },
+  ] = await Promise.all([getAllBlogPosts(currentPage), getLastBlogPost()]);
 
   return (
     <SiteLayout>
@@ -38,6 +41,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
         posts={posts}
         postsError={error}
         pagination={pagination}
+        latestPost={latestPost}
       />
       <StartHelpSection />
       <MultimediaSection />

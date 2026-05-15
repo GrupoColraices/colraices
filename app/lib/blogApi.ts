@@ -7,8 +7,21 @@ export type BlogPost = {
   excerpt: string | null;
   content: string | null;
   category: string | null;
+  categorySlug: string | null;
   author: string | null;
   createdAt: string | null;
+  readTime: string | null;
+};
+
+type ApiCategory = {
+  id?: number | string | null;
+  name?: string | null;
+  slug?: string | null;
+};
+
+type ApiReadingTime = {
+  minutos?: number | string | null;
+  label?: string | null;
 };
 
 type ApiPost = {
@@ -17,10 +30,12 @@ type ApiPost = {
   slug?: string | null;
   imagen?: string | null;
   extracto?: string | null;
+  descripcion?: string | null;
   contenido?: string | null;
-  categoria?: string | null;
+  categoria?: string | ApiCategory | null;
   autor?: string | null;
   creacion?: string | null;
+  tiempo_lectura?: string | ApiReadingTime | null;
 };
 
 type BlogApiListResponse = {
@@ -78,6 +93,51 @@ function normalizeText(value?: string | number | null): string {
   return String(value ?? "").trim();
 }
 
+function mapApiCategory(category?: ApiPost["categoria"]): {
+  name: string | null;
+  slug: string | null;
+} {
+  if (!category) {
+    return {
+      name: null,
+      slug: null,
+    };
+  }
+
+  if (typeof category === "string") {
+    return {
+      name: normalizeText(category) || null,
+      slug: null,
+    };
+  }
+
+  return {
+    name: normalizeText(category.name) || null,
+    slug: normalizeText(category.slug) || null,
+  };
+}
+
+function mapApiReadingTime(
+  readingTime?: ApiPost["tiempo_lectura"],
+): string | null {
+  if (!readingTime) {
+    return null;
+  }
+
+  if (typeof readingTime === "string") {
+    return normalizeText(readingTime) || null;
+  }
+
+  const label = normalizeText(readingTime.label);
+  const minutes = normalizeText(readingTime.minutos);
+
+  if (label) {
+    return label;
+  }
+
+  return minutes ? `${minutes} min de lectura` : null;
+}
+
 function stripHtml(value?: string | null): string | null {
   const text = normalizeText(value);
 
@@ -100,6 +160,7 @@ function mapApiPostToBlogPost(post: ApiPost): BlogPost | null {
   const title = normalizeText(post.titulo) || "Publicación sin título";
   const slug = normalizeText(post.slug) || id;
   const imageUrl = normalizeText(post.imagen) || null;
+  const category = mapApiCategory(post.categoria);
 
   if (!id && !slug) {
     return null;
@@ -111,11 +172,13 @@ function mapApiPostToBlogPost(post: ApiPost): BlogPost | null {
     slug,
     imageUrl,
     href: slug ? `/blog/${slug}` : "/blog",
-    excerpt: stripHtml(post.extracto),
+    excerpt: stripHtml(post.extracto) || stripHtml(post.descripcion),
     content: post.contenido?.trim() || null,
-    category: normalizeText(post.categoria) || null,
+    category: category.name,
+    categorySlug: category.slug,
     author: normalizeText(post.autor) || null,
     createdAt: normalizeText(post.creacion) || null,
+    readTime: mapApiReadingTime(post.tiempo_lectura),
   };
 }
 
