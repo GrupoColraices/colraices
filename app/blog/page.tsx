@@ -5,11 +5,17 @@ import StartHereSection from "@/app/components/blog/StartHereSection";
 import ExploreSection from "@/app/components/blog/ExploreSection";
 import StartHelpSection from "@/app/components/blog/StartHelpSection";
 import MultimediaSection from "@/app/components/blog/MultimediaSection";
-import { getAllBlogPosts, getLastBlogPost } from "@/app/lib/blogApi";
+import {
+  getBlogCategories,
+  getBlogPosts,
+  getFeaturedBlogPosts,
+  getLastBlogPost,
+} from "@/app/lib/blogApi";
 
 type BlogPageProps = {
   searchParams?: Promise<{
     page?: string | string[];
+    category_slug?: string | string[];
   }>;
 };
 
@@ -24,13 +30,32 @@ function getPageParam(page?: string | string[]): number {
   return Math.floor(parsedPage);
 }
 
+function getStringParam(value?: string | string[]): string | null {
+  const rawValue = Array.isArray(value) ? value[0] : value;
+  const normalizedValue = rawValue?.trim();
+
+  return normalizedValue || null;
+}
+
 export default async function Blog({ searchParams }: BlogPageProps) {
   const resolvedSearchParams = await searchParams;
   const currentPage = getPageParam(resolvedSearchParams?.page);
+  const categorySlug = getStringParam(resolvedSearchParams?.category_slug);
+
   const [
     { posts, error, pagination },
     { post: latestPost },
-  ] = await Promise.all([getAllBlogPosts(currentPage), getLastBlogPost()]);
+    { posts: featuredPosts },
+    { categories, error: categoriesError },
+  ] = await Promise.all([
+    getBlogPosts({
+      page: currentPage,
+      categorySlug,
+    }),
+    getLastBlogPost(),
+    getFeaturedBlogPosts(),
+    getBlogCategories(),
+  ]);
 
   return (
     <SiteLayout>
@@ -42,6 +67,10 @@ export default async function Blog({ searchParams }: BlogPageProps) {
         postsError={error}
         pagination={pagination}
         latestPost={latestPost}
+        featuredPosts={featuredPosts}
+        categories={categories}
+        categoriesError={categoriesError}
+        activeCategorySlug={categorySlug}
       />
       <StartHelpSection />
       <MultimediaSection />

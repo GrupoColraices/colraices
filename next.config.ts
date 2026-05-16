@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "blog.colraices.com",
+        pathname: "/storage/**",
       },
     ],
   },
