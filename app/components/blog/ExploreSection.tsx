@@ -10,14 +10,17 @@ import {
   useState,
   useTransition,
 } from "react";
-import type { BlogPagination, BlogPost } from "@/app/lib/blogApi";
+import type {
+  BlogCategory,
+  BlogPagination,
+  BlogPost,
+} from "@/app/lib/blogApi";
 
 type Article = {
   id: string;
   emoji: string;
   color: string;
   category: string;
-  tags: string[];
   title: string;
   desc: string;
   readTime: string;
@@ -29,19 +32,13 @@ type Article = {
 type ExploreSectionProps = {
   posts?: BlogPost[];
   latestPost?: BlogPost | null;
+  featuredPosts?: BlogPost[];
   postsError?: string | null;
   pagination?: BlogPagination | null;
+  categories?: BlogCategory[];
+  categoriesError?: string | null;
+  activeCategorySlug?: string | null;
 };
-
-const categories = [
-  "Todos",
-  "Crédito y finanzas",
-  "Inversión inmobiliaria",
-  "Legal y Migración",
-  "Fiscal",
-  "Herramientas Colraices",
-  "Oportunidades B2B",
-];
 
 const articles: Article[] = [
   {
@@ -49,7 +46,6 @@ const articles: Article[] = [
     emoji: "🏠",
     color: "from-[#0F2A1D] to-[#1E5C3A]",
     category: "Inversión inmobiliaria",
-    tags: ["Inversión inmobiliaria"],
     title: "De las remesas a la vivienda: el poder del ahorro en el exterior",
     desc: "Cómo convertir tus remesas en una estrategia de ahorro sólida para comprar vivienda en Colombia.",
     readTime: "9 min",
@@ -62,7 +58,6 @@ const articles: Article[] = [
     emoji: "📈",
     color: "from-[#162039] to-[#2A3F77]",
     category: "Inversión inmobiliaria",
-    tags: ["Inversión inmobiliaria"],
     title: "Rentabilidad inmobiliaria: inversión en Colombia desde el exterior",
     desc: "Análisis real de rentabilidad y zonas clave para invertir en finca raíz desde el exterior.",
     readTime: "11 min",
@@ -75,7 +70,6 @@ const articles: Article[] = [
     emoji: "📋",
     color: "from-[#33143D] to-[#6D2A78]",
     category: "Legal y fiscal",
-    tags: ["Legal y Migración", "Fiscal"],
     title: "Impuestos en Colombia para colombianos en el exterior",
     desc: "Qué obligaciones fiscales tienes en Colombia cuando vives fuera del país y cómo manejarlas.",
     readTime: "8 min",
@@ -88,7 +82,6 @@ const articles: Article[] = [
     emoji: "🧳",
     color: "from-[#1C3E78] to-[#2F63B4]",
     category: "Herramientas Colraices",
-    tags: ["Herramientas Colraices"],
     title: "Aprovecha tu viaje a Colombia para fortalecer tu patrimonio",
     desc: "Una guía práctica de qué hacer cuando estás en Colombia para avanzar con tus metas financieras.",
     readTime: "6 min",
@@ -101,7 +94,6 @@ const articles: Article[] = [
     emoji: "🧭",
     color: "from-[#162039] to-[#2A3F77]",
     category: "Herramientas Colraices",
-    tags: ["Herramientas Colraices"],
     title: "Brújula Financiera: organiza y proyecta tu futuro desde el exterior",
     desc: "Conoce la herramienta gratuita de Colraices para entender tu situación financiera y proyectar tus metas.",
     readTime: "5 min",
@@ -114,7 +106,6 @@ const articles: Article[] = [
     emoji: "🔑",
     color: "from-[#2A1500] to-[#C85C00]",
     category: "Herramientas Colraices",
-    tags: ["Herramientas Colraices"],
     title: "Tour de la Vivienda: conecta con oportunidades en Colombia",
     desc: "Cómo el Tour de la Vivienda te permite conocer proyectos y tomar decisiones con información real.",
     readTime: "7 min",
@@ -144,8 +135,7 @@ const fallbackApiArticle: Article = {
   id: "fallback-api-article",
   emoji: "📰",
   color: "from-[#162039] to-[#2A3F77]",
-  category: "Herramientas Colraices",
-  tags: ["Herramientas Colraices"],
+  category: "Blog Colraices",
   title: "",
   desc: "Lee esta publicación del blog de Colraices y conoce información útil para colombianos en el exterior.",
   readTime: "Blog",
@@ -187,73 +177,13 @@ function formatBlogDate(date?: string | null): string {
   }).format(normalizedDate);
 }
 
-function normalizeCategory(category?: string | null): string {
-  const value = category?.trim().toLowerCase();
-
-  if (!value) {
-    return "Herramientas Colraices";
-  }
-
-  if (
-    value.includes("crédito") ||
-    value.includes("credito") ||
-    value.includes("finanza")
-  ) {
-    return "Crédito y finanzas";
-  }
-
-  if (
-    value.includes("inversión") ||
-    value.includes("inversion") ||
-    value.includes("inmobiliaria") ||
-    value.includes("vivienda") ||
-    value.includes("remesa")
-  ) {
-    return "Inversión inmobiliaria";
-  }
-
-  if (
-    value.includes("fiscal") ||
-    value.includes("impuesto") ||
-    value.includes("tribut")
-  ) {
-    return "Fiscal";
-  }
-
-  if (
-    value.includes("legal") ||
-    value.includes("migración") ||
-    value.includes("migracion")
-  ) {
-    return "Legal y Migración";
-  }
-
-  if (
-    value.includes("herramienta") ||
-    value.includes("colraices") ||
-    value.includes("colraíces") ||
-    value.includes("brújula") ||
-    value.includes("brujula") ||
-    value.includes("tour")
-  ) {
-    return "Herramientas Colraices";
-  }
-
-  if (
-    value.includes("b2b") ||
-    value.includes("oportunidad") ||
-    value.includes("alianza") ||
-    value.includes("empresa")
-  ) {
-    return "Oportunidades B2B";
-  }
-
-  return "Herramientas Colraices";
-}
-
-function mapPostToArticle(post: BlogPost, index: number): Article {
+function mapPostToArticle(
+  post: BlogPost,
+  index: number,
+  fallbackCategory?: string | null,
+): Article {
   const template = articles[index % articles.length] ?? fallbackApiArticle;
-  const category = normalizeCategory(post.category || template.category);
+  const category = post.category || fallbackCategory || "Blog Colraices";
 
   return {
     ...template,
@@ -265,7 +195,6 @@ function mapPostToArticle(post: BlogPost, index: number): Article {
       post.excerpt ||
       "Lee esta publicación del blog de Colraices y conoce información útil para colombianos en el exterior.",
     category,
-    tags: [category],
     date: formatBlogDate(post.createdAt),
     readTime: post.readTime || "Artículo",
   };
@@ -388,68 +317,78 @@ function BlogPaginationControls({
 export default function ExploreSection({
   posts,
   latestPost = null,
+  featuredPosts,
   postsError = null,
   pagination = null,
+  categories,
+  categoriesError = null,
+  activeCategorySlug = null,
 }: ExploreSectionProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const shouldScrollToListRef = useRef(false);
   const [isPending, startTransition] = useTransition();
-  const [activeCategory, setActiveCategory] = useState("Todos");
   const [query, setQuery] = useState("");
 
+  const activeSlug = activeCategorySlug?.trim() || null;
+  const visibleCategories = categories ?? [];
+  const activeCategoryName =
+    visibleCategories.find((category) => category.slug === activeSlug)?.name ||
+    null;
+
   const apiArticles = useMemo(
-    () => posts?.map(mapPostToArticle) ?? [],
-    [posts],
+    () => posts?.map((post, index) => mapPostToArticle(post, index, activeCategoryName)) ?? [],
+    [posts, activeCategoryName],
   );
+
   const latestArticle = useMemo(
     () => (latestPost ? mapPostToArticle(latestPost, 0) : null),
     [latestPost],
   );
 
+  const featuredApiArticles = useMemo(
+    () => featuredPosts?.map((post, index) => mapPostToArticle(post, index)) ?? [],
+    [featuredPosts],
+  );
+
   const hasApiPosts = Array.isArray(posts);
   const sourceArticles = hasApiPosts ? apiArticles : articles;
-  const availableCategories = useMemo(() => categories, []);
-  const effectiveActiveCategory = availableCategories.includes(activeCategory)
-    ? activeCategory
-    : "Todos";
 
   const filteredArticles = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
     return sourceArticles.filter((article) => {
-      const matchesCategory =
-        effectiveActiveCategory === "Todos" ||
-        article.tags.includes(effectiveActiveCategory);
-
       const matchesSearch =
         !normalizedQuery ||
         article.title.toLowerCase().includes(normalizedQuery) ||
         article.desc.toLowerCase().includes(normalizedQuery) ||
         article.category.toLowerCase().includes(normalizedQuery);
 
-      return matchesCategory && matchesSearch;
+      return matchesSearch;
     });
-  }, [effectiveActiveCategory, query, sourceArticles]);
+  }, [query, sourceArticles]);
 
-  const featuredSourceArticles = latestArticle
-    ? sourceArticles.filter((article) => article.id !== latestArticle.id)
-    : sourceArticles;
+  const featuredSourceArticles =
+    featuredApiArticles.length > 0 ? featuredApiArticles : sourceArticles;
+  const visibleFeaturedSourceArticles = latestArticle
+    ? featuredSourceArticles.filter((article) => article.id !== latestArticle.id)
+    : featuredSourceArticles;
 
-  const featuredArticles = hasApiPosts
-    ? featuredSourceArticles.slice(0, 5).map((article, index) => ({
-        id: article.id,
-        title: article.title,
-        href: article.href,
-        color: topArticleColors[index] ?? "bg-[#1A2E5C]",
-      }))
-    : topArticles.map((title, index) => ({
-        id: title,
-        title,
-        href: "#",
-        color: topArticleColors[index] ?? "bg-[#1A2E5C]",
-      }));
+  const featuredArticles =
+    hasApiPosts || featuredApiArticles.length > 0
+      ? visibleFeaturedSourceArticles.slice(0, 5).map((article, index) => ({
+          id: article.id,
+          title: article.title,
+          href: article.href,
+          color: topArticleColors[index] ?? "bg-[#1A2E5C]",
+        }))
+      : topArticles.map((title, index) => ({
+          id: title,
+          title,
+          href: "#",
+          color: topArticleColors[index] ?? "bg-[#1A2E5C]",
+        }));
 
   const hasSourceArticles = sourceArticles.length > 0;
   const isSearchEmpty = hasSourceArticles && filteredArticles.length === 0;
@@ -468,19 +407,40 @@ export default function ExploreSection({
         block: "start",
       });
     });
-  }, [pagination?.currentPage]);
+  }, [pagination?.currentPage, activeSlug]);
+
+  function pushBlogParams(params: URLSearchParams) {
+    const queryString = params.toString();
+
+    shouldScrollToListRef.current = true;
+
+    startTransition(() => {
+      router.push(queryString ? `${pathname}?${queryString}` : pathname, {
+        scroll: false,
+      });
+    });
+  }
+
+  function handleCategoryChange(categorySlug?: string | null) {
+    const params = new URLSearchParams(searchParams.toString());
+
+    params.delete("page");
+
+    if (categorySlug) {
+      params.set("category_slug", categorySlug);
+    } else {
+      params.delete("category_slug");
+    }
+
+    pushBlogParams(params);
+  }
 
   function handlePageChange(page: number) {
     const params = new URLSearchParams(searchParams.toString());
 
     params.set("page", String(page));
-    shouldScrollToListRef.current = true;
 
-    startTransition(() => {
-      router.push(`${pathname}?${params.toString()}`, {
-        scroll: false,
-      });
-    });
+    pushBlogParams(params);
   }
 
   return (
@@ -514,26 +474,50 @@ export default function ExploreSection({
         </div>
 
         <div className="relative left-1/2 mt-[28px] flex w-[calc(100vw-32px)] max-w-[1180px] -translate-x-1/2 flex-nowrap justify-start gap-[10px] overflow-x-auto px-0 pb-2 sm:w-[calc(100vw-48px)] xl:justify-center [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {availableCategories.map((category) => {
-            const isActive = effectiveActiveCategory === category;
+          <button
+            type="button"
+            onClick={() => handleCategoryChange(null)}
+            disabled={isPending}
+            className={[
+              "h-[38px] shrink-0 whitespace-nowrap rounded-full border px-[20px] text-[13px] font-semibold leading-none transition disabled:cursor-wait disabled:opacity-70",
+              !activeSlug
+                ? "border-[#2A3F77] bg-[#2A3F77] text-white shadow-[0_8px_20px_rgba(42,63,119,0.18)]"
+                : "border-[#EDEDED] bg-white text-[#4B5563] hover:border-[#2A3F77] hover:text-[#2A3F77]",
+            ].join(" ")}
+          >
+            Todos
+          </button>
+
+          {visibleCategories.map((category) => {
+            const isActive = activeSlug === category.slug;
 
             return (
               <button
-                key={category}
+                key={category.id || category.slug}
                 type="button"
-                onClick={() => setActiveCategory(category)}
+                onClick={() => handleCategoryChange(category.slug)}
+                disabled={isPending}
                 className={[
-                  "h-[38px] shrink-0 whitespace-nowrap rounded-full border px-[20px] text-[13px] font-semibold leading-none transition",
+                  "h-[38px] shrink-0 whitespace-nowrap rounded-full border px-[20px] text-[13px] font-semibold leading-none transition disabled:cursor-wait disabled:opacity-70",
                   isActive
                     ? "border-[#2A3F77] bg-[#2A3F77] text-white shadow-[0_8px_20px_rgba(42,63,119,0.18)]"
                     : "border-[#EDEDED] bg-white text-[#4B5563] hover:border-[#2A3F77] hover:text-[#2A3F77]",
                 ].join(" ")}
               >
-                {category}
+                {category.name}
               </button>
             );
           })}
         </div>
+
+        {categoriesError ? (
+          <div
+            className="mt-6 rounded-[12px] border border-[#F4C7C7] bg-[#FFF5F5] px-5 py-4 text-center text-[13px] text-[#8A1F1F]"
+            role="alert"
+          >
+            {categoriesError}
+          </div>
+        ) : null}
 
         {postsError ? (
           <div
@@ -616,7 +600,7 @@ export default function ExploreSection({
 
                 <p className="mt-2 text-[13px] text-[#4B5563]">
                   {isSearchEmpty
-                    ? "Intenta buscar con otra palabra o cambia el filtro activo."
+                    ? "Intenta buscar con otra palabra."
                     : "Cuando haya publicaciones disponibles, las verás en esta sección."}
                 </p>
               </div>

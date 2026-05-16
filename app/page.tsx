@@ -9,8 +9,11 @@ import CtaBannerSection from "./components/home/CtaBannerSection";
 import AliadosSection from "./components/home/AliadosSection";
 import UnitsSection from "./components/home/UnitsSection";
 import SiteLayout from "@/app/components/layout/SiteLayout";
+import { getBlogTestimonials } from "@/app/lib/blogApi";
 
-export default function Home() {
+export default async function Home() {
+  const { testimonials } = await getBlogTestimonials();
+
   return (
     <SiteLayout>
       <HeroSection />
@@ -19,7 +22,7 @@ export default function Home() {
       <UnitsSection />
       <CreditSection />
       <TourSection />
-      <TestimonialsSection />
+      <TestimonialsSection testimonials={testimonials} />
       <BlogSection />
       <CtaBannerSection />
       <AliadosSection />

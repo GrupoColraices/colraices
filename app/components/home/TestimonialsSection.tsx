@@ -1,8 +1,26 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import Image from "next/image";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import type { BlogTestimonial } from "@/app/lib/blogApi";
 
-const TESTIMONIALS = [
+type Testimonial = {
+  quote: string;
+  fullQuote: string;
+  name: string;
+  country: string;
+  initials: string;
+  service: string;
+  rating: number;
+  imageUrl: string | null;
+  videoUrl: string | null;
+};
+
+type TestimonialsSectionProps = {
+  testimonials?: BlogTestimonial[];
+};
+
+const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Son super excelentes! Me han acompañado en todo el proceso y la asesoría es inmediata. Han sido de mucha ayuda, sin duda los super recomiendo y no me arrepiento de haberlos escogido para hacer mi sueño de una casa realidad!",
@@ -11,6 +29,10 @@ const TESTIMONIALS = [
     name: "Jairo Gonzalez Cabarcas",
     country: "Alemania",
     initials: "JG",
+    service: "Crédito",
+    rating: 5,
+    imageUrl: null,
+    videoUrl: null,
   },
   {
     quote:
@@ -20,6 +42,10 @@ const TESTIMONIALS = [
     name: "Ana Maria Castrillon",
     country: "Estados Unidos",
     initials: "AC",
+    service: "Crédito",
+    rating: 5,
+    imageUrl: null,
+    videoUrl: null,
   },
   {
     quote:
@@ -29,6 +55,10 @@ const TESTIMONIALS = [
     name: "Sabydonaty Bustos Tafur",
     country: "España",
     initials: "SB",
+    service: "Crédito",
+    rating: 5,
+    imageUrl: null,
+    videoUrl: null,
   },
   {
     quote:
@@ -38,6 +68,10 @@ const TESTIMONIALS = [
     name: "Diana Prieto",
     country: "Estados Unidos",
     initials: "DP",
+    service: "Crédito",
+    rating: 5,
+    imageUrl: null,
+    videoUrl: null,
   },
   {
     quote:
@@ -47,18 +81,57 @@ const TESTIMONIALS = [
     name: "Tito Venegas",
     country: "Estados Unidos",
     initials: "TV",
+    service: "Crédito",
+    rating: 5,
+    imageUrl: null,
+    videoUrl: null,
   },
 ];
 
-type Testimonial = (typeof TESTIMONIALS)[0];
-
 const GAP = 20;
 
-export default function TestimonialsSection() {
+function truncateQuote(quote: string): string {
+  return quote.length > 165 ? `${quote.slice(0, 162).trim()}...` : quote;
+}
+
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+}
+
+function mapApiTestimonial(testimonial: BlogTestimonial): Testimonial {
+  return {
+    quote: truncateQuote(testimonial.testimonial),
+    fullQuote: testimonial.testimonial,
+    name: testimonial.name,
+    country: testimonial.country || "Colombiano en el exterior",
+    initials: testimonial.initials || getInitials(testimonial.name),
+    service: testimonial.service || "Crédito",
+    rating: testimonial.rating || 5,
+    imageUrl: testimonial.imageUrl,
+    videoUrl: testimonial.videoUrl,
+  };
+}
+
+export default function TestimonialsSection({
+  testimonials,
+}: TestimonialsSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [cardWidth, setCardWidth] = useState<number>(354.66);
   const [selectedTestimonial, setSelectedTestimonial] =
     useState<Testimonial | null>(null);
+  const displayTestimonials = useMemo(
+    () =>
+      testimonials && testimonials.length > 0
+        ? testimonials.map(mapApiTestimonial)
+        : TESTIMONIALS,
+    [testimonials],
+  );
 
   const updateCardWidth = useCallback(() => {
     if (!containerRef.current) return;
@@ -86,9 +159,11 @@ export default function TestimonialsSection() {
     };
   }, [selectedTestimonial]);
 
-  const loop: Testimonial[] = TESTIMONIALS.concat(TESTIMONIALS).concat(TESTIMONIALS);
+  const loop: Testimonial[] = displayTestimonials
+    .concat(displayTestimonials)
+    .concat(displayTestimonials);
 
-  const [index, setIndex] = useState<number>(TESTIMONIALS.length);
+  const [index, setIndex] = useState<number>(displayTestimonials.length);
   const [transition, setTransition] = useState<boolean>(true);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isAnimatingRef = useRef<boolean>(false);
@@ -111,15 +186,15 @@ export default function TestimonialsSection() {
   }, [index, startAutoPlay]);
 
   const handleTransitionEnd = () => {
-    if (index >= TESTIMONIALS.length * 2) {
+    if (index >= displayTestimonials.length * 2) {
       setTransition(false);
-      setIndex(TESTIMONIALS.length);
+      setIndex(displayTestimonials.length);
       isAnimatingRef.current = false;
       return;
     }
     if (index <= 0) {
       setTransition(false);
-      setIndex(TESTIMONIALS.length);
+      setIndex(displayTestimonials.length);
       isAnimatingRef.current = false;
       return;
     }
@@ -144,8 +219,11 @@ export default function TestimonialsSection() {
     setIndex((prev) => prev - 1);
   };
 
-  const handleYoutube = () => {
-    window.open("https://www.youtube.com/@colraices_canal_oficial", "_blank");
+  const handleVideo = (item: Testimonial) => {
+    window.open(
+      item.videoUrl || "https://www.youtube.com/@colraices_canal_oficial",
+      "_blank",
+    );
   };
 
   return (
@@ -181,10 +259,10 @@ export default function TestimonialsSection() {
                     <div>
                       <div className="flex items-start justify-between mb-[16px]">
                         <div className="text-[#FFC107] tracking-[1px]">
-                          ★★★★★
+                          {"★".repeat(Math.max(1, Math.min(5, item.rating)))}
                         </div>
                         <span className="h-[28px] px-[12px] bg-[#FFC107] text-[#2A3F77] text-[11px] font-semibold uppercase flex items-center rounded-tl-[8px] rounded-br-[8px]">
-                          Crédito
+                          {item.service}
                         </span>
                       </div>
 
@@ -194,8 +272,7 @@ export default function TestimonialsSection() {
                         {'"'}
                       </p>
 
-                      {(item.name === "Tito Venegas" ||
-                        item.name === "Sabydonaty Bustos Tafur") && (
+                      {item.fullQuote !== item.quote && (
                         <button
                           onClick={() => setSelectedTestimonial(item)}
                           className="mt-[18px] text-[#F5B800] font-semibold text-[14px] flex items-center gap-[4px] hover:opacity-90 transition"
@@ -207,8 +284,18 @@ export default function TestimonialsSection() {
 
                     <div className="pt-[16px] mt-[16px] border-t border-[#E2E8F0]">
                       <div className="flex items-center gap-[12px]">
-                        <div className="w-[40px] h-[40px] rounded-full bg-[#1A4F9E] text-white flex items-center justify-center font-semibold text-[13px]">
-                          {item.initials}
+                        <div className="relative w-[40px] h-[40px] overflow-hidden rounded-full bg-[#1A4F9E] text-white flex items-center justify-center font-semibold text-[13px]">
+                          {item.imageUrl ? (
+                            <Image
+                              src={item.imageUrl}
+                              alt={item.name}
+                              fill
+                              sizes="40px"
+                              className="object-cover"
+                            />
+                          ) : (
+                            item.initials
+                          )}
                         </div>
                         <div>
                           <p className="text-[#2A3F77] font-semibold text-[14px]">
@@ -220,10 +307,11 @@ export default function TestimonialsSection() {
                         </div>
                       </div>
 
-                      {(item.name === "Tito Venegas" ||
+                      {(item.videoUrl ||
+                        item.name === "Tito Venegas" ||
                         item.name === "Diana Prieto") && (
                         <button
-                          onClick={handleYoutube}
+                          onClick={() => handleVideo(item)}
                           className="mt-[14px] w-full h-[40px] bg-[#2A3F77] rounded-[6px] flex items-center justify-center gap-[8px] text-white font-semibold text-[13px] hover:opacity-95 transition"
                         >
                           <span className="text-[11px] leading-none">▶</span>
@@ -271,11 +359,13 @@ export default function TestimonialsSection() {
             </button>
 
             <div className="h-[32px] w-fit px-[14px] bg-[#FFC107] text-[#2A3F77] text-[14px] font-semibold uppercase flex items-center mb-[26px] rounded-tl-[8px] rounded-br-[8px]">
-              Crédito
+              {selectedTestimonial.service}
             </div>
 
             <div className="text-[#FFC107] tracking-[2px] text-[18px] mb-[20px]">
-              ★★★★★
+              {"★".repeat(
+                Math.max(1, Math.min(5, selectedTestimonial.rating)),
+              )}
             </div>
 
             <p className="text-[#2A3F77] text-[15px] leading-[26px] mb-[36px]">
@@ -285,8 +375,18 @@ export default function TestimonialsSection() {
             </p>
 
             <div className="flex items-center gap-[14px]">
-              <div className="w-[48px] h-[48px] rounded-full bg-[#1A4F9E] text-white flex items-center justify-center font-semibold text-[18px]">
-                {selectedTestimonial.initials}
+              <div className="relative w-[48px] h-[48px] overflow-hidden rounded-full bg-[#1A4F9E] text-white flex items-center justify-center font-semibold text-[18px]">
+                {selectedTestimonial.imageUrl ? (
+                  <Image
+                    src={selectedTestimonial.imageUrl}
+                    alt={selectedTestimonial.name}
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                  />
+                ) : (
+                  selectedTestimonial.initials
+                )}
               </div>
               <div>
                 <p className="text-[#2A3F77] font-semibold text-[17px]">
