@@ -438,10 +438,12 @@ function buildAllPostsUrl(page = 1): string {
   return url.toString();
 }
 
-function buildPostsByCategoryUrl(categorySlug: string): string {
+function buildPostsByCategoryUrl(categorySlug: string, page = 1): string {
+  const safePage = Number.isFinite(page) && page > 0 ? Math.floor(page) : 1;
   const url = new URL(LATEST_POSTS_ENDPOINT);
 
   url.searchParams.set("category_slug", categorySlug);
+  url.searchParams.set("page", String(safePage));
 
   return url.toString();
 }
@@ -615,7 +617,7 @@ export function getBlogPosts({
   categorySlug?: string | null;
 } = {}): Promise<BlogPostsResult> {
   if (categorySlug) {
-    return fetchBlogPosts(buildPostsByCategoryUrl(categorySlug));
+    return fetchBlogPosts(buildPostsByCategoryUrl(categorySlug, page));
   }
 
   return fetchBlogPosts(buildAllPostsUrl(page));
