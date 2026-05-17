@@ -19,6 +19,7 @@ type Testimonial = {
   imageUrl: string | null;
   hasVideo: boolean;
   videoUrl: string | null;
+  
 };
 
 const GAP = 20;
