@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Representación Legal",
+  title: {
+    absolute: "Firma de escrituras en Colombia desde el exterior | Colraices",
+  },
   description:
-    "Cuenta con representación legal de Colraices para gestionar trámites, documentos y procesos en Colombia con respaldo profesional y cercano.",
+    "Si estás fuera del país y necesitas alguien que te represente en Colombia, te acompañamos en la firma de escrituras y procesos legales de vivienda.",
 };
 
 export default function RepresentacionLegalLayout({

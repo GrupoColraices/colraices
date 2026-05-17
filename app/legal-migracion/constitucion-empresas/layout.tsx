@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Constitución de Empresas",
+  title: {
+    absolute: "Emprender en Colombia desde el exterior | Asesoría en emprendimiento",
+  },
   description:
-    "Constituye tu empresa con acompañamiento de Colraices y recibe orientación para formalizar proyectos, inversiones y operaciones en Colombia.",
+    "Te orientamos para iniciar empresa, formalizar emprendimientos y desarrollar proyectos de negocio e inversión en Colombia desde el exterior.",
 };
 
 export default function ConstitucionEmpresasLayout({

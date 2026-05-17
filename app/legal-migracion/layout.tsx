@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Legal y Migración",
+  title: {
+    absolute: "Servicios legales y migratorios para colombianos | Colraices",
+  },
   description:
-    "Recibe orientación legal, migratoria, fiscal y empresarial con Colraices para avanzar con seguridad en tus planes dentro y fuera de Colombia.",
+    "Gestionamos procesos migratorios, representación legal, impuestos, pensiones y creación de empresa con apoyo especializado.",
 };
 
 export default function LegalMigracionLayout({

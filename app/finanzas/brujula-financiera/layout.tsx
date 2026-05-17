@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Brújula Financiera",
+  title: {
+    absolute:
+      "Cómo organizar tus finanzas e invertir en Colombia desde el exterior",
+  },
   description:
-    "Organiza tus finanzas con Colraices y conoce herramientas para planear ahorro, inversión y compra de vivienda en Colombia desde el exterior.",
+    "Te ayudamos a entender cómo está tu historial financiero en Colombia, qué opciones tienes y por dónde empezar para invertir, acceder a crédito y construir patrimonio desde el exterior.",
 };
 
 export default function BrujulaFinancieraLayout({

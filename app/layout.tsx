@@ -14,11 +14,12 @@ const GTM_ID = "GTM-WQDR37KG";
 
 export const metadata: Metadata = {
   title: {
-    default: "Home | Colraices",
+    default:
+      "Colraices | Crédito, inversión y patrimonio para colombianos en el exterior",
     template: "%s | Colraices",
   },
   description:
-    "Invierte en Colombia desde el exterior. Créditos de vivienda, compra de inmuebles y asesoría integral con Colraices.",
+    "Ayudamos a colombianos en el exterior a acceder a crédito hipotecario, invertir en Colombia, comprar vivienda y resolver procesos financieros, legales y fiscales desde cualquier país.",
   icons: {
     icon: "/favicon.ico",
   },

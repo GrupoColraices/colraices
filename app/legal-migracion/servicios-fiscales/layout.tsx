@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Servicios Fiscales",
+  title: {
+    absolute: "Asesoría tributaria para colombianos que viven fuera del país",
+  },
   description:
-    "Recibe asesoría fiscal con Colraices para entender obligaciones, planear inversiones y tomar decisiones financieras entre Colombia y el exterior.",
+    "Te ayudamos a entender tus obligaciones tributarias en Colombia, declarar renta y manejar impuestos sobre inversiones, vivienda y patrimonio.",
 };
 
 export default function ServiciosFiscalesLayout({

@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Buena Data",
+  title: {
+    absolute:
+      "Estoy reportado en Datacrédito y vivo en el exterior | Buena Data",
+  },
   description:
-    "Accede a datos útiles de Colraices para tomar mejores decisiones sobre inversión, financiación y compra de vivienda en Colombia desde el exterior.",
+    "Revisamos tu historial crediticio en Colombia y te ayudamos a resolver reportes negativos para acceder nuevamente a crédito e inversión desde el exterior.",
 };
 
 export default function BuenaDataLayout({

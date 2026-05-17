@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Tour de la Vivienda",
+  title: {
+    absolute:
+      "Tour de la Vivienda Colombia | Inversión, crédito y proyectos en Colombia",
+  },
   description:
-    "Descubre el Tour de la Vivienda de Colraices y conoce alternativas para comprar, invertir y financiar inmuebles en Colombia desde el exterior.",
+    "Accede a proyectos de vivienda, oportunidades de inversión y beneficios en Colombia para colombianos en el exterior con financiación y acompañamiento especializado.",
 };
 
 export default function TourViviendaLayout({
