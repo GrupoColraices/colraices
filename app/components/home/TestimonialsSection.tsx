@@ -8,6 +8,7 @@ import {
 } from "@/app/lib/TestimoniosApi";
 
 type Testimonial = {
+  id: string;
   quote: string;
   fullQuote: string;
   name: string;
@@ -19,12 +20,11 @@ type Testimonial = {
   imageUrl: string | null;
   hasVideo: boolean;
   videoUrl: string | null;
-  
 };
 
 const GAP = 20;
 const TESTIMONIALS_ERROR_MESSAGE = "No se pudieron cargar los testimonios.";
-const DEFAULT_SERVICE = "Cr\u00E9dito";
+const DEFAULT_SERVICE = "Crédito";
 
 function truncateQuote(quote: string): string {
   return quote.length > 165 ? `${quote.slice(0, 162).trim()}...` : quote;
@@ -42,6 +42,7 @@ function getInitials(name: string): string {
 
 function mapApiTestimonial(testimonial: ApiTestimonio): Testimonial {
   return {
+    id: testimonial.id,
     quote: truncateQuote(testimonial.testimonial),
     fullQuote: testimonial.testimonial,
     name: testimonial.name,
@@ -66,7 +67,7 @@ function Stars({ rating }: { rating: number }) {
     >
       {Array.from({ length: 5 }, (_, index) => (
         <span key={index} aria-hidden="true">
-          {index < safeRating ? "\u2605" : "\u2606"}
+          {index < safeRating ? "★" : "☆"}
         </span>
       ))}
     </div>
@@ -222,8 +223,17 @@ export default function TestimonialsSection() {
 
   const updateCardWidth = useCallback(() => {
     if (!containerRef.current) return;
+
     const containerW = containerRef.current.offsetWidth;
-    setCardWidth(containerW < 640 ? Math.max(280, containerW - 8) : 354.66);
+
+    if (containerW < 640) {
+      setCardWidth(Math.max(280, containerW - 8));
+      return;
+    }
+
+    const visibleCards = 3;
+    const totalGap = GAP * (visibleCards - 1);
+    setCardWidth((containerW - totalGap) / visibleCards);
   }, []);
 
   useEffect(() => {
@@ -342,7 +352,7 @@ export default function TestimonialsSection() {
             )}
 
             {!isLoading && !error && !hasTestimonials && (
-              <FeedbackState message="A\u00FAn no hay testimonios disponibles." />
+              <FeedbackState message="Aún no hay testimonios disponibles." />
             )}
 
             {!isLoading && !error && hasTestimonials && (
@@ -361,7 +371,7 @@ export default function TestimonialsSection() {
                   >
                     {loop.map((item, i) => (
                       <article
-                        key={`${item.name}-${i}`}
+                        key={`${item.id}-${i}`}
                         className="flex-shrink-0 bg-[#FBF8F3] border border-[#0F2D5C]/10 rounded-tl-[16px] rounded-br-[16px] p-[20px] sm:p-[24px] flex flex-col justify-between"
                         style={{ width: cardWidth, minHeight: 320 }}
                       >
@@ -386,7 +396,7 @@ export default function TestimonialsSection() {
                               className="mt-[18px] text-[#F5B800] font-semibold text-[14px] flex items-center gap-[4px] hover:opacity-90 transition"
                             >
                               Ver m&aacute;s{" "}
-                              <span aria-hidden="true">{"\u2192"}</span>
+                              <span aria-hidden="true">{"→"}</span>
                             </button>
                           )}
                         </div>
@@ -415,7 +425,7 @@ export default function TestimonialsSection() {
                                 className="text-[11px] leading-none"
                                 aria-hidden="true"
                               >
-                                {"\u25B6"}
+                                {"▶"}
                               </span>
                               VER VIDEO TESTIMONIO
                             </a>
@@ -433,7 +443,7 @@ export default function TestimonialsSection() {
                     className="w-[48px] h-[48px] rounded-full bg-[#2A3F77] text-white flex items-center justify-center text-xl"
                     aria-label="Testimonio anterior"
                   >
-                    <span aria-hidden="true">{"\u2039"}</span>
+                    <span aria-hidden="true">{"‹"}</span>
                   </button>
                   <button
                     type="button"
@@ -441,7 +451,7 @@ export default function TestimonialsSection() {
                     className="w-[48px] h-[48px] rounded-full bg-[#2A3F77] text-white flex items-center justify-center text-xl"
                     aria-label="Siguiente testimonio"
                   >
-                    <span aria-hidden="true">{"\u203A"}</span>
+                    <span aria-hidden="true">{"›"}</span>
                   </button>
                 </div>
               </>
@@ -465,7 +475,7 @@ export default function TestimonialsSection() {
               className="absolute top-[20px] right-[20px] text-[#2A3F77] text-[34px] leading-none"
               aria-label="Cerrar testimonio"
             >
-              <span aria-hidden="true">{"\u00D7"}</span>
+              <span aria-hidden="true">{"×"}</span>
             </button>
 
             <div className="h-[32px] w-fit px-[14px] bg-[#FFC107] text-[#2A3F77] text-[14px] font-semibold uppercase flex items-center mb-[26px] rounded-tl-[8px] rounded-br-[8px]">

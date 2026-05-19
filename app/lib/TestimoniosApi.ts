@@ -91,11 +91,20 @@ function normalizeRemoteImageUrl(value?: string | null): string | null {
   }
 }
 
+function normalizeRating(value?: number | string | null): number | null {
+  const parsedRating = Number(value);
+
+  if (!Number.isFinite(parsedRating)) {
+    return null;
+  }
+
+  return Math.min(5, Math.max(0, Math.round(parsedRating)));
+}
+
 function mapApiTestimonio(item: TestimoniosApiItem): Testimonio | null {
   const id = normalizeText(item.id);
   const quote = normalizeText(item.testimonial);
   const name = normalizeText(item.name);
-  const parsedRating = Number(item.rating);
   const hasVideo = item.has_video === true;
   const hasImage = item.has_image === true;
 
@@ -111,7 +120,7 @@ function mapApiTestimonio(item: TestimoniosApiItem): Testimonio | null {
     country: normalizeText(item.country) || null,
     hasVideo,
     videoUrl: hasVideo ? normalizePublicUrl(item.video_url) : null,
-    rating: Number.isFinite(parsedRating) ? parsedRating : null,
+    rating: normalizeRating(item.rating),
     hasImage,
     imageUrl: hasImage ? normalizeRemoteImageUrl(item.image_url) : null,
     initials: normalizeText(item.initials) || null,
@@ -124,6 +133,7 @@ export async function getTestimonios(): Promise<TestimoniosResult> {
       headers: {
         Accept: "application/json",
       },
+      cache: "no-store",
     });
 
     if (!response.ok) {
