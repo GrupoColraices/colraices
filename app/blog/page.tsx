@@ -9,7 +9,6 @@ import {
   getBlogCategories,
   getBlogPosts,
   getFeaturedBlogPosts,
-  getLastBlogPost,
 } from "@/app/lib/blogApi";
 
 type BlogPageProps = {
@@ -44,7 +43,6 @@ export default async function Blog({ searchParams }: BlogPageProps) {
 
   const [
     { posts, error, pagination },
-    { post: latestPost },
     { posts: featuredPosts },
     { categories, error: categoriesError },
   ] = await Promise.all([
@@ -52,7 +50,6 @@ export default async function Blog({ searchParams }: BlogPageProps) {
       page: currentPage,
       categorySlug,
     }),
-    getLastBlogPost(),
     getFeaturedBlogPosts(),
     getBlogCategories(),
   ]);
@@ -66,7 +63,6 @@ export default async function Blog({ searchParams }: BlogPageProps) {
         posts={posts}
         postsError={error}
         pagination={pagination}
-        latestPost={latestPost}
         featuredPosts={featuredPosts}
         categories={categories}
         categoriesError={categoriesError}
