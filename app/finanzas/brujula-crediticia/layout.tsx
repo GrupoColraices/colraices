@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Brújula Crediticia",
+  title: {
+    absolute:
+      "Saber si calificas para crédito en Colombia desde el exterior | Brújula Crediticia",
+  },
   description:
-    "Aprende cómo mejorar tu perfil crediticio y preparar tu crédito hipotecario con Colraices para comprar vivienda en Colombia desde el exterior.",
+    "Analizamos tu historial y perfil crediticio en Colombia para ayudarte a acceder a crédito hipotecario, mejorar tu capacidad financiera y construir patrimonio desde el exterior.",
 };
 
 export default function BrujulaCrediticiaLayout({

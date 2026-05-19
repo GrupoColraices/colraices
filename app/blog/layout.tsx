@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: {
+    absolute:
+      "Blog de inversión, finanzas y patrimonio para colombianos en el exterior | Colraices",
+  },
   description:
-    "Lee artículos de Colraices sobre vivienda, inversión, finanzas, migración y oportunidades para colombianos en el exterior que quieren comprar en Colombia.",
+    "Contenido especializado sobre inversión, remesas, patrimonio, crédito, finanzas y oportunidades en Colombia para colombianos que viven en el exterior.",
 };
 
 export default function BlogLayout({

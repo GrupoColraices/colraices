@@ -4,23 +4,33 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const routeNameMap: Record<string, string> = {
-  "finanzas": "Finanzas",
-  "inmuebles": "Inmuebles",
+  finanzas: "Finanzas",
+  inmuebles: "Inmuebles",
   "legal-migracion": "Legal y Migración",
   "tour-vivienda": "Tour de la Vivienda",
-  "blog": "Blog",
+  blog: "Blog",
   "brujula-financiera": "Brújula Financiera",
   "brujula-crediticia": "Brújula Crediticia",
   "buena-data": "Buena Data",
   "credito-hipotecario": "Crédito Hipotecario",
-  "monetizacion": "Monetización",
+  monetizacion: "Monetización",
   "asesoria-migratoria": "Asesoría Migratoria",
   "constitucion-empresas": "Constitución de Empresas",
-  "pensiones": "Pensiones",
+  pensiones: "Pensiones",
   "representacion-legal": "Representación Legal",
   "servicios-fiscales": "Servicios Fiscales",
   "encontramos-inmueble": "Encontramos tu inmueble",
 };
+
+function formatBreadcrumbLabel(value: string): string {
+  const text = decodeURIComponent(value).replace(/-/g, " ").trim();
+
+  if (!text) {
+    return "";
+  }
+
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
 
 export default function Breadcrumb() {
   const pathname = usePathname();
@@ -28,8 +38,9 @@ export default function Breadcrumb() {
 
   const crumbs = segments.map((seg, i) => {
     const href = "/" + segments.slice(0, i + 1).join("/");
-    const label = routeNameMap[seg] || seg;
+    const label = routeNameMap[seg] || formatBreadcrumbLabel(seg);
     const isLast = i === segments.length - 1;
+
     return { href, label, isLast };
   });
 

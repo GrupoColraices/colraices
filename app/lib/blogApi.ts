@@ -85,23 +85,6 @@ type BlogApiCategoriesResponse = {
   data?: ApiCategory[];
 };
 
-type ApiTestimonial = {
-  id?: number | string | null;
-  service?: string | null;
-  testimonial?: string | null;
-  name?: string | null;
-  country?: string | null;
-  video_url?: string | null;
-  rating?: number | string | null;
-  has_image?: boolean | null;
-  image_url?: string | null;
-  initials?: string | null;
-};
-
-type BlogApiTestimonialsResponse = {
-  data?: ApiTestimonial[];
-};
-
 export type BlogPagination = {
   currentPage: number | null;
   lastPage: number | null;
@@ -127,23 +110,6 @@ export type BlogCategoriesResult = {
   error: string | null;
 };
 
-export type BlogTestimonial = {
-  id: string;
-  service: string | null;
-  testimonial: string;
-  name: string;
-  country: string | null;
-  videoUrl: string | null;
-  rating: number | null;
-  imageUrl: string | null;
-  initials: string | null;
-};
-
-export type BlogTestimonialsResult = {
-  testimonials: BlogTestimonial[];
-  error: string | null;
-};
-
 const BLOG_BASE_URL = "https://blog.colraices.com";
 
 const LATEST_POSTS_ENDPOINT = `${BLOG_BASE_URL}/api/v1/posts`;
@@ -151,12 +117,10 @@ const ALL_POSTS_ENDPOINT = `${BLOG_BASE_URL}/api/v1/all`;
 const CATEGORIES_ENDPOINT = `${BLOG_BASE_URL}/api/v1/categories`;
 const LAST_POST_ENDPOINT = `${BLOG_BASE_URL}/api/v1/last`;
 const FEATURED_POSTS_ENDPOINT = `${BLOG_BASE_URL}/api/v1/featured-posts`;
-const TESTIMONIALS_ENDPOINT = `${BLOG_BASE_URL}/api/v1/testimonials`;
 
 const BLOG_ERROR_MESSAGE = "No se pudieron cargar las publicaciones del blog.";
 const SINGLE_BLOG_ERROR_MESSAGE = "No se pudo cargar la publicación del blog.";
 const CATEGORIES_ERROR_MESSAGE = "No se pudieron cargar las categorías del blog.";
-const TESTIMONIALS_ERROR_MESSAGE = "No se pudieron cargar los testimonios.";
 
 function normalizeText(value?: string | number | null): string {
   return String(value ?? "").trim();
@@ -387,33 +351,6 @@ function mapApiCategoryToBlogCategory(
   };
 }
 
-function mapApiTestimonialToBlogTestimonial(
-  testimonial: ApiTestimonial,
-): BlogTestimonial | null {
-  const id = normalizeText(testimonial.id);
-  const quote = normalizeText(testimonial.testimonial);
-  const name = normalizeText(testimonial.name);
-  const parsedRating = Number(testimonial.rating);
-
-  if (!quote || !name) {
-    return null;
-  }
-
-  return {
-    id: id || `${name}-${quote.slice(0, 24)}`,
-    service: normalizeText(testimonial.service) || null,
-    testimonial: quote,
-    name,
-    country: normalizeText(testimonial.country) || null,
-    videoUrl: normalizePublicUrl(testimonial.video_url),
-    rating: Number.isFinite(parsedRating) ? parsedRating : null,
-    imageUrl: testimonial.has_image
-      ? normalizeRemoteImageUrl(testimonial.image_url)
-      : null,
-    initials: normalizeText(testimonial.initials) || null,
-  };
-}
-
 function mapPagination(response: BlogApiListResponse): BlogPagination | null {
   if (!response.meta && !response.links) {
     return null;
@@ -438,10 +375,12 @@ function buildAllPostsUrl(page = 1): string {
   return url.toString();
 }
 
-function buildPostsByCategoryUrl(categorySlug: string): string {
+function buildPostsByCategoryUrl(categorySlug: string, page = 1): string {
+  const safePage = Number.isFinite(page) && page > 0 ? Math.floor(page) : 1;
   const url = new URL(LATEST_POSTS_ENDPOINT);
 
   url.searchParams.set("category_slug", categorySlug);
+  url.searchParams.set("page", String(safePage));
 
   return url.toString();
 }
@@ -558,47 +497,6 @@ async function fetchSingleBlogPost(endpoint: string): Promise<BlogPostResult> {
   }
 }
 
-async function fetchBlogTestimonials(): Promise<BlogTestimonialsResult> {
-  try {
-    const response = await fetch(TESTIMONIALS_ENDPOINT, {
-      headers: {
-        Accept: "application/json",
-      },
-      next: {
-        revalidate: 300,
-      },
-    });
-
-    if (!response.ok) {
-      return {
-        testimonials: [],
-        error: TESTIMONIALS_ERROR_MESSAGE,
-      };
-    }
-
-    const json = (await response.json()) as BlogApiTestimonialsResponse;
-
-    const testimonials = Array.isArray(json.data)
-      ? json.data
-          .map(mapApiTestimonialToBlogTestimonial)
-          .filter(
-            (testimonial): testimonial is BlogTestimonial =>
-              Boolean(testimonial),
-          )
-      : [];
-
-    return {
-      testimonials,
-      error: null,
-    };
-  } catch {
-    return {
-      testimonials: [],
-      error: TESTIMONIALS_ERROR_MESSAGE,
-    };
-  }
-}
-
 export function getLatestBlogPosts(): Promise<BlogPostsResult> {
   return fetchBlogPosts(LATEST_POSTS_ENDPOINT);
 }
@@ -615,7 +513,7 @@ export function getBlogPosts({
   categorySlug?: string | null;
 } = {}): Promise<BlogPostsResult> {
   if (categorySlug) {
-    return fetchBlogPosts(buildPostsByCategoryUrl(categorySlug));
+    return fetchBlogPosts(buildPostsByCategoryUrl(categorySlug, page));
   }
 
   return fetchBlogPosts(buildAllPostsUrl(page));
@@ -631,10 +529,6 @@ export function getBlogCategories(): Promise<BlogCategoriesResult> {
 
 export function getLastBlogPost(): Promise<BlogPostResult> {
   return fetchSingleBlogPost(LAST_POST_ENDPOINT);
-}
-
-export function getBlogTestimonials(): Promise<BlogTestimonialsResult> {
-  return fetchBlogTestimonials();
 }
 
 export function getBlogPostBySlug(slug: string): Promise<BlogPostResult> {

@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Monetización",
+  title: {
+    absolute: "Enviar dinero a Colombia desde el exterior | Colraices",
+  },
   description:
-    "Descubre alternativas de monetización con Colraices para aprovechar tus recursos, invertir mejor y avanzar hacia la compra de vivienda en Colombia.",
+    "Envía dinero a Colombia desde el exterior y transforma tus remesas en inversión, vivienda y patrimonio con acompañamiento financiero especializado.",
 };
 
 export default function MonetizacionLayout({

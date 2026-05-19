@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Catálogo de Inmuebles",
+  title: {
+    absolute:
+      "Comprar vivienda e invertir en Colombia desde el exterior | Colraices",
+  },
   description:
-    "Explora el catálogo de inmuebles de Colraices en Colombia. Encuentra opciones de vivienda, inversión y financiación para colombianos en el exterior.",
+    "Encuentra apartamentos, proyectos de vivienda y oportunidades de inversión inmobiliaria en Colombia para colombianos en el exterior.",
 };
 
 export default function InmueblesLayout({
