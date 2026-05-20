@@ -59,8 +59,15 @@ type ApiPost = {
   tiempo_lectura?: string | ApiReadingTime | null;
 };
 
+type ApiFeaturedPost = {
+  position?: number | string | null;
+  post?: ApiPost | null;
+};
+
+type ApiPostListItem = ApiPost | ApiFeaturedPost;
+
 type BlogApiListResponse = {
-  data?: ApiPost[];
+  data?: ApiPostListItem[];
   links?: {
     first?: string | null;
     last?: string | null;
@@ -117,6 +124,7 @@ const ALL_POSTS_ENDPOINT = `${BLOG_BASE_URL}/api/v1/all`;
 const CATEGORIES_ENDPOINT = `${BLOG_BASE_URL}/api/v1/categories`;
 const LAST_POST_ENDPOINT = `${BLOG_BASE_URL}/api/v1/last`;
 const FEATURED_POSTS_ENDPOINT = `${BLOG_BASE_URL}/api/v1/featured-posts`;
+const POSTS_PER_PAGE = 6;
 
 const BLOG_ERROR_MESSAGE = "No se pudieron cargar las publicaciones del blog.";
 const SINGLE_BLOG_ERROR_MESSAGE = "No se pudo cargar la publicación del blog.";
@@ -321,6 +329,14 @@ function mapApiPostToBlogPost(post: ApiPost): BlogPost | null {
   };
 }
 
+function getApiPostFromListItem(item: ApiPostListItem): ApiPost | null {
+  if ("post" in item && item.post) {
+    return item.post;
+  }
+
+  return item as ApiPost;
+}
+
 function mapApiCategoryToBlogCategory(
   category: ApiCategory,
 ): BlogCategory | null {
@@ -371,6 +387,7 @@ function buildAllPostsUrl(page = 1): string {
   const url = new URL(ALL_POSTS_ENDPOINT);
 
   url.searchParams.set("page", String(safePage));
+  url.searchParams.set("per_page", String(POSTS_PER_PAGE));
 
   return url.toString();
 }
@@ -381,6 +398,7 @@ function buildPostsByCategoryUrl(categorySlug: string, page = 1): string {
 
   url.searchParams.set("category_slug", categorySlug);
   url.searchParams.set("page", String(safePage));
+  url.searchParams.set("per_page", String(POSTS_PER_PAGE));
 
   return url.toString();
 }
@@ -408,7 +426,8 @@ async function fetchBlogPosts(endpoint: string): Promise<BlogPostsResult> {
 
     const posts = Array.isArray(json.data)
       ? json.data
-          .map(mapApiPostToBlogPost)
+          .map(getApiPostFromListItem)
+          .map((post) => (post ? mapApiPostToBlogPost(post) : null))
           .filter((post): post is BlogPost => Boolean(post))
       : [];
 
