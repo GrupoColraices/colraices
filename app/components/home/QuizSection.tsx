@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
+import { officialUrls } from '@/app/lib/officialUrls'
 
 export default function TrustStripSection() {
   const router = useRouter();
@@ -15,7 +16,7 @@ export default function TrustStripSection() {
     "Quiero entender mi situación financiera": "/finanzas/brujula-financiera",
     "Tengo reportes en Colombia": "/finanzas/buena-data",
     "Quiero traer mi dinero a Colombia": "/finanzas/monetizacion",
-    "Quiero ver proyectos": "/tour-vivienda",
+    "Quiero ver proyectos": officialUrls.tourVivienda,
     "Quiero que busquen un inmueble por mí": "/finanzas/credito-hipotecario",
     "Quiero analizar un inmueble que ya encontré": "/finanzas/credito-hipotecario",
     "Quiero gestionar temas legales o migratorios": "/legal-migracion",

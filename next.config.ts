@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 
+const tourViviendaUrl =
+  process.env.NEXT_PUBLIC_TOUR_VIVIENDA_URL ||
+  "https://www.colraices.com/tour-de-la-vivienda";
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -15,6 +19,15 @@ const nextConfig: NextConfig = {
         pathname: "/storage/**",
       },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/tour-vivienda",
+        destination: tourViviendaUrl,
+        permanent: false,
+      },
+    ];
   },
 };
 

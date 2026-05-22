@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import PrivacyPolicy from "./PrivacyPolicy";
+import { officialUrls } from "@/app/lib/officialUrls";
 import {
   FaFacebookF,
   FaInstagram,
@@ -60,7 +61,7 @@ export default function Footer() {
               <Link href="/finanzas" className="transition-colors hover:text-white">Finanzas</Link>
               <Link href="/inmuebles" className="transition-colors hover:text-white">Inmuebles</Link>
               <Link href="/legal-migracion" className="transition-colors hover:text-white">Legal y Migración</Link>
-              <Link href="/tour-vivienda" className="transition-colors hover:text-white">Tour de la Vivienda</Link>
+              <Link href={officialUrls.tourVivienda} className="transition-colors hover:text-white">Tour de la Vivienda</Link>
             </div>
           </div>
 
