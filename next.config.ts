@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 
+const TOUR_VIVIENDA_URL =
+  process.env.NEXT_PUBLIC_TOUR_VIVIENDA_URL ||
+  "https://colraices.com/casas-apartamentos-colombia-desde-el-exterior";
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -20,12 +24,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/tour-vivienda",
-        destination: "/tour-de-la-vivienda",
+        destination: TOUR_VIVIENDA_URL,
         permanent: true,
       },
       {
         source: "/tour",
-        destination: "/tour-de-la-vivienda",
+        destination: TOUR_VIVIENDA_URL,
         permanent: true,
       },
       {

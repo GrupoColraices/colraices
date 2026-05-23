@@ -1,5 +1,5 @@
 import type { ComponentType, SVGProps } from "react";
-import { officialPaths } from "@/app/lib/officialUrls";
+import { TOUR_VIVIENDA_URL, officialPaths } from "@/app/lib/officialUrls";
 
 type ProductLink = {
   label: string;
@@ -95,7 +95,7 @@ const ecosystemCards: EcosystemCard[] = [
     description:
       "Llevamos constructoras y proyectos inmobiliarios en Colombia hasta las ciudades donde viven colombianos en el exterior que quieren invertir y construir patrimonio en su país.",
     icon: DownloadIcon,
-    products: [{ label: "Tour de la Vivienda", href: officialPaths.tourVivienda }],
+    products: [{ label: "Tour de la Vivienda", href: TOUR_VIVIENDA_URL }],
   },
 ];
 

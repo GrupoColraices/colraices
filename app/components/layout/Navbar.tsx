@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { officialPaths } from "@/app/lib/officialUrls";
+import { TOUR_VIVIENDA_URL, officialPaths } from "@/app/lib/officialUrls";
 
 const navLinks = [
   { label: "Home", href: officialPaths.home },
   { label: "Finanzas", href: officialPaths.finanzasHub },
   { label: "Inmuebles", href: officialPaths.inmuebleHub },
   { label: "Legal y Migración", href: officialPaths.legalHub },
-  { label: "Tour de la Vivienda", href: officialPaths.tourVivienda },
+  { label: "Tour de la Vivienda", href: TOUR_VIVIENDA_URL },
   { label: "Blog", href: officialPaths.blog },
 ];
 

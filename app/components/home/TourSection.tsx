@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { officialPaths } from "@/app/lib/officialUrls";
+import { TOUR_VIVIENDA_URL } from "@/app/lib/officialUrls";
 
 const cities = ["Bogotá", "Medellín", "Cartagena", "Cali", "y más ciudades"];
 
@@ -71,7 +71,7 @@ export default function TourSection() {
           </p>
 
           <Link
-            href={officialPaths.tourVivienda}
+            href={TOUR_VIVIENDA_URL}
             className="
               inline-flex items-center justify-center 
               h-[44px] md:h-[48px] 

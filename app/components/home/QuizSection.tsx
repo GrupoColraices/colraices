@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
-import { officialPaths } from '@/app/lib/officialUrls'
+import { TOUR_VIVIENDA_URL, officialPaths } from '@/app/lib/officialUrls'
 
 export default function TrustStripSection() {
   const router = useRouter();
@@ -16,7 +16,7 @@ export default function TrustStripSection() {
     "Quiero entender mi situación financiera": officialPaths.brujulaFinanciera,
     "Tengo reportes en Colombia": officialPaths.buenaData,
     "Quiero traer mi dinero a Colombia": officialPaths.monetizacion,
-    "Quiero ver proyectos": officialPaths.tourVivienda,
+    "Quiero ver proyectos": TOUR_VIVIENDA_URL,
     "Quiero que busquen un inmueble por mí": officialPaths.llaveInmobiliaria,
     "Quiero analizar un inmueble que ya encontré": officialPaths.brujulaInmobiliaria,
     "Quiero gestionar temas legales o migratorios": officialPaths.legalHub,

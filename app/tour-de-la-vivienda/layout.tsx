@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { officialUrls } from "@/app/lib/officialUrls";
+import { TOUR_VIVIENDA_URL } from "@/app/lib/officialUrls";
 
 export const metadata: Metadata = {
   title: {
@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   description:
     "Accede a proyectos de vivienda, oportunidades de inversión y beneficios en Colombia para colombianos en el exterior con financiación y acompañamiento especializado.",
   alternates: {
-    canonical: officialUrls.tourVivienda,
+    canonical: TOUR_VIVIENDA_URL,
   },
   openGraph: {
-    url: officialUrls.tourVivienda,
+    url: TOUR_VIVIENDA_URL,
   },
 };
 

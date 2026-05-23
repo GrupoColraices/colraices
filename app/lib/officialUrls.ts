@@ -1,5 +1,11 @@
 export const SITE_URL = "https://www.colraices.com";
 
+const TOUR_VIVIENDA_FALLBACK_URL =
+  "https://colraices.com/casas-apartamentos-colombia-desde-el-exterior";
+
+export const TOUR_VIVIENDA_URL =
+  process.env.NEXT_PUBLIC_TOUR_VIVIENDA_URL || TOUR_VIVIENDA_FALLBACK_URL;
+
 export const officialPaths = {
   home: "/",
   nosotros: "/nosotros",
@@ -28,6 +34,11 @@ function toAbsoluteUrl(path: string): string {
   return path === "/" ? SITE_URL : `${SITE_URL}${path}`;
 }
 
-export const officialUrls = Object.fromEntries(
+const officialPathUrls = Object.fromEntries(
   Object.entries(officialPaths).map(([key, path]) => [key, toAbsoluteUrl(path)]),
 ) as Record<OfficialPathKey, string>;
+
+export const officialUrls = {
+  ...officialPathUrls,
+  tourVivienda: TOUR_VIVIENDA_URL,
+} as Record<OfficialPathKey, string>;
