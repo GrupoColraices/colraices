@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { officialPaths } from "@/app/lib/officialUrls";
 
 type FinanceItem = {
   tag: string;
@@ -20,7 +21,7 @@ const items: FinanceItem[] = [
     desc: "Compras o capitalizas en Colombia",
     color: "bg-[#FFC107]",
     icon: "🏠",
-    href: "/finanzas/credito-hipotecario",
+    href: officialPaths.credito,
   },
   {
     tag: "SI HAY BLOQUEOS",
@@ -28,7 +29,7 @@ const items: FinanceItem[] = [
     desc: "Resuelve reportes negativos y deudas",
     color: "bg-[#EF4444]",
     icon: "🔧",
-    href: "/finanzas/buena-data",
+    href: officialPaths.buenaData,
   },
   {
     tag: "DIAGNÓSTICO",
@@ -36,7 +37,7 @@ const items: FinanceItem[] = [
     desc: "Entiendes tu situación financiera",
     color: "bg-[#3B82F6]",
     icon: "🧭",
-    href: "/finanzas/brujula-financiera",
+    href: officialPaths.brujulaFinanciera,
   },
   {
     tag: "DIAGNÓSTICO | VIABILIDAD CREDITICIA",
@@ -44,7 +45,7 @@ const items: FinanceItem[] = [
     desc: "Entiendes tu situación ante los bancos",
     color: "bg-[#3B82F6]",
     icon: "🧭",
-    href: "/finanzas/brujula-crediticia",
+    href: officialPaths.brujulaCrediticia,
   },
   {
     tag: "SI TIENES EFECTIVO",
@@ -52,7 +53,7 @@ const items: FinanceItem[] = [
     desc: "Traes tu dinero a Colombia",
     color: "bg-[#10B981]",
     icon: "💱",
-    href: "/finanzas/monetizacion",
+    href: officialPaths.monetizacion,
   },
 ];
 

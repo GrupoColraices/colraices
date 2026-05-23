@@ -1,5 +1,5 @@
 import type { ComponentType, SVGProps } from "react";
-import { officialUrls } from "@/app/lib/officialUrls";
+import { officialPaths } from "@/app/lib/officialUrls";
 
 type ProductLink = {
   label: string;
@@ -60,11 +60,11 @@ const ecosystemCards: EcosystemCard[] = [
       "Te ayudamos a acceder al financiamiento para tu inversión en Colombia. Desde entender tu situación y resolver reportes hasta mejorar tu perfil y abrirte el camino para el crédito.",
     icon: MonitorIcon,
     products: [
-      { label: "Buena Data", href: "/buena-data" },
-      { label: "Brújula Financiera", href: "/brujula-financiera" },
-      { label: "Brújula Crediticia", href: "/brujula-crediticia" },
-      { label: "Monetización", href: "/monetizacion" },
-      { label: "Crédito", href: "/credito" },
+      { label: "Buena Data", href: officialPaths.buenaData },
+      { label: "Brújula Financiera", href: officialPaths.brujulaFinanciera },
+      { label: "Brújula Crediticia", href: officialPaths.brujulaCrediticia },
+      { label: "Monetización", href: officialPaths.monetizacion },
+      { label: "Crédito", href: officialPaths.credito },
     ],
   },
   {
@@ -73,8 +73,8 @@ const ecosystemCards: EcosystemCard[] = [
       "Te ayudamos a encontrar, evaluar y adquirir el inmueble correcto en Colombia, con orientación durante todo el proceso.",
     icon: HomeIcon,
     products: [
-      { label: "Brújula Inmobiliaria", href: "/brujula-inmobiliaria" },
-      { label: "Llave Inmobiliaria", href: "/encontramos-tu-inmueble" },
+      { label: "Brújula Inmobiliaria", href: officialPaths.brujulaInmobiliaria },
+      { label: "Llave Inmobiliaria", href: officialPaths.llaveInmobiliaria },
     ],
   },
   {
@@ -83,11 +83,11 @@ const ecosystemCards: EcosystemCard[] = [
       "Te orientamos en lo que necesitas resolver en Colombia, desde trámites y decisiones migratorias hasta representación, emprendimiento o pensión.",
     icon: DocumentIcon,
     products: [
-      { label: "Asesoría Migratoria", href: "/asesoria-migratoria" },
-      { label: "Emprendimiento", href: "/constitucion-empresas" },
-      { label: "Pensiones", href: "/pensiones" },
-      { label: "Representación Legal", href: "/representacion-legal" },
-      { label: "Servicios Fiscales", href: "/servicios-fiscales" },
+      { label: "Asesoría Migratoria", href: officialPaths.asesoriaMigratoria },
+      { label: "Emprendimiento", href: officialPaths.emprendimiento },
+      { label: "Pensiones", href: officialPaths.pensiones },
+      { label: "Representación Legal", href: officialPaths.representacionLegal },
+      { label: "Servicios Fiscales", href: officialPaths.serviciosFiscales },
     ],
   },
   {
@@ -95,7 +95,7 @@ const ecosystemCards: EcosystemCard[] = [
     description:
       "Llevamos constructoras y proyectos inmobiliarios en Colombia hasta las ciudades donde viven colombianos en el exterior que quieren invertir y construir patrimonio en su país.",
     icon: DownloadIcon,
-    products: [{ label: "Tour de la Vivienda", href: officialUrls.tourVivienda }],
+    products: [{ label: "Tour de la Vivienda", href: officialPaths.tourVivienda }],
   },
 ];
 

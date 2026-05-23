@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
+import { officialPaths } from "@/app/lib/officialUrls";
 
 const container: Variants = {
   hidden: {},
@@ -53,27 +54,27 @@ const SERVICE_CARDS: ServiceCard[] = [
     tags: [
       {
         label: "Buena Data",
-        href: "finanzas/buena-data",
+        href: officialPaths.buenaData,
       },
       {
         label: "Brújula Financiera",
-        href: "finanzas/brujula-financiera",
+        href: officialPaths.brujulaFinanciera,
       },
       {
         label: "Brújula Crediticia",
-        href: "finanzas/brujula-crediticia",
+        href: officialPaths.brujulaCrediticia,
       },
       {
         label: "Monetización",
-        href: "finanzas/monetizacion",
+        href: officialPaths.monetizacion,
       },
       {
         label: "Crédito",
-        href: "finanzas/credito-hipotecario",
+        href: officialPaths.credito,
       },
     ],
     cta: "Ver servicios financieros",
-    href: "/finanzas",
+    href: officialPaths.finanzasHub,
   },
   {
     icon: "🏠",
@@ -83,15 +84,15 @@ const SERVICE_CARDS: ServiceCard[] = [
     tags: [
       {
         label: "Brújula Inmobiliaria",
-        href: "inmuebles/brujula-inmobiliaria",
+        href: officialPaths.brujulaInmobiliaria,
       },
       {
         label: "Llave inmobiliaria",
-        href: "inmuebles/encontramos-inmueble",
+        href: officialPaths.llaveInmobiliaria,
       },
     ],
     cta: "Ver servicios inmobiliarios",
-    href: "/servicios-inmobiliarios",
+    href: officialPaths.inmuebleHub,
   },
   {
     icon: "⚖️",
@@ -101,27 +102,27 @@ const SERVICE_CARDS: ServiceCard[] = [
     tags: [
       {
         label: "Asesoría migratoria",
-        href: "legal-migracion/asesoria-migratoria",
+        href: officialPaths.asesoriaMigratoria,
       },
       {
         label: "Emprendimiento",
-        href: "legal-migracion/constitucion-empresas",
+        href: officialPaths.emprendimiento,
       },
       {
         label: "Pensiones",
-        href: "legal-migracion/pensiones",
+        href: officialPaths.pensiones,
       },
       {
         label: "Representación legal",
-        href: "legal-migracion/representacion-legal",
+        href: officialPaths.representacionLegal,
       },
       {
         label: "Servicios fiscales",
-        href: "legal-migracion/servicios-fiscales",
+        href: officialPaths.serviciosFiscales,
       },
     ],
     cta: "Ver servicios legales",
-    href: "/legal-migracion",
+    href: officialPaths.legalHub,
   },
 ];
 

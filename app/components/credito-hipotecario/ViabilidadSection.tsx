@@ -20,7 +20,7 @@ export default function ViabilidadSection()
             </h2>
 
             <a
-              href="https://colraices.com/cupocreditodavivienda/"
+              href="https://www.colraices.com/cupocreditodavivienda/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-[54.97px] w-full max-w-[314.74px] items-center justify-center gap-[12px] rounded-[8px] bg-[#4A6FA5] px-[20px] text-[15px] font-semibold leading-[22.5px] tracking-[0px] text-white no-underline transition-all duration-300 hover:bg-[#557BB2]"

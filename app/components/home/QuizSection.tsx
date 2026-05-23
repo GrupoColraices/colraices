@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
-import { officialUrls } from '@/app/lib/officialUrls'
+import { officialPaths } from '@/app/lib/officialUrls'
 
 export default function TrustStripSection() {
   const router = useRouter();
@@ -11,15 +11,15 @@ export default function TrustStripSection() {
   const ref = useRef<HTMLDivElement>(null);
 
   const routeMap: Record<string, string> = {
-    "Quiero financiar mi vivienda en Colombia": "/finanzas/credito-hipotecario",
-    "Quiero saber si hoy aplico para crédito": "/finanzas/brujula-crediticia",
-    "Quiero entender mi situación financiera": "/finanzas/brujula-financiera",
-    "Tengo reportes en Colombia": "/finanzas/buena-data",
-    "Quiero traer mi dinero a Colombia": "/finanzas/monetizacion",
-    "Quiero ver proyectos": officialUrls.tourVivienda,
-    "Quiero que busquen un inmueble por mí": "/finanzas/credito-hipotecario",
-    "Quiero analizar un inmueble que ya encontré": "/finanzas/credito-hipotecario",
-    "Quiero gestionar temas legales o migratorios": "/legal-migracion",
+    "Quiero financiar mi vivienda en Colombia": officialPaths.credito,
+    "Quiero saber si hoy aplico para crédito": officialPaths.brujulaCrediticia,
+    "Quiero entender mi situación financiera": officialPaths.brujulaFinanciera,
+    "Tengo reportes en Colombia": officialPaths.buenaData,
+    "Quiero traer mi dinero a Colombia": officialPaths.monetizacion,
+    "Quiero ver proyectos": officialPaths.tourVivienda,
+    "Quiero que busquen un inmueble por mí": officialPaths.llaveInmobiliaria,
+    "Quiero analizar un inmueble que ya encontré": officialPaths.brujulaInmobiliaria,
+    "Quiero gestionar temas legales o migratorios": officialPaths.legalHub,
   };
 
   const handleVerMiCamino = () => {

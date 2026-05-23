@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./HeroInmuebles.module.css";
+import { officialPaths } from "@/app/lib/officialUrls";
 
 export default function HeroInmuebles() {
   const [hovered, setHovered] = useState<number | null>(null);
@@ -42,7 +43,7 @@ export default function HeroInmuebles() {
             <div className={styles.options}>
               <button
                 type="button"
-                onClick={() => router.push("/inmuebles/encontramos-inmueble")}
+                onClick={() => router.push(officialPaths.llaveInmobiliaria)}
                 onMouseEnter={() => setHovered(1)}
                 onMouseLeave={() => setHovered(null)}
                 className={`${styles.option} ${styles.left} ${
@@ -63,7 +64,7 @@ export default function HeroInmuebles() {
 
               <button
                 type="button"
-                onClick={() => router.push("/inmuebles/brujula-inmobiliaria")}
+                onClick={() => router.push(officialPaths.brujulaInmobiliaria)}
                 onMouseEnter={() => setHovered(2)}
                 onMouseLeave={() => setHovered(null)}
                 className={`${styles.option} ${styles.right} ${

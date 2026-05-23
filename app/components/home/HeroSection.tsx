@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { officialPaths } from "@/app/lib/officialUrls";
 
 type Service = {
   text: string;
@@ -10,9 +11,9 @@ type Service = {
 };
 
 const SERVICES: readonly Service[] = [
-  { text: "Financiación en Colombia", icon: "💰", href: "/finanzas" },
-  { text: "Tu propiedad en Colombia", icon: "🏠", href: "/inmuebles" },
-  { text: "Servicios legales y migratorios", icon: "⚖️", href: "/legal-migracion" },
+  { text: "Financiación en Colombia", icon: "💰", href: officialPaths.finanzasHub },
+  { text: "Tu propiedad en Colombia", icon: "🏠", href: officialPaths.inmuebleHub },
+  { text: "Servicios legales y migratorios", icon: "⚖️", href: officialPaths.legalHub },
 ];
 
 // 🔥 AJUSTES PRO (sin cambiar diseño)

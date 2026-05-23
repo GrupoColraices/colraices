@@ -4,22 +4,22 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const routeNameMap: Record<string, string> = {
-  finanzas: "Finanzas",
-  inmuebles: "Inmuebles",
-  "legal-migracion": "Legal y Migración",
-  "tour-vivienda": "Tour de la Vivienda",
+  "finanzas-y-credito": "Finanzas y Crédito",
+  "inversion-inmobiliaria": "Inversión Inmobiliaria",
+  "legal-y-migratorio": "Legal y Migratorio",
+  "tour-de-la-vivienda": "Tour de la Vivienda",
   blog: "Blog",
   "brujula-financiera": "Brújula Financiera",
   "brujula-crediticia": "Brújula Crediticia",
   "buena-data": "Buena Data",
-  "credito-hipotecario": "Crédito Hipotecario",
+  "credito-para-colombianos-en-el-exterior": "Crédito",
   monetizacion: "Monetización",
   "asesoria-migratoria": "Asesoría Migratoria",
-  "constitucion-empresas": "Constitución de Empresas",
+  "emprender-en-colombia": "Asesoría de Emprendimiento",
   pensiones: "Pensiones",
-  "representacion-legal": "Representación Legal",
+  "representacion-legal-en-colombia": "Representación Legal",
   "servicios-fiscales": "Servicios Fiscales",
-  "encontramos-inmueble": "Encontramos tu inmueble",
+  "llave-inmobiliaria": "Llave Inmobiliaria",
 };
 
 function formatBreadcrumbLabel(value: string): string {

@@ -1,14 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import Breadcrumb from "@/app/components/layout/Breadcrumb";
 import SiteLayout from "@/app/components/layout/SiteLayout";
 import { getBlogPostBySlug } from "@/app/lib/blogApi";
+import { officialUrls } from "@/app/lib/officialUrls";
 
 type BlogDetailPageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+export async function generateMetadata({
+  params,
+}: BlogDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const canonical = `${officialUrls.blog}/${slug}`;
+
+  return {
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      url: canonical,
+    },
+  };
+}
 
 export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   const { slug } = await params;

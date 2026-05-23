@@ -3,15 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { officialUrls } from "@/app/lib/officialUrls";
+import { officialPaths } from "@/app/lib/officialUrls";
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Finanzas", href: "/finanzas" },
-  { label: "Inmuebles", href: "/inmuebles" },
-  { label: "Legal y Migración", href: "/legal-migracion" },
-  { label: "Tour de la Vivienda", href: officialUrls.tourVivienda },
-  { label: "Blog", href: "/blog" },
+  { label: "Home", href: officialPaths.home },
+  { label: "Finanzas", href: officialPaths.finanzasHub },
+  { label: "Inmuebles", href: officialPaths.inmuebleHub },
+  { label: "Legal y Migración", href: officialPaths.legalHub },
+  { label: "Tour de la Vivienda", href: officialPaths.tourVivienda },
+  { label: "Blog", href: officialPaths.blog },
 ];
 
 export default function Navbar() {
