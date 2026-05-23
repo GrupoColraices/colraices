@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import PrivacyPolicy from "./PrivacyPolicy";
+import { TOUR_VIVIENDA_URL, officialPaths } from "@/app/lib/officialUrls";
 import {
   FaFacebookF,
   FaInstagram,
@@ -57,17 +58,17 @@ export default function Footer() {
           <div className="flex flex-col">
             <h3 className="text-[17px] font-bold uppercase tracking-[1.38px] text-white sm:text-[19px] lg:text-[11.52px]">Servicios</h3>
             <div className="mt-4 flex flex-col gap-3 text-[16px] leading-[24px] text-white/55 sm:text-[17px] sm:leading-[27px] lg:mt-[18px] lg:gap-[14px] lg:text-[13.12px] lg:leading-[19.7px] lg:text-white/45">
-              <Link href="/finanzas" className="transition-colors hover:text-white">Finanzas</Link>
-              <Link href="/inmuebles" className="transition-colors hover:text-white">Inmuebles</Link>
-              <Link href="/legal-migracion" className="transition-colors hover:text-white">Legal y Migración</Link>
-              <Link href="/tour-vivienda" className="transition-colors hover:text-white">Tour de la Vivienda</Link>
+              <Link href={officialPaths.finanzasHub} className="transition-colors hover:text-white">Finanzas</Link>
+              <Link href={officialPaths.inmuebleHub} className="transition-colors hover:text-white">Inmuebles</Link>
+              <Link href={officialPaths.legalHub} className="transition-colors hover:text-white">Legal y Migración</Link>
+              <Link href={TOUR_VIVIENDA_URL} className="transition-colors hover:text-white">Tour de la Vivienda</Link>
             </div>
           </div>
 
           <div className="flex flex-col">
             <h3 className="text-[17px] font-bold uppercase tracking-[1.38px] text-white sm:text-[19px] lg:text-[11.52px]">Empresa</h3>
             <div className="mt-4 flex flex-col gap-3 text-[16px] leading-[24px] text-white/55 sm:text-[17px] sm:leading-[27px] lg:mt-[18px] lg:gap-[14px] lg:text-[13.12px] lg:leading-[19.7px] lg:text-white/45">
-              <Link href="/quienes-somos" className="transition-colors hover:text-white">Quiénes somos</Link>
+              <Link href={officialPaths.nosotros} className="transition-colors hover:text-white">Quiénes somos</Link>
               <Link href="/trabaja-con-nosotros" className="transition-colors hover:text-white">Trabaja con nosotros</Link>
             </div>
           </div>
@@ -75,7 +76,7 @@ export default function Footer() {
           <div className="flex flex-col">
             <h3 className="text-[17px] font-bold uppercase tracking-[1.38px] text-white sm:text-[19px] lg:text-[11.52px]">Recursos</h3>
             <div className="mt-4 flex flex-col gap-3 text-[16px] leading-[24px] text-white/55 sm:text-[17px] sm:leading-[27px] lg:mt-[18px] lg:gap-[14px] lg:text-[13.12px] lg:leading-[19.7px] lg:text-white/45">
-              <Link href="/blog" className="transition-colors hover:text-white">Blog</Link>
+              <Link href={officialPaths.blog} className="transition-colors hover:text-white">Blog</Link>
             </div>
           </div>
         </div>

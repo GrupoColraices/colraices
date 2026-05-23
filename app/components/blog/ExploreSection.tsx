@@ -31,7 +31,6 @@ type Article = {
 
 type ExploreSectionProps = {
   posts?: BlogPost[];
-  latestPost?: BlogPost | null;
   featuredPosts?: BlogPost[];
   postsError?: string | null;
   pagination?: BlogPagination | null;
@@ -113,14 +112,6 @@ const articles: Article[] = [
     href: "#",
     imageUrl: null,
   },
-];
-
-const topArticles = [
-  "¿Quieres saber si eres viable para crédito desde el exterior?",
-  "Guía para comprar vivienda en Colombia desde el exterior",
-  "Impuestos en Colombia para colombianos en el exterior",
-  "Cómo consultar tu historial crediticio desde el exterior",
-  "Brújula Financiera: organiza y proyecta tu futuro desde el exterior",
 ];
 
 const topArticleColors = [
@@ -316,7 +307,6 @@ function BlogPaginationControls({
 
 export default function ExploreSection({
   posts,
-  latestPost = null,
   featuredPosts,
   postsError = null,
   pagination = null,
@@ -342,11 +332,6 @@ export default function ExploreSection({
     [posts, activeCategoryName],
   );
 
-  const latestArticle = useMemo(
-    () => (latestPost ? mapPostToArticle(latestPost, 0) : null),
-    [latestPost],
-  );
-
   const featuredApiArticles = useMemo(
     () => featuredPosts?.map((post, index) => mapPostToArticle(post, index)) ?? [],
     [featuredPosts],
@@ -369,26 +354,14 @@ export default function ExploreSection({
     });
   }, [query, sourceArticles]);
 
-  const featuredSourceArticles =
-    featuredApiArticles.length > 0 ? featuredApiArticles : sourceArticles;
-  const visibleFeaturedSourceArticles = latestArticle
-    ? featuredSourceArticles.filter((article) => article.id !== latestArticle.id)
-    : featuredSourceArticles;
-
-  const featuredArticles =
-    hasApiPosts || featuredApiArticles.length > 0
-      ? visibleFeaturedSourceArticles.slice(0, 5).map((article, index) => ({
-          id: article.id,
-          title: article.title,
-          href: article.href,
-          color: topArticleColors[index] ?? "bg-[#1A2E5C]",
-        }))
-      : topArticles.map((title, index) => ({
-          id: title,
-          title,
-          href: "#",
-          color: topArticleColors[index] ?? "bg-[#1A2E5C]",
-        }));
+  const featuredArticles = featuredApiArticles
+    .slice(0, 5)
+    .map((article, index) => ({
+      id: article.id,
+      title: article.title,
+      href: article.href,
+      color: topArticleColors[index] ?? "bg-[#1A2E5C]",
+    }));
 
   const hasSourceArticles = sourceArticles.length > 0;
   const isSearchEmpty = hasSourceArticles && filteredArticles.length === 0;
@@ -616,69 +589,9 @@ export default function ExploreSection({
               <span className="h-px flex-1 bg-[#EDEDED]" />
             </div>
 
-            {latestArticle ? (
-              <Link
-                href={latestArticle.href}
-                className="group mt-[16px] block overflow-hidden rounded-[12px] border border-[#EDEDED] bg-white shadow-[0_8px_24px_rgba(15,45,92,0.08)] transition hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(15,45,92,0.12)]"
-              >
-                <div
-                  className={`relative h-[116px] overflow-hidden bg-gradient-to-br ${latestArticle.color}`}
-                >
-                  {latestArticle.imageUrl ? (
-                    <Image
-                      src={latestArticle.imageUrl}
-                      alt={latestArticle.title}
-                      fill
-                      sizes="300px"
-                      className="object-cover transition duration-300 group-hover:scale-105"
-                    />
-                  ) : (
-                    <span className="absolute bottom-[10px] right-[14px] text-[38px] opacity-25 transition duration-300 group-hover:scale-110">
-                      {latestArticle.emoji}
-                    </span>
-                  )}
-                </div>
-
-                <div className="px-[16px] py-[15px]">
-                  <p className="text-[10px] font-bold uppercase leading-[15px] tracking-[0.8px] text-[#2A3F77]">
-                    Último artículo
-                  </p>
-
-                  <h4 className="mt-[7px] line-clamp-2 text-[13.5px] font-bold leading-[18.5px] text-[#1A2340] transition group-hover:text-[#2A3F77]">
-                    {latestArticle.title}
-                  </h4>
-
-                  <div className="mt-[12px] flex items-center gap-[8px] text-[11px] leading-none text-[#B0B8C1]">
-                    <span>{latestArticle.readTime}</span>
-                    <span>{latestArticle.date}</span>
-                  </div>
-                </div>
-              </Link>
-            ) : null}
-
             <div className="mt-[16px]">
-              {featuredArticles.map((article, index) =>
-                article.href === "#" ? (
-                  <div
-                    key={article.id}
-                    className="group grid grid-cols-[28px_52px_1fr] items-center gap-[12px] border-b border-[#EDEDED] py-[12px]"
-                  >
-                    <span className="text-[22px] font-extrabold leading-[22px] text-[#EDEDED]">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    <span
-                      className={[
-                        "h-[44px] w-[52px] rounded-[8px] shadow-[var(--shadow-sm)]",
-                        article.color,
-                      ].join(" ")}
-                    />
-
-                    <span className="text-[12.5px] font-semibold leading-[17.5px] text-[#1A2340]">
-                      {article.title}
-                    </span>
-                  </div>
-                ) : (
+              {featuredArticles.length > 0 ? (
+                featuredArticles.map((article, index) => (
                   <Link
                     key={article.id}
                     href={article.href}
@@ -699,7 +612,11 @@ export default function ExploreSection({
                       {article.title}
                     </span>
                   </Link>
-                ),
+                ))
+              ) : (
+                <div className="rounded-[10px] border border-dashed border-[#EDEDED] px-4 py-5 text-center text-[12.5px] leading-[18px] text-[#4B5563]">
+                  Aún no hay artículos destacados.
+                </div>
               )}
             </div>
 

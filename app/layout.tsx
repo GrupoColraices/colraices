@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import FloatingContactButton from "./components/layout/FloatingContactButton";
+import { SITE_URL, officialUrls } from "./lib/officialUrls";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -13,6 +14,7 @@ const montserrat = Montserrat({
 const GTM_ID = "GTM-WQDR37KG";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default:
       "Colraices | Crédito, inversión y patrimonio para colombianos en el exterior",
@@ -22,6 +24,14 @@ export const metadata: Metadata = {
     "Ayudamos a colombianos en el exterior a acceder a crédito hipotecario, invertir en Colombia, comprar vivienda y resolver procesos financieros, legales y fiscales desde cualquier país.",
   icons: {
     icon: "/favicon.ico",
+  },
+  alternates: {
+    canonical: officialUrls.home,
+  },
+  openGraph: {
+    url: officialUrls.home,
+    siteName: "Colraices",
+    type: "website",
   },
 };
 

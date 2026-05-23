@@ -88,7 +88,7 @@ export default function CreditSection() {
               </div>
 
               <Link
-                href="https://colraices.com/cupocreditodavivienda/"
+                href="https://www.colraices.com/cupocreditodavivienda/"
                 className="block h-[52.98px] w-full max-w-[304.03px] rounded-[12px] bg-[#2A3F77] py-[15px] text-center text-[14px] font-bold leading-[21px] text-white transition hover:opacity-90"
               >
                 Obtén tu cupo de crédito

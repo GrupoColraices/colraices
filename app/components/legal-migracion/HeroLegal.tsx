@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Montserrat } from "next/font/google";
+import { officialPaths } from "@/app/lib/officialUrls";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -12,27 +13,27 @@ const LEGAL_SERVICES = [
   {
     icon: "🛂",
     text: "Asesoría migratoria y visas",
-    href: "/legal-migracion/asesoria-migratoria",
+    href: officialPaths.asesoriaMigratoria,
   },
   {
     icon: "🏢",
     text: "Asesoría en emprendimiento",
-    href: "/legal-migracion/constitucion-empresas",
+    href: officialPaths.emprendimiento,
   },
   {
     icon: "⚖️",
     text: "Pensiones",
-    href: "/legal-migracion/pensiones",
+    href: officialPaths.pensiones,
   },
   {
     icon: "💼",
     text: "Representación legal",
-    href: "/legal-migracion/representacion-legal",
+    href: officialPaths.representacionLegal,
   },
   {
     icon: "📄",
     text: "Servicios fiscales",
-    href: "/legal-migracion/servicios-fiscales",
+    href: officialPaths.serviciosFiscales,
   },
 ] as const;
 

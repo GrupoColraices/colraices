@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { officialPaths } from "@/app/lib/officialUrls";
 
 const cards = [
   {
     icon: "⚠️",
     text: "Tengo reportes negativos o deudas pendientes en Colombia",
     tag: "Buena Data →",
-    href: "/finanzas/buena-data",
+    href: officialPaths.buenaData,
     color: "#DC2626",
     bg: "#FEF2F2",
     line: "#DC2626",
@@ -17,7 +18,7 @@ const cards = [
     icon: "🔍",
     text: "No sé cómo está mi situación financiera en Colombia",
     tag: "Brújula Financiera →",
-    href: "/finanzas/brujula-financiera",
+    href: officialPaths.brujulaFinanciera,
     color: "#2A3F77",
     bg: "#F1F5F9",
     line: "#2A3F77",
@@ -26,7 +27,7 @@ const cards = [
     icon: "🏠",
     text: "Quiero comprar vivienda en Colombia pero no sé si califico para crédito",
     tag: "Brújula Crediticia →",
-    href: "/finanzas/brujula-crediticia",
+    href: officialPaths.brujulaCrediticia,
     color: "#FFC107",
     bg: "#FEF3C7",
     line: "#FFC107",
@@ -35,7 +36,7 @@ const cards = [
     icon: "🏢",
     text: "Envío remesas a Colombia y quiero convertir ese dinero en mi patrimonio",
     tag: "Crédito →",
-    href: "/finanzas/credito-hipotecario",
+    href: officialPaths.credito,
     color: "#2A3F77",
     bg: "#F1F5F9",
     line: "#2A3F77",
@@ -44,7 +45,7 @@ const cards = [
     icon: "💸",
     text: "Tengo más de USD $10.000 que quiero traer a Colombia de forma segura",
     tag: "Monetización →",
-    href: "/finanzas/monetizacion",
+    href: officialPaths.monetizacion,
     color: "#059669",
     bg: "#ECFDF5",
     line: "#059669",

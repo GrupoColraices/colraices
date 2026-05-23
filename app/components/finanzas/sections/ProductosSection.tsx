@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { officialPaths } from "@/app/lib/officialUrls";
 
 type CardColor =
   | "bg-[#1A4F9E]"
@@ -35,7 +36,7 @@ const preparacion: ProductItem[] = [
     color: "bg-[#1A4F9E]",
     icon: "🧭",
     button: "Ver produto →",
-    href: "/finanzas/brujula-financiera",
+    href: officialPaths.brujulaFinanciera,
   },
   {
     tag: "VIABILIDAD CREDITICIA",
@@ -47,7 +48,7 @@ const preparacion: ProductItem[] = [
     color: "bg-[#FFC107]",
     icon: "📊",
     button: "Ver produto →",
-    href: "/finanzas/brujula-crediticia",
+    href: officialPaths.brujulaCrediticia,
   },
   {
     tag: "RESOLUCIÓN ACTIVA",
@@ -59,7 +60,7 @@ const preparacion: ProductItem[] = [
     color: "bg-[#DC2626]",
     icon: "🔧",
     button: "Ver produto →",
-    href: "/finanzas/buena-data",
+    href: officialPaths.buenaData,
   },
 ];
 
@@ -75,7 +76,7 @@ const ejecucion: ProductItem[] = [
     icon: "🏠",
     button: "Ver página de crédito →",
     filled: true,
-    href: "/finanzas/credito-hipotecario",
+    href: officialPaths.credito,
   },
   {
     tag: "Banco Unión · Garantía hipotecaria",
@@ -98,7 +99,7 @@ const ejecucion: ProductItem[] = [
     color: "bg-[#059669]",
     icon: "💱",
     button: "Ver producto →",
-    href: "/finanzas/monetizacion",
+    href: officialPaths.monetizacion,
   },
 ];
 
