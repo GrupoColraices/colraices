@@ -210,7 +210,7 @@ export default function PrivacyPolicy({ className = "" }: PrivacyPolicyProps) {
                   <strong>Email:</strong> info@colraices.co
                 </p>
                 <p className="mb-2 text-[15px]">
-                  <strong>Teléfono:</strong> (57) 601 328 8939
+                  <strong>Teléfono:</strong> (+57) 601 917 6737
                 </p>
               </section>
 

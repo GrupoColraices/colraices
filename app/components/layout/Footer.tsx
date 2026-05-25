@@ -36,7 +36,7 @@ export default function Footer() {
               <p>El ecosistema de soluciones para colombianos en el exterior.</p>
               <p className="mt-2">
                 <Link href="tel:+576013288939" className="transition-colors hover:text-white">
-                  Teléfono: (57) 601 328 8939
+                  Teléfono: (+57) 601 917 6737
                 </Link>
               </p>
               <p className="mt-1">
