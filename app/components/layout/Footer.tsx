@@ -36,7 +36,7 @@ export default function Footer() {
               <p>El ecosistema de soluciones para colombianos en el exterior.</p>
               <p className="mt-2">
                 <Link href="tel:+576013288939" className="transition-colors hover:text-white">
-                  Teléfono: (57) 601 328 8939
+                  Teléfono: (+57) 601 917 6737
                 </Link>
               </p>
               <p className="mt-1">
@@ -47,11 +47,11 @@ export default function Footer() {
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#091D3E] transition-all hover:opacity-80"><FaFacebookF size={14} /></Link>
-              <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#091D3E] transition-all hover:opacity-80"><FaInstagram size={14} /></Link>
-              <Link href="https://wa.me/576013288939" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#091D3E] transition-all hover:opacity-80"><FaWhatsapp size={14} /></Link>
-              <Link href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#091D3E] transition-all hover:opacity-80"><FaYoutube size={14} /></Link>
-              <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#091D3E] transition-all hover:opacity-80"><FaLinkedinIn size={14} /></Link>
+              <Link href="https://www.facebook.com/colraices" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#091D3E] transition-all hover:opacity-80"><FaFacebookF size={14} /></Link>
+              <Link href="https://www.instagram.com/colraices/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#091D3E] transition-all hover:opacity-80"><FaInstagram size={14} /></Link>
+              <Link href="https://api.whatsapp.com/send/?phone=15136479405&text=Hola%2C+Colraices.+Estoy+fuera+de+Colombia%2C+vengo+desde+la+p%C3%A1gina+web+y+quiero+orientaci%C3%B3n+para+transformar+mi+remesa+en+patrimonio+a+largo+plazo&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#091D3E] transition-all hover:opacity-80"><FaWhatsapp size={14} /></Link>
+              <Link href="https://www.youtube.com/@colraices_canal_oficial" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#091D3E] transition-all hover:opacity-80"><FaYoutube size={14} /></Link>
+              <Link href="https://www.linkedin.com/company/colraices" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#091D3E] transition-all hover:opacity-80"><FaLinkedinIn size={14} /></Link>
             </div>
           </div>
 
