@@ -247,7 +247,7 @@ const estilos: Record<string, React.CSSProperties> = {
   },
   sliderWrap: {
     position: "relative",
-    padding: "0 clamp(4px, 2vw, 56px)",
+    padding: "0 clamp(64px, 7vw, 88px)",
   },
   slider: {
     width: "100%",

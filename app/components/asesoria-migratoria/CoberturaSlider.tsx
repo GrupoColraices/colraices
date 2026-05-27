@@ -1,13 +1,20 @@
 "use client";
 
-const paises = [
-  { codigo: "ES", nombre: "España", bandera: "🇪🇸" },
-  { codigo: "GB", nombre: "Reino Unido", bandera: "🇬🇧" },
-  { codigo: "FR", nombre: "Francia", bandera: "🇫🇷" },
-  { codigo: "DE", nombre: "Alemania", bandera: "🇩🇪" },
-  { codigo: "AU", nombre: "Australia", bandera: "🇦🇺" },
-  { codigo: "US", nombre: "Estados Unidos", bandera: "🇺🇸" },
-  { codigo: "CA", nombre: "Canadá", bandera: "🇨🇦" },
+import Flag from "react-world-flags";
+
+type Pais = {
+  codigo: string;
+  nombre: string;
+};
+
+const paises: Pais[] = [
+  { codigo: "ES", nombre: "España" },
+  { codigo: "GB", nombre: "Reino Unido" },
+  { codigo: "FR", nombre: "Francia" },
+  { codigo: "DE", nombre: "Alemania" },
+  { codigo: "AU", nombre: "Australia" },
+  { codigo: "US", nombre: "Estados Unidos" },
+  { codigo: "CA", nombre: "Canadá" },
 ];
 
 export default function CoberturaSlider() {
@@ -63,13 +70,15 @@ export default function CoberturaSlider() {
           >
             {sliderItems.map((pais, index) => (
               <div
-                key={index}
+                key={`${pais.codigo}-${index}`}
                 className="group flex items-center justify-center h-[46px] sm:h-[50px] lg:h-[52px] px-[16px] sm:px-[20px] lg:px-[22px] mx-[6px] sm:mx-[10px] lg:mx-[12px] border border-white/[0.12] bg-white/[0.03] backdrop-blur-[8px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] rounded-tl-[16px] rounded-tr-none rounded-bl-none rounded-br-[16px] transition-all duration-300 hover:-translate-y-[4px] hover:border-[#DFA428] hover:shadow-[0_8px_24px_rgba(223,164,40,0.18)] cursor-pointer"
               >
-                {/* Bandera */}
-                <span className="text-[18px] sm:text-[19px] lg:text-[20px] mr-[8px] sm:mr-[10px] lg:mr-[12px] leading-none">
-                  {pais.bandera}
-                </span>
+                {/* Bandera real */}
+                <Flag
+                  code={pais.codigo}
+                  title={pais.nombre}
+                  className="w-[22px] sm:w-[24px] lg:w-[26px] h-[16px] sm:h-[17px] lg:h-[18px] mr-[8px] sm:mr-[10px] lg:mr-[12px] rounded-[2px] object-cover shadow-sm"
+                />
 
                 {/* Nombre */}
                 <span
