@@ -27,26 +27,27 @@ export default function RepresentationHero() {
       <div className="relative z-10 mx-auto flex max-w-[1180px] flex-col items-center justify-between gap-10 px-6 lg:flex-row lg:items-center">
         
         {/* LEFT CONTENT */}
-        <div className="w-full max-w-[612px]">
-          <h1 className="font-montserrat text-[58px] font-semibold leading-[1.08] tracking-[-0.03em] text-[#0F2D5C]">
-            La escritura no espera.
-            <br />
-            <span className="italic font-semibold text-[#1A4F9E]">
+        <div className="w-full max-w-[576px]">
+          <h1 className="font-montserrat text-[48px] font-semibold leading-[60.2px] tracking-[0px] text-[#0F2D5C]">
+            <span className="block lg:whitespace-nowrap">
+              La escritura no espera.
+            </span>
+            <span className="block italic font-semibold text-[#1A4F9E] lg:whitespace-nowrap">
               Tú no tienes que viajar.
             </span>
           </h1>
 
-          <p className="mt-8 max-w-[560px] text-[18px] leading-[1.75] text-[#64748B]">
+          <p className="mt-8 max-w-[576px] text-[16.8px] font-light leading-[29.4px] text-[#475569]">
             Cuando la fecha de escritura ya está definida y tú estás fuera del país,
             encontrar quién te represente en la firma no siempre es sencillo.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <button className="h-[52px] rounded-full bg-[#D69A00] px-9 text-[16px] font-semibold text-white shadow-[0_8px_22px_rgba(214,154,0,0.28)] transition-all duration-300 hover:bg-[#E2A700]">
+            <button className="h-[52px] rounded-full bg-[#D69A00] px-9 text-[14.4px] font-semibold leading-[21.6px] text-white shadow-[0_8px_22px_rgba(214,154,0,0.28)] transition-all duration-300 hover:bg-[#E2A700]">
               Contratar representación →
             </button>
 
-            <button className="h-[52px] rounded-full border border-[#CBD5E1] bg-transparent px-9 text-[16px] font-semibold text-[#0F2D5C] transition-all duration-300 hover:border-[#0F2D5C] hover:bg-white">
+            <button className="h-[52px] rounded-full border border-[#CBD5E1] bg-transparent px-9 text-[14.4px] font-semibold leading-[21.6px] text-[#0F2D5C] transition-all duration-300 hover:border-[#0F2D5C] hover:bg-white">
               Ver cómo funciona
             </button>
           </div>
