@@ -37,6 +37,7 @@ type ExploreSectionProps = {
   categories?: BlogCategory[];
   categoriesError?: string | null;
   activeCategorySlug?: string | null;
+  activeSearch?: string | null;
 };
 
 const articles: Article[] = [
@@ -313,13 +314,16 @@ export default function ExploreSection({
   categories,
   categoriesError = null,
   activeCategorySlug = null,
+  activeSearch = null,
 }: ExploreSectionProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const searchParamsString = searchParams.toString();
   const shouldScrollToListRef = useRef(false);
   const [isPending, startTransition] = useTransition();
-  const [query, setQuery] = useState("");
+  const activeSearchValue = activeSearch?.trim() || "";
+  const [query, setQuery] = useState(activeSearchValue);
 
   const activeSlug = activeCategorySlug?.trim() || null;
   const visibleCategories = categories ?? [];
@@ -340,20 +344,6 @@ export default function ExploreSection({
   const hasApiPosts = Array.isArray(posts);
   const sourceArticles = hasApiPosts ? apiArticles : articles;
 
-  const filteredArticles = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-
-    return sourceArticles.filter((article) => {
-      const matchesSearch =
-        !normalizedQuery ||
-        article.title.toLowerCase().includes(normalizedQuery) ||
-        article.desc.toLowerCase().includes(normalizedQuery) ||
-        article.category.toLowerCase().includes(normalizedQuery);
-
-      return matchesSearch;
-    });
-  }, [query, sourceArticles]);
-
   const featuredArticles = featuredApiArticles
     .slice(0, 5)
     .map((article, index) => ({
@@ -363,9 +353,51 @@ export default function ExploreSection({
       color: topArticleColors[index] ?? "bg-[#1A2E5C]",
     }));
 
-  const hasSourceArticles = sourceArticles.length > 0;
-  const isSearchEmpty = hasSourceArticles && filteredArticles.length === 0;
   const isApiEmpty = !postsError && hasApiPosts && sourceArticles.length === 0;
+  const isFilteredApiEmpty = isApiEmpty && Boolean(activeSlug || activeSearchValue);
+
+  useEffect(() => {
+    setQuery(activeSearchValue);
+  }, [activeSearchValue]);
+
+  useEffect(() => {
+    const normalizedQuery = query.trim();
+
+    if (normalizedQuery === activeSearchValue) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      const params = new URLSearchParams(searchParamsString);
+
+      params.delete("page");
+
+      if (normalizedQuery) {
+        params.set("search", normalizedQuery);
+      } else {
+        params.delete("search");
+      }
+
+      const queryString = params.toString();
+
+      shouldScrollToListRef.current = true;
+
+      startTransition(() => {
+        router.replace(queryString ? `${pathname}?${queryString}` : pathname, {
+          scroll: false,
+        });
+      });
+    }, 450);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [
+    activeSearchValue,
+    pathname,
+    query,
+    router,
+    searchParamsString,
+    startTransition,
+  ]);
 
   useEffect(() => {
     if (!shouldScrollToListRef.current) {
@@ -380,7 +412,7 @@ export default function ExploreSection({
         block: "start",
       });
     });
-  }, [pagination?.currentPage, activeSlug]);
+  }, [pagination?.currentPage, activeSlug, activeSearchValue]);
 
   function pushBlogParams(params: URLSearchParams) {
     const queryString = params.toString();
@@ -395,9 +427,16 @@ export default function ExploreSection({
   }
 
   function handleCategoryChange(categorySlug?: string | null) {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParamsString);
+    const normalizedQuery = query.trim();
 
     params.delete("page");
+
+    if (normalizedQuery) {
+      params.set("search", normalizedQuery);
+    } else {
+      params.delete("search");
+    }
 
     if (categorySlug) {
       params.set("category_slug", categorySlug);
@@ -409,7 +448,7 @@ export default function ExploreSection({
   }
 
   function handlePageChange(page: number) {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParamsString);
 
     params.set("page", String(page));
 
@@ -503,10 +542,10 @@ export default function ExploreSection({
 
         <div className="mt-[34px] grid gap-[44px] lg:grid-cols-[1fr_300px] lg:items-start">
           <div>
-            {filteredArticles.length > 0 ? (
+            {sourceArticles.length > 0 ? (
               <>
                 <div className="grid gap-x-[24px] gap-y-[24px] sm:grid-cols-2">
-                  {filteredArticles.map((article) => (
+                  {sourceArticles.map((article) => (
                     <article key={article.id}>
                       <Link
                         href={article.href}
@@ -566,13 +605,13 @@ export default function ExploreSection({
             ) : (
               <div className="rounded-[12px] border border-dashed border-[#EDEDED] bg-white p-10 text-center">
                 <h3 className="text-[16px] font-bold text-[#1A2340]">
-                  {isApiEmpty
+                  {isApiEmpty && !isFilteredApiEmpty
                     ? "Aún no hay publicaciones disponibles"
                     : "No encontramos artículos"}
                 </h3>
 
                 <p className="mt-2 text-[13px] text-[#4B5563]">
-                  {isSearchEmpty
+                  {isFilteredApiEmpty
                     ? "Intenta buscar con otra palabra."
                     : "Cuando haya publicaciones disponibles, las verás en esta sección."}
                 </p>

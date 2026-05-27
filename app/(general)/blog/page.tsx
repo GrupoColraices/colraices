@@ -14,6 +14,7 @@ type BlogPageProps = {
   searchParams?: Promise<{
     page?: string | string[];
     category_slug?: string | string[];
+    search?: string | string[];
   }>;
 };
 
@@ -39,6 +40,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
   const resolvedSearchParams = await searchParams;
   const currentPage = getPageParam(resolvedSearchParams?.page);
   const categorySlug = getStringParam(resolvedSearchParams?.category_slug);
+  const search = getStringParam(resolvedSearchParams?.search);
 
   const [
     { posts, error, pagination },
@@ -48,6 +50,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
     getBlogPosts({
       page: currentPage,
       categorySlug,
+      search,
     }),
     getFeaturedBlogPosts(),
     getBlogCategories(),
@@ -66,6 +69,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
         categories={categories}
         categoriesError={categoriesError}
         activeCategorySlug={categorySlug}
+        activeSearch={search}
       />
       <StartHelpSection />
       <MultimediaSection />
