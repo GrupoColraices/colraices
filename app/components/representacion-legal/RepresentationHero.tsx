@@ -17,7 +17,7 @@ export default function RepresentationHero() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-[#FBF8F3] pt-[88px] pb-[68px]">
+    <section className="relative overflow-hidden bg-[rgba(255,193,7,0.10)] pt-[88px] pb-[68px]">
       {/* Background Rings */}
       <div className="absolute right-[-260px] top-1/2 h-[760px] w-[760px] -translate-y-1/2 rounded-full border border-[#2A3F770D]" />
       <div className="absolute right-[-200px] top-1/2 h-[620px] w-[620px] -translate-y-1/2 rounded-full border border-[#2A3F770D]" />
@@ -43,7 +43,7 @@ export default function RepresentationHero() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <button className="h-[52px] rounded-full bg-[#D69A00] px-9 text-[14.4px] font-semibold leading-[21.6px] text-white shadow-[0_8px_22px_rgba(214,154,0,0.28)] transition-all duration-300 hover:bg-[#E2A700]">
+            <button className="h-[52px] rounded-full bg-[#FFC107] px-9 text-[14.4px] font-semibold leading-[21.6px] text-white shadow-[0_8px_22px_rgba(255,193,7,0.28)] transition-all duration-300 hover:bg-[#E0A800]">
               Contratar representación →
             </button>
 
@@ -63,7 +63,7 @@ export default function RepresentationHero() {
             <div className="relative z-10">
               
               {/* Seal */}
-              <div className="mb-8 flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#D69A00] text-[24px] shadow-[0_8px_24px_rgba(214,154,0,0.35)]">
+              <div className="mb-8 flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#FFC107] text-[24px] shadow-[0_8px_24px_rgba(255,193,7,0.35)]">
                 📝
               </div>
 
@@ -96,7 +96,7 @@ export default function RepresentationHero() {
                     key={index}
                     className="flex items-start gap-[9px] text-[13.12px] leading-[19.7px] font-normal text-white/65"
                   >
-                    <div className="mt-[2px] flex h-[16px] w-[16px] min-w-[16px] items-center justify-center rounded-full border border-[#D69A00] text-[9px] text-[#D69A00]">
+                    <div className="mt-[2px] flex h-[16px] w-[16px] min-w-[16px] items-center justify-center rounded-full border border-[rgba(255,193,7,0.35)] bg-[rgba(255,193,7,0.10)] text-[9px] text-[#FFC107]">
                       ✓
                     </div>
                     <span>{item}</span>

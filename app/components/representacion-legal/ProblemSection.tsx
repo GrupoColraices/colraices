@@ -29,7 +29,7 @@ export default function ProblemSection() {
         
         {/* EYEBROW */}
         <div className="mb-5 w-full flex justify-center">
-            <span className="block text-[#F0B429] uppercase tracking-[1.57px] text-[16px] font-semibold leading-[16.8px] whitespace-nowrap">
+            <span className="block text-[#FFC107] uppercase tracking-[1.57px] text-[16px] font-semibold leading-[16.8px] whitespace-nowrap">
             POR QUÉ EXISTE ESTE SERVICIO
             </span>
         </div>
@@ -40,7 +40,7 @@ export default function ProblemSection() {
             Cuando no puedes viajar,
             </span>
 
-            <span className="block text-[#F0B429] italic font-semibold text-[35.86px] leading-[43px] whitespace-nowrap tracking-[-0.03em]">
+            <span className="block text-[#FFC107] italic font-semibold text-[35.86px] leading-[43px] whitespace-nowrap tracking-[-0.03em]">
             las opciones se complican.
             </span>
         </h2>
@@ -83,7 +83,7 @@ export default function ProblemSection() {
           ))}
 
           {/* FINAL CARD */}
-          <div className="w-full rounded-[20px] border border-[#F0B429]/20 bg-[#C9900C]/12 px-8 py-7 flex gap-5">
+          <div className="w-full rounded-[20px] border border-[rgba(255,193,7,0.35)] bg-[rgba(255,193,7,0.12)] px-8 py-7 flex gap-5">
             
             {/* ICON */}
             <div className="w-[32px] h-[32px] rounded-[8px] bg-[#16A34A]/18 border border-[#16A34A]/25 flex items-center justify-center text-[16px] flex-shrink-0 mt-1">
@@ -92,7 +92,7 @@ export default function ProblemSection() {
 
             {/* TEXT */}
             <div className="flex-1">
-              <div className="text-[#F0B429] uppercase tracking-[1.09px] text-[9.92px] font-semibold leading-[14.9px] mb-1">
+              <div className="text-[#FFC107] uppercase tracking-[1.09px] text-[9.92px] font-semibold leading-[14.9px] mb-1">
                 LA CUARTA OPCIÓN
               </div>
 

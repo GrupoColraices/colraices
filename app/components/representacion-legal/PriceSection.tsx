@@ -31,7 +31,7 @@ export default function PriceSection() {
           <article className="group h-fit rounded-[32px] border border-white/10 bg-[#0F2D5C]/95 p-10 shadow-[0_20px_60px_rgba(0,0,0,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
             <div className="flex items-baseline gap-2">
               <span className="bg-gradient-to-b from-white to-white/85 bg-clip-text text-[60.8px] font-bold leading-[60.8px] text-transparent">230</span>
-              <span className="text-[17.6px] font-semibold leading-[26.4px] text-[#F0B429] transition-colors duration-300 group-hover:text-[#ffd166]">USD</span>
+              <span className="text-[17.6px] font-semibold leading-[26.4px] text-[#FFC107] transition-colors duration-300 group-hover:text-[#E0A800]">USD</span>
               <span className="text-[12.8px] leading-[19.2px] text-white/40">/ escritura</span>
             </div>
 
@@ -74,7 +74,7 @@ export default function PriceSection() {
                 {cities.map((city) => (
                   <div
                     key={city}
-                    className="flex h-[42px] items-center gap-2.5 rounded-[12px] border border-[#F0B429]/[0.16] bg-[#C9900C]/10 px-3 text-[13.28px] font-medium leading-[19.9px] text-white/75 transition-all duration-300 hover:border-[#FFC10780] hover:bg-white/[0.08]"
+                    className="flex h-[42px] items-center gap-2.5 rounded-[12px] border border-[rgba(255,193,7,0.35)] bg-[rgba(255,193,7,0.10)] px-3 text-[13.28px] font-medium leading-[19.9px] text-white/75 transition-all duration-300 hover:border-[#E0A800] hover:bg-white/[0.08]"
                   >
                     <span className="h-2 w-2 rounded-full bg-[#FFC107] shadow-[0_0_12px_rgba(255,193,7,0.8)]" />
                     <span>{city}</span>
