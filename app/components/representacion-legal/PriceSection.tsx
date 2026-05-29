@@ -53,7 +53,7 @@ export default function PriceSection() {
               ))}
             </div>
 
-            <p className="mt-4 text-[9.92px] font-semibold uppercase tracking-[1.19px] text-white/28">No incluye</p>
+            <p className="mt-4 text-[9.92px] font-semibold tracking-[1.19px] text-white/28">No incluye</p>
 
             <div className="mt-1.5 space-y-1.5">
               {excludedItems.map((item) => (

@@ -2,19 +2,19 @@ export default function ProblemSection() {
   const options = [
     {
       icon: "👨‍👩‍👧",
-      label: "OPCIÓN 1",
+      label: "Opción 1",
       title: "Pedirle el favor a un familiar",
       desc: "Tu familiar firma algo que no entiende completamente. Si hay una cláusula rara o un error en la escritura, no tiene cómo detectarlo ni sabe qué hacer.",
     },
     {
       icon: "🤝",
-      label: "OPCIÓN 2",
+      label: "Opción 2",
       title: "Buscar un conocido de confianza",
       desc: "Mismo problema. La confianza personal no reemplaza el conocimiento jurídico. Y si algo sale mal, la responsabilidad es tuya.",
     },
     {
       icon: "⏳",
-      label: "OPCIÓN 3",
+      label: "Opción 3",
       title: "Aplazar hasta poder viajar",
       desc: "Retrasar la escrituración puede costar el precio pactado, la financiación aprobada o directamente la operación. Las fechas en un cierre inmobiliario no son sugerencias.",
     },
@@ -29,8 +29,8 @@ export default function ProblemSection() {
         
         {/* EYEBROW */}
         <div className="mb-5 w-full flex justify-center">
-            <span className="block text-[#FFC107] uppercase tracking-[1.57px] text-[16px] font-semibold leading-[16.8px] whitespace-nowrap">
-            POR QUÉ EXISTE ESTE SERVICIO
+            <span className="block text-[#FFC107] tracking-[1.57px] text-[16px] font-semibold leading-[16.8px] whitespace-nowrap">
+            Por qué existe este servicio
             </span>
         </div>
 
@@ -67,7 +67,7 @@ export default function ProblemSection() {
 
               {/* TEXT */}
               <div className="flex-1">
-                <div className="text-[#FCA5A5] uppercase tracking-[1.09px] text-[9.92px] font-semibold leading-[14.9px] mb-1">
+                <div className="text-[#FCA5A5] tracking-[1.09px] text-[9.92px] font-semibold leading-[14.9px] mb-1">
                   {item.label}
                 </div>
 
@@ -92,8 +92,8 @@ export default function ProblemSection() {
 
             {/* TEXT */}
             <div className="flex-1">
-              <div className="text-[#FFC107] uppercase tracking-[1.09px] text-[9.92px] font-semibold leading-[14.9px] mb-1">
-                LA CUARTA OPCIÓN
+              <div className="text-[#FFC107] tracking-[1.09px] text-[9.92px] font-semibold leading-[14.9px] mb-1">
+                La cuarta opción
               </div>
 
               <h3 className="text-white font-semibold text-[14.08px] leading-[21.1px] mb-2">

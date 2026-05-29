@@ -45,7 +45,7 @@ export default function WhenSection() {
 
       <div className="relative mx-auto flex w-full max-w-[1180px] flex-col gap-12 px-[52px]">
         <header className="flex animate-[fade-up_.8s_ease-out] flex-col items-center gap-3 text-center">
-          <div className="text-[16px] font-semibold uppercase leading-[16.8px] tracking-[1.57px] text-[#FFC107]">PERFILAMIENTO</div>
+          <div className="text-[16px] font-semibold leading-[16.8px] tracking-[1.57px] text-[#0F2D5C]">Perfilamiento</div>
           <h2 className="font-[var(--repl-font-display)] text-[35.86px] font-semibold leading-[43px] tracking-[0px] text-[#0F2D5C]">
             ¿Cuándo <em className="not-italic text-[#1A4F9E]">tiene sentido</em> este servicio?
           </h2>
@@ -54,7 +54,7 @@ export default function WhenSection() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           <article className="group min-h-[362px] animate-[fade-up_.95s_ease-out] rounded-[32px] border border-[rgba(15,45,92,0.1)] bg-[rgba(255,193,7,0.10)] p-[32px] shadow-[0_8px_30px_rgba(15,45,92,0.06)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(15,45,92,0.14)]">
             <div className="mb-[20px] flex items-center gap-[12px]">
-              <span className="grid h-[24px] w-[24px] place-items-center rounded-full bg-[#FFC107] text-base font-bold leading-none text-white transition-transform duration-500 group-hover:scale-110">
+              <span className="grid h-[24px] w-[24px] place-items-center rounded-full bg-[#0F2D5C] text-base font-bold leading-none text-white transition-transform duration-500 group-hover:scale-110">
                 ✓
               </span>
               <h3 className="text-[15.2px] font-bold leading-[22.8px] text-[#0F2D5C]">Aplica perfectamente si...</h3>

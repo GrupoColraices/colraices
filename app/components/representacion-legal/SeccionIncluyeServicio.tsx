@@ -86,7 +86,7 @@ export default function SeccionIncluyeServicio() {
     <section style={estilos.seccion}>
       <div style={estilos.contenedor1180}>
         <header style={estilos.encabezado180}>
-          <div style={estilos.eyebrow}>QUÉ INCLUYE EL SERVICIO</div>
+          <div style={estilos.eyebrow}>Qué incluye el servicio</div>
           <h2 style={estilos.titulo}>
             De principio a fin.
             <br />
@@ -222,7 +222,7 @@ const estilos: Record<string, React.CSSProperties> = {
     textAlign: "center",
   },
   eyebrow: {
-    color: "#FFC107",
+    color: "#0F2D5C",
     fontSize: "clamp(12px, 2.5vw, 16px)",
     lineHeight: 1.2,
     letterSpacing: "0.09em",
@@ -275,7 +275,7 @@ const estilos: Record<string, React.CSSProperties> = {
     height: 36,
     borderRadius: 999,
     background: "rgba(255,193,7,0.12)",
-    color: "#FFC107",
+    color: "#0F2D5C",
     fontSize: 16,
     fontWeight: 700,
     display: "inline-flex",

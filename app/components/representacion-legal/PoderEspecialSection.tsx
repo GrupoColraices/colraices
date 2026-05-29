@@ -7,7 +7,7 @@ export default function PoderEspecialSection() {
         :root {
           --repl-white: #ffffff;
           --repl-navy: #0f2d5c;
-          --repl-accent: #FFC107;
+          --repl-accent: #0F2D5C;
           --repl-slate-mid: #475569;
           --repl-blue-title: #0f2d5c;
           --repl-blue-italic: #1a4f9e;
@@ -51,7 +51,6 @@ export default function PoderEspecialSection() {
           line-height: 16.8px;
           font-weight: 600;
           letter-spacing: 1.57px;
-          text-transform: uppercase;
           color: var(--repl-accent);
         }
 
@@ -131,7 +130,6 @@ export default function PoderEspecialSection() {
           font-size: 11.52px;
           line-height: 17.3px;
           font-weight: 600;
-          text-transform: uppercase;
           letter-spacing: 1.38px;
           color: var(--repl-accent);
         }

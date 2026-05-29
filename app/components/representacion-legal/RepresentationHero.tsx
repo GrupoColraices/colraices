@@ -43,7 +43,7 @@ export default function RepresentationHero() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <button className="h-[52px] rounded-full bg-[#FFC107] px-9 text-[14.4px] font-semibold leading-[21.6px] text-white shadow-[0_8px_22px_rgba(255,193,7,0.28)] transition-all duration-300 hover:bg-[#E0A800]">
+            <button className="h-[52px] rounded-full bg-[#0F2D5C] px-9 text-[14.4px] font-semibold leading-[21.6px] text-white shadow-[0_8px_22px_rgba(15,45,92,0.24)] transition-all duration-300 hover:bg-[#0B1F3F]">
               Contratar representación →
             </button>
 
@@ -68,7 +68,7 @@ export default function RepresentationHero() {
               </div>
 
               {/* PRICE LABEL */}
-              <div className="text-[10.4px] font-semibold uppercase tracking-[0.135em] leading-[15.6px] text-white/40">
+              <div className="text-[10.4px] font-semibold tracking-[0.135em] leading-[15.6px] text-white/40">
                 Precio por escritura
               </div>
 
@@ -107,7 +107,7 @@ export default function RepresentationHero() {
               <div className="my-6 h-px w-full bg-white/10" />
 
               {/* CITIES LABEL */}
-              <div className="mb-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35">
+              <div className="mb-4 text-[10px] font-semibold tracking-[0.18em] text-white/35">
                 Ciudades con cobertura
               </div>
 
