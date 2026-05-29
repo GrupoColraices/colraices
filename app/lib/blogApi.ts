@@ -382,23 +382,34 @@ function mapPagination(response: BlogApiListResponse): BlogPagination | null {
   };
 }
 
-function buildAllPostsUrl(page = 1): string {
+function buildBlogPostsUrl({
+  page = 1,
+  categorySlug = null,
+  search = null,
+}: {
+  page?: number;
+  categorySlug?: string | null;
+  search?: string | null;
+} = {}): string {
   const safePage = Number.isFinite(page) && page > 0 ? Math.floor(page) : 1;
-  const url = new URL(ALL_POSTS_ENDPOINT);
+  const normalizedCategorySlug = normalizeText(categorySlug);
+  const normalizedSearch = normalizeText(search);
+  const url = new URL(
+    normalizedCategorySlug || normalizedSearch
+      ? LATEST_POSTS_ENDPOINT
+      : ALL_POSTS_ENDPOINT,
+  );
 
   url.searchParams.set("page", String(safePage));
   url.searchParams.set("per_page", String(POSTS_PER_PAGE));
 
-  return url.toString();
-}
+  if (normalizedCategorySlug) {
+    url.searchParams.set("category_slug", normalizedCategorySlug);
+  }
 
-function buildPostsByCategoryUrl(categorySlug: string, page = 1): string {
-  const safePage = Number.isFinite(page) && page > 0 ? Math.floor(page) : 1;
-  const url = new URL(LATEST_POSTS_ENDPOINT);
-
-  url.searchParams.set("category_slug", categorySlug);
-  url.searchParams.set("page", String(safePage));
-  url.searchParams.set("per_page", String(POSTS_PER_PAGE));
+  if (normalizedSearch) {
+    url.searchParams.set("search", normalizedSearch);
+  }
 
   return url.toString();
 }
@@ -527,15 +538,13 @@ export function getFeaturedBlogPosts(): Promise<BlogPostsResult> {
 export function getBlogPosts({
   page = 1,
   categorySlug = null,
+  search = null,
 }: {
   page?: number;
   categorySlug?: string | null;
+  search?: string | null;
 } = {}): Promise<BlogPostsResult> {
-  if (categorySlug) {
-    return fetchBlogPosts(buildPostsByCategoryUrl(categorySlug, page));
-  }
-
-  return fetchBlogPosts(buildAllPostsUrl(page));
+  return fetchBlogPosts(buildBlogPostsUrl({ page, categorySlug, search }));
 }
 
 export function getAllBlogPosts(page = 1): Promise<BlogPostsResult> {

@@ -5,7 +5,7 @@ export default function PoderSection() {
         {/* HEADER */}
         <div className="text-center">
           {/* EYEBROW */}
-          <p className="m-0 mb-[9px] font-['Montserrat'] text-[14px] font-semibold uppercase leading-[17px] tracking-[2.2px] text-[#C9900C]">
+          <p className="m-0 mb-[9px] font-['Montserrat'] text-[14px] font-semibold uppercase leading-[17px] tracking-[2.2px] text-[#FFC107]">
             La figura que te protege
           </p>
 
@@ -40,7 +40,7 @@ export default function PoderSection() {
         <div className="mt-[42px] grid grid-cols-1 gap-[26px] md:grid-cols-2">
           {/* CARD 1 */}
           <article className="box-border min-h-[178px] rounded-[10px] border border-[#E8ECF2] bg-white px-[24px] pt-[27px] pb-[24px] shadow-[0_10px_24px_rgba(15,23,42,0.035)]">
-            <h3 className="m-0 mb-[13px] font-['Montserrat'] text-[10px] font-semibold uppercase leading-[13px] tracking-[2px] text-[#92650A]">
+            <h3 className="m-0 mb-[13px] font-['Montserrat'] text-[10px] font-semibold uppercase leading-[13px] tracking-[2px] text-[#FFC107]">
               Lo que eso significa para ti
             </h3>
 
@@ -54,7 +54,7 @@ export default function PoderSection() {
 
           {/* CARD 2 */}
           <article className="box-border min-h-[178px] rounded-[10px] border border-[#E8ECF2] bg-white px-[24px] pt-[27px] pb-[24px] shadow-[0_10px_24px_rgba(15,23,42,0.035)]">
-            <h3 className="m-0 mb-[13px] font-['Montserrat'] text-[10px] font-semibold uppercase leading-[13px] tracking-[2px] text-[#92650A]">
+            <h3 className="m-0 mb-[13px] font-['Montserrat'] text-[10px] font-semibold uppercase leading-[13px] tracking-[2px] text-[#FFC107]">
               ¿Cómo otorgas el poder desde el exterior?
             </h3>
 

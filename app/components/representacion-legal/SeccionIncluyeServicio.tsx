@@ -86,7 +86,7 @@ export default function SeccionIncluyeServicio() {
     <section style={estilos.seccion}>
       <div style={estilos.contenedor1180}>
         <header style={estilos.encabezado180}>
-          <div style={estilos.eyebrow}>QUÉ INCLUYE EL SERVICIO</div>
+          <div style={estilos.eyebrow}>Qué incluye el servicio</div>
           <h2 style={estilos.titulo}>
             De principio a fin.
             <br />
@@ -183,7 +183,7 @@ export default function SeccionIncluyeServicio() {
         .repl-card-hover { border: 1px solid rgba(15,45,92,.1); }
         .repl-card-hover:hover {
           transform: translateY(-8px);
-          border-color: rgba(201, 144, 12, 0.45);
+          border-color: #E0A800;
           box-shadow: 0 20px 38px rgba(15, 45, 92, 0.14);
         }
 
@@ -200,7 +200,7 @@ export default function SeccionIncluyeServicio() {
 
 const estilos: Record<string, React.CSSProperties> = {
   seccion: {
-    background: "#FBF8F3",
+    background: "rgba(255,193,7,0.10)",
     padding: "clamp(48px, 8vw, 88px) 0 clamp(56px, 10vw, 120px)",
     minHeight: "auto",
     fontFamily: '"Montserrat", system-ui, sans-serif',
@@ -222,7 +222,7 @@ const estilos: Record<string, React.CSSProperties> = {
     textAlign: "center",
   },
   eyebrow: {
-    color: "#C9900C",
+    color: "#0F2D5C",
     fontSize: "clamp(12px, 2.5vw, 16px)",
     lineHeight: 1.2,
     letterSpacing: "0.09em",
@@ -247,7 +247,7 @@ const estilos: Record<string, React.CSSProperties> = {
   },
   sliderWrap: {
     position: "relative",
-    padding: "0 clamp(4px, 2vw, 56px)",
+    padding: "0 clamp(64px, 7vw, 88px)",
   },
   slider: {
     width: "100%",
@@ -274,8 +274,8 @@ const estilos: Record<string, React.CSSProperties> = {
     width: 36,
     height: 36,
     borderRadius: 999,
-    background: "rgba(201,144,12,.2)",
-    color: "#92650A",
+    background: "rgba(255,193,7,0.12)",
+    color: "#0F2D5C",
     fontSize: 16,
     fontWeight: 700,
     display: "inline-flex",
@@ -304,7 +304,7 @@ const estilos: Record<string, React.CSSProperties> = {
     height: 40,
     borderRadius: 999,
     border: "2px solid #0F2D5C",
-    background: "#FBF8F3",
+    background: "rgba(255,193,7,0.10)",
     color: "#0F2D5C",
     fontSize: 16,
     lineHeight: "36px",
@@ -324,7 +324,7 @@ const estilos: Record<string, React.CSSProperties> = {
     height: 40,
     borderRadius: 999,
     border: "2px solid #0F2D5C",
-    background: "#FBF8F3",
+    background: "rgba(255,193,7,0.10)",
     color: "#0F2D5C",
     fontSize: 16,
     lineHeight: "36px",

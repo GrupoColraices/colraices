@@ -10,8 +10,8 @@ export default function QuoteSection() {
           La escritura no espera. Tú no tienes que viajar. Colraices firma en tu nombre con un poder especial que solo aplica para ese acto — y se vence automáticamente al ejecutarse.
         </p>
 
-        <div className="mt-[18px] text-xs font-medium uppercase tracking-[0.14em] text-[#94A3B8] md:tracking-[0.2em]">
-          Representación Legal · Colraices
+        <div className="mt-[18px] text-xs font-medium tracking-[0.14em] text-[#94A3B8] md:tracking-[0.2em]">
+          Representación legal · Colraices
         </div>
       </div>
     </section>

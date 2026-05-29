@@ -1,5 +1,7 @@
 "use client";
 
+import Flag from "react-world-flags";
+
 const fasesPago = [
   {
     porcentaje: "40%",
@@ -153,9 +155,11 @@ export default function AsesoriaEmprendimientoH() {
               </div>
 
               <div className="flex items-center gap-[12px] px-[18px] py-[12px] rounded-full border border-white/10 bg-white/[0.05] backdrop-blur-sm min-h-[56px]">
-                <span className="text-[18px] font-semibold text-white/70">
-                  CO
-                </span>
+                <Flag
+                  code="CO"
+                  title="Colombia"
+                  className="w-[24px] h-[16px] rounded-[2px] object-cover shrink-0"
+                />
                 <div className="text-left">
                   <p className="text-white/35 uppercase tracking-[1.2px] text-[9.92px]">
                     Quien ejecuta
