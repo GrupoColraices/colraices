@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { type MouseEvent, useState } from "react";
 import { TOUR_VIVIENDA_URL, officialPaths } from "@/app/lib/officialUrls";
 
 const navLinks = [
-  { label: "Home", href: officialPaths.home },
+  { label: "Home", href: "/#inicio" },
   { label: "Finanzas", href: officialPaths.finanzasHub },
   { label: "Inmuebles", href: officialPaths.inmuebleHub },
   { label: "Legal y Migración", href: officialPaths.legalHub },
@@ -17,6 +17,15 @@ const navLinks = [
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleHomeClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== officialPaths.home) {
+      return;
+    }
+
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#F4F6F8] border-b border-black/5">
@@ -34,12 +43,16 @@ export default function Navbar() {
         {/* NAV DESKTOP */}
         <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+            const isHomeLink = link.href === "/#inicio";
+            const isActive = isHomeLink
+              ? pathname === officialPaths.home
+              : pathname === link.href;
 
             return (
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={isHomeLink ? handleHomeClick : undefined}
                 className={`
                   group relative
                   text-[14px] leading-[21px]
@@ -128,13 +141,22 @@ export default function Navbar() {
       >
         <div className="flex flex-col px-6 gap-4">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+            const isHomeLink = link.href === "/#inicio";
+            const isActive = isHomeLink
+              ? pathname === officialPaths.home
+              : pathname === link.href;
 
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setIsOpen(false)}
+                onClick={(event) => {
+                  if (isHomeLink) {
+                    handleHomeClick(event);
+                  }
+
+                  setIsOpen(false);
+                }}
                 className={`
                   text-[15px]
                   ${

@@ -25,7 +25,7 @@ const BACKGROUND_CLASS =
 
 export default function HeroSection() {
   return (
-    <section className={SECTION_CLASS}>
+    <section id="inicio" className={SECTION_CLASS}>
       <BackgroundImage />
 
       <div className="relative w-full max-w-[1200px] xl:max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
