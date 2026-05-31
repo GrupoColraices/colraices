@@ -1,10 +1,4 @@
-const WHATSAPP_NUMBER = "573169013283";
-
-const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hola, quiero recibir más información sobre sus servicios."
-);
-
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
+import { OFFICIAL_WHATSAPP_URL } from "@/app/lib/officialUrls";
 
 const buttonBaseClasses =
   "flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-[13px] transition-all duration-300 sm:w-auto sm:px-6 md:text-[14px] lg:px-7";
@@ -24,7 +18,7 @@ export default function CtaBannerSection() {
 
           <div className="mt-6 flex w-full flex-col items-center justify-center gap-3 sm:flex-row md:mt-8 md:gap-4">
             <a
-              href={WHATSAPP_URL}
+              href={OFFICIAL_WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Hablar con un asesor por WhatsApp"

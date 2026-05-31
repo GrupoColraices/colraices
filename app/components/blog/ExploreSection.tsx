@@ -326,7 +326,34 @@ export default function ExploreSection({
   const [query, setQuery] = useState(activeSearchValue);
 
   const activeSlug = activeCategorySlug?.trim() || null;
-  const visibleCategories = categories ?? [];
+  const visibleCategories = useMemo(() => {
+    const rawCategories = categories ?? [];
+
+    const normalizeCategory = (value?: string | null) =>
+      (value ?? "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+
+    const isEmpiezaPorAqui = (category: BlogCategory) =>
+      category.slug === "empieza-por-aqui" ||
+      normalizeCategory(category.name) === "empieza por aqui";
+
+    const isTodos = (category: BlogCategory) =>
+      category.slug === "todos" || normalizeCategory(category.name) === "todos";
+
+    const empiezaPorAqui = rawCategories.find(isEmpiezaPorAqui);
+
+    const otherCategories = rawCategories.filter(
+      (category) => !isEmpiezaPorAqui(category) && !isTodos(category),
+    );
+
+    return empiezaPorAqui
+      ? [empiezaPorAqui, ...otherCategories]
+      : otherCategories;
+  }, [categories]);
+
   const activeCategoryName =
     visibleCategories.find((category) => category.slug === activeSlug)?.name ||
     null;

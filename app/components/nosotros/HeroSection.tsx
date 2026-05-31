@@ -2,6 +2,7 @@
  
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { OFFICIAL_WHATSAPP_URL } from "@/app/lib/officialUrls";
  
 type MovingCircle = {
   x: number;
@@ -217,7 +218,7 @@ export default function HeroSection() {
           </Link>
  
           <Link
-            href="https://wa.me/15136479405?text=Hola%2C%20Colraices%20%F0%9F%91%8B%0AVengo%20desde%20la%20p%C3%A1gina%20%E2%80%9CConoce%20el%20Ecosistema%E2%80%9D%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20para%20colombianos%20en%20el%20exterior."
+            href={OFFICIAL_WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-[56.24px] w-[236.86px] items-center justify-center rounded-full border border-white/55 bg-transparent text-center text-[15.2px] font-bold leading-[25.8px] text-white transition duration-200 hover:bg-white hover:text-[#192440] max-sm:w-full"

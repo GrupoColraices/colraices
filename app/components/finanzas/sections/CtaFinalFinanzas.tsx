@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { OFFICIAL_WHATSAPP_URL } from '@/app/lib/officialUrls';
 
 export default function CtaFinalFinanzas() {
   const [isPrimaryHovered, setIsPrimaryHovered] = useState(false);
@@ -83,7 +84,7 @@ export default function CtaFinalFinanzas() {
           }}
         >
           <a
-            href="https://wa.me/573169013283"
+            href={OFFICIAL_WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             onMouseEnter={() => setIsPrimaryHovered(true)}

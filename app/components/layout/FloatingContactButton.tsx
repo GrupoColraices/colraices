@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { OFFICIAL_WHATSAPP_URL } from "@/app/lib/officialUrls";
 
 export default function FloatingContactButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +11,7 @@ export default function FloatingContactButton() {
   };
 
   const handleChat = () => {
-    window.open("https://wa.me/573000000000", "_blank");
+    window.open(OFFICIAL_WHATSAPP_URL, "_blank", "noopener,noreferrer");
   };
 
   return (

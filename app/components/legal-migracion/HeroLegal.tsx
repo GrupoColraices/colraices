@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Montserrat } from "next/font/google";
-import { officialPaths } from "@/app/lib/officialUrls";
+import { OFFICIAL_WHATSAPP_URL, officialPaths } from "@/app/lib/officialUrls";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -36,9 +36,6 @@ const LEGAL_SERVICES = [
     href: officialPaths.serviciosFiscales,
   },
 ] as const;
-
-const WHATSAPP_URL =
-  "https://wa.me/573165119987?text=Hola%2C%20quiero%20hablar%20con%20un%20asesor.";
 
 export default function HeroLegal() {
   return (
@@ -117,7 +114,7 @@ export default function HeroLegal() {
           {/* 🔥 BOTONES */}
           <div className="mt-[30px] flex min-h-[51px] flex-col gap-[12px] sm:flex-row sm:gap-[14px]">
             <a
-              href={WHATSAPP_URL}
+              href={OFFICIAL_WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-[51px] items-center justify-center rounded-full bg-[#FFC107] px-[28px] font-semibold text-[#091D3E] transition-all duration-300 ease-out hover:-translate-y-[4px] hover:shadow-[0_10px_30px_rgba(255,193,7,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC107] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1F3F] active:translate-y-[0px] active:shadow-[0_4px_10px_rgba(255,193,7,0.25)]"

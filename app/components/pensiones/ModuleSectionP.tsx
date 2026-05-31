@@ -36,17 +36,21 @@ const moduleItems = [
 ];
 
 export default function ModuleSectionP() {
+  const cardsToShow = 3;
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const cardsToShow = 3;
-  const maxIndex = moduleItems.length - cardsToShow;
+  const visibleItems = Array.from({ length: cardsToShow }, (_, offset) => {
+    return moduleItems[(currentIndex + offset) % moduleItems.length];
+  });
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev + 1) % moduleItems.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+    setCurrentIndex(
+      (prev) => (prev - 1 + moduleItems.length) % moduleItems.length
+    );
   };
 
   return (
@@ -111,59 +115,43 @@ export default function ModuleSectionP() {
           {/* LEFT ARROW */}
           <button
             onClick={prevSlide}
-            className="absolute left-[-26px] top-[44%] -translate-y-1/2 z-20 w-[40px] h-[40px] rounded-full border-2 border-[#FFC107] bg-[#FBF8F3] flex items-center justify-center"
+            className="absolute left-[-48px] top-[44%] -translate-y-1/2 z-20 w-[40px] h-[40px] rounded-full border-2 border-[#FFC107] bg-[#FBF8F3] flex items-center justify-center"
           >
-            <span className="text-[#FFC107] text-[22px] leading-none">
-              ‹
-            </span>
+            <span className="text-[#FFC107] text-[22px] leading-none">‹</span>
           </button>
 
           {/* RIGHT ARROW */}
           <button
             onClick={nextSlide}
-            className="absolute right-[-26px] top-[44%] -translate-y-1/2 z-20 w-[40px] h-[40px] rounded-full border-2 border-[#FFC107] bg-[#FBF8F3] flex items-center justify-center"
+            className="absolute right-[-48px] top-[44%] -translate-y-1/2 z-20 w-[40px] h-[40px] rounded-full border-2 border-[#FFC107] bg-[#FBF8F3] flex items-center justify-center"
           >
-            <span className="text-[#FFC107] text-[22px] leading-none">
-              ›
-            </span>
+            <span className="text-[#FFC107] text-[22px] leading-none">›</span>
           </button>
 
-          <div className="overflow-hidden">
-            <div
-              className="flex gap-[18px] transition-transform duration-500 ease-in-out"
-              style={{
-                transform: `translateX(-${
-                  currentIndex * (100 / cardsToShow)
-                }%)`,
-              }}
-            >
-              {moduleItems.map((item) => (
-                <div
-                  key={item.num}
-                  style={{
-                    minWidth: `calc(${100 / cardsToShow}% - 12px)`,
-                  }}
-                  className="bg-white border border-[rgba(15,45,92,0.08)] rounded-[20px] px-[30px] pt-[22px] pb-[26px] shadow-sm h-[220px] flex flex-col overflow-hidden"
-                >
-                  <div className="w-[28px] h-[28px] rounded-full bg-[#0F2D5C] text-white text-[13px] font-bold flex items-center justify-center mb-[18px] flex-shrink-0">
-                    {item.num}
-                  </div>
-
-                  <h3 className="text-[#0F2D5C] text-[16.8px] font-semibold leading-[25.2px] mb-[12px] min-h-[52px] flex-shrink-0">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-[#475569] text-[13px] leading-[20.7px] flex-1 overflow-hidden">
-                    {item.desc}
-                  </p>
+          <div className="grid grid-cols-3 gap-[18px]">
+            {visibleItems.map((item) => (
+              <div
+                key={item.num}
+                className="bg-white border border-[rgba(15,45,92,0.08)] rounded-[20px] px-[30px] pt-[22px] pb-[26px] shadow-sm h-[220px] flex flex-col overflow-hidden"
+              >
+                <div className="w-[28px] h-[28px] rounded-full bg-[#0F2D5C] text-white text-[13px] font-bold flex items-center justify-center mb-[18px] flex-shrink-0">
+                  {item.num}
                 </div>
-              ))}
-            </div>
+
+                <h3 className="text-[#0F2D5C] text-[16.8px] font-semibold leading-[25.2px] mb-[12px] min-h-[52px] flex-shrink-0">
+                  {item.title}
+                </h3>
+
+                <p className="text-[#475569] text-[13px] leading-[20.7px] flex-1 overflow-hidden">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
 
           {/* DOTS */}
           <div className="flex justify-center gap-[8px] mt-[28px]">
-            {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+            {moduleItems.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}

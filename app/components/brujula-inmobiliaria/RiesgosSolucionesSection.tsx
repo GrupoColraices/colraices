@@ -247,9 +247,9 @@ export default function RiesgosSolucionesSection() {
             pointerStartRef.current = null;
           }}
           className="
-            relative w-full overflow-hidden px-4 pt-8 pb-8 -mt-8
+            relative mx-auto w-full max-w-[1045px] overflow-hidden px-4 pt-8 pb-8 -mt-8
             sm:px-6
-            lg:px-[max(32px,calc((100vw-1680px)/2+32px))]
+            lg:px-0
           "
           style={{ touchAction: "pan-y" }}
         >
@@ -322,7 +322,7 @@ export default function RiesgosSolucionesSection() {
         </div>
 
         {/* CONTROLES */}
-        <div className="mt-[28px] flex items-center justify-center gap-[24px] sm:mt-[36px] sm:gap-[28px] lg:mt-[64px] lg:gap-[32px]">
+        <div className="mx-auto mt-[28px] flex max-w-[1045px] items-center justify-center gap-[24px] sm:mt-[36px] sm:gap-[28px] lg:mt-[64px] lg:gap-[32px]">
           <button
             type="button"
             aria-label="Ver tarjetas anteriores"
