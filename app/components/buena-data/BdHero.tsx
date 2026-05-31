@@ -196,7 +196,7 @@ export default function BdHero() {
               <a href="#precio" className="bdh-btn">Contratar →</a>
             </div>
 
-            <div className="bdh-card">
+            <div id="precio" className="bdh-card">
               <div className="bdh-card-title">¿Qué obtienes?</div>
               <div className="bdh-card-row">
                 <span className="bdh-row-key">Precio único</span>

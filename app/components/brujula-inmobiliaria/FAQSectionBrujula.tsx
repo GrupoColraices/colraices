@@ -104,7 +104,7 @@ export default function FAQSectionBrujula() {
           </div>
 
           {/* RIGHT CARD */}
-          <aside className="relative mx-auto flex min-h-[445px] w-full max-w-[290px] flex-col items-center justify-center rounded-[22px] border border-[#DADADA] bg-[#F7F5F1] px-8 py-10 text-center">
+          <aside id="contacto" className="relative mx-auto flex min-h-[445px] w-full max-w-[290px] flex-col items-center justify-center rounded-[22px] border border-[#DADADA] bg-[#F7F5F1] px-8 py-10 text-center">
 
             <div className="absolute inset-0 rounded-[22px] bg-[radial-gradient(circle_at_50%_30%,rgba(255,193,7,0.05),transparent_45%)]" />
 
