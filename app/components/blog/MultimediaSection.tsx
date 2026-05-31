@@ -1,43 +1,64 @@
-type VideoItem = {
-  category: string;
-  title: string;
-  duration: string;
-  emoji: string;
-  gradient: string;
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+
+import type { YoutubeVideo } from "@/app/lib/youtubeApi";
+
+type MultimediaSectionProps = {
+  videos: YoutubeVideo[];
+  videosError: string | null;
 };
 
-const videos: VideoItem[] = [
+const cardStyles = [
   {
-    category: "Crédito y finanzas",
-    title: "Cómo mejorar tu historial crediticio desde el exterior",
-    duration: "4:32",
-    emoji: "📊",
+    category: "YouTube",
+    emoji: "📺",
     gradient: "from-[#162039] to-[#3A5EA8]",
   },
   {
-    category: "Inversión inmobiliaria",
-    title: "Invertir en Colombia desde el exterior",
-    duration: "6:15",
+    category: "Contenido reciente",
     emoji: "🏡",
     gradient: "from-[#0F2A1D] to-[#2A7A50]",
   },
   {
-    category: "Legal y fiscal",
-    title: "Impuestos para colombianos en el exterior",
-    duration: "5:48",
+    category: "Colraices",
     emoji: "💼",
     gradient: "from-[#2A1535] to-[#7A3A90]",
   },
   {
-    category: "Migración",
-    title: "Opciones de visa para invertir en Colombia",
-    duration: "3:50",
+    category: "Multimedia",
     emoji: "✈️",
     gradient: "from-[#2A1800] to-[#C85C00]",
   },
-];
+] as const;
 
-export default function MultimediaSection() {
+export default function MultimediaSection({
+  videos,
+  videosError,
+}: MultimediaSectionProps) {
+  const [activeVideo, setActiveVideo] = useState<YoutubeVideo | null>(null);
+
+  useEffect(() => {
+    if (!activeVideo) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveVideo(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeVideo]);
+
   return (
     <section id="videos" className="bg-[#F8F9FB] py-[88px]">
       <div className="mx-auto max-w-[1104px] px-6">
@@ -52,22 +73,44 @@ export default function MultimediaSection() {
           </p>
         </div>
 
+        {videosError && videos.length === 0 ? (
+          <div className="rounded-[14px] bg-white px-6 py-8 text-center shadow-[0_8px_28px_rgba(15,45,92,0.08)]">
+            <p className="font-['Montserrat'] text-[14px] font-semibold leading-[21px] text-[#2A3F77]">
+              No pudimos cargar el contenido multimedia en este momento.
+            </p>
+          </div>
+        ) : null}
+
         <div className="flex gap-5 overflow-x-auto pb-4 md:grid md:grid-cols-2 md:overflow-visible lg:grid-cols-4 lg:pb-0">
-          {videos.map((video) => (
+          {videos.map((video, index) => {
+            const style = cardStyles[index % cardStyles.length];
+
+            return (
             <article
-              key={video.title}
+              key={video.id}
               className="group w-[261px] shrink-0 overflow-hidden rounded-[14px] bg-white shadow-[0_8px_28px_rgba(15,45,92,0.08)] transition-all duration-300 ease-out hover:-translate-y-[8px] hover:shadow-[0_18px_42px_rgba(15,45,92,0.18)] md:w-full"
             >
               <div
-                className={`relative h-[150px] overflow-hidden bg-gradient-to-br ${video.gradient}`}
+                className={`relative h-[150px] overflow-hidden bg-gradient-to-br ${style.gradient}`}
               >
-                <span className="absolute bottom-[18px] right-[32px] text-[52px] leading-none opacity-[0.18]">
-                  {video.emoji}
-                </span>
+                {video.thumbnailUrl ? (
+                  <Image
+                    src={video.thumbnailUrl}
+                    alt={video.title}
+                    fill
+                    sizes="(max-width: 768px) 261px, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <span className="absolute bottom-[18px] right-[32px] text-[52px] leading-none opacity-[0.18]">
+                    {style.emoji}
+                  </span>
+                )}
 
                 <button
                   type="button"
                   aria-label={`Reproducir video: ${video.title}`}
+                  onClick={() => setActiveVideo(video)}
                   className="absolute left-1/2 top-1/2 flex h-[46px] w-[46px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#192440] shadow-[0_10px_22px_rgba(0,0,0,0.24)] transition-all duration-300 ease-out group-hover:scale-110 group-hover:bg-[#FFC107] group-hover:text-[#192440]"
                 >
                   <svg
@@ -80,22 +123,58 @@ export default function MultimediaSection() {
                 </button>
 
                 <span className="absolute bottom-[8px] left-[10px] rounded-[4px] bg-[#0A0A0A]/90 px-[7px] py-[3px] font-['Montserrat'] text-[10px] font-bold leading-none text-white">
-                  {video.duration}
+                  {video.duration ?? "--:--"}
                 </span>
               </div>
 
               <div className="h-[86px] px-[15px] pt-[13px]">
                 <p className="mb-[8px] font-['Montserrat'] text-[10px] font-bold uppercase leading-[15px] tracking-[0.8px] text-[#2A3F77]">
-                  {video.category}
+                  {video.channelTitle ?? style.category}
                 </p>
 
-                <h4 className="font-['Montserrat'] text-[13px] font-bold leading-[18.2px] tracking-[0px] text-[#1A2340]">
+                <h4 className="line-clamp-2 overflow-hidden text-ellipsis font-['Montserrat'] text-[13px] font-bold leading-[18.2px] tracking-[0px] text-[#1A2340]">
                   {video.title}
                 </h4>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
+
+        {activeVideo ? (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A0A0A]/80 px-4"
+            onClick={() => setActiveVideo(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Reproduciendo video: ${activeVideo.title}`}
+          >
+            <div
+              className="relative w-full max-w-[960px] overflow-hidden rounded-[14px] bg-black shadow-[0_24px_80px_rgba(0,0,0,0.5)]"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setActiveVideo(null)}
+                className="absolute right-3 top-3 z-10 h-10 w-10 rounded-full bg-white/90 text-[26px] leading-none text-[#192440]"
+                aria-label="Cerrar video"
+              >
+                ×
+              </button>
+
+              <div className="aspect-video w-full">
+                <iframe
+                  src={activeVideo.embedUrl}
+                  title={activeVideo.title}
+                  className="h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
     </section>
   );
