@@ -6,6 +6,17 @@ const TOUR_VIVIENDA_FALLBACK_URL =
 export const TOUR_VIVIENDA_URL =
   process.env.NEXT_PUBLIC_TOUR_VIVIENDA_URL || TOUR_VIVIENDA_FALLBACK_URL;
 
+export const OFFICIAL_WHATSAPP_NUMBER = "15136479405";
+
+export const OFFICIAL_WHATSAPP_MESSAGE =
+  "Hola, Colraices. Estoy fuera de Colombia, vengo desde la página web y quiero orientación para transformar mi remesa en patrimonio a largo plazo";
+
+const OFFICIAL_WHATSAPP_ENCODED_MESSAGE = encodeURIComponent(
+  OFFICIAL_WHATSAPP_MESSAGE,
+).replace(/%20/g, "+");
+
+export const OFFICIAL_WHATSAPP_URL = `https://api.whatsapp.com/send/?phone=${OFFICIAL_WHATSAPP_NUMBER}&text=${OFFICIAL_WHATSAPP_ENCODED_MESSAGE}&type=phone_number&app_absent=0`;
+
 export const officialPaths = {
   home: "/",
   nosotros: "/nosotros",

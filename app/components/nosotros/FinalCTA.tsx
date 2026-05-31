@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { OFFICIAL_WHATSAPP_URL } from "@/app/lib/officialUrls";
 
 const title =
   "Lo que haces desde el exterior puede convertirse en una inversión en Colombia.";
@@ -197,7 +198,7 @@ export default function FinalCTA() {
 
           {/* botón */}
           <motion.a
-            href="https://wa.me/15136479405?text=Hola%2C%20Colraices%20%F0%9F%91%8B%0AVengo%20desde%20la%20p%C3%A1gina%20%E2%80%9CConoce%20el%20Ecosistema%E2%80%9D%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20para%20colombianos%20en%20el%20exterior."
+            href={OFFICIAL_WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             onHoverStart={() => setIsButtonHovered(true)}
