@@ -65,7 +65,8 @@ const moduleItems = [
   },
 ];
  
-const CARDS_TO_SHOW = 5;
+const SIZE_REFERENCE_CARDS = 5;
+const VISIBLE_CARDS = 3;
 const GAP = 14; // px
  
 export default function ModuleSectionII() {
@@ -73,18 +74,18 @@ export default function ModuleSectionII() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [cardWidth, setCardWidth] = useState(0);
  
-  // maxIndex: how many times we can step forward
-  const maxIndex = moduleItems.length - CARDS_TO_SHOW; // 10 - 5 = 5 → 6 dots
+  // maxIndex: posiciones según 3 tarjetas visibles
+  const maxIndex = moduleItems.length - VISIBLE_CARDS;
  
-  // Measure the real track width from the DOM so cardWidth is exact
+  // Measure the real track width from the DOM so cardWidth keeps the original size
   useEffect(() => {
     const measure = () => {
       if (!trackRef.current) return;
       const trackW = trackRef.current.offsetWidth;
-      // trackW = 5 * cardW + 4 * GAP  →  cardW = (trackW - 4*GAP) / 5
-      const w = (trackW - GAP * (CARDS_TO_SHOW - 1)) / CARDS_TO_SHOW;
+      const w = (trackW - GAP * (SIZE_REFERENCE_CARDS - 1)) / SIZE_REFERENCE_CARDS;
       setCardWidth(Math.floor(w));
     };
+
     measure();
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
@@ -94,12 +95,11 @@ export default function ModuleSectionII() {
   const prevSlide = () => setCurrentIndex((p) => (p <= 0 ? maxIndex : p - 1));
  
   // Each carousel step shifts by exactly (cardWidth + GAP) px
-  const translateX = currentIndex * (cardWidth + GAP);
+  const step = cardWidth + GAP;
+  const translateX = cardWidth > 0 ? step - currentIndex * step : 0;
  
-  // Arrow positions:
-  // Left arrow sits on the RIGHT edge of card 1  → left = cardWidth - 18px (half arrow width)
-  // Right arrow sits on the LEFT edge of card 5  → right = cardWidth - 18px
-  const arrowInset = cardWidth - 18;
+  // Botones un poquito más abiertos para que no queden tan metidos en las tarjetas
+  const arrowInset = cardWidth - 32;
  
   return (
     <section className="w-full bg-[#0B1E3D] py-[72px] overflow-hidden">
@@ -147,7 +147,7 @@ export default function ModuleSectionII() {
         </div>
  
         {/* ── PROTOCOLO LABEL ─────────────────────────────────────────────── */}
-        <div className="text-[#94a3b8] uppercase tracking-[2px] text-[11px] font-semibold mb-[20px]">
+        <div className="text-center text-[#94a3b8] uppercase tracking-[2px] text-[11px] font-semibold mb-[20px]">
           PROTOCOLO DE ACTIVACIÓN — 10 PASOS
         </div>
  
@@ -184,15 +184,19 @@ export default function ModuleSectionII() {
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{
                   gap: `${GAP}px`,
-                  transform: `translateX(-${translateX}px)`,
+                  transform: `translateX(${translateX}px)`,
                 }}
               >
                 {moduleItems.map((item) => (
                   <div
                     key={item.num}
                     style={{
-                      width: cardWidth ? `${cardWidth}px` : `calc((100% - ${GAP * (CARDS_TO_SHOW - 1)}px) / ${CARDS_TO_SHOW})`,
-                      minWidth: cardWidth ? `${cardWidth}px` : `calc((100% - ${GAP * (CARDS_TO_SHOW - 1)}px) / ${CARDS_TO_SHOW})`,
+                      width: cardWidth
+                        ? `${cardWidth}px`
+                        : `calc((100% - ${GAP * (SIZE_REFERENCE_CARDS - 1)}px) / ${SIZE_REFERENCE_CARDS})`,
+                      minWidth: cardWidth
+                        ? `${cardWidth}px`
+                        : `calc((100% - ${GAP * (SIZE_REFERENCE_CARDS - 1)}px) / ${SIZE_REFERENCE_CARDS})`,
                       flexShrink: 0,
                     }}
                     className="bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] rounded-[16px] px-[20px] pt-[20px] pb-[22px] flex flex-col min-h-[190px]"
@@ -213,8 +217,23 @@ export default function ModuleSectionII() {
                 ))}
               </div>
             </div>
+
+            {/* Máscaras laterales: ocultan las 2 tarjetas de los lados sin cambiar tamaños */}
+            {cardWidth > 0 && (
+              <>
+                <div
+                  className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 bg-[#0B1E3D]"
+                  style={{ width: `${cardWidth + GAP / 2}px` }}
+                />
+
+                <div
+                  className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 bg-[#0B1E3D]"
+                  style={{ width: `${cardWidth + GAP / 2}px` }}
+                />
+              </>
+            )}
  
-            {/* Flecha IZQUIERDA — borde derecho de tarjeta 1 */}
+            {/* Flecha IZQUIERDA */}
             {cardWidth > 0 && (
               <button
                 onClick={prevSlide}
@@ -228,7 +247,7 @@ export default function ModuleSectionII() {
               </button>
             )}
  
-            {/* Flecha DERECHA — borde izquierdo de tarjeta 5 */}
+            {/* Flecha DERECHA */}
             {cardWidth > 0 && (
               <button
                 onClick={nextSlide}
@@ -243,7 +262,7 @@ export default function ModuleSectionII() {
             )}
           </div>
  
-          {/* DOTS: 6 posiciones (maxIndex + 1) */}
+          {/* DOTS: posiciones según 3 tarjetas visibles */}
           <div className="flex justify-center gap-[7px] mt-[28px]">
             {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
               <button
