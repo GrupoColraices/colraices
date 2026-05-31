@@ -95,7 +95,7 @@ function resolveMappedTrail(pathname: string): BreadcrumbItem[] | null {
 
     visited.add(current);
 
-    const node = BREADCRUMB_MAP[current];
+    const node: BreadcrumbNode | undefined = BREADCRUMB_MAP[current];
 
     if (!node) {
       return null;
