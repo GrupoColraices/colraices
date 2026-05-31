@@ -34,7 +34,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   return (
     <SiteLayout>
-      <Breadcrumb />
+      <Breadcrumb customLabel={post?.title} />
 
       <main className="bg-white">
         <section className="bg-[#F8FAFC] px-4 py-16 sm:px-6 lg:px-8">

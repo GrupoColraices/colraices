@@ -1,4 +1,5 @@
 import SiteLayout from "@/app/components/layout/SiteLayout";
+import Breadcrumb from "@/app/components/layout/Breadcrumb";
 
 import HeroSection from "@/app/components/nosotros/HeroSection";
 import EcoProposito from "@/app/components/nosotros/EcoProposito";
@@ -12,6 +13,7 @@ export default function Nosotros()
   return (
 
     <SiteLayout>
+      <Breadcrumb />
       <HeroSection />
       <EcoProposito />
       <EcosistemaColraices />
