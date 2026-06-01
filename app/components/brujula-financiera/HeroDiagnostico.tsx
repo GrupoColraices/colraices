@@ -1,7 +1,13 @@
 "use client";
 
+import { useState } from "react";
+import GeneralContactModal from "../forms/GeneralContactModal";
+
 export default function HeroDiagnostico() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
+    <>
     <section className="relative w-full bg-[#091D3E] overflow-hidden">
 
       {/* GRID BACKGROUND */}
@@ -43,14 +49,17 @@ export default function HeroDiagnostico() {
 
           {/* BUTTON */}
           <div className="mt-[32px]">
-            <button className="bg-[#FFC107] text-[#2A3F77] text-[14.4px] font-bold px-[24px] py-[13px] rounded-full leading-[21.6px] tracking-[0px] shadow-[0_10px_30px_rgba(255,193,7,0.35)] hover:scale-[1.03] transition">
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              className="bg-[#FFC107] text-[#2A3F77] text-[14.4px] font-bold px-[24px] py-[13px] rounded-full leading-[21.6px] tracking-[0px] shadow-[0_10px_30px_rgba(255,193,7,0.35)] hover:scale-[1.03] transition"
+            >
               Contratar →
             </button>
           </div>
         </div>
 
         {/* RIGHT CARD */}
-        <div className="w-full max-w-[380px]">
+        <div className="w-full max-w-[380px] lg:ml-auto">
 
           <div className="bg-white/[0.04] border border-white/[0.07] rounded-[16px_0px_16px_0px] p-[28.8px] backdrop-blur-md">
 
@@ -120,5 +129,15 @@ export default function HeroDiagnostico() {
 
       </div>
     </section>
+    <GeneralContactModal
+      open={isContactModalOpen}
+      onClose={() => setIsContactModalOpen(false)}
+      title="Te contactamos para ayudarte"
+      subtitle="a invertir y construir patrimonio en Colombia"
+      source="brujula_financiera_hero_contratar"
+      serviceInterest="Brújula financiera"
+      showHelpField={false}
+    />
+    </>
   );
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { OFFICIAL_WHATSAPP_URL } from "@/app/lib/officialUrls";
+
 export default function CTASectionBf() {
   return (
     <section className="w-full bg-[#091D3E] flex justify-center">
@@ -21,9 +23,14 @@ export default function CTASectionBf() {
           </p>
 
           {/* BOTÓN */}
-          <button className="mt-[28px] px-[28px] py-[10px] text-[14.4px] leading-[21.6px] font-semibold text-white border border-white/40 rounded-full hover:bg-white/[0.08] hover:border-white/70 hover:text-white transition-all duration-300">
+          <a
+            href={OFFICIAL_WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-[28px] px-[28px] py-[10px] text-[14.4px] leading-[21.6px] font-semibold text-white border border-white/40 rounded-full hover:bg-white/[0.08] hover:border-white/70 hover:text-white transition-all duration-300"
+          >
             Hablar con un asesor
-          </button>
+          </a>
 
           {/* TEXTO INFERIOR */}
           <p className="mt-[18px] text-[12px] leading-[18px] text-white/25">
