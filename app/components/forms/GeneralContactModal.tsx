@@ -5,13 +5,21 @@ import { type FormEvent, useEffect, useState } from "react";
 type GeneralContactModalProps = {
   open: boolean;
   onClose: () => void;
+  title?: string;
+  subtitle?: string;
   source?: string;
+  serviceInterest?: string;
+  showHelpField?: boolean;
 };
 
 export default function GeneralContactModal({
   open,
   onClose,
+  title = "Te contactamos para ayudarte",
+  subtitle = "a invertir y construir patrimonio en Colombia",
   source = "formulario_general",
+  serviceInterest = "Contacto general",
+  showHelpField = false,
 }: GeneralContactModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
@@ -75,17 +83,19 @@ export default function GeneralContactModal({
               { name: "franja_horaria", value: fieldValue("franja_horaria") },
               {
                 name: "en_que_podemos_ayudarte",
-                value: "Contacto general",
+                value: showHelpField
+                  ? fieldValue("ayuda_requerida")
+                  : serviceInterest,
               },
               {
                 name: "acepto_politica_de_tratamiento_de_datos",
                 value: formData.get("acepta_politica") ? "true" : "",
               },
-              { name: "servicio_de_interes", value: "Contacto general" },
+              { name: "servicio_de_interes", value: serviceInterest },
               { name: "origen_del_formulario", value: source },
               {
                 name: "titulo_del_modal",
-                value: "Te contactamos para ayudarte",
+                value: title,
               },
               {
                 name: "pagina_de_origen",
@@ -136,11 +146,11 @@ export default function GeneralContactModal({
           </button>
 
           <h2 className="text-[24px] font-bold leading-[1.2] tracking-[-0.2px]">
-            Te contactamos para ayudarte
+            {title}
           </h2>
 
           <p className="mt-[14px] text-[15px] font-normal leading-[1.4] text-white/90">
-            a invertir y construir patrimonio en Colombia
+            {subtitle}
           </p>
         </div>
 
@@ -260,6 +270,20 @@ export default function GeneralContactModal({
                 <option value="Noche">Noche</option>
               </select>
             </div>
+
+            {showHelpField && (
+              <div className="md:col-span-2">
+                <label className="mb-[8px] block text-[13px] font-semibold leading-none text-[#2A3F77]">
+                  ¿En qué podemos ayudarte?: *
+                </label>
+                <input
+                  name="ayuda_requerida"
+                  type="text"
+                  required
+                  className="h-[40px] w-full rounded-[6px] border border-[#D1D5DB] bg-white px-4 text-[14px] text-[#0A0A0A] outline-none transition focus:border-[#2A3F77]"
+                />
+              </div>
+            )}
           </div>
 
           <label className="mt-[18px] flex items-center justify-center gap-[8px] text-[13px] font-medium leading-none text-[#2A3F77]">
