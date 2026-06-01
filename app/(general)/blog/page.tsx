@@ -9,6 +9,7 @@ import {
   getBlogPosts,
   getFeaturedBlogPosts,
 } from "@/app/lib/blogApi";
+import { getLatestYoutubeVideos } from "@/app/lib/youtubeApi";
 
 type BlogPageProps = {
   searchParams?: Promise<{
@@ -46,6 +47,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
     { posts, error, pagination },
     { posts: featuredPosts },
     { categories, error: categoriesError },
+    { videos, error: videosError },
   ] = await Promise.all([
     getBlogPosts({
       page: currentPage,
@@ -54,6 +56,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
     }),
     getFeaturedBlogPosts(),
     getBlogCategories(),
+    getLatestYoutubeVideos(),
   ]);
 
   return (
@@ -72,7 +75,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
         activeSearch={search}
       />
       <StartHelpSection />
-      <MultimediaSection />
+      <MultimediaSection videos={videos} videosError={videosError} />
     </SiteLayout>
   );
 }

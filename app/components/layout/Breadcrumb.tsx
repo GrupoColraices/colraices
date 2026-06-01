@@ -2,47 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { resolveBreadcrumbs } from "@/app/lib/breadcrumbs";
 
-const routeNameMap: Record<string, string> = {
-  "finanzas-y-credito": "Finanzas y Crédito",
-  "inversion-inmobiliaria": "Inversión Inmobiliaria",
-  "legal-y-migratorio": "Legal y Migratorio",
-  "tour-de-la-vivienda": "Tour de la Vivienda",
-  blog: "Blog",
-  "brujula-financiera": "Brújula Financiera",
-  "brujula-crediticia": "Brújula Crediticia",
-  "buena-data": "Buena Data",
-  "credito-para-colombianos-en-el-exterior": "Crédito",
-  monetizacion: "Monetización",
-  "asesoria-migratoria": "Asesoría Migratoria",
-  "emprender-en-colombia": "Asesoría de Emprendimiento",
-  pensiones: "Pensiones",
-  "representacion-legal-en-colombia": "Representación Legal",
-  "servicios-fiscales": "Servicios Fiscales",
-  "llave-inmobiliaria": "Llave Inmobiliaria",
+type BreadcrumbProps = {
+  customLabel?: string;
 };
 
-function formatBreadcrumbLabel(value: string): string {
-  const text = decodeURIComponent(value).replace(/-/g, " ").trim();
-
-  if (!text) {
-    return "";
-  }
-
-  return text.charAt(0).toUpperCase() + text.slice(1);
-}
-
-export default function Breadcrumb() {
+export default function Breadcrumb({ customLabel }: BreadcrumbProps) {
   const pathname = usePathname();
-  const segments = pathname.split("/").filter(Boolean);
-
-  const crumbs = segments.map((seg, i) => {
-    const href = "/" + segments.slice(0, i + 1).join("/");
-    const label = routeNameMap[seg] || formatBreadcrumbLabel(seg);
-    const isLast = i === segments.length - 1;
-
-    return { href, label, isLast };
-  });
+  const crumbs = resolveBreadcrumbs(pathname, customLabel);
+  const visibleCrumbs = crumbs.slice(1);
 
   return (
     <section
@@ -73,14 +42,14 @@ export default function Breadcrumb() {
           gap-y-1
         "
         >
-          <Link
-            href="/"
-            className="text-[#94A3B8] hover:text-[#0F2D5C] transition-colors"
-          >
-            Inicio
+          <Link href="/" className="text-[#94A3B8] hover:text-[#0F2D5C] transition-colors">
+            {crumbs[0]?.label ?? "Inicio"}
           </Link>
 
-          {crumbs.map(({ href, label, isLast }) => (
+          {visibleCrumbs.map(({ href, label }, index) => {
+            const isLast = index === visibleCrumbs.length - 1;
+
+            return (
             <span key={href} className="flex items-center max-w-full">
               <span className="mx-1 sm:mx-2 text-[#CBD5E1]">›</span>
 
@@ -110,7 +79,8 @@ export default function Breadcrumb() {
                 </Link>
               )}
             </span>
-          ))}
+            );
+          })}
         </nav>
       </div>
     </section>
