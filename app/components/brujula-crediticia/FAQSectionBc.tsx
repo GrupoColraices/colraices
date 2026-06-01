@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import GeneralContactModal from "../forms/GeneralContactModal";
 
 const faqs = [
   {
@@ -34,10 +35,12 @@ export default function FAQSectionBc() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [hovered, setHovered] = useState<number | null>(null);
   const [hoveredBtn, setHoveredBtn] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
-    <section className="w-full bg-[#FFFFFF] flex justify-center px-4 md:px-8 pt-[88px] pb-[120px] relative z-10">
-      <div className="w-full max-w-[1180px] flex flex-col gap-[40px]">
+    <>
+      <section className="w-full bg-[#FFFFFF] flex justify-center px-4 md:px-8 pt-[88px] pb-[120px] relative z-10">
+        <div className="w-full max-w-[1180px] flex flex-col gap-[40px]">
 
         {/* HEADER */}
         <div className="text-left flex flex-col gap-2">
@@ -105,6 +108,7 @@ export default function FAQSectionBc() {
             </p>
 
             <button
+              onClick={() => setIsContactModalOpen(true)}
               onMouseEnter={() => setHoveredBtn(true)}
               onMouseLeave={() => setHoveredBtn(false)}
               style={{
@@ -128,8 +132,19 @@ export default function FAQSectionBc() {
             </span>
           </div>
 
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Te contactamos para ayudarte"
+        subtitle="a invertir y construir patrimonio en Colombia"
+        source="brujula_crediticia_faq_hablar_asesor"
+        serviceInterest="Brújula crediticia"
+        showHelpField={false}
+      />
+    </>
   );
 }

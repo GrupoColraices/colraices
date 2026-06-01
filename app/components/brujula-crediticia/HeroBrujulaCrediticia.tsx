@@ -1,8 +1,14 @@
 "use client";
 
+import { useState } from "react";
+import GeneralContactModal from "../forms/GeneralContactModal";
+
 export default function HeroBrujulaCrediticia() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
-    <section className="relative w-full bg-[#091D3E] overflow-hidden pb-[40px]">
+    <>
+      <section className="relative w-full bg-[#091D3E] overflow-hidden pb-[40px]">
 
       {/* GRID BACKGROUND */}
       <div
@@ -38,7 +44,10 @@ export default function HeroBrujulaCrediticia() {
               con claridad si estás listo para acceder a crédito, y si no, qué ajustar y en cuánto tiempo.
             </p>
 
-            <button className="mt-[32px] w-fit bg-[#FFC107] text-[#0F2D5C] text-[14.4px] font-semibold px-[24px] py-[13px] rounded-full hover:brightness-110 transition">
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              className="mt-[32px] w-fit bg-[#FFC107] text-[#0F2D5C] text-[14.4px] font-semibold px-[24px] py-[13px] rounded-full hover:brightness-110 transition"
+            >
               Contratar →
             </button>
           </div>
@@ -138,6 +147,17 @@ export default function HeroBrujulaCrediticia() {
 
         </div>
       </div>
-    </section>
+      </section>
+
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Te contactamos para ayudarte"
+        subtitle="a invertir y construir patrimonio en Colombia"
+        source="brujula_crediticia_hero_contratar"
+        serviceInterest="Brújula crediticia"
+        showHelpField={false}
+      />
+    </>
   );
 }
