@@ -1,6 +1,7 @@
 'use client';
  
 import React, { useState } from 'react';
+import GeneralContactModal from '../../forms/GeneralContactModal';
  
 type FaqItem = {
   question: string;
@@ -42,6 +43,7 @@ const faqItems: FaqItem[] = [
  
 export default function FaqSection() {
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
  
   const toggleItem = (index: number) => {
     setOpenIndexes((currentOpenIndexes) =>
@@ -52,6 +54,7 @@ export default function FaqSection() {
   };
  
   return (
+    <>
     <section className="faq-section">
       <style>{`
         /* ════════════════════════════════════════
@@ -346,12 +349,26 @@ export default function FaqSection() {
             <br />
             remoto. Sin compromiso.
           </p>
-          <button type="button" className="faq-card-button">
+          <button
+            type="button"
+            className="faq-card-button"
+            onClick={() => setIsContactModalOpen(true)}
+          >
             Agendar llamada
           </button>
           <p className="faq-card-note">Respuesta en menos de 24 horas</p>
         </aside>
       </div>
     </section>
+    <GeneralContactModal
+      open={isContactModalOpen}
+      onClose={() => setIsContactModalOpen(false)}
+      title="Te ayudamos a organizar y obtener"
+      subtitle="tu financiación en Colombia"
+      source="finanzas_faq_agendar_llamada"
+      serviceInterest="Financiación en Colombia"
+      showHelpField={true}
+    />
+    </>
   );
 }
