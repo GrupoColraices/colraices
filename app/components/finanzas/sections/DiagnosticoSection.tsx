@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { officialPaths } from "@/app/lib/officialUrls";
+import GeneralContactModal from "../../forms/GeneralContactModal";
 
 const cards = [
   {
@@ -64,6 +65,7 @@ const cards = [
 
 export default function DiagnosticoSection() {
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   useEffect(() => {
     let i = 0;
@@ -79,6 +81,7 @@ export default function DiagnosticoSection() {
   }, []);
 
   return (
+    <>
     <section
       id="diagnostico"
       className="
@@ -141,6 +144,14 @@ export default function DiagnosticoSection() {
               <Link
                 key={index}
                 href={card.href}
+                onClick={
+                  card.href === "#"
+                    ? (event) => {
+                        event.preventDefault();
+                        setIsContactModalOpen(true);
+                      }
+                    : undefined
+                }
                 className={`
                   group relative overflow-hidden
 
@@ -226,5 +237,15 @@ export default function DiagnosticoSection() {
         </div>
       </div>
     </section>
+    <GeneralContactModal
+      open={isContactModalOpen}
+      onClose={() => setIsContactModalOpen(false)}
+      title="Te contactamos para ayudarte"
+      subtitle="a invertir y construir patrimonio en Colombia"
+      source="finanzas_diagnostico_hablar_asesor"
+      serviceInterest="Asesoría financiera"
+      showHelpField={false}
+    />
+    </>
   );
 }
