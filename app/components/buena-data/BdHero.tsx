@@ -1,4 +1,11 @@
+"use client";
+
+import { useState } from "react";
+import GeneralContactModal from "../forms/GeneralContactModal";
+
 export default function BdHero() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   const includes = [
     "Diagnóstico y análisis profundo del caso",
     "Representación legal formal",
@@ -193,7 +200,13 @@ export default function BdHero() {
                 Desde el exterior no puedes resolverlo solo. Colraices se hace cargo
                 directamente — gestiona, negocia y cierra el problema por ti.
               </p>
-              <a href="#precio" className="bdh-btn">Contratar →</a>
+              <button
+                type="button"
+                onClick={() => setIsContactModalOpen(true)}
+                className="bdh-btn"
+              >
+                Contratar →
+              </button>
             </div>
 
             <div id="precio" className="bdh-card">
@@ -228,6 +241,16 @@ export default function BdHero() {
           </div>
         </div>
       </section>
+
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Te contactamos para ayudarte"
+        subtitle="a invertir y construir patrimonio en Colombia"
+        source="buena_data_hero_contactar"
+        serviceInterest="Buena Data"
+        showHelpField={false}
+      />
     </>
   );
 }

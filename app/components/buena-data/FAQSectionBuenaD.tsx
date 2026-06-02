@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import GeneralContactModal from "../forms/GeneralContactModal";
 
 const faqs = [
   {
@@ -44,6 +45,7 @@ export default function FAQSectionBuenaD() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [hovered, setHovered] = useState<number | null>(null);
   const [hoveredBtn, setHoveredBtn] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
     <>
@@ -322,6 +324,7 @@ export default function FAQSectionBuenaD() {
 
               <button
                 className="faqbd-card-cta"
+                onClick={() => setIsContactModalOpen(true)}
                 onMouseEnter={() => setHoveredBtn(true)}
                 onMouseLeave={() => setHoveredBtn(false)}
                 style={{
@@ -340,6 +343,15 @@ export default function FAQSectionBuenaD() {
           </div>
         </div>
       </section>
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Te contactamos para ayudarte"
+        subtitle="a invertir y construir patrimonio en Colombia"
+        source="buena_data_faq_agendar_llamada"
+        serviceInterest="Buena Data"
+        showHelpField={false}
+      />
     </>
   );
 }
