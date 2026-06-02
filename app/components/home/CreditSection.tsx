@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { DAVIVIENDA_CUPO_CREDITO_URL } from "@/app/lib/officialUrls";
 import GeneralContactModal from "../forms/GeneralContactModal";
 
 export default function CreditSection() {
@@ -94,7 +95,7 @@ export default function CreditSection() {
                 </div>
 
                 <Link
-                  href="https://www.colraices.com/cupocreditodavivienda/"
+                  href={DAVIVIENDA_CUPO_CREDITO_URL}
                   className="block h-[52.98px] w-full max-w-[304.03px] rounded-[12px] bg-[#2A3F77] py-[15px] text-center text-[14px] font-bold leading-[21px] text-white transition hover:opacity-90"
                 >
                   Obtén tu cupo de crédito

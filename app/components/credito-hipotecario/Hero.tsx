@@ -1,3 +1,5 @@
+import { DAVIVIENDA_CUPO_CREDITO_URL } from "@/app/lib/officialUrls";
+
 export default function Hero() {
   return (
     <section className="w-full flex justify-center bg-[#091D3E] pt-[96px] max-lg:pt-12 px-[48px] max-lg:px-5 max-lg:pb-12">
@@ -46,9 +48,9 @@ export default function Hero() {
  
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-[12px] lg:absolute lg:top-[363.95px]">
-              <button className="w-full sm:w-[224.21px] h-[49.2px] rounded-full bg-[#FFC107] text-[#2A3F77] text-[14.4px] font-semibold shadow-md flex items-center justify-center hover:translate-y-[-2px] transition">
+              <a href={DAVIVIENDA_CUPO_CREDITO_URL} className="w-full sm:w-[224.21px] h-[49.2px] rounded-full bg-[#FFC107] text-[#2A3F77] text-[14.4px] font-semibold shadow-md flex items-center justify-center hover:translate-y-[-2px] transition">
                 Conocer mi cupo gratis
-              </button>
+              </a>
               <button className="w-full sm:w-[181.98px] h-[49.2px] rounded-full border border-[rgba(255,255,255,0.3)] text-white text-[14.4px] font-semibold flex items-center justify-center hover:bg-white/5 transition">
                 ¿Cómo funciona?
               </button>
