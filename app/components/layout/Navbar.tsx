@@ -5,21 +5,38 @@ import { usePathname } from "next/navigation";
 import { type MouseEvent, useState } from "react";
 import { TOUR_VIVIENDA_URL, officialPaths } from "@/app/lib/officialUrls";
 
-const navLinks = [
-  { label: "Home", href: "/#inicio" },
-  { label: "Finanzas", href: officialPaths.finanzasHub },
-  { label: "Inmuebles", href: officialPaths.inmuebleHub },
-  { label: "Legal y Migración", href: officialPaths.legalHub },
+type NavLink = {
+  label: string;
+  href: string;
+  scrollToTopOnSameRoute?: boolean;
+};
+
+const navLinks: NavLink[] = [
+  { label: "Home", href: "/#inicio", scrollToTopOnSameRoute: true },
+  { label: "Finanzas", href: officialPaths.finanzasHub, scrollToTopOnSameRoute: true },
+  { label: "Inmuebles", href: officialPaths.inmuebleHub, scrollToTopOnSameRoute: true },
+  { label: "Legal y Migración", href: officialPaths.legalHub, scrollToTopOnSameRoute: true },
   { label: "Tour de la Vivienda", href: TOUR_VIVIENDA_URL },
-  { label: "Blog", href: officialPaths.blog },
+  { label: "Blog", href: officialPaths.blog, scrollToTopOnSameRoute: true },
 ];
+
+const normalizeNavbarPath = (href: string) => {
+  const [withoutHash] = href.split("#");
+  const [withoutQuery] = withoutHash.split("?");
+  const path = withoutQuery || "/";
+
+  return path === "/" ? path : path.replace(/\/+$/, "");
+};
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleHomeClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (pathname !== officialPaths.home) {
+  const handleNavbarLinkClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (normalizeNavbarPath(pathname) !== normalizeNavbarPath(href)) {
       return;
     }
 
@@ -52,7 +69,11 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={isHomeLink ? handleHomeClick : undefined}
+                onClick={
+                  link.scrollToTopOnSameRoute === true
+                    ? (event) => handleNavbarLinkClick(event, link.href)
+                    : undefined
+                }
                 className={`
                   group relative
                   text-[14px] leading-[21px]
@@ -151,8 +172,8 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={(event) => {
-                  if (isHomeLink) {
-                    handleHomeClick(event);
+                  if (link.scrollToTopOnSameRoute === true) {
+                    handleNavbarLinkClick(event, link.href);
                   }
 
                   setIsOpen(false);
