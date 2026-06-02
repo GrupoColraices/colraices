@@ -317,7 +317,7 @@ export default function ComoFunciona() {
   }, [onMouseMove, onMouseLeave]);
 
   return (
-    <section className="cf-section w-full flex justify-center bg-[#FBF8F3]">
+    <section id="como-funciona" className="cf-section scroll-mt-24 w-full flex justify-center bg-[#FBF8F3]">
       <style dangerouslySetInnerHTML={{ __html: css }} />
 
       <div className="cf-wrapper">

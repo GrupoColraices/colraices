@@ -51,9 +51,9 @@ export default function Hero() {
               <a href={DAVIVIENDA_CUPO_CREDITO_URL} className="w-full sm:w-[224.21px] h-[49.2px] rounded-full bg-[#FFC107] text-[#2A3F77] text-[14.4px] font-semibold shadow-md flex items-center justify-center hover:translate-y-[-2px] transition">
                 Conocer mi cupo gratis
               </a>
-              <button className="w-full sm:w-[181.98px] h-[49.2px] rounded-full border border-[rgba(255,255,255,0.3)] text-white text-[14.4px] font-semibold flex items-center justify-center hover:bg-white/5 transition">
+              <a href="#como-funciona" className="w-full sm:w-[181.98px] h-[49.2px] rounded-full border border-[rgba(255,255,255,0.3)] text-white text-[14.4px] font-semibold flex items-center justify-center hover:bg-white/5 transition">
                 ¿Cómo funciona?
-              </button>
+              </a>
             </div>
  
           </div>
