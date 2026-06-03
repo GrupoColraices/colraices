@@ -9,8 +9,11 @@ import CtaBannerSection from "./components/home/CtaBannerSection";
 import AliadosSection from "./components/home/AliadosSection";
 import UnitsSection from "./components/home/UnitsSection";
 import SiteLayout from "@/app/components/layout/SiteLayout";
+import { getBlogPosts } from "@/app/lib/blogApi";
 
-export default function Home() {
+export default async function Home() {
+  const { posts, error } = await getBlogPosts({ perPage: 3 });
+
   return (
     <SiteLayout>
       <HeroSection />
@@ -20,7 +23,7 @@ export default function Home() {
       <CreditSection />
       <TourSection />
       <TestimonialsSection />
-      <BlogSection />
+      <BlogSection posts={posts} postsError={error} />
       <CtaBannerSection />
       <AliadosSection />
     </SiteLayout>

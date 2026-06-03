@@ -384,14 +384,17 @@ function mapPagination(response: BlogApiListResponse): BlogPagination | null {
 
 function buildBlogPostsUrl({
   page = 1,
+  perPage = POSTS_PER_PAGE,
   categorySlug = null,
   search = null,
 }: {
   page?: number;
+  perPage?: number;
   categorySlug?: string | null;
   search?: string | null;
 } = {}): string {
   const safePage = Number.isFinite(page) && page > 0 ? Math.floor(page) : 1;
+  const safePerPage = Number.isFinite(perPage) && perPage > 0 ? Math.floor(perPage) : POSTS_PER_PAGE;
   const normalizedCategorySlug = normalizeText(categorySlug);
   const normalizedSearch = normalizeText(search);
   const url = new URL(
@@ -401,7 +404,7 @@ function buildBlogPostsUrl({
   );
 
   url.searchParams.set("page", String(safePage));
-  url.searchParams.set("per_page", String(POSTS_PER_PAGE));
+  url.searchParams.set("per_page", String(safePerPage));
 
   if (normalizedCategorySlug) {
     url.searchParams.set("category_slug", normalizedCategorySlug);
@@ -537,14 +540,16 @@ export function getFeaturedBlogPosts(): Promise<BlogPostsResult> {
 
 export function getBlogPosts({
   page = 1,
+  perPage = POSTS_PER_PAGE,
   categorySlug = null,
   search = null,
 }: {
   page?: number;
+  perPage?: number;
   categorySlug?: string | null;
   search?: string | null;
 } = {}): Promise<BlogPostsResult> {
-  return fetchBlogPosts(buildBlogPostsUrl({ page, categorySlug, search }));
+  return fetchBlogPosts(buildBlogPostsUrl({ page, perPage, categorySlug, search }));
 }
 
 export function getAllBlogPosts(page = 1): Promise<BlogPostsResult> {

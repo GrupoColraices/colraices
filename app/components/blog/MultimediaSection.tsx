@@ -81,14 +81,14 @@ export default function MultimediaSection({
           </div>
         ) : null}
 
-        <div className="flex gap-5 overflow-x-auto pb-4 md:grid md:grid-cols-2 md:overflow-visible lg:grid-cols-4 lg:pb-0">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
           {videos.map((video, index) => {
             const style = cardStyles[index % cardStyles.length];
 
             return (
             <article
               key={video.id}
-              className="group w-[261px] shrink-0 overflow-hidden rounded-[14px] bg-white shadow-[0_8px_28px_rgba(15,45,92,0.08)] transition-all duration-300 ease-out hover:-translate-y-[8px] hover:shadow-[0_18px_42px_rgba(15,45,92,0.18)] md:w-full"
+              className="group w-full overflow-hidden rounded-[14px] bg-white shadow-[0_8px_28px_rgba(15,45,92,0.08)] transition-all duration-300 ease-out hover:-translate-y-[8px] hover:shadow-[0_18px_42px_rgba(15,45,92,0.18)]"
             >
               <div
                 className={`relative h-[150px] overflow-hidden bg-gradient-to-br ${style.gradient}`}

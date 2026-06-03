@@ -1,9 +1,8 @@
 export default function BlogHero() {
   return (
     <section
-      className="relative w-full overflow-hidden flex items-center justify-center"
+      className="relative flex min-h-[420px] w-full items-center justify-center overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:min-h-[508px] lg:px-8"
       style={{
-        height: "508px",
         background: "linear-gradient(135deg, #192440 0%, #2A3F77 60%, #3B5298 100%)",
         fontFamily: "'Montserrat', sans-serif",
       }}
@@ -26,11 +25,11 @@ export default function BlogHero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center text-center w-full max-w-[1152px] px-[86px]">
+      <div className="relative z-10 flex w-full max-w-[1152px] flex-col items-center text-center">
 
         {/* Badge */}
         <div
-          className="inline-flex items-center justify-center gap-[9px] rounded-full mb-[24px]"
+          className="mb-6 inline-flex items-center justify-center gap-[9px] rounded-full"
           style={{
             padding: "7px 18px",
             border: "0.8px solid rgba(255,193,7,0.30)",
@@ -63,16 +62,14 @@ export default function BlogHero() {
 
         {/* Title */}
         <h1
-          className="text-center text-white w-full"
+          className="w-full max-w-[980px] text-center text-[32px] font-extrabold leading-[38px] tracking-[-0.7px] text-white sm:text-[40px] sm:leading-[46px] lg:text-[46.69px] lg:leading-[53.7px] lg:tracking-[-1px]"
           style={{
-            fontSize: "46.69px",
             fontWeight: 800,
-            lineHeight: "53.7px",
-            letterSpacing: "-1px",
           }}
         >
           Resuelve tus dudas sobre
-          <br />
+          <br className="hidden sm:block" />
+          <span className="sm:hidden"> </span>
           <span style={{ color: "#FFC107" }}>
             inversión en Colombia desde el exterior
           </span>
@@ -80,11 +77,9 @@ export default function BlogHero() {
 
         {/* Subtitle */}
         <p
-          className="text-center mt-[46px] max-w-[904px]"
+          className="mt-6 max-w-[904px] text-center text-[14px] font-semibold leading-[23px] text-white/70 sm:mt-8 sm:text-[15px] sm:leading-[25px] lg:mt-[46px] lg:text-[16px] lg:leading-[27.2px]"
           style={{
-            fontSize: 16,
             fontWeight: 600,
-            lineHeight: "27.2px",
             color: "rgba(255,255,255,0.70)",
           }}
         >

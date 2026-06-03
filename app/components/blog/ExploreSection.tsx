@@ -377,6 +377,7 @@ export default function ExploreSection({
       id: article.id,
       title: article.title,
       href: article.href,
+      imageUrl: article.imageUrl,
       color: topArticleColors[index] ?? "bg-[#1A2E5C]",
     }));
 
@@ -667,12 +668,24 @@ export default function ExploreSection({
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
-                    <span
-                      className={[
-                        "h-[44px] w-[52px] rounded-[8px] shadow-[var(--shadow-sm)] transition duration-300 group-hover:scale-105",
-                        article.color,
-                      ].join(" ")}
-                    />
+                    <span className="relative h-[44px] w-[52px] overflow-hidden rounded-[8px] shadow-[var(--shadow-sm)] transition duration-300 group-hover:scale-105">
+                      {article.imageUrl ? (
+                        <Image
+                          src={article.imageUrl}
+                          alt={article.title}
+                          fill
+                          sizes="52px"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <span
+                          className={[
+                            "absolute inset-0",
+                            article.color,
+                          ].join(" ")}
+                        />
+                      )}
+                    </span>
 
                     <span className="text-[12.5px] font-semibold leading-[17.5px] text-[#1A2340] transition group-hover:text-[#2A3F77]">
                       {article.title}
@@ -685,15 +698,6 @@ export default function ExploreSection({
                 </div>
               )}
             </div>
-
-            <a
-              href="https://blog.colraices.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-[28px] inline-flex h-[40px] w-full items-center justify-center rounded-[8px] border border-[#2A3F77] bg-white px-5 text-[13px] font-bold leading-none text-[#2A3F77] transition hover:bg-[#2A3F77] hover:text-white"
-            >
-              Ver todos los artículos →
-            </a>
           </aside>
         </div>
       </div>
