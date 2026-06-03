@@ -33,7 +33,7 @@ const steps = [
 
 export default function ServicioProcesoSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#091D3E] py-[90px] font-['Montserrat',system-ui,sans-serif] sm:py-[100px]">
+    <section id="como-funciona" className="relative w-full overflow-hidden bg-[#091D3E] py-[90px] font-['Montserrat',system-ui,sans-serif] sm:py-[100px]">
       {/* Fondo con grilla */}
       <div
         className="pointer-events-none absolute inset-0 opacity-100"

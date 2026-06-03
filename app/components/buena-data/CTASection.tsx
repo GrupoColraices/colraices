@@ -1,7 +1,14 @@
 "use client";
 
+import { useState } from "react";
+
+import GeneralContactModal from "../forms/GeneralContactModal";
+
 export default function CTASection() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
+    <>
     <div
       style={{
         width: "100%",
@@ -105,6 +112,7 @@ export default function CTASection() {
           }}
         >
           <button
+            onClick={() => setIsContactModalOpen(true)}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = "rgba(255, 255, 255, 0.10)";
               e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.60)";
@@ -159,5 +167,15 @@ export default function CTASection() {
         </p>
       </div>
     </div>
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Te contactamos para ayudarte"
+        subtitle="a invertir y construir patrimonio en Colombia"
+        source="buena_data_cta_agendar_consulta"
+        serviceInterest="Buena Data"
+        showHelpField={false}
+      />
+    </>
   );
 }

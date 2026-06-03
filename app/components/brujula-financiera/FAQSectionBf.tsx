@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import GeneralContactModal from "../forms/GeneralContactModal";
 
 const faqs = [
   {
@@ -34,8 +35,10 @@ export default function FAQSectionBuenaD() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [hovered, setHovered] = useState<number | null>(null);
   const [hoveredBtn, setHoveredBtn] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
+    <>
     <section className="relative z-10 flex w-full justify-center bg-[#FFFFFF] px-4 pt-[88px] pb-[120px] md:px-8">
       <div className="flex w-full max-w-[1180px] flex-col gap-[40px]">
 
@@ -104,6 +107,7 @@ export default function FAQSectionBuenaD() {
             </p>
 
             <button
+              onClick={() => setIsContactModalOpen(true)}
               onMouseEnter={() => setHoveredBtn(true)}
               onMouseLeave={() => setHoveredBtn(false)}
               style={{
@@ -129,5 +133,15 @@ export default function FAQSectionBuenaD() {
         </div>
       </div>
     </section>
+    <GeneralContactModal
+      open={isContactModalOpen}
+      onClose={() => setIsContactModalOpen(false)}
+      title="Te contactamos para ayudarte"
+      subtitle="a invertir y construir patrimonio en Colombia"
+      source="brujula_financiera_faq_agendar_llamada"
+      serviceInterest="Brújula financiera"
+      showHelpField={false}
+    />
+    </>
   );
 }

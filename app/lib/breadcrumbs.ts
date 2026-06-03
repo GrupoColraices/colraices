@@ -23,7 +23,7 @@ export const BREADCRUMB_MAP: Record<string, BreadcrumbNode> = {
   "/buena-data": { label: "Buena Data", parent: "/finanzas-y-credito" },
   "/monetizacion": { label: "Monetización", parent: "/finanzas-y-credito" },
   "/credito-para-colombianos-en-el-exterior": {
-    label: "Crédito",
+    label: "Crédito hipotecario",
     parent: "/finanzas-y-credito",
   },
 

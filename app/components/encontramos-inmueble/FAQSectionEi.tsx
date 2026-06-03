@@ -119,7 +119,7 @@ export default function FAQSectionEi()
           </div>
 
           {/* CONTACT CARD */}
-          <aside className="relative mx-auto flex min-h-[430px] w-full max-w-[340px] flex-col items-center justify-center rounded-[20px] border border-[#0F2D5C]/10 bg-[#FBF8F3] px-8 py-10 text-center shadow-[0_24px_64px_rgba(15,45,92,0.03)] lg:mt-[16px] lg:min-h-[608px]">
+          <aside id="contacto" className="relative mx-auto flex min-h-[430px] w-full max-w-[340px] flex-col items-center justify-center rounded-[20px] border border-[#0F2D5C]/10 bg-[#FBF8F3] px-8 py-10 text-center shadow-[0_24px_64px_rgba(15,45,92,0.03)] lg:mt-[16px] lg:min-h-[608px]">
             <div className="pointer-events-none absolute inset-0 rounded-[20px] bg-[radial-gradient(circle_at_50%_35%,rgba(255,193,7,0.06),transparent_42%)]" />
 
             <div className="relative z-10">

@@ -25,7 +25,7 @@ const BACKGROUND_CLASS =
 
 export default function HeroSection() {
   return (
-    <section className={SECTION_CLASS}>
+    <section id="inicio" className={SECTION_CLASS}>
       <BackgroundImage />
 
       <div className="relative w-full max-w-[1200px] xl:max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,7 +80,7 @@ function HeroText() {
         </Link>
 
         <Link
-          href="/nosotros#hero-nosotros"
+          href="/nosotros#ecosistema"
           className="w-full sm:w-auto px-6 h-[42px] md:h-[44px] flex items-center justify-center rounded-full border border-white text-white text-sm font-semibold transition hover:bg-white hover:text-[#0B1F3A]"
         >
           Conoce el ecosistema
