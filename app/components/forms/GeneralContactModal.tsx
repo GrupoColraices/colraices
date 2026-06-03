@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useEffect, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 
 type GeneralContactModalProps = {
   open: boolean;
@@ -12,6 +12,8 @@ type GeneralContactModalProps = {
   showHelpField?: boolean;
 };
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default function GeneralContactModal({
   open,
   onClose,
@@ -21,10 +23,12 @@ export default function GeneralContactModal({
   serviceInterest = "Contacto general",
   showHelpField = false,
 }: GeneralContactModalProps) {
+  const submittingRef = useRef(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+  const [validationError, setValidationError] = useState("");
 
   useEffect(() => {
     if (!open) return;
@@ -47,20 +51,54 @@ export default function GeneralContactModal({
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (submittingRef.current || isSubmitting) return;
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const fieldValue = (name: string) =>
+      String(formData.get(name) ?? "").trim();
+
+    const firstname = fieldValue("nombre_completo");
+    const email = fieldValue("correo_electronico");
+    const phone = fieldValue("telefono");
+    const country = fieldValue("pais_residencia");
+    const bestCallDay = fieldValue("mejor_dia_llamada");
+    const timeSlot = fieldValue("franja_horaria");
+    const acceptedPrivacyPolicy = Boolean(formData.get("acepta_politica"));
+
+    if (!firstname || !email || !phone || !country || !bestCallDay || !timeSlot) {
+      setSubmitStatus("idle");
+      setValidationError("Completa todos los campos obligatorios antes de enviar.");
+      return;
+    }
+
+    if (!EMAIL_REGEX.test(email)) {
+      setSubmitStatus("idle");
+      setValidationError("Ingresa un correo electrónico válido.");
+      return;
+    }
+
+    if (!acceptedPrivacyPolicy) {
+      setSubmitStatus("idle");
+      setValidationError(
+        "Debes aceptar la política de tratamiento de datos para continuar.",
+      );
+      return;
+    }
+
     const portalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
     const formId = process.env.NEXT_PUBLIC_HUBSPOT_FORM_ID;
 
     if (!portalId || !formId) {
+      setValidationError("");
       setSubmitStatus("error");
       return;
     }
 
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    const fieldValue = (name: string) => String(formData.get(name) ?? "");
-
+    submittingRef.current = true;
     setIsSubmitting(true);
     setSubmitStatus("idle");
+    setValidationError("");
 
     try {
       const response = await fetch(
@@ -72,15 +110,15 @@ export default function GeneralContactModal({
           },
           body: JSON.stringify({
             fields: [
-              { name: "firstname", value: fieldValue("nombre_completo") },
-              { name: "email", value: fieldValue("correo_electronico") },
-              { name: "phone", value: fieldValue("telefono") },
-              { name: "country", value: fieldValue("pais_residencia") },
+              { name: "firstname", value: firstname },
+              { name: "email", value: email },
+              { name: "phone", value: phone },
+              { name: "country", value: country },
               {
                 name: "mejor_dia_para_llamarte",
-                value: fieldValue("mejor_dia_llamada"),
+                value: bestCallDay,
               },
-              { name: "franja_horaria", value: fieldValue("franja_horaria") },
+              { name: "franja_horaria", value: timeSlot },
               {
                 name: "en_que_podemos_ayudarte",
                 value: showHelpField
@@ -89,7 +127,7 @@ export default function GeneralContactModal({
               },
               {
                 name: "acepto_politica_de_tratamiento_de_datos",
-                value: formData.get("acepta_politica") ? "true" : "",
+                value: acceptedPrivacyPolicy ? "true" : "",
               },
               { name: "servicio_de_interes", value: serviceInterest },
               { name: "origen_del_formulario", value: source },
@@ -107,6 +145,10 @@ export default function GeneralContactModal({
               },
               { name: "fuente_del_formulario", value: "Web Colraices" },
             ],
+            context: {
+              pageUri: window.location.href,
+              pageName: document.title || window.location.pathname,
+            },
           }),
         },
       );
@@ -120,6 +162,7 @@ export default function GeneralContactModal({
     } catch {
       setSubmitStatus("error");
     } finally {
+      submittingRef.current = false;
       setIsSubmitting(false);
     }
   };
@@ -132,7 +175,7 @@ export default function GeneralContactModal({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-[600px] overflow-hidden rounded-bl-none rounded-br-[16px] rounded-tl-[16px] rounded-tr-none bg-white shadow-[0_24px_80px_rgba(0,0,0,0.35)]"
+        className="max-h-[calc(100dvh-106px)] w-full max-w-[600px] overflow-x-hidden overflow-y-auto rounded-bl-none rounded-br-[16px] rounded-tl-[16px] rounded-tr-none bg-white shadow-[0_24px_80px_rgba(0,0,0,0.35)] md:max-h-[calc(100dvh-126px)]"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="relative h-[134px] bg-[#2A3F77] px-[32px] pt-[38px] text-white">
@@ -166,9 +209,10 @@ export default function GeneralContactModal({
             </p>
           )}
 
-          {submitStatus === "error" && (
+          {(validationError || submitStatus === "error") && (
             <p className="mb-[14px] text-[13px] font-semibold leading-[1.4] text-[#B42318]">
-              No pudimos enviar el formulario. Intenta nuevamente.
+              {validationError ||
+                "No pudimos enviar el formulario. Intenta nuevamente."}
             </p>
           )}
 
