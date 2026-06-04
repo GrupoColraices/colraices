@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
+import GeneralContactModal from "../forms/GeneralContactModal";
 
 const paymentSteps = [
   {
@@ -24,12 +25,7 @@ const paymentSteps = [
 ];
 
 export default function LlaveInmobiliariaHero() {
-  const goToContact = () => {
-    document.getElementById("contacto")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const goToHowItWorks = () => {
     document.getElementById("como-funciona")?.scrollIntoView({
@@ -103,7 +99,7 @@ export default function LlaveInmobiliariaHero() {
           <div className="mt-10 flex animate-[liFadeUp_.75s_ease-out_.3s_both] flex-col items-center gap-4 sm:flex-row lg:justify-start">
             <button
               type="button"
-              onClick={goToContact}
+              onClick={() => setIsContactModalOpen(true)}
               className="h-[52px] w-full rounded-full bg-[linear-gradient(135deg,#D69A12,#F0B429)] px-9 text-[14px] font-bold tracking-[0.02em] text-[#071B39] shadow-[0_14px_34px_rgba(240,180,41,0.30)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(240,180,41,0.42)] sm:w-auto"
             >
               Empezar ahora
@@ -177,7 +173,16 @@ export default function LlaveInmobiliariaHero() {
         </div>
       </div>
 
- 
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Déjanos tus datos y te contactaremos"
+        subtitle="para acompañarte en tu camino hacia tu inmueble en Colombia"
+        source="llave_inmobiliaria_hero_empezar_ahora"
+        serviceInterest="Llave Inmobiliaria"
+        showHelpField={false}
+      />
+
       <style jsx>{`
         @keyframes liFadeUp {
           from {
