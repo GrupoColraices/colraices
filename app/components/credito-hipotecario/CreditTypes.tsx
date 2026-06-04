@@ -1,3 +1,5 @@
+import { DAVIVIENDA_CUPO_CREDITO_URL } from "@/app/lib/officialUrls";
+
 export default function CreditTypes() {
   const specLabel =
     "text-[13.12px] leading-[19.7px] text-[#94A3B8]";
@@ -7,7 +9,7 @@ export default function CreditTypes() {
     "grid grid-cols-[110px_1fr] gap-4 items-start";
 
   return (
-    <section className="w-full flex justify-center bg-white">
+    <section id="tipos-de-credito" className="w-full flex justify-center bg-white scroll-mt-0">
       <div className="w-full max-w-[1180px] px-4 sm:px-8 py-14 md:py-[88px]">
         {/* HEADER */}
         <div className="w-full max-w-[1084px] mx-auto text-center">
@@ -81,9 +83,14 @@ export default function CreditTypes() {
               </div>
             </div>
 
-            <div className="mt-6 text-center text-[14.4px] leading-[21.6px] font-semibold text-[#0A0A0A]">
+            <a
+              href={DAVIVIENDA_CUPO_CREDITO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 text-center text-[14.4px] leading-[21.6px] font-semibold text-[#0A0A0A]"
+            >
               Tu Cupo de crédito →
-            </div>
+            </a>
           </div>
 
           {/* CARD 2 */}
@@ -132,9 +139,14 @@ export default function CreditTypes() {
               </div>
             </div>
 
-            <div className="mt-6 text-center text-[14.4px] leading-[21.6px] font-semibold text-[#0A0A0A]">
+            <a
+              href={DAVIVIENDA_CUPO_CREDITO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 text-center text-[14.4px] leading-[21.6px] font-semibold text-[#0A0A0A]"
+            >
               Tu Cupo de crédito →
-            </div>
+            </a>
           </div>
 
           {/* CARD 3 */}
@@ -188,9 +200,14 @@ export default function CreditTypes() {
               </div>
             </div>
 
-            <div className="mt-6 text-center text-[14.4px] leading-[21.6px] font-semibold text-[#0A0A0A]">
+            <a
+              href={DAVIVIENDA_CUPO_CREDITO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 text-center text-[14.4px] leading-[21.6px] font-semibold text-[#0A0A0A]"
+            >
               Tu Cupo de crédito →
-            </div>
+            </a>
           </div>
         </div>
       </div>

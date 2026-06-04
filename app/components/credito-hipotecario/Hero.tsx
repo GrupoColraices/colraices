@@ -70,7 +70,7 @@ export default function Hero() {
         {/* RIGHT */}
         <div className="w-full lg:w-[400px] lg:h-[488.3px] lg:absolute lg:left-[704px] lg:top-[96px] flex flex-col gap-[16px]">
           {/* CARD 1 */}
-          <div className="group w-full lg:w-[400px] lg:h-[152.1px] rounded-tl-[16px] rounded-br-[16px] border border-[rgba(255,255,255,0.08)] border-l-[4px] border-l-[#df0209] bg-[rgba(255,193,7,0.06)] relative cursor-pointer transition-transform duration-200 ease-out hover:translate-x-[6px] p-6 lg:p-0">
+          <a href="#tipos-de-credito" className="group w-full lg:w-[400px] lg:h-[152.1px] rounded-tl-[16px] rounded-br-[16px] border border-[rgba(255,255,255,0.08)] border-l-[4px] border-l-[#df0209] bg-[rgba(255,193,7,0.06)] relative cursor-pointer transition-transform duration-200 ease-out hover:translate-x-[6px] p-6 lg:p-0">
             <span className="block mb-2 lg:mb-0 lg:absolute lg:left-[24.8px] lg:top-[32.1px] text-[10.4px] tracking-[1.04px] font-bold text-[#ea3442]">
               DAVIVIENDA
             </span>
@@ -89,10 +89,10 @@ export default function Hero() {
               Para comprar vivienda nueva o usada en Colombia. Hasta 80% de
               financiación.
             </p>
-          </div>
+          </a>
 
           {/* CARD 2 */}
-          <div className="group w-full lg:w-[400px] lg:h-[152.1px] rounded-tl-[16px] rounded-br-[16px] border border-[rgba(255,255,255,0.08)] border-l-[4px] border-l-[#00a3e2] bg-[rgba(255,255,255,0.06)] relative cursor-pointer transition-transform duration-200 ease-out hover:translate-x-[6px] p-6 lg:p-0">
+          <a href="#tipos-de-credito" className="group w-full lg:w-[400px] lg:h-[152.1px] rounded-tl-[16px] rounded-br-[16px] border border-[rgba(255,255,255,0.08)] border-l-[4px] border-l-[#00a3e2] bg-[rgba(255,255,255,0.06)] relative cursor-pointer transition-transform duration-200 ease-out hover:translate-x-[6px] p-6 lg:p-0">
             <span className="block mb-2 lg:mb-0 lg:absolute lg:left-[24.8px] lg:top-[32.1px] text-[10.4px] tracking-[1.04px] font-bold text-[#00a3e2]">
               BANCO UNIÓN
             </span>
@@ -111,10 +111,10 @@ export default function Hero() {
               Si ya tienes un inmueble en Colombia. Hasta 70% del valor del
               inmueble.
             </p>
-          </div>
+          </a>
 
           {/* CARD 3 */}
-          <div className="group w-full lg:w-[400px] lg:h-[152.1px] rounded-tl-[16px] rounded-br-[16px] border border-[rgba(255,255,255,0.08)] border-l-[4px] border-l-[#df0209] bg-[rgba(255,193,7,0.06)] relative cursor-pointer transition-transform duration-200 ease-out hover:translate-x-[6px] p-6 lg:p-0">
+          <a href="#tipos-de-credito" className="group w-full lg:w-[400px] lg:h-[152.1px] rounded-tl-[16px] rounded-br-[16px] border border-[rgba(255,255,255,0.08)] border-l-[4px] border-l-[#df0209] bg-[rgba(255,193,7,0.06)] relative cursor-pointer transition-transform duration-200 ease-out hover:translate-x-[6px] p-6 lg:p-0">
             <span className="block mb-2 lg:mb-0 lg:absolute lg:left-[24.8px] lg:top-[32.1px] text-[10.4px] tracking-[1.04px] font-bold text-[#ea3442]">
               DAVIVIENDA
             </span>
@@ -133,7 +133,7 @@ export default function Hero() {
               Financia hasta el 80% de la vivienda en Colombia, pagas mes a mes
               y al final decides si es tuya.
             </p>
-          </div>
+          </a>
         </div>
       </div>
     </section>
