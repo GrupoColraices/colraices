@@ -48,12 +48,14 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#F4F6F8] border-b border-black/5">
       <div className="max-w-[1416px] mx-auto px-6 lg:px-[156px] h-[68px] flex items-center justify-between">
         {/* LOGO */}
-        <Link href="/">
+        <Link href="/" className="flex shrink-0 items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo.png"
             alt="Colraices"
-            className="h-[28px] w-auto"
+            width={118}
+            height={28}
+            className="h-auto w-[118px] shrink-0"
           />
         </Link>
 
