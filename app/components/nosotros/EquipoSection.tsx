@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState, type TransitionEvent } from "react";
 
 type TeamMember = {
   name: string;
   role: string;
   location?: string;
+  image?: string;
   featured?: boolean;
 };
 
@@ -14,36 +16,49 @@ const teamMembers: TeamMember[] = [
     name: "Milena Osorio",
     role: "Consultora Colraices",
     location: "Alemania",
+    image: "/equipo/Milena_Osorio.jpg",
   },
   {
     name: "Elisa Guerrero",
     role: "Consultora Colraices",
     location: "España",
+    image: "/equipo/Elisa_Guerrero.jpg",
   },
   {
     name: "Daniel Felipe Pérez",
     role: "Dirección Ejecutiva",
+    image: "/equipo/Daniel_ Felipe_Perez.jpg",
     featured: true,
   },
   {
     name: "Camila Suárez",
     role: "Consultora Colraices",
+    image: "/equipo/Camila_Suarez.jpg",
   },
   {
     name: "Diana Ossa",
     role: "Consultora Colraices",
+    image: "/equipo/Diana_Ossa.jpg",
   },
   {
     name: "Luz Ángela Vanegas",
     role: "Consultora Colraices",
+    image: "/equipo/Luz_Angela_Vanegas.jpg",
   },
   {
     name: "Bibiana Ulloa",
     role: "Consultora Colraices",
+    image: "/equipo/Bibiana_Ulloa.jpg",
   },
   {
     name: "Angélica Báez",
     role: "Consultora Colraices",
+    image: "/equipo/Angelica_Baez.jpg",
+  },
+  {
+    name: "Luisa Fernanda Diaz",
+    role: "Consultora Colraices",
+    image: "/equipo/Luisa_Fernanda_Diaz.jpg",
   },
 ];
 
@@ -284,8 +299,18 @@ export default function EquipoSection() {
                           : "bg-white hover:shadow-[0_18px_44px_rgba(15,45,92,0.14)]",
                       ].join(" ")}
                     >
-                      <div className="relative mb-4 flex h-[62px] w-[62px] items-center justify-center rounded-full border border-[#CBD5E1] bg-[#F1F5F9] transition-transform duration-500 group-hover:scale-110">
-                        <UserIcon />
+                      <div className="relative mb-4 flex h-[62px] w-[62px] items-center justify-center overflow-hidden rounded-full border border-[#CBD5E1] bg-[#F1F5F9] transition-transform duration-500 group-hover:scale-110">
+                        {member.image ? (
+                          <Image
+                            src={member.image}
+                            alt={member.name}
+                            fill
+                            sizes="62px"
+                            className="rounded-full object-cover"
+                          />
+                        ) : (
+                          <UserIcon />
+                        )}
                       </div>
 
                       <h3
