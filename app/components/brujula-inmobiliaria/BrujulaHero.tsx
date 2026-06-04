@@ -1,3 +1,8 @@
+"use client";
+
+import { useState } from "react";
+import GeneralContactModal from "../forms/GeneralContactModal";
+
 const BENEFITS = [
   "Análisis de mercado e inmueble completo",
   "Promesa de compraventa + mandato legal",
@@ -192,6 +197,8 @@ function InfoCard({
 }
 
 export default function BrujulaHero() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
     <section className="relative min-h-[calc(100vh-68px)] overflow-hidden bg-[#091D3E] font-[Montserrat,system-ui,sans-serif] text-white">
       <HeroBackground />
@@ -216,12 +223,13 @@ export default function BrujulaHero() {
               la promesa de compraventa.
             </p>
 
-            <a
-              href="#contacto"
+            <button
+              type="button"
+              onClick={() => setIsContactModalOpen(true)}
               className="mt-9 inline-flex h-[50px] items-center justify-center rounded-full bg-[#F0B429] px-9 text-[14px] font-bold tracking-[0.02em] text-[#091D3E] shadow-[0_16px_34px_rgba(240,180,41,0.28)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(240,180,41,0.38)]"
             >
               Contratar ahora
-            </a>
+            </button>
           </div>
 
           <div className="relative z-10 mx-auto w-full max-w-[460px] animate-[biFadeUp_0.95s_ease-out_0.12s_both] lg:mx-0">
@@ -270,6 +278,14 @@ export default function BrujulaHero() {
           }
         }
       `}</style>
+
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        source="brujula_inmobiliaria_hero_contratar_ahora"
+        serviceInterest="Brújula Inmobiliaria"
+        showHelpField={false}
+      />
     </section>
   );
 }
