@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
 
 const faqs = [
   {
@@ -44,8 +45,10 @@ export default function FAQSectionMo() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [hovered, setHovered] = useState<number | null>(null);
   const [hoveredBtn, setHoveredBtn] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
+    <>
     <section className="w-full bg-[#FFFFFF] flex justify-center px-4 md:px-8 pt-[88px] pb-[120px] relative z-10">
       <div className="w-full max-w-[1180px] flex flex-col gap-[40px]">
 
@@ -115,6 +118,7 @@ export default function FAQSectionMo() {
             </p>
 
             <button
+              onClick={() => setIsContactModalOpen(true)}
               onMouseEnter={() => setHoveredBtn(true)}
               onMouseLeave={() => setHoveredBtn(false)}
               style={{
@@ -141,5 +145,13 @@ export default function FAQSectionMo() {
         </div>
       </div>
     </section>
+    <GeneralContactModal
+      open={isContactModalOpen}
+      onClose={() => setIsContactModalOpen(false)}
+      source="monetizacion_faq_agendar_llamada"
+      serviceInterest="Monetización"
+      showHelpField={false}
+    />
+    </>
   );
 }
