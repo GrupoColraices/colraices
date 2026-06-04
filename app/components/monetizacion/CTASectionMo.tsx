@@ -1,5 +1,7 @@
 "use client";
 
+import { MONETIZACION_WHATSAPP_URL } from "@/app/lib/officialUrls";
+
 export default function CTASectionMonetizacion() {
   return (
     <section className="w-full bg-[#091D3E] flex justify-center items-center px-[48px] pt-[100px] pb-[60px]">
@@ -23,9 +25,14 @@ export default function CTASectionMonetizacion() {
         </p>
 
         {/* BOTÓN */}
-        <button className="mt-[28px] px-[28px] py-[10px] text-[14px] font-semibold text-white border border-white/40 rounded-full bg-transparent hover:bg-white/[0.08] hover:border-white/80 transition-all duration-300">
-          Agendar consulta gratuita
-        </button>
+        <a
+          href={MONETIZACION_WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-[28px] px-[28px] py-[10px] text-[14px] font-semibold text-white border border-white/40 rounded-full bg-transparent hover:bg-white/[0.08] hover:border-white/80 transition-all duration-300"
+        >
+          Hablar con un asesor
+        </a>
 
         {/* TEXTO INFERIOR */}
         <p className="mt-[16px] text-[11.5px] leading-[1.6] text-white/28">
