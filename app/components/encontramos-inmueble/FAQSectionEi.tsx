@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
 
 const faqs = [
   {
@@ -48,6 +49,7 @@ const faqs = [
 export default function FAQSectionEi() 
 {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
     <section className="relative w-full overflow-hidden border-b border-[#0F2D5C] bg-[#FBF8F3] px-4 py-[72px] font-['Montserrat'] sm:px-6 sm:py-[88px] lg:px-8">
@@ -134,12 +136,13 @@ export default function FAQSectionEi()
                 100% remoto. Sin compromiso.
               </p>
 
-              <a
-                href="#"
+              <button
+                type="button"
+                onClick={() => setIsContactModalOpen(true)}
                 className="mt-6 inline-flex h-[44px] w-full min-w-[250px] items-center justify-center rounded-full bg-[#0F2D5C] px-8 text-[15px] font-bold text-white shadow-[0_14px_28px_rgba(15,45,92,0.16)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#091D3E] hover:shadow-[0_18px_36px_rgba(15,45,92,0.22)] active:translate-y-0"
               >
                 Agendar llamada
-              </a>
+              </button>
 
               <p className="mt-5 text-[12px] font-medium text-[#94A3B8]">
                 Respuesta en menos de 24 horas
@@ -148,6 +151,13 @@ export default function FAQSectionEi()
           </aside>
         </div>
       </div>
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        source="encontramos_inmueble_faq_agendar_llamada"
+        serviceInterest="Encontramos tu inmueble"
+        showHelpField={false}
+      />
     </section>
   );
 }
