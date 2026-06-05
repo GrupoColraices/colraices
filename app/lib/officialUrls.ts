@@ -29,6 +29,9 @@ const MONETIZACION_WHATSAPP_ENCODED_MESSAGE = encodeURIComponent(
 
 export const MONETIZACION_WHATSAPP_URL = `https://api.whatsapp.com/send/?phone=${OFFICIAL_WHATSAPP_NUMBER}&text=${MONETIZACION_WHATSAPP_ENCODED_MESSAGE}&type=phone_number&app_absent=0`;
 
+export const BLOG_ORIENTATION_WHATSAPP_URL =
+  "https://api.whatsapp.com/send/?phone=15136479405&text=Hola+Colraices.+Soy+colombiano+en+el+exterior+y+vengo+del+blog.+Me+gustar%C3%ADa+recibir+orientaci%C3%B3n+para+entender+c%C3%B3mo+podr%C3%ADa+avanzar+en+mi+proceso+de+inversi%C3%B3n+y+financiamiento+en+Colombia.&type=phone_number&app_absent=0";
+
 export const officialPaths = {
   home: "/",
   nosotros: "/nosotros",
