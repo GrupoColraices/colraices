@@ -7,6 +7,12 @@ import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
 export default function RepresentationHero() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
+  const handleScrollToProblem = () => {
+    const section = document.getElementById("problema-representacion");
+    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", "#problema-representacion");
+  };
+
   const cities = [
     "Bogotá",
     "Medellín",
@@ -59,7 +65,11 @@ export default function RepresentationHero() {
               Contratar representación →
             </button>
 
-            <button className="h-[52px] rounded-full border border-[#CBD5E1] bg-transparent px-9 text-[14.4px] font-semibold leading-[21.6px] text-[#0F2D5C] transition-all duration-300 hover:border-[#0F2D5C] hover:bg-white">
+            <button
+              type="button"
+              onClick={handleScrollToProblem}
+              className="h-[52px] rounded-full border border-[#CBD5E1] bg-transparent px-9 text-[14.4px] font-semibold leading-[21.6px] text-[#0F2D5C] transition-all duration-300 hover:border-[#0F2D5C] hover:bg-white"
+            >
               Ver cómo funciona
             </button>
           </div>

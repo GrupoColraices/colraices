@@ -21,7 +21,7 @@ export default function ProblemSection() {
   ];
 
   return (
-    <section className="w-full bg-[#091D3E] py-[88px] px-4 sm:px-6 lg:px-8">
+    <section id="problema-representacion" className="w-full bg-[#091D3E] py-[88px] px-4 sm:px-6 lg:px-8">
       <div className="max-w-[1180px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-[56px]">
         
         {/* LEFT CONTENT */}
@@ -30,7 +30,7 @@ export default function ProblemSection() {
         {/* EYEBROW */}
         <div className="mb-5 w-full flex justify-center">
             <span className="block text-[#FFC107] tracking-[1.57px] text-[16px] font-semibold leading-[16.8px] whitespace-nowrap">
-            POR QUÉ EXISTE ESTE SERVICIO
+            Por qué existe este servicio
             </span>
         </div>
 
