@@ -46,7 +46,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#F4F6F8] border-b border-black/5">
-      <div className="max-w-[1416px] mx-auto px-6 lg:px-[156px] h-[68px] flex items-center justify-between">
+      <div className="max-w-[1416px] mx-auto px-6 lg:px-8 xl:px-[156px] h-[68px] flex items-center justify-between">
         {/* LOGO */}
         <Link href="/" className="flex shrink-0 items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -60,7 +60,7 @@ export default function Navbar() {
         </Link>
 
         {/* NAV DESKTOP */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-8">
           {navLinks.map((link) => {
             const isHomeLink = link.href === "/#inicio";
             const isActive = isHomeLink
@@ -77,7 +77,7 @@ export default function Navbar() {
                     : undefined
                 }
                 className={`
-                  group relative
+                  group relative whitespace-nowrap
                   text-[14px] leading-[21px]
                   transition-all duration-200
 
@@ -115,7 +115,7 @@ export default function Navbar() {
         <Link
           href="/contacto"
           className="
-            hidden lg:flex items-center justify-center 
+            hidden xl:flex items-center justify-center shrink-0 whitespace-nowrap
             px-6 h-[40px] rounded-full 
             bg-[#0F2D5C] text-white 
             text-[14px] font-semibold
@@ -134,7 +134,7 @@ export default function Navbar() {
         {/* BOTÓN MOBILE */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden flex flex-col justify-center items-center gap-[4px]"
+          className="xl:hidden flex flex-col justify-center items-center gap-[4px]"
         >
           <span
             className={`w-6 h-[2px] bg-[#0F2D5C] transition-all ${
@@ -157,7 +157,7 @@ export default function Navbar() {
       {/* MENÚ MOBILE */}
       <div
         className={`
-          lg:hidden bg-[#F4F6F8] border-t border-black/5
+          xl:hidden bg-[#F4F6F8] border-t border-black/5
           overflow-hidden transition-all duration-300
           ${isOpen ? "max-h-[500px] py-4" : "max-h-0"}
         `}
