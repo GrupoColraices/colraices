@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type MouseEvent, useState } from "react";
 import { TOUR_VIVIENDA_URL, officialPaths } from "@/app/lib/officialUrls";
+import GeneralContactModal from "../forms/GeneralContactModal";
 
 type NavLink = {
   label: string;
@@ -31,6 +32,7 @@ const normalizeNavbarPath = (href: string) => {
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const handleNavbarLinkClick = (
     event: MouseEvent<HTMLAnchorElement>,
@@ -45,7 +47,8 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#F4F6F8] border-b border-black/5">
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#F4F6F8] border-b border-black/5">
       <div className="max-w-[1416px] mx-auto px-6 lg:px-8 xl:px-[156px] h-[68px] flex items-center justify-between">
         {/* LOGO */}
         <Link href="/" className="flex shrink-0 items-center">
@@ -112,8 +115,9 @@ export default function Navbar() {
         </nav>
 
         {/* CTA DESKTOP */}
-        <Link
-          href="/contacto"
+        <button
+          type="button"
+          onClick={() => setIsContactModalOpen(true)}
           className="
             hidden xl:flex items-center justify-center shrink-0 whitespace-nowrap
             px-6 h-[40px] rounded-full 
@@ -129,7 +133,7 @@ export default function Navbar() {
           "
         >
           Solicitar Asesoría
-        </Link>
+        </button>
 
         {/* BOTÓN MOBILE */}
         <button
@@ -195,9 +199,12 @@ export default function Navbar() {
           })}
 
           {/* CTA MOBILE */}
-          <Link
-            href="/contacto"
-            onClick={() => setIsOpen(false)}
+          <button
+            type="button"
+            onClick={() => {
+              setIsOpen(false);
+              setIsContactModalOpen(true);
+            }}
             className="
               mt-2 flex items-center justify-center
               h-[42px] rounded-full
@@ -206,9 +213,20 @@ export default function Navbar() {
             "
           >
             Solicitar Asesoría
-          </Link>
+          </button>
         </div>
       </div>
-    </header>
+      </header>
+
+      <GeneralContactModal
+        title="Te contactamos para ayudarte"
+        subtitle="a invertir y construir patrimonio en Colombia"
+        source="navbar_solicitar_asesoria"
+        serviceInterest="Contacto general"
+        showHelpField={false}
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
+    </>
   );
 }
