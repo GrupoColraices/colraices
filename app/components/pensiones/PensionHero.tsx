@@ -1,4 +1,11 @@
+"use client";
+
+import { useState } from "react";
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
+
 export default function PensionHero() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
     <section className="relative w-full bg-[#FBF8F3] pt-[72px] sm:pt-[88px] lg:pt-[96px] pb-[40px] overflow-hidden">
       <div className="max-w-[1180px] mx-auto w-full min-h-screen lg:min-h-0 relative px-4 sm:px-6 md:px-8 lg:px-6 xl:px-0">
@@ -54,7 +61,11 @@ export default function PensionHero() {
 
             {/* BOTÓN */}
             <div className="mt-10 sm:mt-12 lg:mt-[50px]">
-              <button className="w-full sm:w-auto min-h-[52px] px-7 rounded-full bg-[#FFC107] text-[#2A3F77] font-semibold text-[clamp(14px,2vw,14.4px)] leading-[21.6px] shadow-[0_10px_24px_rgba(255,193,7,0.35)] hover:scale-[1.02] transition-all duration-300">
+              <button
+                type="button"
+                onClick={() => setIsContactModalOpen(true)}
+                className="w-full sm:w-auto min-h-[52px] px-7 rounded-full bg-[#FFC107] text-[#2A3F77] font-semibold text-[clamp(14px,2vw,14.4px)] leading-[21.6px] shadow-[0_10px_24px_rgba(255,193,7,0.35)] hover:scale-[1.02] transition-all duration-300"
+              >
                 Revisar mi situación pensional
               </button>
             </div>
@@ -211,6 +222,15 @@ export default function PensionHero() {
 
         </div>
       </div>
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Déjanos tus datos para asesorarnos"
+        subtitle="con tu proceso de pensión"
+        source="pensiones_hero_revisar_situacion"
+        serviceInterest="Pensiones"
+        showHelpField={false}
+      />
     </section>
   );
 }
