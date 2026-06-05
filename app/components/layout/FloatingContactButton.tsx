@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { OFFICIAL_WHATSAPP_URL } from "@/app/lib/officialUrls";
+import GeneralContactModal from "../forms/GeneralContactModal";
 
 type ContactView = "main" | "call";
 
 export default function FloatingContactButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [view, setView] = useState<ContactView>("main");
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const handleToggleOpen = () => {
     if (!isOpen) {
@@ -22,7 +24,9 @@ export default function FloatingContactButton() {
   };
 
   const handleScheduleCall = () => {
-    // TODO: conectar flujo de agendamiento de llamada.
+    setIsOpen(false);
+    setView("main");
+    setIsContactModalOpen(true);
   };
 
   const handleChat = () => {
@@ -30,7 +34,8 @@ export default function FloatingContactButton() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[9999] font-[Montserrat]">
+    <>
+      <div className="fixed bottom-6 right-6 z-[9999] font-[Montserrat]">
       {isOpen && (
         <div
           className={`absolute bottom-20 right-0 overflow-hidden rounded-2xl border border-[#2A3F77]/10 bg-white shadow-[0_8px_32px_rgba(42,63,119,0.2)] ${
@@ -242,6 +247,17 @@ export default function FloatingContactButton() {
           </span>
         )}
       </button>
-    </div>
+      </div>
+
+      <GeneralContactModal
+        title="Te contactamos para ayudarte"
+        subtitle="a invertir y construir patrimonio en Colombia"
+        source="floating_contact_agendar_llamada"
+        serviceInterest="Agendar llamada"
+        showHelpField={false}
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
+    </>
   );
 }
