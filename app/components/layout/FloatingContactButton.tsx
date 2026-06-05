@@ -4,7 +4,7 @@ import { useState } from "react";
 import { OFFICIAL_WHATSAPP_URL } from "@/app/lib/officialUrls";
 import GeneralContactModal from "../forms/GeneralContactModal";
 
-type ContactView = "main" | "call";
+type ContactView = "main" | "call" | "chat";
 
 export default function FloatingContactButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,16 +33,20 @@ export default function FloatingContactButton() {
     window.open(OFFICIAL_WHATSAPP_URL, "_blank", "noopener,noreferrer");
   };
 
+  const handleWebChat = () => {
+    // TODO: conectar chat web
+  };
+
   return (
     <>
       <div className="fixed bottom-6 right-6 z-[9999] font-[Montserrat]">
       {isOpen && (
         <div
           className={`absolute bottom-20 right-0 overflow-hidden rounded-2xl border border-[#2A3F77]/10 bg-white shadow-[0_8px_32px_rgba(42,63,119,0.2)] ${
-            view === "call" ? "min-w-[240px]" : "w-[240px]"
+            view === "main" ? "w-[240px]" : "min-w-[240px]"
           }`}
         >
-          {view === "main" ? (
+          {view === "main" && (
             <>
               <div className="bg-gradient-to-br from-[#2A3F77] to-[#1A2847] px-5 py-4">
                 <h3 className="mb-1 text-[15px] font-bold text-white">
@@ -81,7 +85,7 @@ export default function FloatingContactButton() {
 
                 <button
                   type="button"
-                  onClick={handleChat}
+                  onClick={() => setView("chat")}
                   className="flex w-full cursor-pointer items-center gap-3 rounded-lg bg-transparent px-4 py-3.5 text-left transition hover:bg-[#2A3F77]/5"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#FFC107] to-[#FFB300] text-lg">
@@ -104,7 +108,120 @@ export default function FloatingContactButton() {
                 </button>
               </div>
             </>
-          ) : (
+          )}
+
+          {view === "chat" && (
+            <>
+              <div className="flex items-center gap-3 bg-gradient-to-br from-[#FFC107] to-[#FFB300] px-5 py-4 text-[#2A3F77]">
+                <button
+                  type="button"
+                  aria-label="Volver al menú de contacto"
+                  onClick={() => setView("main")}
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[1.3rem] leading-none text-[#2A3F77] transition hover:bg-[#2A3F77]/10"
+                >
+                  ‹
+                </button>
+
+                <div className="min-w-0">
+                  <h3 className="mb-1 text-[15px] font-bold text-[#2A3F77]">
+                    Chat
+                  </h3>
+
+                  <p className="text-xs font-normal text-[#2A3F77]">
+                    Elige tu canal preferido
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-2">
+                <button
+                  type="button"
+                  onClick={handleWebChat}
+                  className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-4 py-3.5 text-left transition hover:bg-[#2A3F77]/5"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#2A3F77] to-[#1A2847]">
+                    <svg
+                      className="h-5 w-5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.5 17.5H9L12 20.5L15 17.5H18.5C20.157 17.5 21.5 16.157 21.5 14.5V6.5C21.5 4.84315 20.157 3.5 18.5 3.5H5.5C3.84315 3.5 2.5 4.84315 2.5 6.5V14.5C2.5 16.157 3.84315 17.5 5.5 17.5Z"
+                        stroke="#FFFFFF"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M7.5 9H16.5"
+                        stroke="#FFFFFF"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M7.5 12.5H13.5"
+                        stroke="#FFFFFF"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>
+
+                  <span className="flex-1">
+                    <span className="mb-0.5 block text-sm font-semibold text-[#2A3F77]">
+                      Chat
+                    </span>
+
+                    <span className="block text-[11px] font-normal text-[#2A3F77]/60">
+                      Respuestas inmediatas
+                    </span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleChat}
+                  className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-4 py-3.5 text-left transition hover:bg-[#2A3F77]/5"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#25D366] to-[#128C7E]">
+                    <svg
+                      className="h-5 w-5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6.2 18.5L3.5 19.5L4.45 16.75C3.55 15.37 3.05 13.73 3.05 12C3.05 7.06 7.06 3.05 12 3.05C16.94 3.05 20.95 7.06 20.95 12C20.95 16.94 16.94 20.95 12 20.95C9.86 20.95 7.9 20.2 6.36 18.94L6.2 18.5Z"
+                        stroke="#FFFFFF"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M9.2 8.7C9.38 8.35 9.52 8.35 9.78 8.35H10.22C10.39 8.35 10.58 8.41 10.68 8.64L11.25 10C11.34 10.22 11.3 10.38 11.14 10.56L10.78 10.96C11.24 11.8 11.9 12.45 12.85 12.96L13.3 12.55C13.47 12.4 13.63 12.36 13.84 12.45L15.18 13.02C15.41 13.12 15.5 13.28 15.5 13.5V13.9C15.5 14.35 15.13 14.9 14.47 14.9C12.05 14.9 9.1 12.52 9.1 9.68C9.1 9.3 9.1 8.91 9.2 8.7Z"
+                        fill="#FFFFFF"
+                      />
+                    </svg>
+                  </span>
+
+                  <span className="flex-1">
+                    <span className="mb-0.5 block text-sm font-semibold text-[#2A3F77]">
+                      WhatsApp
+                    </span>
+
+                    <span className="block text-[11px] font-normal text-[#2A3F77]/60">
+                      Chatea con nosotros
+                    </span>
+                  </span>
+                </button>
+              </div>
+            </>
+          )}
+
+          {view === "call" && (
             <>
               <div className="flex items-center gap-3 bg-gradient-to-br from-[#2A3F77] to-[#1A2847] px-5 py-4">
                 <button
