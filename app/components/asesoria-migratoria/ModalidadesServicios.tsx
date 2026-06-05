@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
+
 const servicioCompleto = [
   "Diagnóstico completo de perfil migratorio",
   "Análisis de viabilidad y comparación de rutas posibles",
@@ -16,9 +19,25 @@ const servicioRetoma = [
   "Orientación sobre próximos pasos concretos",
 ];
 
+const modalidadesContacto = {
+  completa: {
+    source: "asesoria_migratoria_modalidades_completa_contratar",
+    serviceInterest: "Asesoría Migratoria - Completa",
+  },
+  retoma: {
+    source: "asesoria_migratoria_modalidades_retoma_contratar",
+    serviceInterest: "Asesoría Migratoria - Retoma",
+  },
+};
+
 export default function ModalidadesServicios() {
+  const [modalidadSeleccionada, setModalidadSeleccionada] = useState<
+    (typeof modalidadesContacto)[keyof typeof modalidadesContacto] | null
+  >(null);
+
   return (
-    <section className="w-full bg-[#FBF8F3] pt-[70px] sm:pt-[85px] lg:pt-[99.98px] pb-[75px] sm:pb-[90px] lg:pb-[100px]">
+    <>
+      <section className="w-full bg-[#FBF8F3] pt-[70px] sm:pt-[85px] lg:pt-[99.98px] pb-[75px] sm:pb-[90px] lg:pb-[100px]">
       <div className="w-full max-w-[1375.37px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-[155.69px] flex flex-col gap-[40px] sm:gap-[48px] lg:gap-[51.98px]">
         {/* HEADER */}
         <div className="w-full max-w-[1063.99px] mx-auto text-center">
@@ -132,6 +151,9 @@ export default function ModalidadesServicios() {
 
                 <button
                   type="button"
+                  onClick={() =>
+                    setModalidadSeleccionada(modalidadesContacto.completa)
+                  }
                   className="w-full sm:w-[129.62px] h-[46px] rounded-full bg-gradient-to-r from-[#FFC107] to-[#F0B429] text-[#0F2D5C] text-[13.6px] font-semibold shadow-[0_10px_24px_rgba(240,180,41,0.35)] hover:scale-[1.04] transition-all duration-300"
                 >
                   Contratar →
@@ -212,6 +234,9 @@ export default function ModalidadesServicios() {
 
                 <button
                   type="button"
+                  onClick={() =>
+                    setModalidadSeleccionada(modalidadesContacto.retoma)
+                  }
                   className="w-full sm:w-[129.62px] h-[46px] rounded-full bg-[#0F2D5C] text-white text-[13.6px] font-semibold shadow-[0_10px_24px_rgba(15,45,92,0.25)] hover:scale-[1.04] transition-all duration-300"
                 >
                   Contratar →
@@ -221,6 +246,17 @@ export default function ModalidadesServicios() {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+
+      <GeneralContactModal
+        open={modalidadSeleccionada !== null}
+        onClose={() => setModalidadSeleccionada(null)}
+        title="Déjanos tus datos para ayudarte"
+        subtitle="con tus procesos legales y migratorios"
+        source={modalidadSeleccionada?.source}
+        serviceInterest={modalidadSeleccionada?.serviceInterest}
+        showHelpField={false}
+      />
+    </>
   );
 }
