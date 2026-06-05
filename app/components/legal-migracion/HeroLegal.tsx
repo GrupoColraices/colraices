@@ -42,6 +42,13 @@ const LEGAL_SERVICES = [
 export default function HeroLegal() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
+  const handleScrollToServices = () => {
+    document
+      .getElementById("servicios")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", "#servicios");
+  };
+
   return (
     <section
       className={`${montserrat.className} relative flex min-h-[653px] w-full items-start justify-center overflow-hidden`}
@@ -126,13 +133,14 @@ export default function HeroLegal() {
               Hablar con un asesor
             </button>
 
-            <Link
-              href="#servicios"
+            <button
+              type="button"
+              onClick={handleScrollToServices}
               className="inline-flex h-[51px] items-center justify-center rounded-full border border-white/25 px-[28px] text-white backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-[2px] hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1F3F]"
               aria-label="Ver la sección de servicios"
             >
               Ver servicios
-            </Link>
+            </button>
           </div>
         </div>
 
