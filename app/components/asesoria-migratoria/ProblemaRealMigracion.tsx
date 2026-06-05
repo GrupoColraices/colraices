@@ -41,7 +41,10 @@ const problemasMigratorios = [
 
 export default function ProblemaRealMigracion() {
   return (
-    <section className="w-full bg-[#FDF6EE] pt-[80px] sm:pt-[90px] lg:pt-[100px] pb-[90px] sm:pb-[100px] lg:pb-[120px] px-4 sm:px-8 md:px-12 lg:px-[80px] xl:px-[155px]">
+    <section
+      id="problema-real-migracion"
+      className="w-full bg-[#FDF6EE] pt-[80px] sm:pt-[90px] lg:pt-[100px] pb-[90px] sm:pb-[100px] lg:pb-[120px] px-4 sm:px-8 md:px-12 lg:px-[80px] xl:px-[155px]"
+    >
       <style>{`
         .migration-card {
           position: relative;

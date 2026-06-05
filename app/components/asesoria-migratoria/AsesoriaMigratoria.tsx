@@ -7,6 +7,19 @@ import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
 export default function AsesoriaMigratoria() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
+  const handleScrollToProblemaReal = () => {
+    const section = document.getElementById("problema-real-migracion");
+
+    if (!section) return;
+
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    window.history.replaceState(null, "", "#problema-real-migracion");
+  };
+
   const paises = [
     { code: "ca", nombre: "Canadá" },
     { code: "mx", nombre: "México" },
@@ -146,7 +159,11 @@ export default function AsesoriaMigratoria() {
                 Empezar mi proceso
               </button>
 
-              <button className="w-full sm:w-[203px] h-[52px] rounded-full border border-white/25 text-white font-normal text-[14.4px] hover:bg-white/5 transition-all duration-300">
+              <button
+                type="button"
+                onClick={handleScrollToProblemaReal}
+                className="w-full sm:w-[203px] h-[52px] rounded-full border border-white/25 text-white font-normal text-[14.4px] hover:bg-white/5 transition-all duration-300"
+              >
                 Conocer el servicio
               </button>
             </div>
