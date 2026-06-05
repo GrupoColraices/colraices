@@ -28,6 +28,15 @@ const fasesPago = [
 export default function AsesoriaEmprendimientoH() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
+  const handleScrollToParties = () => {
+    document.getElementById("partes")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    window.history.replaceState(null, "", "#partes");
+  };
+
   return (
     <>
       <section className="relative w-full overflow-hidden bg-[#081D3F] border-b-[3px] border-[#FFC107]">
@@ -186,7 +195,10 @@ export default function AsesoriaEmprendimientoH() {
                 Empezar mi negocio
               </button>
 
-              <button className="w-full sm:w-auto min-w-[203px] h-[52px] rounded-full border border-white/20 text-white font-medium text-[14.4px] bg-transparent hover:bg-white/5 transition-all duration-300">
+              <button
+                onClick={handleScrollToParties}
+                className="w-full sm:w-auto min-w-[203px] h-[52px] rounded-full border border-white/20 text-white font-medium text-[14.4px] bg-transparent hover:bg-white/5 transition-all duration-300"
+              >
                 Conocer el proceso
               </button>
             </div>
