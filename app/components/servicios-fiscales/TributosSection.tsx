@@ -46,7 +46,7 @@ const tributos = [
 
 export default function TributosSection() {
   return (
-    <section className="w-full bg-[#FBF8F3] py-12 sm:py-16 lg:py-[72px]">
+    <section id="tributos" className="w-full scroll-mt-5 bg-[#FBF8F3] py-12 sm:py-16 lg:py-[72px]">
       <div className="max-w-[1180px] mx-auto px-5 sm:px-8 xl:px-[52px]">
 
         {/* HEADER */}

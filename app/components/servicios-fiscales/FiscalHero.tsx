@@ -64,9 +64,12 @@ export default function FiscalHero() {
               >
                 Hacer diagnóstico gratuito →
               </button>
-              <button className="h-[51.2px] px-[28px] rounded-full border border-[#0F2D5C]/25 text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] whitespace-nowrap hover:bg-[#0F2D5C]/5 transition-all duration-300">
+              <a
+                href="#tributos"
+                className="h-[51.2px] px-[28px] rounded-full border border-[#0F2D5C]/25 text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] whitespace-nowrap hover:bg-[#0F2D5C]/5 transition-all duration-300 flex items-center justify-center"
+              >
                 Ver qué resolvemos
-              </button>
+              </a>
             </div>
           </div>
 
