@@ -134,7 +134,11 @@ export default function FiscalHero() {
             </div>
 
             {/* CTA */}
-            <button className="w-full h-[49.6px] rounded-full bg-[#FFC107] text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] shadow-md hover:scale-[1.02] transition-all duration-300">
+            <button
+              type="button"
+              onClick={() => setIsContactModalOpen(true)}
+              className="w-full h-[49.6px] rounded-full bg-[#FFC107] text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] shadow-md hover:scale-[1.02] transition-all duration-300"
+            >
               Empezar el diagnóstico →
             </button>
           </div>
