@@ -102,7 +102,7 @@ export default function ModuleSectionII() {
   const arrowInset = cardWidth - 32;
  
   return (
-    <section className="w-full bg-[#0B1E3D] py-[72px] overflow-hidden">
+    <section id="representacion-legal-pensional" className="w-full min-h-[calc(100vh-80px)] scroll-mt-[80px] bg-[#0B1E3D] pt-[72px] pb-[96px] lg:pb-[120px] overflow-hidden">
       <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-[52px]">
  
         {/* ── HEADER ─────────────────────────────────────────────────────── */}
