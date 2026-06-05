@@ -1,4 +1,12 @@
+"use client";
+
+import { useState } from "react";
+
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
+
 export default function RepresentationHero() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   const cities = [
     "Bogotá",
     "Medellín",
@@ -43,7 +51,11 @@ export default function RepresentationHero() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <button className="h-[52px] rounded-full bg-[#FFC107] px-9 text-[14.4px] font-semibold leading-[21.6px] text-[#0F2D5C] shadow-[0_8px_22px_rgba(255,193,7,0.35)] transition-all duration-300 hover:bg-[#E0A800]">
+            <button
+              type="button"
+              onClick={() => setIsContactModalOpen(true)}
+              className="h-[52px] rounded-full bg-[#FFC107] px-9 text-[14.4px] font-semibold leading-[21.6px] text-[#0F2D5C] shadow-[0_8px_22px_rgba(255,193,7,0.35)] transition-all duration-300 hover:bg-[#E0A800]"
+            >
               Contratar representación →
             </button>
 
@@ -126,6 +138,16 @@ export default function RepresentationHero() {
           </div>
         </div>
       </div>
+
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Déjanos tus datos para ayudarte"
+        subtitle="con tus procesos de representación"
+        source="representacion_legal_hero_contratar_representacion"
+        serviceInterest="Representación legal"
+        showHelpField={false}
+      />
     </section>
   );
 }
