@@ -244,7 +244,7 @@ export default function PoderEspecialSection() {
           <div className="repl-card-grid repl-animate repl-animate-3">
             <div className="repl-card">
               <div className="repl-card-kicker">
-                Lo que eso significa para ti
+                LO QUE ESO SIGNIFICA PARA TI
               </div>
 
               <p className="repl-card-text">
@@ -257,7 +257,7 @@ export default function PoderEspecialSection() {
 
             <div className="repl-card">
               <div className="repl-card-kicker">
-                ¿Cómo otorgas el poder desde el exterior?
+                ¿CÓMO OTORGAS EL PODER DESDE EL EXTERIOR?  
               </div>
 
               <p className="repl-card-text">

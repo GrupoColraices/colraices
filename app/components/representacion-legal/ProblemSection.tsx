@@ -30,7 +30,7 @@ export default function ProblemSection() {
         {/* EYEBROW */}
         <div className="mb-5 w-full flex justify-center">
             <span className="block text-[#FFC107] tracking-[1.57px] text-[16px] font-semibold leading-[16.8px] whitespace-nowrap">
-            Por qué existe este servicio
+            POR QUÉ EXISTE ESTE SERVICIO
             </span>
         </div>
 
