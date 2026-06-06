@@ -33,10 +33,6 @@ export default function FloatingContactButton() {
     window.open(OFFICIAL_WHATSAPP_URL, "_blank", "noopener,noreferrer");
   };
 
-  const handleWebChat = () => {
-    // TODO: conectar chat web
-  };
-
   return (
     <>
       <div className="fixed bottom-6 right-6 z-[9999] font-[Montserrat]">
@@ -134,52 +130,6 @@ export default function FloatingContactButton() {
               </div>
 
               <div className="p-2">
-                <button
-                  type="button"
-                  onClick={handleWebChat}
-                  className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-4 py-3.5 text-left transition hover:bg-[#2A3F77]/5"
-                >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#2A3F77] to-[#1A2847]">
-                    <svg
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5.5 17.5H9L12 20.5L15 17.5H18.5C20.157 17.5 21.5 16.157 21.5 14.5V6.5C21.5 4.84315 20.157 3.5 18.5 3.5H5.5C3.84315 3.5 2.5 4.84315 2.5 6.5V14.5C2.5 16.157 3.84315 17.5 5.5 17.5Z"
-                        stroke="#FFFFFF"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M7.5 9H16.5"
-                        stroke="#FFFFFF"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M7.5 12.5H13.5"
-                        stroke="#FFFFFF"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  </span>
-
-                  <span className="flex-1">
-                    <span className="mb-0.5 block text-sm font-semibold text-[#2A3F77]">
-                      Chat
-                    </span>
-
-                    <span className="block text-[11px] font-normal text-[#2A3F77]/60">
-                      Respuestas inmediatas
-                    </span>
-                  </span>
-                </button>
-
                 <button
                   type="button"
                   onClick={handleChat}
