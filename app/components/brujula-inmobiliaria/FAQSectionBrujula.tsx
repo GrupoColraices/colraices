@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import GeneralContactModal from "../forms/GeneralContactModal";
 
 const faqs = [
   {
@@ -32,6 +33,7 @@ const faqs = [
 
 export default function FAQSectionBrujula() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
     <section className="relative w-full overflow-hidden border-y border-[#0F2D5C] bg-[#F7F5F1] px-4 py-[86px] font-['Montserrat'] sm:px-6 lg:px-8">
@@ -61,6 +63,7 @@ export default function FAQSectionBrujula() {
                   >
                     <button
                       type="button"
+                      aria-expanded={isOpen}
                       onClick={() => setOpenIndex(isOpen ? null : index)}
                       className="flex w-full items-center justify-between gap-6 py-[24px] text-left"
                     >
@@ -120,12 +123,13 @@ export default function FAQSectionBrujula() {
                 100% remoto. Sin compromiso.
               </p>
 
-              <a
-                href="#"
+              <button
+                type="button"
+                onClick={() => setIsContactModalOpen(true)}
                 className="mt-8 inline-flex h-[44px] min-w-[262px] items-center justify-center rounded-full bg-[#12356D] px-8 text-[15px] font-bold text-white shadow-[0_12px_24px_rgba(18,53,109,0.16)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#0F2D5C] hover:shadow-[0_18px_34px_rgba(18,53,109,0.22)]"
               >
                 Agendar llamada
-              </a>
+              </button>
 
               <p className="mt-6 text-[12px] font-medium text-[#A0AEC0]">
                 Respuesta en menos de 24 horas
@@ -134,6 +138,14 @@ export default function FAQSectionBrujula() {
           </aside>
         </div>
       </div>
+
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        source="brujula_inmobiliaria_faq_agendar_llamada"
+        serviceInterest="Brújula Inmobiliaria"
+        showHelpField={false}
+      />
     </section>
   );
 }

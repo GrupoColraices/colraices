@@ -1,4 +1,18 @@
+"use client";
+
+import { useState } from "react";
+
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
+
 export default function RepresentationHero() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const handleScrollToProblem = () => {
+    const section = document.getElementById("problema-representacion");
+    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", "#problema-representacion");
+  };
+
   const cities = [
     "Bogotá",
     "Medellín",
@@ -17,7 +31,7 @@ export default function RepresentationHero() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-[rgba(255,193,7,0.10)] pt-[88px] pb-[68px]">
+    <section className="relative overflow-hidden bg-[#FBF8F3] pt-[88px] pb-[68px]">
       {/* Background Rings */}
       <div className="absolute right-[-260px] top-1/2 h-[760px] w-[760px] -translate-y-1/2 rounded-full border border-[#2A3F770D]" />
       <div className="absolute right-[-200px] top-1/2 h-[620px] w-[620px] -translate-y-1/2 rounded-full border border-[#2A3F770D]" />
@@ -43,11 +57,19 @@ export default function RepresentationHero() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <button className="h-[52px] rounded-full bg-[#0F2D5C] px-9 text-[14.4px] font-semibold leading-[21.6px] text-white shadow-[0_8px_22px_rgba(15,45,92,0.24)] transition-all duration-300 hover:bg-[#0B1F3F]">
+            <button
+              type="button"
+              onClick={() => setIsContactModalOpen(true)}
+              className="h-[52px] rounded-full bg-[#FFC107] px-9 text-[14.4px] font-semibold leading-[21.6px] text-[#0F2D5C] shadow-[0_8px_22px_rgba(255,193,7,0.35)] transition-all duration-300 hover:bg-[#E0A800]"
+            >
               Contratar representación →
             </button>
 
-            <button className="h-[52px] rounded-full border border-[#CBD5E1] bg-transparent px-9 text-[14.4px] font-semibold leading-[21.6px] text-[#0F2D5C] transition-all duration-300 hover:border-[#0F2D5C] hover:bg-white">
+            <button
+              type="button"
+              onClick={handleScrollToProblem}
+              className="h-[52px] rounded-full border border-[#CBD5E1] bg-transparent px-9 text-[14.4px] font-semibold leading-[21.6px] text-[#0F2D5C] transition-all duration-300 hover:border-[#0F2D5C] hover:bg-white"
+            >
               Ver cómo funciona
             </button>
           </div>
@@ -126,6 +148,16 @@ export default function RepresentationHero() {
           </div>
         </div>
       </div>
+
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Déjanos tus datos para ayudarte"
+        subtitle="con tus procesos de representación"
+        source="representacion_legal_hero_contratar_representacion"
+        serviceInterest="Representación legal"
+        showHelpField={false}
+      />
     </section>
   );
 }

@@ -88,6 +88,7 @@ const ejecucion: ProductItem[] = [
     color: "bg-[#1A4F9E]",
     icon: "💼",
     button: "Ver página de crédito →",
+    href: officialPaths.credito,
   },
   {
     tag: "TRANSFERENCIA DE DIVISAS",

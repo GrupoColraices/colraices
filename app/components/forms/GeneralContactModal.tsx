@@ -171,11 +171,11 @@ export default function GeneralContactModal({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-start justify-center bg-[#0A0A0A]/50 px-4 pt-[90px] md:pt-[110px]"
+      className="fixed inset-0 z-[9999] flex items-start justify-center bg-[#0A0A0A]/50 px-4 pt-[90px] md:pt-[110px] lg:pt-[158px]"
       onClick={onClose}
     >
       <div
-        className="max-h-[calc(100dvh-106px)] w-full max-w-[600px] overflow-x-hidden overflow-y-auto rounded-bl-none rounded-br-[16px] rounded-tl-[16px] rounded-tr-none bg-white shadow-[0_24px_80px_rgba(0,0,0,0.35)] md:max-h-[calc(100dvh-126px)]"
+        className="max-h-[calc(100dvh-106px)] w-full max-w-[600px] overflow-x-hidden overflow-y-auto rounded-bl-none rounded-br-[16px] rounded-tl-[16px] rounded-tr-none bg-white shadow-[0_24px_80px_rgba(0,0,0,0.35)] md:max-h-[calc(100dvh-126px)] lg:max-h-[calc(100dvh-174px)]"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="relative h-[134px] bg-[#2A3F77] px-[32px] pt-[38px] text-white">

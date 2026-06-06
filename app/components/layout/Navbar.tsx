@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type MouseEvent, useState } from "react";
 import { TOUR_VIVIENDA_URL, officialPaths } from "@/app/lib/officialUrls";
+import GeneralContactModal from "../forms/GeneralContactModal";
 
 type NavLink = {
   label: string;
@@ -31,6 +32,7 @@ const normalizeNavbarPath = (href: string) => {
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const handleNavbarLinkClick = (
     event: MouseEvent<HTMLAnchorElement>,
@@ -45,20 +47,23 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#F4F6F8] border-b border-black/5">
-      <div className="max-w-[1416px] mx-auto px-6 lg:px-[156px] h-[68px] flex items-center justify-between">
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#F4F6F8] border-b border-black/5">
+      <div className="max-w-[1416px] mx-auto px-6 lg:px-8 xl:px-[156px] h-[68px] flex items-center justify-between">
         {/* LOGO */}
-        <Link href="/">
+        <Link href="/" className="flex shrink-0 items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo.png"
             alt="Colraices"
-            className="h-[28px] w-auto"
+            width={118}
+            height={28}
+            className="h-auto w-[118px] shrink-0"
           />
         </Link>
 
         {/* NAV DESKTOP */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-8">
           {navLinks.map((link) => {
             const isHomeLink = link.href === "/#inicio";
             const isActive = isHomeLink
@@ -75,7 +80,7 @@ export default function Navbar() {
                     : undefined
                 }
                 className={`
-                  group relative
+                  group relative whitespace-nowrap
                   text-[14px] leading-[21px]
                   transition-all duration-200
 
@@ -110,10 +115,11 @@ export default function Navbar() {
         </nav>
 
         {/* CTA DESKTOP */}
-        <Link
-          href="/contacto"
+        <button
+          type="button"
+          onClick={() => setIsContactModalOpen(true)}
           className="
-            hidden lg:flex items-center justify-center 
+            hidden xl:flex items-center justify-center shrink-0 whitespace-nowrap
             px-6 h-[40px] rounded-full 
             bg-[#0F2D5C] text-white 
             text-[14px] font-semibold
@@ -127,12 +133,12 @@ export default function Navbar() {
           "
         >
           Solicitar Asesoría
-        </Link>
+        </button>
 
         {/* BOTÓN MOBILE */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden flex flex-col justify-center items-center gap-[4px]"
+          className="xl:hidden flex flex-col justify-center items-center gap-[4px]"
         >
           <span
             className={`w-6 h-[2px] bg-[#0F2D5C] transition-all ${
@@ -155,7 +161,7 @@ export default function Navbar() {
       {/* MENÚ MOBILE */}
       <div
         className={`
-          lg:hidden bg-[#F4F6F8] border-t border-black/5
+          xl:hidden bg-[#F4F6F8] border-t border-black/5
           overflow-hidden transition-all duration-300
           ${isOpen ? "max-h-[500px] py-4" : "max-h-0"}
         `}
@@ -193,9 +199,12 @@ export default function Navbar() {
           })}
 
           {/* CTA MOBILE */}
-          <Link
-            href="/contacto"
-            onClick={() => setIsOpen(false)}
+          <button
+            type="button"
+            onClick={() => {
+              setIsOpen(false);
+              setIsContactModalOpen(true);
+            }}
             className="
               mt-2 flex items-center justify-center
               h-[42px] rounded-full
@@ -204,9 +213,20 @@ export default function Navbar() {
             "
           >
             Solicitar Asesoría
-          </Link>
+          </button>
         </div>
       </div>
-    </header>
+      </header>
+
+      <GeneralContactModal
+        title="Te contactamos para ayudarte"
+        subtitle="a invertir y construir patrimonio en Colombia"
+        source="navbar_solicitar_asesoria"
+        serviceInterest="Contacto general"
+        showHelpField={false}
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
+    </>
   );
 }

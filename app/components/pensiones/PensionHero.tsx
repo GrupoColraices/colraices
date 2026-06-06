@@ -1,4 +1,25 @@
+"use client";
+
+import { useState } from "react";
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
+
 export default function PensionHero() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const handleScrollToModuleP = () => {
+    document
+      .getElementById("asesoria-planificacion-pensional")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", "#asesoria-planificacion-pensional");
+  };
+
+  const handleScrollToModuleLegal = () => {
+    document
+      .getElementById("representacion-legal-pensional")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", "#representacion-legal-pensional");
+  };
+
   return (
     <section className="relative w-full bg-[#FBF8F3] pt-[72px] sm:pt-[88px] lg:pt-[96px] pb-[40px] overflow-hidden">
       <div className="max-w-[1180px] mx-auto w-full min-h-screen lg:min-h-0 relative px-4 sm:px-6 md:px-8 lg:px-6 xl:px-0">
@@ -33,28 +54,40 @@ export default function PensionHero() {
             {/* BADGES */}
             <div className="mt-8 sm:mt-9 flex flex-col sm:flex-row flex-wrap gap-3">
 
-              <div className="flex items-center gap-2 px-4 min-h-[42px] rounded-full border border-[rgba(15,45,92,0.10)] bg-white shadow-sm w-fit max-w-full">
+              <button
+                type="button"
+                onClick={handleScrollToModuleP}
+                className="flex items-center gap-2 px-4 min-h-[42px] rounded-full border border-[rgba(15,45,92,0.10)] bg-white shadow-sm w-fit max-w-full cursor-pointer transition-all duration-300 hover:shadow-md"
+              >
                 <div className="w-6 h-6 rounded-full bg-[#0F2D5C] flex items-center justify-center text-white text-[12px] font-bold flex-shrink-0">
                   !
                 </div>
                 <span className="text-[#0F2D5C] font-medium text-[clamp(12px,2vw,12.8px)] leading-[1.4]">
                   Asesoría y Planificación Pensional
                 </span>
-              </div>
+              </button>
 
-              <div className="flex items-center gap-2 px-4 min-h-[42px] rounded-full border border-[rgba(15,45,92,0.10)] bg-white shadow-sm w-fit max-w-full">
+              <button
+                type="button"
+                onClick={handleScrollToModuleLegal}
+                className="flex items-center gap-2 px-4 min-h-[42px] rounded-full border border-[rgba(15,45,92,0.10)] bg-white shadow-sm w-fit max-w-full cursor-pointer transition-all duration-300 hover:shadow-md"
+              >
                 <div className="w-6 h-6 rounded-full bg-[#FFC107] flex items-center justify-center text-white text-[12px] font-bold flex-shrink-0">
                   II
                 </div>
                 <span className="text-[#0F2D5C] font-medium text-[clamp(12px,2vw,12.8px)] leading-[1.4]">
                   Representación Legal (si procede)
                 </span>
-              </div>
+              </button>
             </div>
 
             {/* BOTÓN */}
             <div className="mt-10 sm:mt-12 lg:mt-[50px]">
-              <button className="w-full sm:w-auto min-h-[52px] px-7 rounded-full bg-[#FFC107] text-[#2A3F77] font-semibold text-[clamp(14px,2vw,14.4px)] leading-[21.6px] shadow-[0_10px_24px_rgba(255,193,7,0.35)] hover:scale-[1.02] transition-all duration-300">
+              <button
+                type="button"
+                onClick={() => setIsContactModalOpen(true)}
+                className="w-full sm:w-auto min-h-[52px] px-7 rounded-full bg-[#FFC107] text-[#2A3F77] font-semibold text-[clamp(14px,2vw,14.4px)] leading-[21.6px] shadow-[0_10px_24px_rgba(255,193,7,0.35)] hover:scale-[1.02] transition-all duration-300"
+              >
                 Revisar mi situación pensional
               </button>
             </div>
@@ -211,6 +244,15 @@ export default function PensionHero() {
 
         </div>
       </div>
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Déjanos tus datos para asesorarnos"
+        subtitle="con tu proceso de pensión"
+        source="pensiones_hero_revisar_situacion"
+        serviceInterest="Pensiones"
+        showHelpField={false}
+      />
     </section>
   );
 }

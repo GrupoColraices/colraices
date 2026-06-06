@@ -1,6 +1,11 @@
 "use client";
 
+import { useState } from "react";
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
+
 export default function HeroMonetizacion() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   const beneficios = [
     {
       label: "Costo del servicio",
@@ -26,6 +31,7 @@ export default function HeroMonetizacion() {
   ];
 
   return (
+    <>
     <section className="relative w-full bg-[#091D3E] overflow-hidden">
       {/* GRID BACKGROUND */}
       <div
@@ -59,7 +65,7 @@ export default function HeroMonetizacion() {
               </span>
 
               <div className="ml-[10px] rounded-full bg-[#FFC107] px-[14px] py-[4px] flex items-center justify-center">
-                <span className="text-white text-[11.52px] font-bold leading-[17.3px] whitespace-nowrap">
+                <span className="text-[#2A3F77] text-[11.52px] font-bold leading-[17.3px] whitespace-nowrap">
                   1% del monto · Mín. USD $10.000
                 </span>
               </div>
@@ -85,8 +91,12 @@ export default function HeroMonetizacion() {
 
             {/* CTA BUTTON */}
             <div className="mt-[42px]">
-              <button className="h-[47.6px] px-[28px] rounded-full bg-[#FFC107] hover:brightness-110 transition-all duration-300 shadow-[0_0_24px_rgba(255,193,7,0.35)]">
-                <span className="text-white text-[14.4px] font-semibold leading-[21.6px]">
+              <button
+                type="button"
+                onClick={() => setIsContactModalOpen(true)}
+                className="h-[47.6px] px-[28px] rounded-full bg-[#FFC107] hover:brightness-110 transition-all duration-300 shadow-[0_0_24px_rgba(255,193,7,0.35)]"
+              >
+                <span className="text-[#2A3F77]  text-[14.4px] font-semibold leading-[21.6px]">
                   Contratar ahora →
                 </span>
               </button>
@@ -175,5 +185,13 @@ export default function HeroMonetizacion() {
         </div>
       </div>
     </section>
+    <GeneralContactModal
+      open={isContactModalOpen}
+      onClose={() => setIsContactModalOpen(false)}
+      source="monetizacion_hero_contratar_ahora"
+      serviceInterest="Monetización"
+      showHelpField={false}
+    />
+    </>
   );
 }

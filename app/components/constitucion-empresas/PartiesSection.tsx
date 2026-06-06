@@ -28,7 +28,7 @@ function ColombiaFlag() {
 
 export default function PartiesSection() {
   return (
-    <section className="w-full bg-[#FBF8F3] py-10 sm:py-12 lg:py-14 px-4 sm:px-5 overflow-hidden">
+    <section id="partes" className="scroll-mt-[60px] w-full bg-[#FBF8F3] py-10 sm:py-12 lg:py-14 px-4 sm:px-5 overflow-hidden">
       <div className="max-w-[1120px] mx-auto">
         {/* HEADER */}
         <div className="text-center max-w-[1120px] mx-auto mb-8 lg:mb-10">

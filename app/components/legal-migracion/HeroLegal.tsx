@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Montserrat } from "next/font/google";
-import { OFFICIAL_WHATSAPP_URL, officialPaths } from "@/app/lib/officialUrls";
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
+import { officialPaths } from "@/app/lib/officialUrls";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -38,6 +40,15 @@ const LEGAL_SERVICES = [
 ] as const;
 
 export default function HeroLegal() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const handleScrollToServices = () => {
+    document
+      .getElementById("servicios")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", "#servicios");
+  };
+
   return (
     <section
       className={`${montserrat.className} relative flex min-h-[653px] w-full items-start justify-center overflow-hidden`}
@@ -113,23 +124,23 @@ export default function HeroLegal() {
 
           {/* 🔥 BOTONES */}
           <div className="mt-[30px] flex min-h-[51px] flex-col gap-[12px] sm:flex-row sm:gap-[14px]">
-            <a
-              href={OFFICIAL_WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => setIsContactModalOpen(true)}
               className="inline-flex h-[51px] items-center justify-center rounded-full bg-[#FFC107] px-[28px] font-semibold text-[#091D3E] transition-all duration-300 ease-out hover:-translate-y-[4px] hover:shadow-[0_10px_30px_rgba(255,193,7,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC107] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1F3F] active:translate-y-[0px] active:shadow-[0_4px_10px_rgba(255,193,7,0.25)]"
-              aria-label="Hablar con un asesor por WhatsApp"
+              aria-label="Abrir formulario para hablar con un asesor legal"
             >
               Hablar con un asesor
-            </a>
+            </button>
 
-            <Link
-              href="#servicios"
+            <button
+              type="button"
+              onClick={handleScrollToServices}
               className="inline-flex h-[51px] items-center justify-center rounded-full border border-white/25 px-[28px] text-white backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-[2px] hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1F3F]"
               aria-label="Ver la sección de servicios"
             >
               Ver servicios
-            </Link>
+            </button>
           </div>
         </div>
 
@@ -187,6 +198,15 @@ export default function HeroLegal() {
           </div>
         </div>
       </div>
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Déjanos tus datos para ayudarte"
+        subtitle="con tus procesos legales y migratorios"
+        source="legal_migratorio_hero_hablar_asesor"
+        serviceInterest="Legal y migratorio"
+        showHelpField={true}
+      />
     </section>
   );
 }

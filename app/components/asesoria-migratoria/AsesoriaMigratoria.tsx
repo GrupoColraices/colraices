@@ -1,7 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { useState } from "react";
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
+
 export default function AsesoriaMigratoria() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const handleScrollToProblemaReal = () => {
+    const section = document.getElementById("problema-real-migracion");
+
+    if (!section) return;
+
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    window.history.replaceState(null, "", "#problema-real-migracion");
+  };
+
   const paises = [
     { code: "ca", nombre: "Canadá" },
     { code: "mx", nombre: "México" },
@@ -13,7 +31,8 @@ export default function AsesoriaMigratoria() {
   ];
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#091D3E]">
+    <>
+      <section className="relative w-full overflow-hidden bg-[#091D3E]">
       {/* Grid background */}
       <div
         className="absolute inset-0 opacity-[0.018]"
@@ -132,11 +151,19 @@ export default function AsesoriaMigratoria() {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-[14px] mt-[36px] justify-center xl:justify-start">
-              <button className="w-full sm:w-[224px] h-[52px] rounded-full bg-gradient-to-r from-[#FFC107] to-[#F0B429] text-white font-semibold text-[14.4px] tracking-[0.43px] shadow-[0_0_25px_rgba(255,193,7,0.35)] transition-all duration-300 hover:scale-[1.02]">
+              <button
+                type="button"
+                onClick={() => setIsContactModalOpen(true)}
+                className="w-full sm:w-[224px] h-[52px] rounded-full bg-gradient-to-r from-[#FFC107] to-[#F0B429] text-[#2A3F77] font-semibold text-[14.4px] tracking-[0.43px] shadow-[0_0_25px_rgba(255,193,7,0.35)] transition-all duration-300 hover:scale-[1.02]"
+              >
                 Empezar mi proceso
               </button>
 
-              <button className="w-full sm:w-[203px] h-[52px] rounded-full border border-white/25 text-white font-normal text-[14.4px] hover:bg-white/5 transition-all duration-300">
+              <button
+                type="button"
+                onClick={handleScrollToProblemaReal}
+                className="w-full sm:w-[203px] h-[52px] rounded-full border border-white/25 text-white font-normal text-[14.4px] hover:bg-white/5 transition-all duration-300"
+              >
                 Conocer el servicio
               </button>
             </div>
@@ -202,6 +229,17 @@ export default function AsesoriaMigratoria() {
 
       {/* Bottom accent line */}
       <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#FFC107] to-[#F0B429]" />
-    </section>
+      </section>
+
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Déjanos tus datos para ayudarte"
+        subtitle="con tus procesos legales y migratorios"
+        source="asesoria_migratoria_hero_empezar_proceso"
+        serviceInterest="Asesoría migratoria"
+        showHelpField={false}
+      />
+    </>
   );
 }

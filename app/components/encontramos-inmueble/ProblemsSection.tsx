@@ -33,7 +33,10 @@ const problems = [
 
 export default function ProblemsSection() {
   return (
-    <section className="w-full overflow-hidden border-t-[6px] border-[#0F2D5C] bg-[#FDF6EE] font-['Montserrat',system-ui,sans-serif]">
+    <section
+      id="como-funciona"
+      className="w-full overflow-hidden border-t-[6px] border-[#0F2D5C] bg-[#FDF6EE] font-['Montserrat',system-ui,sans-serif]"
+    >
       <div className="mx-auto w-full max-w-[1152px] px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-24 lg:px-[48px] lg:py-[100px]">
         {/* Encabezado */}
         <div className="mx-auto w-full max-w-[1056px] text-center">

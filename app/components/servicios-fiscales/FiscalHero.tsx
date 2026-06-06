@@ -1,6 +1,11 @@
 "use client";
 
+import { useState } from "react";
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
+
 export default function FiscalHero() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
     <section className="relative w-full bg-[#FBF8F3] overflow-hidden">
       <style jsx>{`
@@ -52,12 +57,19 @@ export default function FiscalHero() {
 
             {/* Buttons row */}
             <div className="flex flex-col sm:flex-row gap-3 w-full">
-              <button className="h-[51.2px] px-[28px] rounded-full bg-[#FFC107] text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] whitespace-nowrap shadow-md hover:scale-[1.02] transition-all duration-300">
+              <button
+                type="button"
+                onClick={() => setIsContactModalOpen(true)}
+                className="h-[51.2px] px-[28px] rounded-full bg-[#FFC107] text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] whitespace-nowrap shadow-md hover:scale-[1.02] transition-all duration-300"
+              >
                 Hacer diagnóstico gratuito →
               </button>
-              <button className="h-[51.2px] px-[28px] rounded-full border border-[#0F2D5C]/25 text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] whitespace-nowrap hover:bg-[#0F2D5C]/5 transition-all duration-300">
+              <a
+                href="#tributos"
+                className="h-[51.2px] px-[28px] rounded-full border border-[#0F2D5C]/25 text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] whitespace-nowrap hover:bg-[#0F2D5C]/5 transition-all duration-300 flex items-center justify-center"
+              >
                 Ver qué resolvemos
-              </button>
+              </a>
             </div>
           </div>
 
@@ -125,13 +137,27 @@ export default function FiscalHero() {
             </div>
 
             {/* CTA */}
-            <button className="w-full h-[49.6px] rounded-full bg-[#FFC107] text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] shadow-md hover:scale-[1.02] transition-all duration-300">
+            <button
+              type="button"
+              onClick={() => setIsContactModalOpen(true)}
+              className="w-full h-[49.6px] rounded-full bg-[#FFC107] text-[#0F2D5C] font-semibold text-[14.4px] leading-[21.6px] shadow-md hover:scale-[1.02] transition-all duration-300"
+            >
               Empezar el diagnóstico →
             </button>
           </div>
 
         </div>
       </div>
+
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Déjanos tus datos para ayudarte"
+        subtitle="con tus procesos fiscales"
+        source="servicios_fiscales_hero_diagnostico_gratuito"
+        serviceInterest="Servicios fiscales"
+        showHelpField={false}
+      />
     </section>
   );
 }

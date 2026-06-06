@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type TimelineItem = {
   title: string;
   description: string;
@@ -37,23 +39,14 @@ export default function HistoriaSection() {
         <div className="grid items-center gap-14 md:gap-16 lg:grid-cols-[minmax(0,420px)_minmax(0,442px)] lg:justify-center lg:gap-[90px]">
           {/* Visual */}
           <div className="relative order-2 mx-auto w-full max-w-[420px] pb-10 sm:pb-12 lg:order-1 lg:pb-0">
-            <div className="flex aspect-[420/525] w-full items-center justify-center rounded-[20px] border border-[#D1D5DB] bg-[#EDEDED] text-center text-[#9CA3AF]">
-              <div className="flex flex-col items-center gap-[18px] px-6">
-                <svg
-                  className="h-10 w-10 sm:h-11 sm:w-11"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                >
-                  <circle cx="12" cy="8" r="4" />
-                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                </svg>
-
-                <span className="text-[14px] font-medium leading-none sm:text-[15px]">
-                  Foto de historia — placeholder
-                </span>
-              </div>
+            <div className="relative aspect-[420/525] w-full overflow-hidden rounded-[20px] border border-[#D1D5DB] bg-[#EDEDED]">
+              <Image
+                src="/Historia_Colraices.jpg"
+                alt="Historia de Colraices"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 420px, 100vw"
+              />
             </div>
 
             {/* Badge */}

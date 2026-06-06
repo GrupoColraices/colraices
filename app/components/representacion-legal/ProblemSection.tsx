@@ -21,7 +21,7 @@ export default function ProblemSection() {
   ];
 
   return (
-    <section className="w-full bg-[#091D3E] py-[88px] px-4 sm:px-6 lg:px-8">
+    <section id="problema-representacion" className="w-full bg-[#091D3E] py-[88px] px-4 sm:px-6 lg:px-8">
       <div className="max-w-[1180px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-[56px]">
         
         {/* LEFT CONTENT */}

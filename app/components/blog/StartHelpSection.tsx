@@ -1,3 +1,10 @@
+"use client";
+
+import {
+  BLOG_ORIENTATION_WHATSAPP_URL,
+  DAVIVIENDA_CUPO_CREDITO_URL,
+} from "@/app/lib/officialUrls";
+
 export default function StartHelpSection() {
   return (
     <section className="w-full bg-[linear-gradient(135deg,#192440_0%,#2A3F77_100%)] py-[60px]">
@@ -27,6 +34,13 @@ export default function StartHelpSection() {
 
               <button
                 type="button"
+                onClick={() =>
+                  window.open(
+                    DAVIVIENDA_CUPO_CREDITO_URL,
+                    "_blank",
+                    "noopener,noreferrer",
+                  )
+                }
                 className="mt-auto h-[43.5px] w-full rounded-[10px] bg-[#2A3F77] px-[20px] font-['Montserrat'] text-[13px] font-bold leading-[19.5px] tracking-[0px] text-white transition duration-200 hover:bg-[#192440]"
               >
                 Cupo de Crédito
@@ -46,6 +60,13 @@ export default function StartHelpSection() {
 
               <button
                 type="button"
+                onClick={() =>
+                  window.open(
+                    BLOG_ORIENTATION_WHATSAPP_URL,
+                    "_blank",
+                    "noopener,noreferrer",
+                  )
+                }
                 className="mt-auto h-[43.5px] w-full rounded-[10px] bg-[#FFC107] px-[20px] font-['Montserrat'] text-[13px] font-bold leading-[19.5px] tracking-[0px] text-[#192440] transition duration-200 hover:bg-[#FFD54F]"
               >
                 Quiero orientación

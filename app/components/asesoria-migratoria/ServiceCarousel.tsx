@@ -253,7 +253,7 @@ export default function ServiceCarousel() {
                                 : "w-2 bg-[rgba(42,63,119,0.22)]"
                             }`}
                           />
-                        ))}Dos servicios según
+                        ))}
                       </div>
                     )}
                   </article>

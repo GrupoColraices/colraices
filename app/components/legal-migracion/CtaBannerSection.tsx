@@ -1,8 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
 
 export default function CtaBannerSection() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
     <section className="w-full min-h-[345.13px] bg-[linear-gradient(90deg,#0F2D5C_0%,#1A4F9E_100%)] flex items-center">
       <div className="mx-auto w-full max-w-[1180px] px-4 md:px-6 lg:px-0">
@@ -22,13 +26,14 @@ export default function CtaBannerSection() {
           </p>
 
           <div className="mt-[24px] md:mt-[28px] lg:mt-[32px] flex w-full max-w-[1084px] flex-col sm:flex-row items-center justify-center gap-[12px] lg:gap-[14px]">
-            <Link
-              href="/contacto"
+            <button
+              type="button"
+              onClick={() => setIsContactModalOpen(true)}
               className="inline-flex h-[51.2px] w-full sm:w-[228.75px] items-center justify-center rounded-[50px] bg-[#FFC107] text-[#091D3E] text-[14.4px] font-semibold leading-[21.6px] tracking-[0.43px] shadow-[0_8px_20px_rgba(255,193,7,0.35)] transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_12px_30px_rgba(255,193,7,0.45)]"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               Hablar con un asesor
-            </Link>
+            </button>
 
             <Link
               href="#servicios"
@@ -40,6 +45,15 @@ export default function CtaBannerSection() {
           </div>
         </div>
       </div>
+      <GeneralContactModal
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Déjanos tus datos para ayudarte"
+        subtitle="con tus procesos legales y migratorios"
+        source="legal_migratorio_cta_banner_hablar_asesor"
+        serviceInterest="Legal y migratorio"
+        showHelpField={true}
+      />
     </section>
   );
 }
