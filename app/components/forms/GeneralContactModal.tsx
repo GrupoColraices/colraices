@@ -267,20 +267,36 @@ export default function GeneralContactModal({
                 <option value="" disabled>
                   Selecciona tu país
                 </option>
-                <option value="Estados Unidos">Estados Unidos</option>
-                <option value="España">España</option>
-                <option value="Canadá">Canadá</option>
-                <option value="Suiza">Suiza</option>
-                <option value="Reino Unido">Reino Unido</option>
-                <option value="Australia">Australia</option>
-                <option value="México">México</option>
-                <option value="Chile">Chile</option>
-                <option value="Panamá">Panamá</option>
-                <option value="Ecuador">Ecuador</option>
-                <option value="Perú">Perú</option>
+                <option value="Alemania">Alemania</option>
                 <option value="Argentina">Argentina</option>
-                <option value="Colombia">Colombia</option>
-                <option value="Otro">Otro</option>
+                <option value="Australia">Australia</option>
+                <option value="Austria">Austria</option>
+                <option value="Brasil">Brasil</option>
+                <option value="Bélgica">Bélgica</option>
+                <option value="Canadá">Canadá</option>
+                <option value="Chile">Chile</option>
+                <option value="Costa Rica">Costa Rica</option>
+                <option value="Dinamarca">Dinamarca</option>
+                <option value="Ecuador">Ecuador</option>
+                <option value="España">España</option>
+                <option value="Estados Unidos">Estados Unidos</option>
+                <option value="Finlandia">Finlandia</option>
+                <option value="Francia">Francia</option>
+                <option value="Irlanda">Irlanda</option>
+                <option value="Italia">Italia</option>
+                <option value="México">México</option>
+                <option value="Noruega">Noruega</option>
+                <option value="Nueva Zelanda">Nueva Zelanda</option>
+                <option value="Panamá">Panamá</option>
+                <option value="Paraguay">Paraguay</option>
+                <option value="Países Bajos">Países Bajos</option>
+                <option value="Perú">Perú</option>
+                <option value="Portugal">Portugal</option>
+                <option value="Reino Unido">Reino Unido</option>
+                <option value="Suecia">Suecia</option>
+                <option value="Suiza">Suiza</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="Venezuela">Venezuela</option>
               </select>
             </div>
 
