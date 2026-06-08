@@ -20,7 +20,7 @@ export default function QuoteInmuebles() {
             marginBottom: "8px",
           }}
         >
-          "
+          {'"'}
         </div>
 
         <div

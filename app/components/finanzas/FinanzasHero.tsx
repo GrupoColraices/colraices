@@ -3,14 +3,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { officialPaths } from "@/app/lib/officialUrls";
 
-const items = [
+type FinanceItem = {
+  tag: string;
+  title: string;
+  desc: string;
+  color: string;
+  icon: string;
+  href: string;
+};
+
+const items: FinanceItem[] = [
   {
     tag: "EL DESTINO",
     title: "Crédito hipotecario o libre inversión",
     desc: "Compras o capitalizas en Colombia",
     color: "bg-[#FFC107]",
     icon: "🏠",
+    href: officialPaths.credito,
   },
   {
     tag: "SI HAY BLOQUEOS",
@@ -18,6 +29,7 @@ const items = [
     desc: "Resuelve reportes negativos y deudas",
     color: "bg-[#EF4444]",
     icon: "🔧",
+    href: officialPaths.buenaData,
   },
   {
     tag: "DIAGNÓSTICO",
@@ -25,6 +37,7 @@ const items = [
     desc: "Entiendes tu situación financiera",
     color: "bg-[#3B82F6]",
     icon: "🧭",
+    href: officialPaths.brujulaFinanciera,
   },
   {
     tag: "DIAGNÓSTICO | VIABILIDAD CREDITICIA",
@@ -32,6 +45,7 @@ const items = [
     desc: "Entiendes tu situación ante los bancos",
     color: "bg-[#3B82F6]",
     icon: "🧭",
+    href: officialPaths.brujulaCrediticia,
   },
   {
     tag: "SI TIENES EFECTIVO",
@@ -39,6 +53,7 @@ const items = [
     desc: "Traes tu dinero a Colombia",
     color: "bg-[#10B981]",
     icon: "💱",
+    href: officialPaths.monetizacion,
   },
 ];
 
@@ -51,7 +66,7 @@ export default function FinanzasHero() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden bg-white pb-0 py-[60px] md:py-[80px] xl:min-h-[660px]">
+    <section className="relative w-full overflow-hidden bg-white pt-[60px] pb-[90px] md:pt-[80px] md:pb-[120px] xl:pb-0 xl:min-h-[660px]">
       
       {/* CÍRCULOS */}
       <div className="pointer-events-none absolute inset-0 z-0 hidden xl:block">
@@ -105,7 +120,7 @@ export default function FinanzasHero() {
               }`}
             >
               <Link
-                href="/finanzas"
+                href="#diagnostico"
                 className="flex h-[48px] w-full max-w-[230px] items-center justify-center rounded-full bg-[#FFC107] text-[13px] font-medium text-[#2A3F77] hover:-translate-y-[2px] hover:shadow-lg transition"
               >
                 ¿Por dónde empiezo? →
@@ -157,9 +172,12 @@ export default function FinanzasHero() {
 }
 
 /* CARD */
-function Card({ item }: any) {
+function Card({ item }: { item: FinanceItem }) {
   return (
-    <div className="relative flex items-center gap-[14px] rounded-tl-[16px] rounded-br-[16px] bg-white/70 backdrop-blur-md p-[16px] hover:shadow-lg transition">
+    <Link
+      href={item.href}
+      className="relative flex items-center gap-[14px] rounded-tl-[16px] rounded-br-[16px] bg-white/70 backdrop-blur-md p-[16px] hover:shadow-lg transition"
+    >
       
       <div className={`absolute top-0 left-0 h-full w-[3px] ${item.color}`} />
 
@@ -178,6 +196,6 @@ function Card({ item }: any) {
           {item.desc}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

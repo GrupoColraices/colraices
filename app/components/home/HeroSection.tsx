@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { officialPaths } from "@/app/lib/officialUrls";
 
 type Service = {
   text: string;
@@ -10,9 +11,9 @@ type Service = {
 };
 
 const SERVICES: readonly Service[] = [
-  { text: "Financiación en Colombia", icon: "💰", href: "/finanzas" },
-  { text: "Tu propiedad en Colombia", icon: "🏠", href: "/inmuebles" },
-  { text: "Servicios legales y migratorios", icon: "⚖️", href: "/legal-migracion" },
+  { text: "Financiación en Colombia", icon: "💰", href: officialPaths.finanzasHub },
+  { text: "Tu propiedad en Colombia", icon: "🏠", href: officialPaths.inmuebleHub },
+  { text: "Servicios legales y migratorios", icon: "⚖️", href: officialPaths.legalHub },
 ];
 
 // 🔥 AJUSTES PRO (sin cambiar diseño)
@@ -24,7 +25,7 @@ const BACKGROUND_CLASS =
 
 export default function HeroSection() {
   return (
-    <section className={SECTION_CLASS}>
+    <section id="inicio" className={SECTION_CLASS}>
       <BackgroundImage />
 
       <div className="relative w-full max-w-[1200px] xl:max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,14 +73,14 @@ function HeroText() {
 
       <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
         <Link
-          href="/#units-section"
+          href="#UnitsSection"
           className="w-full sm:w-auto px-6 h-[44px] md:h-[48px] flex items-center justify-center rounded-full bg-[#FFC107] text-[#2A3F77] text-sm font-semibold transition hover:opacity-90"
         >
           Quiero saber más →
         </Link>
 
         <Link
-          href="/servicios"
+          href="/nosotros#ecosistema"
           className="w-full sm:w-auto px-6 h-[42px] md:h-[44px] flex items-center justify-center rounded-full border border-white text-white text-sm font-semibold transition hover:bg-white hover:text-[#0B1F3A]"
         >
           Conoce el ecosistema

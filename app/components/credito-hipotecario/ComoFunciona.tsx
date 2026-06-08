@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const STEPS = [
   {
@@ -17,158 +17,299 @@ const STEPS = [
   },
 ];
 
+const CIRCLE_POSITIONS = ['c1', 'c2', 'c3'] as const;
 const PROXIMITY_THRESHOLD = 90;
 
+type ActiveState = [boolean, boolean, boolean];
+
+const INACTIVE_STATE: ActiveState = [false, false, false];
+
+const isMouseNearElement = (element: HTMLDivElement | null, e: MouseEvent) => {
+  if (!element) return false;
+
+  const { left, top, width, height } = element.getBoundingClientRect();
+
+  return (
+    Math.hypot(
+      e.clientX - (left + width / 2),
+      e.clientY - (top + height / 2)
+    ) < PROXIMITY_THRESHOLD
+  );
+};
+
 const css = `
+  .cf-section {
+    padding: 87.99px 0;
+  }
+
   .cf-wrapper {
-    width: 1180px;
-    padding: 88px 48px;
+    width: min(1200px, calc(100vw - 96px));
     box-sizing: border-box;
   }
-  .cf-header { width: 1084px; }
 
-  /* ── Contenedor unificado (circles + cards) ── */
+  .cf-header {
+    width: min(1104px, 100%);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cf-eyebrow {
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #0A0A0A;
+    margin: 0;
+  }
+
+  .cf-title {
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-size: 36.8px;
+    line-height: 44.2px;
+    color: #0F2D5C;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .cf-description {
+    width: 900px;
+    max-width: 100%;
+    margin: 0 auto;
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+    font-size: 15.2px;
+    line-height: 25.8px;
+    color: #475569;
+  }
+
   .cf-steps {
-    width: 1084px;
+    width: min(1104px, 100%);
+    margin: 48px auto 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 56px 32px auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: 55.99px auto;
+    column-gap: 32px;
+    row-gap: 20px;
     position: relative;
   }
 
-  /* SVG spindle */
-  .cf-line-svg {
+  .cf-line {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 56px;
+    top: 27.99px;
+    left: 20.77%;
+    right: 20.77%;
+    height: 1.99px;
     z-index: 0;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      rgba(15, 45, 92, 0.1) 0%,
+      rgba(255, 193, 7, 1) 50%,
+      rgba(15, 45, 92, 0.1) 100%
+    );
     pointer-events: none;
-    overflow: visible;
   }
 
-  /* Círculos — fila 1 del grid */
   .cf-circle {
     grid-row: 1;
-    width: 56px;
-    height: 56px;
-    border-radius: 28px;
+    width: 55.99px;
+    height: 55.99px;
+    border-radius: 27.99px;
     background-color: #FFFFFF;
-    border: 1.6px solid rgba(15,45,92,0.18);
+    border: 1px solid rgba(15, 45, 92, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: Montserrat, sans-serif;
     font-weight: 700;
-    font-size: 19.2px;
+    font-size: 16px;
+    line-height: 20.8px;
     color: #0F2D5C;
-    z-index: 1;
-    cursor: default;
+    z-index: 2;
+    box-sizing: border-box;
     transition:
-      background-color 0.35s cubic-bezier(0.22,1,0.36,1),
-      border-color     0.35s cubic-bezier(0.22,1,0.36,1),
-      color            0.35s cubic-bezier(0.22,1,0.36,1);
+      background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .cf-circle.c1 { grid-column: 1; justify-self: start; }
-  .cf-circle.c2 { grid-column: 2; justify-self: center; }
-  .cf-circle.c3 { grid-column: 3; justify-self: end; }
+
+  .cf-circle.c1 {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .cf-circle.c2 {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .cf-circle.c3 {
+    grid-column: 3;
+    justify-self: start;
+  }
+
   .cf-circle.inverted {
     background-color: #0F2D5C;
     border-color: #0F2D5C;
     color: #FFFFFF;
   }
 
-  /* Cards — fila 3 del grid */
   .cf-card {
-    grid-row: 3;
+    grid-row: 2;
     box-sizing: border-box;
-    padding-right: 20px;
+    width: 100%;
+    min-width: 0;
+    z-index: 1;
   }
-  .cf-card.card1 { grid-column: 1; }
-  .cf-card.card2 { grid-column: 2; }
-  .cf-card.card3 { grid-column: 3; padding-right: 0; }
+
+  .cf-card.card1 {
+    grid-column: 1;
+  }
+
+  .cf-card.card2 {
+    grid-column: 2;
+  }
+
+  .cf-card.card3 {
+    grid-column: 3;
+  }
+
+  .cf-card-title {
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20.77px;
+    color: #0F2D5C;
+    margin: 0 0 8px;
+  }
 
   .cf-card-text {
-    text-align: justify;
-    text-justify: inter-word;
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+    font-size: 13.12px;
+    line-height: 21px;
+    color: #475569;
+    margin: 0;
   }
 
-  /* ════ TABLET ≤ 1200px ════ */
   @media (max-width: 1200px) {
-    .cf-wrapper { width: 100%; }
-    .cf-header  { width: 100%; }
-    .cf-steps   { width: 100%; }
+    .cf-section {
+      padding: 87.99px 32px;
+    }
+
+    .cf-wrapper {
+      width: 100%;
+    }
   }
 
-  /* ════ MÓVIL ≤ 768px ════ */
   @media (max-width: 768px) {
-    .cf-wrapper { padding: 64px 24px; box-sizing: border-box; }
+    .cf-section {
+      padding: 64px 24px;
+    }
 
-    /* Pasar a flex columna e intercalar con order */
+    .cf-wrapper {
+      width: 100%;
+    }
+
+    .cf-title {
+      font-size: 32px;
+      line-height: 38px;
+    }
+
     .cf-steps {
       display: flex;
       flex-direction: column;
       width: 100%;
+      margin-top: 42px;
     }
 
-    /* Ocultar SVG horizontal */
-    .cf-line-svg { display: none; }
+    .cf-line {
+      display: none;
+    }
 
-    /* Círculos como bloques normales */
     .cf-circle {
-      align-self: flex-start;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
       flex-shrink: 0;
-      margin-bottom: 0;
+      align-self: flex-start;
     }
-    .cf-circle.c1 { order: 1; }
-    .cf-circle.c2 { order: 3; }
-    .cf-circle.c3 { order: 5; }
 
-    /* Cards intercaladas con los círculos */
+    .cf-circle.c1 {
+      order: 1;
+    }
+
+    .cf-circle.c2 {
+      order: 3;
+    }
+
+    .cf-circle.c3 {
+      order: 5;
+    }
+
     .cf-card {
+      width: auto;
       padding-right: 0;
       padding-left: 20px;
       padding-bottom: 32px;
-      margin-left: 27px;
+      margin-left: 21px;
       border-left: 2px solid #FFC107;
-      box-sizing: border-box;
-      width: auto;
     }
-    .cf-card.card1 { order: 2; margin-top: 12px; }
-    .cf-card.card2 { order: 4; margin-top: 12px; }
-    .cf-card.card3 { order: 6; margin-top: 12px; border-left-color: transparent; padding-bottom: 0; }
+
+    .cf-card.card1 {
+      order: 2;
+      margin-top: 12px;
+    }
+
+    .cf-card.card2 {
+      order: 4;
+      margin-top: 12px;
+    }
+
+    .cf-card.card3 {
+      order: 6;
+      margin-top: 12px;
+      border-left-color: transparent;
+      padding-bottom: 0;
+    }
   }
 
-  /* ════ MÓVIL PEQUEÑO ≤ 400px ════ */
   @media (max-width: 400px) {
-    .cf-wrapper { padding: 48px 16px; }
+    .cf-section {
+      padding: 48px 16px;
+    }
+
+    .cf-title {
+      font-size: 29px;
+      line-height: 35px;
+    }
   }
 `;
 
 export default function ComoFunciona() {
-  const ref0 = useRef<HTMLDivElement>(null);
-  const ref1 = useRef<HTMLDivElement>(null);
-  const ref2 = useRef<HTMLDivElement>(null);
-  const circleRefs = [ref0, ref1, ref2];
+  const circle1Ref = useRef<HTMLDivElement>(null);
+  const circle2Ref = useRef<HTMLDivElement>(null);
+  const circle3Ref = useRef<HTMLDivElement>(null);
 
-  const [active, setActive] = useState([false, false, false]);
+  const [active, setActive] = useState<ActiveState>(INACTIVE_STATE);
 
   const onMouseMove = useCallback((e: MouseEvent) => {
-    setActive(
-      circleRefs.map((ref) => {
-        if (!ref.current) return false;
-        const r = ref.current.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
-        return Math.hypot(e.clientX - cx, e.clientY - cy) < PROXIMITY_THRESHOLD;
-      })
-    );
+    setActive([
+      isMouseNearElement(circle1Ref.current, e),
+      isMouseNearElement(circle2Ref.current, e),
+      isMouseNearElement(circle3Ref.current, e),
+    ]);
   }, []);
 
-  const onMouseLeave = useCallback(() => setActive([false, false, false]), []);
+  const onMouseLeave = useCallback(() => {
+    setActive(INACTIVE_STATE);
+  }, []);
 
   useEffect(() => {
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseleave', onMouseLeave);
+
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseleave', onMouseLeave);
@@ -176,63 +317,62 @@ export default function ComoFunciona() {
   }, [onMouseMove, onMouseLeave]);
 
   return (
-    <section className="w-full flex justify-center bg-[#FBF8F3]">
+    <section id="como-funciona" className="cf-section scroll-mt-24 w-full flex justify-center bg-[#FBF8F3]">
       <style dangerouslySetInnerHTML={{ __html: css }} />
 
       <div className="cf-wrapper">
-
-        {/* HEADER */}
         <div className="cf-header">
-          <p style={{ fontFamily:'Montserrat', fontStyle:'italic', fontSize:'20px', lineHeight:'30px', color:'#0A0A0A', marginBottom:'10px' }}>
+          <p className="cf-eyebrow">
             Cómo funciona
           </p>
-          <h2 style={{ fontFamily:'Montserrat', fontWeight:600, fontSize:'35.86px', lineHeight:'43px', color:'#0F2D5C', marginBottom:'10px' }}>
+
+          <h2 className="cf-title">
             Tres pasos. Todo remoto.
           </h2>
-          <p style={{ fontFamily:'Montserrat', fontWeight:400, fontSize:'15.2px', lineHeight:'25.8px', color:'#475569' }}>
+
+          <p className="cf-description">
             Desde la evaluación inicial hasta la radicación ante el banco, te acompañamos en cada paso del proceso.
             <br />
             Todo se gestiona de forma remota, sin viajes ni trámites presenciales.
           </p>
         </div>
 
-        <div style={{ height:'80px' }} />
-
-        {/* STEPS: círculos + cards en un solo grid/flex */}
         <div className="cf-steps">
+          <div className="cf-line" />
 
-          {/* SVG spindle (solo visible en desktop) */}
-          <svg
-            className="cf-line-svg"
-            viewBox="0 0 1084 56"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            ref={circle1Ref}
+            className={`cf-circle ${CIRCLE_POSITIONS[0]}${active[0] ? ' inverted' : ''}`}
           >
-            <path
-              d="M 285,28 Q 542,25.5 799,28 Q 542,30.5 285,28 Z"
-              fill="#FFC107"
-            />
-          </svg>
+            1
+          </div>
 
-          {/* Círculos */}
-          <div ref={ref0} className={'cf-circle c1' + (active[0] ? ' inverted' : '')}>1</div>
-          <div ref={ref1} className={'cf-circle c2' + (active[1] ? ' inverted' : '')}>2</div>
-          <div ref={ref2} className={'cf-circle c3' + (active[2] ? ' inverted' : '')}>3</div>
+          <div
+            ref={circle2Ref}
+            className={`cf-circle ${CIRCLE_POSITIONS[1]}${active[1] ? ' inverted' : ''}`}
+          >
+            2
+          </div>
 
-          {/* Cards */}
+          <div
+            ref={circle3Ref}
+            className={`cf-circle ${CIRCLE_POSITIONS[2]}${active[2] ? ' inverted' : ''}`}
+          >
+            3
+          </div>
+
           {STEPS.map((step, i) => (
             <div key={step.title} className={`cf-card card${i + 1}`}>
-              <h3 style={{ fontFamily:'Montserrat', fontWeight:600, fontSize:'16px', lineHeight:'20.8px', color:'#0F2D5C', marginBottom:'8px' }}>
+              <h3 className="cf-card-title">
                 {step.title}
               </h3>
-              <p className="cf-card-text" style={{ fontFamily:'Montserrat', fontWeight:400, fontSize:'13.12px', lineHeight:'21px', color:'#475569', margin:0 }}>
+
+              <p className="cf-card-text">
                 {step.text}
               </p>
             </div>
           ))}
-
         </div>
-
       </div>
     </section>
   );

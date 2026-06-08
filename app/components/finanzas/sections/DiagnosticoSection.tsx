@@ -2,54 +2,51 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { officialPaths } from "@/app/lib/officialUrls";
+import GeneralContactModal from "../../forms/GeneralContactModal";
 
 const cards = [
   {
     icon: "⚠️",
-    label: "SITUACIÓN A",
     text: "Tengo reportes negativos o deudas pendientes en Colombia",
     tag: "Buena Data →",
-    href: "/buena-data",
+    href: officialPaths.buenaData,
     color: "#DC2626",
     bg: "#FEF2F2",
     line: "#DC2626",
   },
   {
     icon: "🔍",
-    label: "SITUACIÓN B",
     text: "No sé cómo está mi situación financiera en Colombia",
     tag: "Brújula Financiera →",
-    href: "/brujula-financiera",
+    href: officialPaths.brujulaFinanciera,
     color: "#2A3F77",
     bg: "#F1F5F9",
     line: "#2A3F77",
   },
   {
     icon: "🏠",
-    label: "SITUACIÓN C",
     text: "Quiero comprar vivienda en Colombia pero no sé si califico para crédito",
     tag: "Brújula Crediticia →",
-    href: "/brujula-crediticia",
+    href: officialPaths.brujulaCrediticia,
     color: "#FFC107",
     bg: "#FEF3C7",
     line: "#FFC107",
   },
   {
     icon: "🏢",
-    label: "SITUACIÓN D",
     text: "Envío remesas a Colombia y quiero convertir ese dinero en mi patrimonio",
     tag: "Crédito →",
-    href: "/credito",
+    href: officialPaths.credito,
     color: "#2A3F77",
-    bg: "transparent",
+    bg: "#F1F5F9",
     line: "#2A3F77",
   },
   {
     icon: "💸",
-    label: "SITUACIÓN E",
     text: "Tengo más de USD $10.000 que quiero traer a Colombia de forma segura",
     tag: "Monetización →",
-    href: "/monetizacion",
+    href: officialPaths.monetizacion,
     color: "#059669",
     bg: "#ECFDF5",
     line: "#059669",
@@ -61,13 +58,14 @@ const cards = [
     tag: "Hablar con asesor — sin costo →",
     href: "#",
     color: "#475569",
-    bg: "transparent",
+    bg: "#F1F5F9",
     line: "#475569",
   },
 ];
 
 export default function DiagnosticoSection() {
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   useEffect(() => {
     let i = 0;
@@ -83,7 +81,9 @@ export default function DiagnosticoSection() {
   }, []);
 
   return (
+    <>
     <section
+      id="diagnostico"
       className="
       w-full 
       bg-[#2A3F77] 
@@ -144,6 +144,14 @@ export default function DiagnosticoSection() {
               <Link
                 key={index}
                 href={card.href}
+                onClick={
+                  card.href === "#"
+                    ? (event) => {
+                        event.preventDefault();
+                        setIsContactModalOpen(true);
+                      }
+                    : undefined
+                }
                 className={`
                   group relative overflow-hidden
 
@@ -229,5 +237,15 @@ export default function DiagnosticoSection() {
         </div>
       </div>
     </section>
+    <GeneralContactModal
+      open={isContactModalOpen}
+      onClose={() => setIsContactModalOpen(false)}
+      title="Te contactamos para ayudarte"
+      subtitle="a invertir y construir patrimonio en Colombia"
+      source="finanzas_diagnostico_hablar_asesor"
+      serviceInterest="Asesoría financiera"
+      showHelpField={false}
+    />
+    </>
   );
 }

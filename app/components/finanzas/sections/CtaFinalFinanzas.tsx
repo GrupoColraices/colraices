@@ -1,10 +1,22 @@
 'use client';
 
 import React, { useState } from 'react';
+import { OFFICIAL_WHATSAPP_URL } from '@/app/lib/officialUrls';
 
 export default function CtaFinalFinanzas() {
   const [isPrimaryHovered, setIsPrimaryHovered] = useState(false);
   const [isSecondaryHovered, setIsSecondaryHovered] = useState(false);
+
+  const scrollToProductos = () => {
+    const productosSection = document.getElementById('productos');
+
+    if (productosSection) {
+      productosSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
 
   return (
     <section
@@ -13,18 +25,19 @@ export default function CtaFinalFinanzas() {
         backgroundColor: '#091D3E',
         display: 'flex',
         justifyContent: 'center',
-        padding: '100px 20px', // 🔥 padding lateral para móvil
+        padding: '100px 20px',
       }}
       aria-label="CTA final finanzas"
     >
       <div
         style={{
           width: '100%',
-          maxWidth: '1180px', // 🔥 mantiene el diseño en desktop
+          maxWidth: '1180px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
+          overflow: 'visible',
         }}
       >
         {/* TITULO */}
@@ -35,7 +48,7 @@ export default function CtaFinalFinanzas() {
             fontFamily: 'Montserrat, sans-serif',
             fontWeight: 300,
             lineHeight: '1.2',
-            fontSize: 'clamp(28px, 4vw, 41.83px)', // 🔥 responsive real
+            fontSize: 'clamp(28px, 4vw, 41.83px)',
           }}
         >
           Empieza hoy. Compra mañana.
@@ -45,15 +58,19 @@ export default function CtaFinalFinanzas() {
         <p
           style={{
             marginTop: '16px',
-            color: 'rgba(255,255,255,0.46)',
+            marginBottom: 0,
+            color: 'rgba(255,255,255,0.72)',
             fontFamily: 'Montserrat, sans-serif',
-            fontSize: 'clamp(14px, 2.5vw, 15.2px)',
-            lineHeight: '1.7',
-            maxWidth: '700px', // 🔥 evita textos muy largos en PC
+            fontSize: '15.2px',
+            lineHeight: '1.4',
+            textAlign: 'center',
+            maxWidth: '600px',
+            width: '100%',
+            whiteSpace: 'nowrap',
+            overflow: 'visible',
           }}
         >
-          No importa en qué momento estés. Siempre hay un primer paso. Cuéntanos tu
-          caso y te decimos por dónde empezar.
+          Empieza con una conversación. Sin compromisos, sin letra pequeña, sin enredos.
         </p>
 
         {/* BOTONES */}
@@ -62,12 +79,14 @@ export default function CtaFinalFinanzas() {
             marginTop: '32px',
             display: 'flex',
             gap: '12px',
-            flexWrap: 'wrap', // 🔥 permite bajar en móvil
+            flexWrap: 'wrap',
             justifyContent: 'center',
           }}
         >
-          <button
-            type="button"
+          <a
+            href={OFFICIAL_WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onMouseEnter={() => setIsPrimaryHovered(true)}
             onMouseLeave={() => setIsPrimaryHovered(false)}
             style={{
@@ -85,13 +104,19 @@ export default function CtaFinalFinanzas() {
                 ? '0 10px 24px rgba(255, 193, 7, 0.45), 0 0 20px rgba(255, 193, 7, 0.35)'
                 : 'none',
               transition: 'all 0.2s ease',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              whiteSpace: 'nowrap',
             }}
           >
             Hablar con un asesor
-          </button>
+          </a>
 
           <button
             type="button"
+            onClick={scrollToProductos}
             onMouseEnter={() => setIsSecondaryHovered(true)}
             onMouseLeave={() => setIsSecondaryHovered(false)}
             style={{
@@ -109,6 +134,7 @@ export default function CtaFinalFinanzas() {
                 ? '0 8px 20px rgba(9, 29, 62, 0.55), 0 0 16px rgba(255, 255, 255, 0.12)'
                 : 'none',
               transition: 'all 0.2s ease',
+              whiteSpace: 'nowrap',
             }}
           >
             Ver todos los productos

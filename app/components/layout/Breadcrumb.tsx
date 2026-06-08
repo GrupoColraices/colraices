@@ -2,29 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { resolveBreadcrumbs } from "@/app/lib/breadcrumbs";
 
-const routeNameMap: Record<string, string> = {
-  "finanzas": "Finanzas",
-  "inmuebles": "Inmuebles",
-  "legal-migracion": "Legal y Migración",
-  "tour-vivienda": "Tour de la Vivienda",
-  "blog": "Blog",
-  "brujula-financiera": "Brújula Financiera",
-  "brujula-crediticia": "Brújula Crediticia",
-  "buena-data": "Buena Data",
-  "credito-hipotecario": "Crédito Hipotecario",
+type BreadcrumbProps = {
+  customLabel?: string;
 };
 
-export default function Breadcrumb() {
+export default function Breadcrumb({ customLabel }: BreadcrumbProps) {
   const pathname = usePathname();
-  const segments = pathname.split("/").filter(Boolean);
-
-  const crumbs = segments.map((seg, i) => {
-    const href = "/" + segments.slice(0, i + 1).join("/");
-    const label = routeNameMap[seg] || seg;
-    const isLast = i === segments.length - 1;
-    return { href, label, isLast };
-  });
+  const crumbs = resolveBreadcrumbs(pathname, customLabel);
+  const visibleCrumbs = crumbs.slice(1);
 
   return (
     <section
@@ -55,14 +42,14 @@ export default function Breadcrumb() {
           gap-y-1
         "
         >
-          <Link
-            href="/"
-            className="text-[#94A3B8] hover:text-[#0F2D5C] transition-colors"
-          >
-            Inicio
+          <Link href="/" className="text-[#94A3B8] hover:text-[#0F2D5C] transition-colors">
+            {crumbs[0]?.label ?? "Inicio"}
           </Link>
 
-          {crumbs.map(({ href, label, isLast }) => (
+          {visibleCrumbs.map(({ href, label }, index) => {
+            const isLast = index === visibleCrumbs.length - 1;
+
+            return (
             <span key={href} className="flex items-center max-w-full">
               <span className="mx-1 sm:mx-2 text-[#CBD5E1]">›</span>
 
@@ -92,7 +79,8 @@ export default function Breadcrumb() {
                 </Link>
               )}
             </span>
-          ))}
+            );
+          })}
         </nav>
       </div>
     </section>

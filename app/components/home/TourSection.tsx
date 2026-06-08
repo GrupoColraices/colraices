@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { TOUR_VIVIENDA_URL } from "@/app/lib/officialUrls";
 
 const cities = ["Bogotá", "Medellín", "Cartagena", "Cali", "y más ciudades"];
 
@@ -70,7 +71,7 @@ export default function TourSection() {
           </p>
 
           <Link
-            href="/tour"
+            href={TOUR_VIVIENDA_URL}
             className="
               inline-flex items-center justify-center 
               h-[44px] md:h-[48px] 
@@ -115,6 +116,7 @@ export default function TourSection() {
         {/* DERECHA (MAPA) */}
         <div className="w-full max-w-[520px] mx-auto md:ml-auto flex justify-center md:justify-end">
 
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/mapa.png"
             alt="Mapa Tour de la Vivienda"
@@ -131,14 +133,5 @@ export default function TourSection() {
       </div>
 
     </section>
-  );
-}
-
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div>
-      <p className="text-white text-[18px] md:text-[20px] font-bold mb-1">{value}</p>
-      <p className="text-white/50 text-[10px] md:text-[11px]">{label}</p>
-    </div>
   );
 }
