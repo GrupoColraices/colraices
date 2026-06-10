@@ -1,0 +1,22 @@
+
+> colraices-web@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.23:3000
+- Environments: .env.local
+✓ Ready in 987ms
+Creating turbopack project { dir: 'C:\\Users\\colraices_web\\colraices-web', testMode: true }
+
+○ Compiling / ...
+ GET / 200 in 8.2s (next.js: 7.5s, application-code: 678ms)
+ GET / 200 in 193ms (next.js: 9ms, application-code: 185ms)
+ GET /tour-de-la-vivienda 307 in 1421ms (next.js: 1116ms, application-code: 305ms)
+ GET /legal-y-migratorio 200 in 1605ms (next.js: 1059ms, application-code: 546ms)
+ GET / 200 in 472ms (next.js: 18ms, application-code: 454ms)
+ GET / 200 in 231ms (next.js: 7ms, application-code: 223ms)
+ GET /tour-de-la-vivienda 307 in 155ms (next.js: 7ms, application-code: 149ms)
+ GET / 200 in 162ms (next.js: 7ms, application-code: 156ms)
+ GET / 200 in 179ms (next.js: 8ms, application-code: 171ms)
+ GET /legal-y-migratorio 200 in 250ms (next.js: 7ms, application-code: 242ms)
