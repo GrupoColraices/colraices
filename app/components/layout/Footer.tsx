@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import PrivacyPolicy from "./PrivacyPolicy";
 import {
   OFFICIAL_WHATSAPP_URL,
   TOUR_VIVIENDA_URL,
@@ -195,7 +194,12 @@ export default function Footer() {
             </p>
 
             <div className="flex flex-wrap items-center justify-start gap-4 text-sm leading-6 text-white/35 sm:gap-5 md:ml-auto md:justify-end md:text-right lg:text-[12.48px] lg:leading-[18.7px] lg:text-white/[0.28]">
-              <PrivacyPolicy className="transition-colors hover:text-white" />
+              <Link
+                href="/politica-de-privacidad"
+                className="transition-colors hover:text-white"
+              >
+                Política de privacidad
+              </Link>
             </div>
           </div>
         </div>
