@@ -144,12 +144,14 @@ export default function EquipoSection() {
   const [currentIndex, setCurrentIndex] = useState(totalMembers);
   const [withTransition, setWithTransition] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   const currentIndexRef = useRef(totalMembers);
   const isLockedRef = useRef(false);
   const fallbackTimerRef = useRef<number | null>(null);
 
   const activeDot = normalizeIndex(currentIndex);
+  const visibleMembers = isDesktop ? loopMembers : teamMembers;
 
   const clearFallbackTimer = () => {
     if (fallbackTimerRef.current !== null) {
@@ -191,7 +193,7 @@ export default function EquipoSection() {
   };
 
   const moveTo = (nextIndex: number) => {
-    if (isLockedRef.current) return;
+    if (!isDesktop || isLockedRef.current) return;
 
     isLockedRef.current = true;
     setIsAnimating(true);
@@ -215,7 +217,7 @@ export default function EquipoSection() {
   };
 
   const handleTransitionEnd = (event: TransitionEvent<HTMLDivElement>) => {
-    if (event.propertyName !== "transform") return;
+    if (!isDesktop || event.propertyName !== "transform") return;
 
     const index = currentIndexRef.current;
 
@@ -233,15 +235,41 @@ export default function EquipoSection() {
   };
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    const handleChange = () => {
+      const desktop = mediaQuery.matches;
+
+      setIsDesktop(desktop);
+      setWithTransition(false);
+      setIsAnimating(false);
+      isLockedRef.current = false;
+
+      if (desktop) {
+        setSafeCurrentIndex(totalMembers);
+      } else {
+        setSafeCurrentIndex(0);
+      }
+
+      requestAnimationFrame(() => {
+        setWithTransition(true);
+      });
+    };
+
+    handleChange();
+
+    mediaQuery.addEventListener("change", handleChange);
+
     return () => {
       clearFallbackTimer();
+      mediaQuery.removeEventListener("change", handleChange);
     };
   }, []);
 
   return (
-    <section id="equipo" className="overflow-hidden bg-[#EDEDED] py-24 md:py-28">
+    <section id="equipo" className="overflow-hidden bg-[#EDEDED] py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto mb-16 max-w-3xl text-center">
+        <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
           <span className="mb-5 inline-flex rounded-full bg-[#FEF3C7] px-5 py-2 text-[11px] font-bold uppercase tracking-[0.24em] text-[#FFC107]">
             El equipo
           </span>
@@ -267,39 +295,41 @@ export default function EquipoSection() {
             <ArrowLeft />
           </button>
 
-          <div className="-my-2 overflow-hidden py-2">
+          <div className="-mx-6 -my-2 overflow-x-auto overflow-y-hidden px-6 py-2 [-ms-overflow-style:none] [scrollbar-width:none] md:mx-0 md:overflow-hidden md:px-0 [&::-webkit-scrollbar]:hidden">
             <div
               onTransitionEnd={handleTransitionEnd}
               className={[
-                "flex will-change-transform",
+                "flex touch-pan-x snap-x snap-mandatory md:snap-none md:will-change-transform",
                 withTransition
-                  ? "transition-transform duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-                  : "transition-none",
+                  ? "md:transition-transform md:duration-[650ms] md:ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  : "md:transition-none",
               ].join(" ")}
               style={{
-                transform: `translateX(-${currentIndex * 25}%)`,
+                transform: isDesktop
+                  ? `translateX(-${currentIndex * 25}%)`
+                  : undefined,
               }}
             >
-              {loopMembers.map((member, index) => {
+              {visibleMembers.map((member, index) => {
                 const isFeatured = member.featured === true;
 
                 return (
                   <div
                     key={`${member.name}-${index}`}
-                    className="shrink-0 basis-1/4 px-3"
+                    className="shrink-0 basis-[82%] snap-center px-3 min-[420px]:basis-[76%] sm:basis-[48%] md:basis-1/4"
                   >
                     <article
                       className={[
-                        "group relative flex h-[180px] flex-col items-center justify-center overflow-hidden rounded-[14px] px-5 text-center",
-                        "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform",
-                        "hover:-translate-y-2 hover:scale-[1.015]",
-                        "before:pointer-events-none before:absolute before:inset-0 before:-translate-x-[130%] before:bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.24)_45%,transparent_70%)] before:transition-transform before:duration-700 hover:before:translate-x-[130%]",
+                        "group relative flex h-[188px] flex-col items-center justify-center overflow-hidden rounded-[14px] px-5 text-center md:h-[180px]",
+                        "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:will-change-transform",
+                        "md:hover:-translate-y-2 md:hover:scale-[1.015]",
+                        "before:pointer-events-none before:absolute before:inset-0 before:-translate-x-[130%] before:bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.24)_45%,transparent_70%)] before:transition-transform before:duration-700 md:hover:before:translate-x-[130%]",
                         isFeatured
-                          ? "bg-[#0F2D5C] hover:shadow-[0_20px_46px_rgba(15,45,92,0.28)]"
-                          : "bg-white hover:shadow-[0_18px_44px_rgba(15,45,92,0.14)]",
+                          ? "bg-[#0F2D5C] md:hover:shadow-[0_20px_46px_rgba(15,45,92,0.28)]"
+                          : "bg-white md:hover:shadow-[0_18px_44px_rgba(15,45,92,0.14)]",
                       ].join(" ")}
                     >
-                      <div className="relative mb-4 flex h-[62px] w-[62px] items-center justify-center overflow-hidden rounded-full border border-[#CBD5E1] bg-[#F1F5F9] transition-transform duration-500 group-hover:scale-110">
+                      <div className="relative mb-4 flex h-[62px] w-[62px] items-center justify-center overflow-hidden rounded-full border border-[#CBD5E1] bg-[#F1F5F9] transition-transform duration-500 md:group-hover:scale-110">
                         {member.image ? (
                           <Image
                             src={member.image}
@@ -332,7 +362,7 @@ export default function EquipoSection() {
                       </p>
 
                       {member.location && (
-                        <div className="relative mt-3 flex items-center gap-1 text-[11px] font-bold text-[#FFC107] transition-transform duration-300 group-hover:scale-105">
+                        <div className="relative mt-3 flex items-center gap-1 text-[11px] font-bold text-[#FFC107] transition-transform duration-300 md:group-hover:scale-105">
                           <PinIcon />
                           {member.location}
                         </div>
@@ -354,7 +384,7 @@ export default function EquipoSection() {
             <ArrowRight />
           </button>
 
-          <div className="mt-8 flex justify-center gap-4">
+          <div className="mt-8 hidden justify-center gap-4 md:flex">
             {teamMembers.map((member, index) => (
               <button
                 key={member.name}
