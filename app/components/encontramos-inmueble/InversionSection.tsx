@@ -98,7 +98,7 @@ export default function InversionSection() {
       {/* Glow premium fondo */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute left-[10%] top-[18%] h-[320px] w-[320px] rounded-full bg-[#1A4F9E]/20 blur-[120px]"
+        className="pointer-events-none absolute left-[-120px] top-[12%] h-[260px] w-[260px] rounded-full bg-[#1A4F9E]/20 blur-[100px] sm:left-[10%] sm:h-[320px] sm:w-[320px] sm:blur-[120px]"
         animate={{
           opacity: [0.2, 0.42, 0.2],
           scale: [1, 1.08, 1],
@@ -112,7 +112,7 @@ export default function InversionSection() {
 
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute right-[8%] top-[10%] h-[260px] w-[260px] rounded-full bg-[#F0B429]/10 blur-[110px]"
+        className="pointer-events-none absolute right-[-120px] top-[8%] h-[220px] w-[220px] rounded-full bg-[#F0B429]/10 blur-[95px] sm:right-[8%] sm:h-[260px] sm:w-[260px] sm:blur-[110px]"
         animate={{
           opacity: [0.15, 0.33, 0.15],
           scale: [1.05, 1, 1.05],
@@ -124,7 +124,7 @@ export default function InversionSection() {
         }}
       />
 
-      <div className="relative mx-auto min-h-[878px] w-full max-w-[1152px] px-12 pt-[112px] pb-20">
+      <div className="relative mx-auto w-full max-w-[1152px] px-4 py-16 sm:px-6 sm:py-20 lg:min-h-[878px] lg:px-12 lg:pt-[112px] lg:pb-20">
         {/* Header */}
         <motion.div
           className="text-center"
@@ -135,7 +135,7 @@ export default function InversionSection() {
         >
           <motion.div
             variants={fadeUp}
-            className="mb-[20px] flex items-center justify-center gap-[10px] text-[12px] font-[700] uppercase tracking-[0.26em] text-[#F0B429]"
+            className="mb-4 flex items-center justify-center gap-[10px] text-[11px] font-[700] uppercase tracking-[0.22em] text-[#F0B429] sm:mb-[20px] sm:text-[12px] sm:tracking-[0.26em]"
           >
             <motion.span
               className="h-[2px] w-[20px] rounded-full bg-[#F0B429]"
@@ -150,7 +150,7 @@ export default function InversionSection() {
 
           <motion.h2
             variants={fadeUp}
-            className="text-[36px] font-[700] leading-[1.12] tracking-[-0.035em] text-white"
+            className="mx-auto max-w-[760px] text-[28px] font-[700] leading-[1.12] tracking-[-0.035em] text-white sm:text-[34px] lg:text-[36px]"
           >
             Pagas cuando{" "}
             <motion.em
@@ -167,7 +167,7 @@ export default function InversionSection() {
 
         {/* Content */}
         <motion.div
-          className="mt-[53px] grid grid-cols-1 gap-[40px] lg:grid-cols-[508px_508px]"
+          className="mt-10 grid grid-cols-1 gap-6 sm:mt-12 lg:mt-[53px] lg:grid-cols-[minmax(0,508px)_minmax(0,508px)] lg:gap-[40px]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.22 }}
@@ -182,12 +182,12 @@ export default function InversionSection() {
               boxShadow: "0 30px 80px rgba(0,0,0,0.28)",
               transition: { duration: 0.35, ease: "easeOut" },
             }}
-            className="group relative h-auto min-h-[542px] overflow-hidden rounded-[28px] border border-[#C9900C]/45 bg-[#13263D] px-[40px] pt-[39px] pb-[52px]"
+            className="group relative h-auto overflow-hidden rounded-[24px] border border-[#C9900C]/45 bg-[#13263D] px-5 py-7 sm:rounded-[28px] sm:px-8 sm:py-10 lg:min-h-[542px] lg:px-[40px] lg:pt-[39px] lg:pb-[52px]"
           >
             {/* Brillo diagonal */}
             <motion.div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 left-[-45%] w-[38%] rotate-12 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100"
+              className="pointer-events-none absolute inset-y-0 left-[-45%] hidden w-[38%] rotate-12 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 sm:block"
               animate={{
                 x: ["0%", "420%"],
               }}
@@ -200,7 +200,7 @@ export default function InversionSection() {
             />
 
             <motion.div
-              className="absolute right-[20px] top-[20px] rounded-full bg-[#D99A00] px-[15px] py-[6px] text-[10px] font-[800] uppercase tracking-[0.13em] text-[#071F45]"
+              className="mb-5 inline-flex max-w-full rounded-full bg-[#D99A00] px-[13px] py-[6px] text-[9px] font-[800] uppercase tracking-[0.11em] text-[#071F45] sm:absolute sm:right-[20px] sm:top-[20px] sm:mb-0 sm:text-[10px] sm:tracking-[0.13em]"
               initial={{ opacity: 0, x: 14, scale: 0.92 }}
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               viewport={{ once: true }}
@@ -209,13 +209,13 @@ export default function InversionSection() {
               Solo pagas cuando avanza
             </motion.div>
 
-            <p className="text-[12px] font-[500] uppercase tracking-[0.28em] text-[#7D8BA3]">
+            <p className="text-[11px] font-[500] uppercase tracking-[0.24em] text-[#7D8BA3] sm:text-[12px] sm:tracking-[0.28em]">
               Total del servicio
             </p>
 
             <div className="mt-[13px] flex items-end">
               <motion.span
-                className="mb-[8px] text-[32px] font-[800] leading-none tracking-[-0.04em] text-[#F0B429]"
+                className="mb-[6px] text-[26px] font-[800] leading-none tracking-[-0.04em] text-[#F0B429] sm:mb-[8px] sm:text-[32px]"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -225,7 +225,7 @@ export default function InversionSection() {
               </motion.span>
 
               <motion.span
-                className="text-[58px] font-[800] leading-[0.9] tracking-[-0.065em] text-white"
+                className="text-[48px] font-[800] leading-[0.9] tracking-[-0.065em] text-white sm:text-[58px]"
                 initial={{ opacity: 0, y: 26, scale: 0.94 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
@@ -240,16 +240,16 @@ export default function InversionSection() {
             </p>
 
             {/* Timeline */}
-            <div className="relative mt-[46px] pl-[52px]">
+            <div className="relative mt-9 pl-11 sm:mt-[46px] sm:pl-[52px]">
               <motion.div
-                className="absolute left-[17px] top-[20px] h-[265px] w-[2px] origin-top bg-[#C9900C]/45"
+                className="absolute left-[16px] top-[18px] bottom-[18px] w-[2px] origin-top bg-[#C9900C]/45 sm:left-[17px]"
                 initial={{ scaleY: 0 }}
                 whileInView={{ scaleY: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.15, delay: 0.5, ease: "easeOut" }}
               />
 
-              <div className="space-y-[36px]">
+              <div className="space-y-8 sm:space-y-[36px]">
                 {payments.map((payment, index) => (
                   <motion.div
                     key={payment.number}
@@ -264,7 +264,7 @@ export default function InversionSection() {
                     }}
                   >
                     <motion.div
-                      className="absolute left-[-52px] top-[-2px] flex h-[36px] w-[36px] items-center justify-center rounded-full bg-[#D99A00] text-[14px] font-[800] text-[#071F45]"
+                      className="absolute left-[-44px] top-[-2px] flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#D99A00] text-[13px] font-[800] text-[#071F45] sm:left-[-52px] sm:h-[36px] sm:w-[36px] sm:text-[14px]"
                       initial={{ scale: 0.6, opacity: 0 }}
                       whileInView={{ scale: 1, opacity: 1 }}
                       viewport={{ once: true }}
@@ -298,7 +298,10 @@ export default function InversionSection() {
           </motion.div>
 
           {/* Right cards */}
-          <motion.div className="flex flex-col gap-[16px]" variants={staggerContainer}>
+          <motion.div
+            className="flex min-w-0 flex-col gap-4"
+            variants={staggerContainer}
+          >
             {infoCards.map((card) => (
               <motion.article
                 key={card.title}
@@ -309,7 +312,7 @@ export default function InversionSection() {
                   scale: 1.006,
                   transition: { duration: 0.32, ease: "easeOut" },
                 }}
-                className={`group relative overflow-hidden rounded-[20px] border px-[24px] py-[24px] ${
+                className={`group relative min-w-0 overflow-hidden rounded-[20px] border px-5 py-5 sm:px-[24px] sm:py-[24px] ${
                   card.highlight
                     ? "border-[#C9900C]/45 bg-[#13263D]"
                     : "border-white/[0.07] bg-[#102B52]"

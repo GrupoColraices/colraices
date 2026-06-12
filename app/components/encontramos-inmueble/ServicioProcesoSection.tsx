@@ -33,7 +33,7 @@ const steps = [
 
 export default function ServicioProcesoSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#091D3E] py-[90px] font-['Montserrat',system-ui,sans-serif] sm:py-[100px]">
+    <section className="relative w-full overflow-hidden bg-[#091D3E] py-16 font-['Montserrat',system-ui,sans-serif] sm:py-20 lg:py-[100px]">
       {/* Fondo con grilla */}
       <div
         className="pointer-events-none absolute inset-0 opacity-100"
@@ -58,19 +58,19 @@ export default function ServicioProcesoSection() {
             Proceso
           </div>
 
-          <h2 className="text-[32px] font-bold leading-tight tracking-[-0.03em] text-white sm:text-[40px] lg:text-[44px]">
+          <h2 className="text-[30px] font-bold leading-tight tracking-[-0.03em] text-white sm:text-[40px] lg:text-[44px]">
             Así funciona{" "}
             <em className="font-bold italic text-[#F0B429]">el servicio</em>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-none text-center text-[15px] font-medium leading-relaxed text-white/60 sm:text-[17px] md:whitespace-nowrap">
+          <p className="mx-auto mt-5 max-w-[720px] text-center text-[15px] font-medium leading-relaxed text-white/60 sm:text-[17px] md:whitespace-nowrap">
             Seis pasos estructurados. Tú defines tus objetivos al inicio y
             Colraices gestiona todo lo demás.
           </p>
         </div>
 
         {/* Pasos */}
-        <div className="mt-[56px] grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-6 lg:gap-0">
+        <div className="mt-12 grid grid-cols-1 gap-10 sm:mt-[56px] sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-6 lg:gap-0">
           {steps.map((step, index) => (
             <div
               key={step.number}
@@ -79,11 +79,6 @@ export default function ServicioProcesoSection() {
               {/* Conector desktop */}
               {index < steps.length - 1 && (
                 <div className="absolute left-1/2 top-[28px] hidden h-px w-full bg-[#C9900C]/70 lg:block" />
-              )}
-
-              {/* Conector tablet */}
-              {index < steps.length - 1 && (
-                <div className="absolute top-[58px] hidden h-6 w-px bg-[#C9900C]/50 sm:block lg:hidden" />
               )}
 
               <div className="relative z-10 flex h-[56px] w-[56px] items-center justify-center rounded-full border-2 border-[#C9900C]/70 bg-[#1A4F9E]/55 text-[22px] shadow-[0_0_0_6px_rgba(26,79,158,0.14)] transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:scale-110 group-hover:border-[#F0B429] group-hover:bg-[#1A4F9E]/80 group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]">
@@ -96,7 +91,7 @@ export default function ServicioProcesoSection() {
                 </span>
               </div>
 
-              <p className="mt-4 max-w-[170px] text-[12.5px] font-bold leading-snug text-white/65 transition-colors duration-300 group-hover:text-white sm:text-[13px]">
+              <p className="mt-4 max-w-[250px] text-[13px] font-bold leading-snug text-white/65 transition-colors duration-300 group-hover:text-white sm:max-w-[190px] lg:max-w-[170px] lg:text-[12.5px]">
                 {step.label}
               </p>
             </div>
@@ -105,8 +100,8 @@ export default function ServicioProcesoSection() {
 
         {/* Caja inferior */}
         <div className="mt-10 mr-auto w-full max-w-[710px] rounded-[20px] border border-[#F0B429]/20 bg-[#C9900C]/10 px-4 py-4 shadow-[0_18px_50px_rgba(0,0,0,0.14)] transition-all duration-500 hover:-translate-y-1 hover:border-[#F0B429]/35 hover:bg-[#C9900C]/15 sm:px-6">
-          <p className="max-w-[631px] text-left text-[13.44px] font-normal leading-[22.2px] tracking-[0px] text-white/65">
-            <strong className="whitespace-nowrap font-bold text-[#F0B429]">
+          <p className="max-w-[631px] text-left text-[13.5px] font-normal leading-[1.65] text-white/65">
+            <strong className="font-bold text-[#F0B429]">
               Cuando decides avanzar:
             </strong>{" "}
             Si eliges un inmueble usado, Colraices activa el acompañamiento

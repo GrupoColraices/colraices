@@ -21,21 +21,21 @@ export default function PerfilamientoSection() {
   const noItems = [
     {
       icon: "🏠",
-      text: "Ya encontraste el inmueble por tu cuenta y quieres proteger la compra — en ese caso, lo que corresponde es directamente.",
+      text: "Ya encontraste el inmueble por tu cuenta y quieres proteger la compra. En ese caso, lo que corresponde es una revisión legal y comercial del inmueble.",
     },
     {
       icon: "💳",
-      text: "Tienes bloqueos financieros no resueltos — primero hay que poner en orden las finanzas antes de comprometer recursos en una compra.",
+      text: "Tienes bloqueos financieros no resueltos. Primero hay que poner en orden las finanzas antes de comprometer recursos en una compra.",
     },
   ];
 
   return (
-    <section className="w-full border-t-[4px] border-[#091D3E] bg-[#FBF8F3] px-4 py-[80px] font-['Montserrat'] sm:px-6 lg:px-8">
+    <section className="w-full border-t-[4px] border-[#091D3E] bg-[#FBF8F3] px-4 py-[64px] font-['Montserrat'] sm:px-6 sm:py-[80px] lg:px-8">
       <div className="mx-auto w-full max-w-[1064px]">
         {/* Header */}
         <div className="text-center">
           <div
-            className="mb-[14px] flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFC107]"
+            className="mb-[14px] flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#FFC107] sm:text-[11px] sm:tracking-[0.22em]"
             style={{
               animation:
                 "perfilFadeDown 850ms cubic-bezier(0.22, 1, 0.36, 1) both",
@@ -52,7 +52,7 @@ export default function PerfilamientoSection() {
           </div>
 
           <h2
-            className="text-[34px] font-bold leading-[1.12] tracking-[-0.04em] text-[#0F2D5C] sm:text-[42px]"
+            className="mx-auto max-w-[680px] text-[30px] font-bold leading-[1.12] tracking-[-0.04em] text-[#0F2D5C] sm:text-[42px]"
             style={{
               animation:
                 "perfilTitleReveal 950ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both",
@@ -64,42 +64,42 @@ export default function PerfilamientoSection() {
         </div>
 
         {/* Cards */}
-        <div className="mt-[44px] grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="mt-[36px] grid grid-cols-1 gap-5 sm:mt-[44px] sm:gap-6 lg:grid-cols-2">
           {/* YES CARD */}
           <div
-            className="group relative overflow-hidden rounded-[20px] border border-[rgba(15,45,92,0.14)] bg-white/45 px-[28px] py-[28px] shadow-[0_1px_3px_rgba(15,45,92,0.08)] backdrop-blur-sm transition-transform duration-700 ease-out hover:-translate-y-[6px] sm:px-[30px] sm:py-[28px]"
+            className="group relative overflow-hidden rounded-[18px] border border-[rgba(15,45,92,0.14)] bg-white/55 px-5 py-6 shadow-[0_1px_3px_rgba(15,45,92,0.08)] backdrop-blur-sm transition-transform duration-700 ease-out hover:-translate-y-[4px] sm:rounded-[20px] sm:px-[30px] sm:py-[28px] lg:hover:-translate-y-[6px]"
             style={{
               animation:
                 "perfilCardReveal 950ms cubic-bezier(0.22, 1, 0.36, 1) 260ms both",
             }}
           >
-            {/* Brillo premium sin cambiar colores base */}
+            
             <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
               <div className="absolute -left-[60%] top-0 h-full w-[45%] rotate-12 bg-gradient-to-r from-transparent via-white/60 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-[370%]" />
             </div>
 
-            <div className="relative z-10 mb-[22px] flex items-center gap-[12px]">
+            <div className="relative z-10 mb-5 flex items-center gap-3 sm:mb-[22px]">
               <div className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-[#0F2D5C] text-[17px] font-bold leading-none text-white transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-[8deg]">
                 ✓
               </div>
 
-              <h3 className="text-[15.5px] font-bold leading-snug text-[#0F2D5C] sm:text-[16px]">
+              <h3 className="text-[15px] font-bold leading-snug text-[#0F2D5C] sm:text-[16px]">
                 Llave Inmobiliaria es para ti si…
               </h3>
             </div>
 
-            <ul className="relative z-10 space-y-[14px]">
+            <ul className="relative z-10 space-y-4 sm:space-y-[14px]">
               {yesItems.map((item, index) => (
                 <li
                   key={index}
-                  className="flex gap-[14px] text-[14.5px] font-normal leading-[1.55] text-[#334155] transition-transform duration-500 ease-out group-hover:translate-x-[2px]"
+                  className="flex gap-3 text-[14px] font-normal leading-[1.55] text-[#334155] transition-transform duration-500 ease-out group-hover:translate-x-[2px] sm:gap-[14px] sm:text-[14.5px]"
                   style={{
                     animation: `perfilItemReveal 700ms cubic-bezier(0.22, 1, 0.36, 1) ${
                       420 + index * 90
                     }ms both`,
                   }}
                 >
-                  <span className="mt-[1px] w-[14px] shrink-0 text-[13px] transition-transform duration-500 ease-out group-hover:scale-125">
+                  <span className="mt-[2px] w-[18px] shrink-0 text-[14px] leading-none transition-transform duration-500 ease-out group-hover:scale-125 sm:w-[14px] sm:text-[13px]">
                     {item.icon}
                   </span>
                   <span>{item.text}</span>
@@ -110,39 +110,39 @@ export default function PerfilamientoSection() {
 
           {/* NO CARD */}
           <div
-            className="group relative overflow-hidden rounded-[20px] border border-[rgba(15,45,92,0.10)] bg-[#F8FAFC]/55 px-[28px] py-[28px] shadow-[0_1px_3px_rgba(15,45,92,0.04)] backdrop-blur-sm transition-transform duration-700 ease-out hover:-translate-y-[6px] sm:px-[30px] sm:py-[28px]"
+            className="group relative overflow-hidden rounded-[18px] border border-[rgba(15,45,92,0.10)] bg-[#F8FAFC]/65 px-5 py-6 shadow-[0_1px_3px_rgba(15,45,92,0.04)] backdrop-blur-sm transition-transform duration-700 ease-out hover:-translate-y-[4px] sm:rounded-[20px] sm:px-[30px] sm:py-[28px] lg:hover:-translate-y-[6px]"
             style={{
               animation:
                 "perfilCardReveal 950ms cubic-bezier(0.22, 1, 0.36, 1) 360ms both",
             }}
           >
-            {/* Brillo premium sin cambiar colores base */}
+
             <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
               <div className="absolute -left-[60%] top-0 h-full w-[45%] rotate-12 bg-gradient-to-r from-transparent via-white/50 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-[370%]" />
             </div>
 
-            <div className="relative z-10 mb-[22px] flex items-center gap-[12px]">
+            <div className="relative z-10 mb-5 flex items-center gap-3 sm:mb-[22px]">
               <div className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-[#94A3B8] text-[17px] font-bold leading-none text-white transition-transform duration-500 ease-out group-hover:scale-110 group-hover:translate-x-[2px]">
                 →
               </div>
 
-              <h3 className="text-[15.5px] font-bold leading-snug text-[#475569] sm:text-[16px]">
+              <h3 className="text-[15px] font-bold leading-snug text-[#475569] sm:text-[16px]">
                 Te recomendamos otro camino si…
               </h3>
             </div>
 
-            <ul className="relative z-10 space-y-[14px]">
+            <ul className="relative z-10 space-y-4 sm:space-y-[14px]">
               {noItems.map((item, index) => (
                 <li
                   key={index}
-                  className="flex gap-[14px] text-[14.5px] font-normal leading-[1.55] text-[#94A3B8] transition-transform duration-500 ease-out group-hover:translate-x-[2px]"
+                  className="flex gap-3 text-[14px] font-normal leading-[1.55] text-[#64748B] transition-transform duration-500 ease-out group-hover:translate-x-[2px] sm:gap-[14px] sm:text-[14.5px]"
                   style={{
                     animation: `perfilItemReveal 700ms cubic-bezier(0.22, 1, 0.36, 1) ${
                       620 + index * 90
                     }ms both`,
                   }}
                 >
-                  <span className="mt-[1px] w-[14px] shrink-0 text-[13px] transition-transform duration-500 ease-out group-hover:scale-125">
+                  <span className="mt-[2px] w-[18px] shrink-0 text-[14px] leading-none transition-transform duration-500 ease-out group-hover:scale-125 sm:w-[14px] sm:text-[13px]">
                     {item.icon}
                   </span>
                   <span>{item.text}</span>
