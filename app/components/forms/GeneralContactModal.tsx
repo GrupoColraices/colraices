@@ -113,9 +113,9 @@ export default function GeneralContactModal({
               { name: "firstname", value: firstname },
               { name: "email", value: email },
               { name: "phone", value: phone },
-              { name: "country", value: country },
+              { name: "pais", value: country },
               {
-                name: "mejor_dia_para_llamarte",
+                name: "fecha_para_llamada",
                 value: bestCallDay,
               },
               { name: "franja_horaria", value: timeSlot },
