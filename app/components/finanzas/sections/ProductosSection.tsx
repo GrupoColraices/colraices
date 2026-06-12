@@ -43,7 +43,7 @@ const preparacion: ProductItem[] = [
     title: "Brújula Crediticia",
     subtitle: '"Planificar hoy para comprar bien mañana"',
     desc: "Quieres pedir crédito en Colombia pero no sabes si hoy calificas. La Brújula Crediticia analiza tu perfil, lo marca con el banco y te dice con precisión si estás listo —y si no, qué ajustar y en cuánto tiempo.",
-    price: "USD $180",
+    price: "USD $110",
     duration: "3 días",
     color: "bg-[#FFC107]",
     icon: "📊",

@@ -16,7 +16,7 @@ const testimonios = [
     bgTag: "#EFF6FF",
     quote: `"Me dijeron exactamente si calificaba o no para crédito — antes de moverme o viajar. Ajusté dos cosas, esperé 3 meses y volví. Aprobado. Sin sorpresas."`,
     name: "Carlos M.",
-    info: "Residente en España · USD $180",
+    info: "Residente en España · USD $110",
     initials: "CM",
   },
   {

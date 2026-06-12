@@ -20,7 +20,7 @@ export default function CTASectionBf() {
 
           {/* DESCRIPCIÓN */}
           <p className="mt-[14px] text-[14px] md:text-[15.2px] leading-[22px] md:leading-[25.8px] text-white/70 md:whitespace-nowrap">
-            En 3 días tienes un diagnóstico claro de tu situación financiera en Colombia y un plan para mejorarla. Por USD $70.
+            En 3 días tienes un diagnóstico claro de tu situación financiera en Colombia y un plan para mejorarla. Por USD $45.
           </p>
 
           {/* BOTÓN */}

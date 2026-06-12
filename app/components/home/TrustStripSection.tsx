@@ -90,7 +90,7 @@ export default function StatsSection() {
           >
             <div>
               <p className="text-[#FFC107] text-[20px] sm:text-[22px] md:text-[32px] font-bold">
-                23 años
+                22 años
               </p>
               <p className="text-white/60 text-[11px] sm:text-[12px] md:text-[13px] mt-1">
                 acompañando colombianos en el exterior

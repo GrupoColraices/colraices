@@ -121,7 +121,7 @@ function EcosystemCard({ services }: { services: readonly Service[] }) {
 
           {/* 🔥 ajuste responsive sin cambiar look */}
           <h3 className="text-3xl sm:text-4xl font-bold text-[#0F2D5C]">
-            23 años
+            22 años
           </h3>
 
           <p className="mt-1 mb-6 text-xs text-[#1A4F9E]">
