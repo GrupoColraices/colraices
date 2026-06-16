@@ -21,7 +21,7 @@ export default function FormSuccessModal({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-[660px] rounded-[20px] bg-white px-8 py-14 shadow-[0_20px_60px_rgba(0,0,0,0.18)]"
+        className="w-full max-w-[660px] rounded-tl-[16px] rounded-tr-none rounded-bl-none rounded-br-[16px] bg-white px-8 py-14 shadow-[0_20px_60px_rgba(0,0,0,0.18)]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mx-auto mb-8 flex h-[72px] w-[72px] items-center justify-center rounded-full bg-[#E7EFE6]">
