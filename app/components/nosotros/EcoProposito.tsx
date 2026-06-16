@@ -111,7 +111,7 @@ export default function EcoProposito() {
             variants={fadeLeft}
           >
             <motion.div
-              className="relative w-full max-w-[442px] pb-[48px]"
+              className="relative w-full max-w-[442px] pb-[42px] sm:pb-[48px]"
               whileHover={
                 reduceMotion
                   ? undefined
@@ -122,7 +122,7 @@ export default function EcoProposito() {
               }
             >
               <motion.div
-                className="group/card relative h-[355px] w-full overflow-hidden rounded-[14px] bg-[linear-gradient(135deg,#192440_0%,#2A3F77_100%)] px-[45px] pt-[45px] shadow-[0_18px_55px_rgba(42,63,119,0.16)]"
+                className="group/card relative min-h-[385px] w-full overflow-hidden rounded-[14px] bg-[linear-gradient(135deg,#192440_0%,#2A3F77_100%)] px-[28px] pt-[38px] pb-[74px] shadow-[0_18px_55px_rgba(42,63,119,0.16)] sm:h-[355px] sm:min-h-0 sm:px-[45px] sm:pt-[45px] sm:pb-0"
                 initial={
                   reduceMotion
                     ? undefined
@@ -175,7 +175,7 @@ export default function EcoProposito() {
 
                   <motion.div
                     variants={fadeUp}
-                    className="ml-[27px] mt-[32px] border-l-[3px] border-[#FFC107] pl-[20px]"
+                    className="ml-[18px] mt-[32px] border-l-[3px] border-[#FFC107] pl-[20px] sm:ml-[27px]"
                   >
                     <p className="max-w-[331px] text-[16.8px] font-normal italic leading-[29.4px] text-white/85">
                       El dinero que envías no debería solo sostener el presente.
@@ -187,7 +187,7 @@ export default function EcoProposito() {
               </motion.div>
 
               <motion.div
-                className="absolute bottom-[18px] right-[-20px] flex min-h-[66px] w-[206px] items-center rounded-[12px] bg-[#FFC107] px-[22px] py-[14px] text-[13.6px] font-extrabold leading-[17.7px] text-[#192440] shadow-[0_10px_30px_rgba(255,193,7,0.28)] max-sm:right-3"
+                className="absolute bottom-[-18px] right-4 z-20 flex min-h-[58px] w-[210px] items-center justify-center rounded-[12px] bg-[#FFC107] px-[18px] py-[12px] text-center text-[12.5px] font-extrabold leading-[16px] text-[#192440] shadow-[0_10px_30px_rgba(255,193,7,0.28)] sm:bottom-[18px] sm:right-[-20px] sm:min-h-[66px] sm:w-[206px] sm:justify-start sm:px-[22px] sm:py-[14px] sm:text-left sm:text-[13.6px] sm:leading-[17.7px]"
                 initial={
                   reduceMotion
                     ? undefined

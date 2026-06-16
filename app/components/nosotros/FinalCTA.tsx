@@ -20,7 +20,7 @@ export default function FinalCTA() {
       opacity: 1,
       transition: {
         staggerChildren: reduceMotion ? 0 : 0.045,
-        delayChildren: 0.35,
+        delayChildren: 0.28,
       },
     },
   };
@@ -45,21 +45,21 @@ export default function FinalCTA() {
   return (
     <section
       id="contacto"
-      className="relative overflow-hidden bg-white py-[120px]"
+      className="relative overflow-hidden bg-white py-16 sm:py-20 lg:py-[120px]"
     >
       <motion.div
         initial={reduceMotion ? false : { opacity: 0, y: 42 }}
         whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.35 }}
+        viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.9, ease: premiumEase }}
-        className="mx-auto max-w-[1152px] px-4"
+        className="mx-auto w-full max-w-[1152px] px-4 sm:px-6 lg:px-4"
       >
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, scale: 0.965 }}
           whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 1, ease: smoothEase }}
-          className="relative mx-auto h-[503px] max-w-[964px] overflow-hidden rounded-[24px] bg-[linear-gradient(135deg,#192440_0%,#233762_48%,#2A3F77_100%)] shadow-[0_30px_90px_rgba(25,36,64,0.22)] max-md:h-[560px]"
+          className="relative mx-auto min-h-[560px] w-full max-w-[964px] overflow-hidden rounded-[24px] bg-[linear-gradient(135deg,#192440_0%,#233762_48%,#2A3F77_100%)] px-5 py-14 shadow-[0_30px_90px_rgba(25,36,64,0.22)] sm:min-h-[540px] sm:px-8 md:min-h-[503px] md:px-10 lg:h-[503px] lg:py-0"
         >
           {/* luz suave superior */}
           <motion.div
@@ -103,7 +103,7 @@ export default function FinalCTA() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className={`pointer-events-none absolute left-[-60px] top-[-60px] h-[240px] w-[240px] rounded-full transition-colors duration-700 ${
+            className={`pointer-events-none absolute left-[-120px] top-[-95px] h-[260px] w-[260px] rounded-full transition-colors duration-700 sm:left-[-80px] sm:top-[-80px] md:left-[-60px] md:top-[-60px] ${
               isButtonHovered ? "bg-[#FFC107]/[0.10]" : "bg-white/[0.03]"
             }`}
           />
@@ -131,100 +131,111 @@ export default function FinalCTA() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className={`pointer-events-none absolute bottom-[-80px] right-[-80px] h-[360px] w-[360px] rounded-full transition-colors duration-700 ${
+            className={`pointer-events-none absolute bottom-[-120px] right-[-140px] h-[360px] w-[360px] rounded-full transition-colors duration-700 sm:bottom-[-100px] sm:right-[-110px] md:bottom-[-80px] md:right-[-80px] ${
               isButtonHovered ? "bg-white/[0.07]" : "bg-[#FFC107]/[0.06]"
             }`}
           />
 
-          {/* tag */}
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: -14, scale: 0.94 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.75,
-              delay: 0.18,
-              ease: premiumEase,
-            }}
-            className="absolute left-1/2 top-[84px] flex h-[29px] w-[175px] -translate-x-1/2 items-center justify-center overflow-hidden rounded-full bg-[#FFC107]/[0.12]"
-          >
-            <span className="font-['Montserrat'] text-[11.52px] font-bold uppercase leading-[19.6px] tracking-[1.38px] text-[#FFC107]">
-              Da el primer paso
-            </span>
-          </motion.div>
+          {/* contenido */}
+          <div className="relative z-10 flex min-h-[448px] flex-col items-center justify-center text-center sm:min-h-[428px] md:min-h-[400px] lg:h-full lg:min-h-0">
+            {/* tag */}
+            <motion.div
+              initial={
+                reduceMotion ? false : { opacity: 0, y: -14, scale: 0.94 }
+              }
+              whileInView={
+                reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }
+              }
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.75,
+                delay: 0.18,
+                ease: premiumEase,
+              }}
+              className="flex h-[29px] w-[175px] items-center justify-center overflow-hidden rounded-full bg-[#FFC107]/[0.12]"
+            >
+              <span className="font-['Montserrat'] text-[11.52px] font-bold uppercase leading-[19.6px] tracking-[1.38px] text-[#FFC107]">
+                Da el primer paso
+              </span>
+            </motion.div>
 
-          {/* título */}
-          <motion.h2
-            variants={titleContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.6 }}
-            className="absolute left-1/2 top-[157px] w-[931px] max-w-[calc(100%-64px)] -translate-x-1/2 text-center font-['Montserrat'] text-[38px] font-black leading-[53.7px] tracking-[0px] text-white max-md:top-[145px] max-md:text-[30px] max-md:leading-[42px]"
-          >
-            {title.split(" ").map((word, index) => (
-              <motion.span
-                key={`${word}-${index}`}
-                variants={titleWord}
-                className="mr-[0.22em] inline-block"
-              >
-                {word}
-              </motion.span>
-            ))}
-          </motion.h2>
+            {/* título */}
+            <motion.h2
+              variants={titleContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.35 }}
+              className="mt-9 max-w-[931px] text-center font-['Montserrat'] text-[clamp(34px,8.8vw,38px)] font-black leading-[1.18] tracking-[0px] text-white sm:mt-10 sm:text-[38px] sm:leading-[1.22] md:leading-[53.7px]"
+            >
+              {title.split(" ").map((word, index) => (
+                <motion.span
+                  key={`${word}-${index}`}
+                  variants={titleWord}
+                  className="mr-[0.22em] inline-block"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.h2>
 
-          {/* subtítulo */}
-          <motion.p
-            initial={
-              reduceMotion
-                ? false
-                : { opacity: 0, y: 18, filter: "blur(6px)" }
-            }
-            whileInView={
-              reduceMotion
-                ? undefined
-                : { opacity: 1, y: 0, filter: "blur(0px)" }
-            }
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.8,
-              delay: 1.05,
-              ease: premiumEase,
-            }}
-            className="absolute left-1/2 top-[300px] w-[818px] max-w-[calc(100%-80px)] -translate-x-1/2 text-center font-['Montserrat'] text-[18px] font-medium leading-[28px] tracking-[0px] text-white/65 max-md:top-[330px]"
-          >
-            Empieza con una conversación. Te ayudamos a entender dónde estás y a
-            cumplir tu meta
-          </motion.p>
+            {/* subtítulo */}
+            <motion.p
+              initial={
+                reduceMotion
+                  ? false
+                  : { opacity: 0, y: 18, filter: "blur(6px)" }
+              }
+              whileInView={
+                reduceMotion
+                  ? undefined
+                  : { opacity: 1, y: 0, filter: "blur(0px)" }
+              }
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.8,
+                delay: 0.95,
+                ease: premiumEase,
+              }}
+              className="mt-6 max-w-[818px] text-center font-['Montserrat'] text-[16px] font-medium leading-[26px] tracking-[0px] text-white/65 sm:text-[17px] sm:leading-[27px] md:text-[18px] md:leading-[28px]"
+            >
+              Empieza con una conversación. Te ayudamos a entender dónde estás y
+              a cumplir tu meta
+            </motion.p>
 
-          {/* botón */}
-          <motion.a
-            href={OFFICIAL_WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onHoverStart={() => setIsButtonHovered(true)}
-            onHoverEnd={() => setIsButtonHovered(false)}
-            initial={reduceMotion ? false : { opacity: 0, y: 18, scale: 0.96 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
-            whileHover={
-              reduceMotion
-                ? undefined
-                : {
-                    y: -6,
-                    scale: 1.035,
-                    boxShadow: "0 18px 42px rgba(15,45,92,0.24)",
-                  }
-            }
-            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.45,
-              delay: 1.22,
-              ease: premiumEase,
-            }}
-            className="absolute left-1/2 top-[370px] flex h-[53px] w-[225px] -translate-x-1/2 items-center justify-center rounded-full bg-white font-['Montserrat'] text-[15.2px] font-bold leading-[25.8px] text-[#2A3F77] transition-colors duration-300 hover:bg-[#FBF8F3] max-md:top-[415px]"
-          >
-            Habla con un asesor
-          </motion.a>
+            {/* botón */}
+            <motion.a
+              href={OFFICIAL_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onHoverStart={() => setIsButtonHovered(true)}
+              onHoverEnd={() => setIsButtonHovered(false)}
+              initial={
+                reduceMotion ? false : { opacity: 0, y: 18, scale: 0.96 }
+              }
+              whileInView={
+                reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }
+              }
+              whileHover={
+                reduceMotion
+                  ? undefined
+                  : {
+                      y: -6,
+                      scale: 1.035,
+                      boxShadow: "0 18px 42px rgba(15,45,92,0.24)",
+                    }
+              }
+              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.45,
+                delay: 1.12,
+                ease: premiumEase,
+              }}
+              className="mt-9 flex h-[53px] w-full max-w-[225px] items-center justify-center rounded-full bg-white px-6 font-['Montserrat'] text-[15.2px] font-bold leading-[25.8px] text-[#2A3F77] transition-colors duration-300 hover:bg-[#FBF8F3]"
+            >
+              Habla con un asesor
+            </motion.a>
+          </div>
         </motion.div>
       </motion.div>
     </section>

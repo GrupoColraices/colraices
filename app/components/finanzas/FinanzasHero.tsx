@@ -17,7 +17,7 @@ type FinanceItem = {
 const items: FinanceItem[] = [
   {
     tag: "EL DESTINO",
-    title: "Crédito hipotecario o libre inversión",
+    title: "Crédito hipotecario, libre inversión o leasing",
     desc: "Compras o capitalizas en Colombia",
     color: "bg-[#FFC107]",
     icon: "🏠",
@@ -130,7 +130,7 @@ export default function FinanzasHero() {
           </div>
 
           {/* DERECHA */}
-          <div className="relative w-full max-w-[360px] mx-auto xl:mx-0">
+          <div className="relative w-full max-w-[430px] mx-auto xl:mx-0 xl:w-[400px] xl:max-w-[400px] xl:shrink-0">
             
             <div className="flex flex-col gap-[12px] xl:hidden">
               {items.map((item) => (
@@ -138,7 +138,7 @@ export default function FinanzasHero() {
               ))}
             </div>
 
-            <div className="hidden xl:block relative h-[384px]">
+            <div className="hidden xl:block relative h-[384px] w-full">
               {items.map((item, index) => (
                 <div
                   key={item.title}
@@ -183,12 +183,12 @@ function Card({ item }: { item: FinanceItem }) {
 
       <div className="text-[18px]">{item.icon}</div>
 
-      <div>
+      <div className="min-w-0">
         <p className="text-[10px] font-bold uppercase text-[#2A3F77]">
           {item.tag}
         </p>
 
-        <p className="text-[14px] font-semibold text-[#2A3F77]">
+        <p className="whitespace-nowrap text-[clamp(10px,3.2vw,14px)] font-semibold text-[#2A3F77] sm:text-[14px]">
           {item.title}
         </p>
 

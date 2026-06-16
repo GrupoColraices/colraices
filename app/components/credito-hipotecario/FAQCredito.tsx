@@ -29,11 +29,7 @@ const faqs = [
     answer:
       "Depende del monto, el plazo y la tasa. Como referencia: un crédito de COP $200 millones a 20 años con tasa del 18% E.A. genera una cuota aproximada de COP $3 millones mensuales. Te damos la simulación exacta en la verificación de viabilidad.",
   },
-  {
-    question: "¿Colraices cobra alguna comisión adicional?",
-    answer:
-      "No. Somos bróker autorizado de Davivienda. El banco nos paga una comisión, no tú. Tu única obligación financiera es con el banco: la cuota inicial y el crédito.",
-  },
+  
 ];
 
 export default function FAQCredito() {

@@ -43,7 +43,7 @@ const preparacion: ProductItem[] = [
     title: "Brújula Crediticia",
     subtitle: '"Planificar hoy para comprar bien mañana"',
     desc: "Quieres pedir crédito en Colombia pero no sabes si hoy calificas. La Brújula Crediticia analiza tu perfil, lo marca con el banco y te dice con precisión si estás listo —y si no, qué ajustar y en cuánto tiempo.",
-    price: "USD $180",
+    price: "USD $110",
     duration: "3 días",
     color: "bg-[#FFC107]",
     icon: "📊",
@@ -87,8 +87,7 @@ const ejecucion: ProductItem[] = [
     extra2: "15 años",
     color: "bg-[#1A4F9E]",
     icon: "💼",
-    button: "Ver página de crédito →",
-    href: officialPaths.credito,
+    
   },
   {
     tag: "TRANSFERENCIA DE DIVISAS",
@@ -106,6 +105,7 @@ const ejecucion: ProductItem[] = [
 
 function Card({ item, index }: { item: ProductItem; index: number }) {
   const router = useRouter();
+  const hasCta = Boolean(item.href || item.button);
 
   const textColorMap: Record<CardColor, string> = {
     "bg-[#1A4F9E]": "text-[#1A4F9E]",
@@ -213,30 +213,33 @@ function Card({ item, index }: { item: ProductItem; index: number }) {
       </div>
 
       {/* BUTTON */}
-      <button
-        onClick={() => item.href && router.push(item.href)}
-        className={`
-        mt-4
-        w-full
-        h-[41.29px]
-        rounded-full
-        text-[13.12px]
-        font-semibold
-        transition-all
-        duration-200
-        active:scale-[0.98]
+      {hasCta && (
+        <button
+          onClick={() => item.href && router.push(item.href)}
+          className={`
+          mt-4
+          w-full
+          h-[41.29px]
+          rounded-full
+          text-[13.12px]
+          font-semibold
+          transition-all
+          duration-200
+          active:scale-[0.98]
 
-        ${item.href ? "cursor-pointer" : "cursor-default"}
+          ${item.href ? "cursor-pointer" : "cursor-default"}
 
-        ${
-          item.filled
-            ? "bg-[#0F2D5C] text-white hover:bg-[#0B254A]"
-            : "border border-[#CCCCCC]/20 text-[#0F2D5C] hover:bg-[#0F2D5C] hover:text-white hover:border-[#0F2D5C]"
-        }
-      `}
-      >
-        {item.button || "Ver producto →"}
-      </button>
+          ${
+            item.filled
+              ? "bg-[#0F2D5C] text-white hover:bg-[#0B254A]"
+              : "border border-[#CCCCCC]/20 text-[#0F2D5C] hover:bg-[#0F2D5C] hover:text-white hover:border-[#0F2D5C]"
+          }
+        `}
+        >
+          {item.button || "Ver producto →"}
+        </button>
+      )}
+      {!hasCta && <div aria-hidden="true" className="mt-4 h-[41.29px]" />}
     </div>
   );
 }
