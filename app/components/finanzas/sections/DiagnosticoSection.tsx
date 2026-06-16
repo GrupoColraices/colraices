@@ -5,7 +5,18 @@ import { useEffect, useState } from "react";
 import { officialPaths } from "@/app/lib/officialUrls";
 import GeneralContactModal from "../../forms/GeneralContactModal";
 
-const cards = [
+type DiagnosticoCard = {
+  icon: string;
+  label?: string;
+  text: string;
+  tag: string;
+  href: string;
+  color: string;
+  bg: string;
+  line: string;
+};
+
+const cards: DiagnosticoCard[] = [
   {
     icon: "⚠️",
     text: "Tengo reportes negativos o deudas pendientes en Colombia",
@@ -35,8 +46,8 @@ const cards = [
   },
   {
     icon: "🏢",
-    text: "Envío remesas a Colombia y quiero convertir ese dinero en mi patrimonio",
-    tag: "Crédito →",
+    text: "Convierte tu inversión en Colombia en patrimonio con la financiación correcta",
+    tag: "Hipotecario · Leasing · Libre inversión →",
     href: officialPaths.credito,
     color: "#2A3F77",
     bg: "#F1F5F9",
@@ -53,7 +64,6 @@ const cards = [
   },
   {
     icon: "🤷",
-    label: "NO SÉ CUÁL ME TOCA",
     text: "No tengo claro por dónde empezar",
     tag: "Hablar con asesor — sin costo →",
     href: "#",
@@ -207,14 +217,22 @@ export default function DiagnosticoSection() {
                     {card.icon}
                   </div>
 
-                  <p
-                    className="mt-[14px] md:mt-[18px] text-[9px] md:text-[10px] font-bold tracking-[0.08em] uppercase"
-                    style={{ color: card.color }}
-                  >
-                    {card.label}
-                  </p>
+                  {card.label ? (
+                    <p
+                      className="mt-[14px] md:mt-[18px] text-[9px] md:text-[10px] font-bold tracking-[0.08em] uppercase"
+                      style={{ color: card.color }}
+                    >
+                      {card.label}
+                    </p>
+                  ) : null}
 
-                  <p className="mt-[6px] text-[13px] md:text-[14px] leading-[20px] md:leading-[21px] text-[#1E293B]">
+                  <p
+                    className={`${
+                      card.label
+                        ? "mt-[6px]"
+                        : "mt-[14px] md:mt-[18px]"
+                    } text-[13px] md:text-[14px] leading-[20px] md:leading-[21px] text-[#1E293B]`}
+                  >
                     {card.text}
                   </p>
 
