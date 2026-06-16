@@ -101,6 +101,54 @@ export default function GeneralContactModal({
     setValidationError("");
 
     try {
+      const payload = {
+        fields: [
+          { name: "firstname", value: firstname },
+          { name: "email", value: email },
+          { name: "phone", value: phone },
+          { name: "pais", value: country },
+          {
+            name: "fecha_para_llamada",
+            value: bestCallDay,
+          },
+          {
+            name: "mejor_horario_de_contacto",
+            value: timeSlot,
+          },
+          {
+            name: "en_que_podemos_apoyar_el_cliente",
+            value: showHelpField
+              ? fieldValue("ayuda_requerida")
+              : serviceInterest,
+          },
+          {
+            name: "acepto_politica_de_tratamiento_de_datos",
+            value: acceptedPrivacyPolicy ? "true" : "",
+          },
+          { name: "servicio_de_interes", value: serviceInterest },
+          { name: "origen_del_formulario", value: source },
+          {
+            name: "titulo_del_modal",
+            value: title,
+          },
+          {
+            name: "pagina_de_origen",
+            value: window.location.pathname,
+          },
+          {
+            name: "url_de_origen",
+            value: window.location.href,
+          },
+          { name: "fuente_del_formulario", value: "Web Colraices" },
+        ],
+        context: {
+          pageUri: window.location.href,
+          pageName: document.title || window.location.pathname,
+        },
+      };
+
+      console.log(JSON.stringify(payload, null, 2));
+
       const response = await fetch(
         `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`,
         {
@@ -108,48 +156,7 @@ export default function GeneralContactModal({
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            fields: [
-              { name: "firstname", value: firstname },
-              { name: "email", value: email },
-              { name: "phone", value: phone },
-              { name: "pais", value: country },
-              {
-                name: "fecha_para_llamada",
-                value: bestCallDay,
-              },
-              { name: "franja_horaria", value: timeSlot },
-              {
-                name: "en_que_podemos_ayudarte",
-                value: showHelpField
-                  ? fieldValue("ayuda_requerida")
-                  : serviceInterest,
-              },
-              {
-                name: "acepto_politica_de_tratamiento_de_datos",
-                value: acceptedPrivacyPolicy ? "true" : "",
-              },
-              { name: "servicio_de_interes", value: serviceInterest },
-              { name: "origen_del_formulario", value: source },
-              {
-                name: "titulo_del_modal",
-                value: title,
-              },
-              {
-                name: "pagina_de_origen",
-                value: window.location.pathname,
-              },
-              {
-                name: "url_de_origen",
-                value: window.location.href,
-              },
-              { name: "fuente_del_formulario", value: "Web Colraices" },
-            ],
-            context: {
-              pageUri: window.location.href,
-              pageName: document.title || window.location.pathname,
-            },
-          }),
+          body: JSON.stringify(payload),
         },
       );
 
@@ -325,9 +332,18 @@ export default function GeneralContactModal({
                 <option value="" disabled>
                   Selecciona
                 </option>
-                <option value="Mañana">Mañana</option>
-                <option value="Tarde">Tarde</option>
-                <option value="Noche">Noche</option>
+                <option value="Mañanas (8:00 AM – 12:00 PM)">
+                  Mañanas (8:00 AM – 12:00 PM)
+                </option>
+                <option value="Tardes (2:00 PM – 6:00 PM)">
+                  Tardes (2:00 PM – 6:00 PM)
+                </option>
+                <option value="Noches (7:00 PM – 9:00 PM)">
+                  Noches (7:00 PM – 9:00 PM)
+                </option>
+                <option value="Flexible/Cualquier horario">
+                  Flexible/Cualquier horario
+                </option>
               </select>
             </div>
 
@@ -336,12 +352,52 @@ export default function GeneralContactModal({
                 <label className="mb-[8px] block text-[13px] font-semibold leading-none text-[#2A3F77]">
                   ¿En qué podemos ayudarte?: *
                 </label>
-                <input
+                <select
                   name="ayuda_requerida"
-                  type="text"
                   required
+                  defaultValue=""
                   className="h-[40px] w-full rounded-[6px] border border-[#D1D5DB] bg-white px-4 text-[14px] text-[#0A0A0A] outline-none transition focus:border-[#2A3F77]"
-                />
+                >
+                  <option value="" disabled>
+                    Selecciona
+                  </option>
+                  <option value="Quiero iniciar mi proceso migratorio o de visa">
+                    Quiero iniciar mi proceso migratorio o de visa
+                  </option>
+                  <option value="Quiero emprender en Colombia desde el exterior">
+                    Quiero emprender en Colombia desde el exterior
+                  </option>
+                  <option value="Necesito gestionar mi pensión en Colombia">
+                    Necesito gestionar mi pensión en Colombia
+                  </option>
+                  <option value="Necesito un representante legal en Colombia">
+                    Necesito un representante legal en Colombia
+                  </option>
+                  <option value="Quiero poner al día mis temas fiscales o impuestos">
+                    Quiero poner al día mis temas fiscales o impuestos
+                  </option>
+                  <option value="Quiero acceder a crédito en Colombia">
+                    Quiero acceder a crédito en Colombia
+                  </option>
+                  <option value="Necesito mejorar o solucionar mis reportes">
+                    Necesito mejorar o solucionar mis reportes
+                  </option>
+                  <option value="Quiero saber si puedo aplicar a financiación">
+                    Quiero saber si puedo aplicar a financiación
+                  </option>
+                  <option value="Quiero entender mi situación financiera">
+                    Quiero entender mi situación financiera
+                  </option>
+                  <option value="No estoy seguro, requiero orientación">
+                    No estoy seguro, requiero orientación
+                  </option>
+                  <option value="Quiero enviar dinero a Colombia">
+                    Quiero enviar dinero a Colombia
+                  </option>
+                  <option value="No estoy seguro, necesito orientación">
+                    No estoy seguro, necesito orientación
+                  </option>
+                </select>
               </div>
             )}
           </div>
