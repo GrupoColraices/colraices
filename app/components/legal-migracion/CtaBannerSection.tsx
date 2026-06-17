@@ -4,6 +4,7 @@ import { type MouseEvent, useState } from "react";
 import Link from "next/link";
 import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
 import { officialPaths } from "@/app/lib/officialUrls";
+import { legalHelpOptions } from "./legalHelpOptions";
 
 export default function CtaBannerSection() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -74,6 +75,7 @@ export default function CtaBannerSection() {
         source="legal_migratorio_cta_banner_hablar_asesor"
         serviceInterest="Legal y migratorio"
         showHelpField={true}
+        helpOptions={legalHelpOptions}
       />
     </section>
   );
