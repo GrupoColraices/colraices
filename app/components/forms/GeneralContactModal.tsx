@@ -169,8 +169,6 @@ export default function GeneralContactModal({
         },
       };
 
-      console.log(JSON.stringify(payload, null, 2));
-
       const response = await fetch(
         `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`,
         {
