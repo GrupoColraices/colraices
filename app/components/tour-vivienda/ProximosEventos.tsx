@@ -1,3 +1,12 @@
+/**
+ * Componente actualmente fuera de producción.
+ * Se conserva por decisión del negocio para posibles
+ * reactivaciones o futuras iteraciones del proyecto.
+ *
+ * Estado: Inactivo temporalmente.
+ * No eliminar sin validación funcional y aprobación del negocio.
+ */
+
 "use client";
 
 import { useMemo, useState } from "react";
