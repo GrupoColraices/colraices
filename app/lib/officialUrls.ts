@@ -1,7 +1,7 @@
 export const SITE_URL = "https://www.colraices.com";
 
 export const DAVIVIENDA_CUPO_CREDITO_URL =
-  "https://www.colraices.com/cupocreditodavivienda/";
+  "https://colraices.com/cupocreditoalinstante/";
 
 const TOUR_VIVIENDA_FALLBACK_URL =
   "https://colraices.com/casas-apartamentos-colombia-desde-el-exterior";
