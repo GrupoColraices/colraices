@@ -47,6 +47,15 @@ const BRUJULA_FINANCIERA_WHATSAPP_ENCODED_MESSAGE = encodeURIComponent(
 
 export const BRUJULA_FINANCIERA_WHATSAPP_URL = `https://api.whatsapp.com/send/?phone=${OFFICIAL_WHATSAPP_NUMBER}&text=${BRUJULA_FINANCIERA_WHATSAPP_ENCODED_MESSAGE}&type=phone_number&app_absent=0`;
 
+export const BRUJULA_CREDITICIA_WHATSAPP_MESSAGE =
+  "Hola, Colraices. Estoy fuera de Colombia, vengo desde la página de brújula crediticia y quiero orientación";
+
+const BRUJULA_CREDITICIA_WHATSAPP_ENCODED_MESSAGE = encodeURIComponent(
+  BRUJULA_CREDITICIA_WHATSAPP_MESSAGE,
+).replace(/%20/g, "+");
+
+export const BRUJULA_CREDITICIA_WHATSAPP_URL = `https://api.whatsapp.com/send/?phone=${OFFICIAL_WHATSAPP_NUMBER}&text=${BRUJULA_CREDITICIA_WHATSAPP_ENCODED_MESSAGE}&type=phone_number&app_absent=0`;
+
 export const ECOSISTEMA_WHATSAPP_MESSAGE =
   "Hola, Colraices. Vengo desde la página “Conoce el Ecosistema” y me gustaría recibir más información para colombianos en el exterior.";
 
