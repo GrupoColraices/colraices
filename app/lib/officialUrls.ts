@@ -29,6 +29,15 @@ const MONETIZACION_WHATSAPP_ENCODED_MESSAGE = encodeURIComponent(
 
 export const MONETIZACION_WHATSAPP_URL = `https://api.whatsapp.com/send/?phone=${OFFICIAL_WHATSAPP_NUMBER}&text=${MONETIZACION_WHATSAPP_ENCODED_MESSAGE}&type=phone_number&app_absent=0`;
 
+export const CREDITO_WHATSAPP_MESSAGE =
+  "Hola, Colraices. Estoy fuera de Colombia, vengo desde la página de crédito y quiero orientación para acceder a financiación e invertir en Colombia";
+
+const CREDITO_WHATSAPP_ENCODED_MESSAGE = encodeURIComponent(
+  CREDITO_WHATSAPP_MESSAGE,
+).replace(/%20/g, "+");
+
+export const CREDITO_WHATSAPP_URL = `https://api.whatsapp.com/send/?phone=${OFFICIAL_WHATSAPP_NUMBER}&text=${CREDITO_WHATSAPP_ENCODED_MESSAGE}&type=phone_number&app_absent=0`;
+
 export const ECOSISTEMA_WHATSAPP_MESSAGE =
   "Hola, Colraices. Vengo desde la página “Conoce el Ecosistema” y me gustaría recibir más información para colombianos en el exterior.";
 
