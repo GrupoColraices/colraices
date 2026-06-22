@@ -282,6 +282,8 @@ export default function BrujulaHero() {
       <GeneralContactModal
         open={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
+        title="Déjanos tus datos y te contactaremos"
+        subtitle="para acompañarte en tu camino hacia tu inmueble en Colombia"
         source="brujula_inmobiliaria_hero_contratar_ahora"
         serviceInterest="Brújula Inmobiliaria"
         showHelpField={false}

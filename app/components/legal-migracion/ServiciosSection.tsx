@@ -61,7 +61,7 @@ const services: ServiceItem[] = [
 
 const ServiciosSection: React.FC = () => {
   return (
-    <section id="servicios" className="servicios-bg">
+    <section id="servicios">
       <div className="servicios-section">
         <div className="servicios-header">
           <p className="servicios-kicker">NUESTROS SERVICIOS</p>
@@ -107,9 +107,10 @@ const ServiciosSection: React.FC = () => {
           background: #fbf8f3;
         }
 
-        .servicios-bg {
+        #servicios {
           width: 100%;
           background: #fbf8f3;
+          scroll-margin-top: 68px;
         }
 
         .servicios-section {

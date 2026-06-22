@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Montserrat } from "next/font/google";
 import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
 import { officialPaths } from "@/app/lib/officialUrls";
+import { legalHelpOptions } from "./legalHelpOptions";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -206,6 +207,7 @@ export default function HeroLegal() {
         source="legal_migratorio_hero_hablar_asesor"
         serviceInterest="Legal y migratorio"
         showHelpField={true}
+        helpOptions={legalHelpOptions}
       />
     </section>
   );

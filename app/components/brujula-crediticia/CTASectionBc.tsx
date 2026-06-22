@@ -1,6 +1,6 @@
 "use client";
 
-import { OFFICIAL_WHATSAPP_URL } from "@/app/lib/officialUrls";
+import { BRUJULA_CREDITICIA_WHATSAPP_URL } from "@/app/lib/officialUrls";
 
 export default function CTASectionBc() {
   return (
@@ -24,7 +24,7 @@ export default function CTASectionBc() {
 
           {/* BOTÓN */}
           <a
-            href={OFFICIAL_WHATSAPP_URL}
+            href={BRUJULA_CREDITICIA_WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-[28px] px-[28px] py-[10px] text-[14.4px] font-semibold text-[#091D3E] bg-white rounded-full hover:bg-[#FFD54F] transition-all duration-300"

@@ -12,9 +12,25 @@ type GeneralContactModalProps = {
   source?: string;
   serviceInterest?: string;
   showHelpField?: boolean;
+  helpOptions?: readonly string[];
 };
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const DEFAULT_HELP_OPTIONS = [
+  "Quiero iniciar mi proceso migratorio o de visa",
+  "Quiero emprender en Colombia desde el exterior",
+  "Necesito gestionar mi pensión en Colombia",
+  "Necesito un representante legal en Colombia",
+  "Quiero poner al día mis temas fiscales o impuestos",
+  "Quiero acceder a crédito en Colombia",
+  "Necesito mejorar o solucionar mis reportes",
+  "Quiero saber si puedo aplicar a financiación",
+  "Quiero entender mi situación financiera",
+  "No estoy seguro, requiero orientación",
+  "Quiero enviar dinero a Colombia",
+  "No estoy seguro, necesito orientación",
+] as const;
 
 export default function GeneralContactModal({
   open,
@@ -24,6 +40,7 @@ export default function GeneralContactModal({
   source = "formulario_general",
   serviceInterest = "Contacto general",
   showHelpField = false,
+  helpOptions = DEFAULT_HELP_OPTIONS,
 }: GeneralContactModalProps) {
   const submittingRef = useRef(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -353,42 +370,11 @@ export default function GeneralContactModal({
                     <option value="" disabled>
                       Selecciona
                     </option>
-                    <option value="Quiero iniciar mi proceso migratorio o de visa">
-                      Quiero iniciar mi proceso migratorio o de visa
-                    </option>
-                    <option value="Quiero emprender en Colombia desde el exterior">
-                      Quiero emprender en Colombia desde el exterior
-                    </option>
-                    <option value="Necesito gestionar mi pensión en Colombia">
-                      Necesito gestionar mi pensión en Colombia
-                    </option>
-                    <option value="Necesito un representante legal en Colombia">
-                      Necesito un representante legal en Colombia
-                    </option>
-                    <option value="Quiero poner al día mis temas fiscales o impuestos">
-                      Quiero poner al día mis temas fiscales o impuestos
-                    </option>
-                    <option value="Quiero acceder a crédito en Colombia">
-                      Quiero acceder a crédito en Colombia
-                    </option>
-                    <option value="Necesito mejorar o solucionar mis reportes">
-                      Necesito mejorar o solucionar mis reportes
-                    </option>
-                    <option value="Quiero saber si puedo aplicar a financiación">
-                      Quiero saber si puedo aplicar a financiación
-                    </option>
-                    <option value="Quiero entender mi situación financiera">
-                      Quiero entender mi situación financiera
-                    </option>
-                    <option value="No estoy seguro, requiero orientación">
-                      No estoy seguro, requiero orientación
-                    </option>
-                    <option value="Quiero enviar dinero a Colombia">
-                      Quiero enviar dinero a Colombia
-                    </option>
-                    <option value="No estoy seguro, necesito orientación">
-                      No estoy seguro, necesito orientación
-                    </option>
+                    {helpOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
                   </select>
                 </div>
               )}

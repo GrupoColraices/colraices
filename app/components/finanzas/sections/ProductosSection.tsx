@@ -67,7 +67,7 @@ const preparacion: ProductItem[] = [
 const ejecucion: ProductItem[] = [
   {
     tag: "Banco Davivienda · Bróker autorizado",
-    title: "Crédito hipotecario",
+    title: "Crédito hipotecario y leasing habitacional",
     subtitle: "Para comprar vivienda nueva o usada en Colombia",
     desc: "Hasta el 80% de financiación. Hasta 30 años de plazo. Tramitado directamente con Davivienda — sin intermediarios adicionales.",
     extra1: "Hasta 80%",
