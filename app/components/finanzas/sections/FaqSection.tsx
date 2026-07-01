@@ -40,6 +40,15 @@ const faqItems: FaqItem[] = [
       'Depende del producto: Brújula Financiera y Crediticia toman 3 días. Buena Data entre 30 y 90 días. Monetización y créditos dependen del monto y del banco, pero siempre te damos tiempos claros al inicio.',
   },
 ];
+
+const financeHelpOptions = [
+  'Quiero acceder a crédito en Colombia',
+  'Necesito mejorar o solucionar mis reportes',
+  'Quiero saber si puedo aplicar a financiación',
+  'Quiero entender mi situación financiera',
+  'Quiero enviar dinero a Colombia',
+  'No estoy seguro, necesito orientación',
+] as const;
  
 export default function FaqSection() {
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
@@ -368,6 +377,7 @@ export default function FaqSection() {
       source="finanzas_faq_agendar_llamada"
       serviceInterest="Financiación en Colombia"
       showHelpField={true}
+      helpOptions={financeHelpOptions}
     />
     </>
   );

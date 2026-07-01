@@ -1,6 +1,6 @@
 "use client";
 
-import { OFFICIAL_WHATSAPP_URL } from "@/app/lib/officialUrls";
+import { CREDITO_WHATSAPP_URL } from "@/app/lib/officialUrls";
 
 export default function CTACompra() {
   return (
@@ -24,7 +24,7 @@ export default function CTACompra() {
 
           {/* BOTÓN */}
           <a
-            href={OFFICIAL_WHATSAPP_URL}
+            href={CREDITO_WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-[26px] w-full max-w-[208.11px] h-[47.6px] rounded-full bg-[#FFC107] text-[#2A3F77] font-semibold text-[14.4px] leading-[21.6px] shadow-[0_12px_28px_rgba(255,193,7,0.28)] hover:brightness-110 transition flex items-center justify-center"

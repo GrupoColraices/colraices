@@ -1,11 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { type MouseEvent, useState } from "react";
 import Link from "next/link";
 import GeneralContactModal from "@/app/components/forms/GeneralContactModal";
+import { officialPaths } from "@/app/lib/officialUrls";
+import { legalHelpOptions } from "./legalHelpOptions";
 
 export default function CtaBannerSection() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const scrollToServices = () => {
+    document.getElementById("servicios")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const handleServicesLinkClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+
+    if (currentPath !== officialPaths.legalHub) {
+      return;
+    }
+
+    event.preventDefault();
+    window.history.pushState(null, "", `${officialPaths.legalHub}#servicios`);
+    window.requestAnimationFrame(scrollToServices);
+  };
 
   return (
     <section className="w-full min-h-[345.13px] bg-[linear-gradient(90deg,#0F2D5C_0%,#1A4F9E_100%)] flex items-center">
@@ -36,7 +57,8 @@ export default function CtaBannerSection() {
             </button>
 
             <Link
-              href="#servicios"
+              href={`${officialPaths.legalHub}#servicios`}
+              onClick={handleServicesLinkClick}
               className="inline-flex h-[51.2px] w-full sm:w-[225.53px] items-center justify-center rounded-[50px] border-[0.8px] border-white/25 text-white text-[14.4px] font-semibold leading-[21.6px] tracking-[0.43px] transition-all duration-300 hover:bg-white hover:text-[#0F2D5C] hover:border-white"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
@@ -53,6 +75,7 @@ export default function CtaBannerSection() {
         source="legal_migratorio_cta_banner_hablar_asesor"
         serviceInterest="Legal y migratorio"
         showHelpField={true}
+        helpOptions={legalHelpOptions}
       />
     </section>
   );

@@ -81,7 +81,7 @@ export default function HeroBrujulaCrediticia() {
                     Precio único
                   </span>
                   <span className="text-[#FFD54F] font-semibold text-[19.2px]">
-                    USD $180
+                    USD $110
                   </span>
                 </div>
 

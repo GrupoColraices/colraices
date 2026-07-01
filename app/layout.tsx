@@ -11,7 +11,7 @@ const montserrat = Montserrat({
   weight: ["300", "400", "600", "700"],
 });
 
-const GTM_ID = "GTM-WQDR37KG";
+const GA_MEASUREMENT_ID = "G-PLK1HSPN55";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -43,25 +43,20 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={montserrat.className}>
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-
         {children}
         <FloatingContactButton />
 
-        <Script id="google-tag-manager" strategy="beforeInteractive">
+        <Script
+          id="google-analytics"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics-config" strategy="afterInteractive">
           {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
       </body>
